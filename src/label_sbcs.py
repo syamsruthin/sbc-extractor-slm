@@ -6,6 +6,7 @@ Labels that fail validation are retried, then logged as failures and never saved
 
     uv run python src/label_sbcs.py --split train,val --limit 5   # smoke test + true-cost check
     uv run python src/label_sbcs.py --split train,val             # everything in those splits
+    uv run python src/label_sbcs.py --only-ids-from data/gold/labels --out-dir eval/predictions/teacher_v1.3 --guidelines 1.3
 
 Labels go to data/labels/v<GUIDELINE_VERSION>/ so labels from different guideline
 versions never mix.
@@ -26,7 +27,7 @@ import requests
 from dotenv import load_dotenv
 from pydantic import ValidationError
 
-from schema import ANNOTATION_GUIDELINES, GUIDELINE_VERSION, SBCExtraction, normalize
+from schema import ANNOTATION_GUIDELINES, ANNOTATION_GUIDELINES_V1_3, GUIDELINE_VERSION, SBCExtraction, normalize
 
 ROOT = Path(__file__).resolve().parent.parent
 MD_DIR = ROOT / "data/markdown"
@@ -66,12 +67,20 @@ class Budget:
 BUDGET = Budget(cap=float("inf"), reserve=0.0)
 DEFAULT_MODEL = "deepseek/deepseek-v4-flash"
 
-SYSTEM_PROMPT = f"""You extract structured data from US health plan Summary of Benefits \
+PROMPT_TEMPLATE = """You extract structured data from US health plan Summary of Benefits \
 and Coverage (SBC) documents. The SBC is given as Markdown converted from PDF; \
 words may be run together (e.g. "deductibledoes not apply").
 
 Follow these rules exactly:
-{ANNOTATION_GUIDELINES}"""
+{guidelines}"""
+
+
+def system_prompt(guidelines: str) -> str:
+    return PROMPT_TEMPLATE.format(guidelines=guidelines)
+
+
+SYSTEM_PROMPT = system_prompt(ANNOTATION_GUIDELINES)
+GUIDELINES = {"1.2": ANNOTATION_GUIDELINES, "1.3": ANNOTATION_GUIDELINES_V1_3}
 
 
 def strict_schema(schema: dict) -> dict:
@@ -213,7 +222,18 @@ def main() -> None:
     parser.add_argument("--budget", type=float, default=None, help="max $ to spend in this run")
     parser.add_argument("--keep", type=float, default=1.0, help="never let the key's remaining limit drop below this")
     parser.add_argument("--val-first", type=int, default=60, help="label this many val docs before train")
+    parser.add_argument("--only-ids-from", default=None,
+                        help="only label docs that have a .json in this dir (e.g. relabel a previous label set)")
+    parser.add_argument("--out-dir", default=None, help="write labels here instead of data/labels/v<version>")
+    parser.add_argument("--guidelines", default=GUIDELINE_VERSION, choices=sorted(GUIDELINES),
+                        help="guideline version for the teacher prompt (1.3 = tested, not adopted)")
     args = parser.parse_args()
+
+    global LABEL_DIR, LOG, SYSTEM_PROMPT
+    SYSTEM_PROMPT = system_prompt(GUIDELINES[args.guidelines])
+    if args.out_dir:
+        LABEL_DIR = (ROOT / args.out_dir).resolve()
+        LOG = LABEL_DIR / "_log.jsonl"
 
     load_dotenv(ROOT / ".env")
     api_key = os.environ.get("OPENROUTER_API_KEY")
@@ -227,9 +247,12 @@ def main() -> None:
         wanted = set(splits.loc[splits.split.isin(args.split.split(",")) & (splits.download_status == "ok"), "plan_id"])
         docs = [p for p in docs if p.stem in wanted]
         docs = prioritize(docs, splits, args.val_first)
+    if args.only_ids_from:
+        keep = {p.stem for p in (ROOT / args.only_ids_from).glob("*.json") if not p.stem.startswith("_")}
+        docs = [p for p in docs if p.stem in keep]
     todo = [p for p in docs if args.overwrite or not (LABEL_DIR / f"{p.stem}.json").exists()]
     todo = todo[: args.limit] if args.limit else todo
-    print(f"labeling {len(todo)} docs with {args.model} (guidelines v{GUIDELINE_VERSION})")
+    print(f"labeling {len(todo)} docs with {args.model} (guidelines v{args.guidelines})")
     before = key_usage(api_key)
     print(f"key: ${before['usage']:.4f} used, ${before['limit_remaining']} remaining")
     cap = args.budget if args.budget is not None else float("inf")

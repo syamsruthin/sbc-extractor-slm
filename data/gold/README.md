@@ -40,8 +40,9 @@ and `review_sheet.py` now only matches row labels in the first two columns.
 
 ## Gold conventions (beyond guideline v1.2)
 
-These were applied consistently in review. **Add them to the annotation guidelines (v1.3)
-before the next relabel:**
+These were applied consistently in review and written up as guideline v1.3, which was
+**tested but not adopted** for the training labels (see docs/04-labeling.md). So the gold set
+is stricter than the training labels on `deductible_applies` and issuer naming:
 
 1. `deductible_applies` comes only from **that row**: its price cell, its limitations cell,
    or a legend mark like "†Deductible does not apply". Never infer it from the page-1

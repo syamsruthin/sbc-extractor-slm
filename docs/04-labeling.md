@@ -60,3 +60,48 @@ up. Gold labels follow v1.2 through tracked corrections.
 **Takeaway:** review the labels, find a cluster of errors, sharpen the guideline, and add a
 deterministic check if possible. That loop is how label quality improves. Prompt tweaks
 alone don't make a teacher consistent.
+
+## Guideline v1.3: tested, not adopted (2026-10-17)
+
+After the PDF review of the gold set (63 corrections), the gold conventions were written up
+as guideline v1.3. The main change was a strict rule for `deductible_applies`: decide it from
+*that row only* (its price cell, its limitations cell, or a legend mark like "†"), and never
+infer it from the page-1 "covered before the deductible" list or the chart-wide note. v1.3 also
+added plan-info conventions (issuer = header brand, no `Issuer:` prefix in plan_name,
+plan_type ∈ HMO/PPO/EPO/POS) and "exclusions only from the does-NOT-cover box".
+
+**Validated before relabeling.** I labeled the 10 gold docs with v1.3 (~$0.007) and scored them:
+
+| Teacher run (gold set) | Field acc. | deductible_applies | percent | money | plan_info |
+|---|---|---|---|---|---|
+| v1.1 prompt + repair pass | **97.6%** | **93.7%** | 98.2% | 99.1% | 88.0% |
+| v1.3 prompt + repair pass + normalizer | 96.5% | 89.8% | 98.2% | 99.3% | 86.0% |
+
+- The strict rule **fixed** the inferred flags for Ambetter (NE) and 22 Health (FL), but on
+  HMO Louisiana the teacher read the "†Deductible does not apply" legend as "every unmarked
+  cell = applies" (39 new errors). The teacher keeps inferring; it just picks a different signal.
+- Multi-part cells were still filled in both fields despite the explicit rule.
+- Caveat: the gold set was built from v1.1 labels, so where v1.1 made an acceptable
+  judgment call, gold inherited it. That biases this comparison towards v1.1, but not by
+  enough to make v1.3 a clear win.
+
+**Decision: keep the v1.2 labels for training. No relabel, $0.27 saved.** The wins that *were*
+reliable came from deterministic code, applied to all 450 v1.2 labels instead of a re-prompt:
+
+- `normalize()` now also drops a 0 next to a real price (`"$40 copay"` must not become
+  `coinsurance_pct: 0`; 48 cells in 17 training labels), maps `plan_type` to
+  HMO/PPO/EPO/POS, and strips an `Issuer:` prefix from `plan_name`.
+
+v1.3 stays in `src/schema.py` as `ANNOTATION_GUIDELINES_V1_3`, and the run is reproducible with
+`label_sbcs.py --guidelines 1.3`.
+
+**Known mismatch carried into Phase 3:** the gold set follows the strict v1.3 conventions,
+while the training labels carry the teacher's inferred `deductible_applies` (8.8% hallucination
+rate on gold). A student trained on them will lose points on that field by design, so it's
+reported separately. Fixing it properly is a product decision about what the field should mean:
+**strict** (row-level, mostly null) or **document-level** (use legends and the page-1 list;
+more useful for comparison, but the gold set would need re-reviewing).
+
+**Lesson:** validate a guideline change on the gold set before paying to relabel. A prompt
+rule that reads clearly to a human doesn't necessarily change model behavior, but a
+deterministic normalizer always does.

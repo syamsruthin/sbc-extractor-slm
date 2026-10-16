@@ -47,6 +47,69 @@ ANNOTATION_GUIDELINES = """\
 """
 
 
+# Guideline v1.3: TESTED, NOT ADOPTED (2026-10-17). It folds in the gold-review
+# conventions, mainly a strict row-only rule for deductible_applies. On the gold set
+# the teacher scored 96.5% with it vs 97.6% with v1.2-era prompting: it stopped
+# inferring deductible flags for some insurers but started inferring them from
+# legend marks for others. See docs/04-labeling.md. The gold set still follows
+# these conventions; reproduce the run with `label_sbcs.py --guidelines 1.3`.
+ANNOTATION_GUIDELINES_V1_3 = """\
+General
+- Extract only what the document states. Never infer from typical plans.
+- Every key is always present. Use null for "not stated in the document".
+- Money is a number in dollars (1500, not "$1,500"); percentages are 0-100.
+
+Plan info
+- issuer: the brand shown in the SBC header (e.g. "Ambetter Health"), not an
+  underwriter named in the footer.
+- plan_name: the plan name without an "Issuer:" prefix ("Oscar: Gold Elite Plan" -> "Gold Elite Plan").
+- plan_type: exactly one of HMO, PPO, EPO, POS (drop market labels such as "IND").
+
+Deductible and out-of-pocket limit
+- "Single", "self-only", "per person", "individual" -> individual. The family amount may
+  lack the word "family" (e.g. "$2,050 Individual / $4,100" -> family 4100).
+- Plans with several in-network tiers: in_network = the first (lowest-cost) tier.
+- out_of_network is null if the document says not applicable, unlimited, or gives no amount.
+
+Cost-sharing cells
+- "No charge"                 -> covered=true, copay=0, coinsurance_pct=0
+- "Not covered"               -> covered=false, every other field null
+- Fill BOTH copay and coinsurance_pct only when one charge combines them
+  (e.g. "$250 copay then 20% coinsurance").
+- Different prices for different parts of a service (e.g. "Office visit: $40 copay;
+  other outpatient: 40% coinsurance", or "Physician: $60 copay; facility: 25%
+  coinsurance") -> put the FIRST listed part in the structured fields and summarize
+  the other parts in note. Sub-rows under one service (e.g. "Physician Visit" then
+  "Emergency room") count as parts: the first sub-row goes in the structured fields.
+  Never leave copay and coinsurance_pct both null when the document gives a price.
+- Prices come from the price columns only. Text in the limitations column goes in
+  note at most; it never overrides the price column.
+- in_network is the first (lowest-cost) in-network column. Ignore special tiers such
+  as Indian Health Care Providers (IHCP).
+
+deductible_applies (decide from THAT ROW only)
+- true:  the row's price cell or limitations cell says the deductible applies to the
+  charge ("after deductible", "subject to deductible", "Coinsurance applies after deductible").
+- false: the row says it doesn't ("deductible does not apply", "not subject to deductible",
+  or a legend mark such as "†Deductible does not apply" next to the price).
+- null:  the row says nothing about the deductible. Do NOT infer it from the page-1
+  "services covered before you meet your deductible" list, from the chart-wide note
+  "costs shown are after your deductible has been met, if a deductible applies", or
+  from what other rows say. A plain "$25 copay" or "40% coinsurance" is null.
+
+Notes and lists
+- note is only for terms the structured fields can't express (per-day copays,
+  visit limits, "first 3 visits free"). At most 150 characters; otherwise null.
+  Don't repeat prior-authorization or "balance billing may apply" boilerplate.
+- drug_tiers: one entry per tier in document order, retail 30-day prices only (skip
+  separate mail-order rows). category=other if the tier fits none of the standard categories.
+- services_before_deductible: services the SBC says are covered before you meet
+  the deductible, as short names. Empty list if none.
+- excluded_services: only the "Services Your Plan Generally Does NOT Cover" box, as short
+  names. Never items from "Other Covered Services".
+"""
+
+
 class CostShare(BaseModel):
     covered: bool
     copay: float | None = Field(description="Dollar copay; 0 for 'No charge'")
@@ -139,10 +202,20 @@ class SBCExtraction(BaseModel):
 def normalize(label: SBCExtraction) -> SBCExtraction:
     """Deterministic fixes for conventions the teacher applies inconsistently.
 
-    "No charge" should be copay=0 AND coinsurance_pct=0, but the teacher often
-    fills only one of them. Fixing it in code keeps every label consistent,
-    which a prompt alone doesn't guarantee.
+    - "No charge" should be copay=0 AND coinsurance_pct=0, but the teacher often
+      fills only one of them. Conversely, "$40 copay" must not get coinsurance_pct=0.
+    - plan_type is one of HMO/PPO/EPO/POS ("IND POS" -> "POS").
+    - plan_name drops an "Issuer:" prefix.
+    Fixing these in code keeps every label consistent, which a prompt alone doesn't guarantee.
     """
+    if label.plan_type:
+        types = [t for t in ("HMO", "PPO", "EPO", "POS") if t in label.plan_type.upper().split()]
+        if len(types) == 1:
+            label.plan_type = types[0]
+    if label.plan_name and label.issuer and ":" in label.plan_name:
+        prefix, rest = label.plan_name.split(":", 1)
+        if prefix.strip().lower() == label.issuer.strip().lower() and rest.strip():
+            label.plan_name = rest.strip()
     cells = []
     for svc in [*label.services.__dict__.values(), *(t.retail for t in label.drug_tiers)]:
         cells += [svc.in_network, svc.out_of_network]
@@ -153,4 +226,10 @@ def normalize(label: SBCExtraction) -> SBCExtraction:
             c.coinsurance_pct = 0
         elif c.coinsurance_pct == 0 and c.copay is None:
             c.copay = 0
+        # "$40 copay" is not "$40 copay then 0% coinsurance": a zero next to a real
+        # price means "not applicable", which is null (the teacher writes 0 sometimes).
+        elif c.copay and c.coinsurance_pct == 0:
+            c.coinsurance_pct = None
+        elif c.coinsurance_pct and c.copay == 0:
+            c.copay = None
     return label

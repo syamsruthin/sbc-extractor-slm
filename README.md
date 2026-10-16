@@ -69,7 +69,10 @@ uv run python src/build_gold.py                # gold labels = teacher labels + 
   [Details](docs/06-dataset.md). Total labeling spend for the scale-up: **~$0.34**.
 - **Two-pass extraction:** QA found the teacher dropping deductible/OOP amounts in ~40% of docs.
   A targeted re-ask of just those fields (~$0.00008/doc) fixed 778 values.
-- **Label quality:** against the PDF-verified gold set, the teacher scores 97.6% field accuracy; its weak spot is inferring `deductible_applies` (8.8% hallucination). Errors cluster in
+- **Label quality:** against the PDF-verified gold set, the teacher scores 97.6% field accuracy; its weak spot is inferring `deductible_applies` (8.8% hallucination).
+- **Guideline v1.3, tested then rejected:** a stricter deductible rule scored *lower* on the gold
+  set (96.5% vs 97.6%), so the labels stayed v1.2. The reliable fixes went into a deterministic
+  normalizer instead. [Write-up](docs/04-labeling.md). Errors cluster in
   multi-part cells, which led to [annotation guideline v1.2](docs/04-labeling.md) plus a
   deterministic normalizer.
 
