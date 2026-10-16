@@ -1,0 +1,31 @@
+plan_id,state,issuer_id,issuer,plan_name,metal,plan_type,sbc_url,download_status
+10091OR0780001-01,OR,10091,PacificSource Health Plans,Core Gold 1500,Gold,EPO,https://pacificsource.widen.net/content/8r9knjkigi/pdf/Core-Gold-1500_10091OR0780001-01-2026-SBC.pdf,ok
+11269WY0170021-00,WY,11269,Blue Cross Blue Shield of Wyoming,BlueSelect Silver HealthPlus without Kid's Dental,Silver,PPO,https://shop.yourwyoblue.com/content/sbcs/2026/WY/Individual/BlueSelectSilverHealthPlusIXND.pdf,ok
+11512NC0060051-05,NC,11512,Blue Cross and Blue Shield of NC,Blue Advantage Silver Standard | Nationwide Doctors,Silver,PPO,https://buyonline.bcbsnc.com/assets/bol/public/pdf/sbc/Blue_Advantage_Silver_Standard_700_CSR87_2026.pdf,not_pdf
+11718TX0140020-01,TX,11718,Community Health Choice,"Community Ultra Select Silver 020 (No deductible for PCP, Specialist, Urgent Care & Generics, $0 PCP 24/7 Virtual Care Options)",Silver,HMO,https://www.communityhealthchoice.org/wp-content/uploads/2025/08/11718TX0140020-01-2026.pdf,ok
+13219NH0010004-03,NH,13219,WellSense Health Plan,WellSense Clarity NH Silver 0 Deductible + $0 Rx List + 24/7 Nurse Advice,Silver,HMO,https://www.wellsense.org/hubfs/Plans/NH_Clarity/2026/2026_SBC_Clarity_NH_Silver_0_Deductible_03.pdf,ok
+13262AR0230010-00,AR,13262,Health Advantage,HA Platinum Premier National,Platinum,POS,https://www.healthadvantage-hmo.com/docs/librariesprovider6/members/sbcpdffiles/2026/60055.pdf,ok
+13484NE0090009-00,NE,13484,Ambetter Health,Standard Silver,Silver,EPO,https://api.centene.com/SBC/2026/13484NE0090009-00.pdf,ok
+13877AZ0070030-02,AZ,13877,"Oscar Health Plan, Inc.",Silver Elite Saver Plus,Silver,HMO,https://d3ul0st9g52g6o.cloudfront.net/2026/AZ/sbc/2026_13877AZ007003002.pdf,ok
+13887FL0010004-00,FL,13887,22 Health,Smart Silver 22 Health,Silver,HMO,https://22healthplan.com/wp-content/uploads/2025/09/smartsilver0001.pdf,ok
+14002TN0400241-01,TN,14002,BlueCross BlueShield of Tennessee,BlueCross B16S $50 PCP Copay + $0 virtual care from Teladoc Health®,Expanded Bronze,EPO,https://www.bcbst.com/sbc/2026/127600/B16S_SBC.pdf,error: HTTPError
+15560MI0350004-00,MI,15560,Blue Cross Blue Shield of Michigan Mutual Insurance Company,Blue Cross® Premier PPO Gold,Gold,PPO,https://www.bcbsm.com/amslibs/content/dam/public/marketplace/2026-individual/sbc/premier-gold-sbc.pdf,ok
+16842FL0260019-05,FL,16842,Florida Blue (BlueCross BlueShield FL),BlueOptions Silver 24J01-19S ($40 PCP Visits / $80 Specialist Visits / Rewards),Silver,PPO,https://www.bcbsfl.com/DocumentLibrary/sbc/2026/24J01-19BS.pdf,error: HTTPError
+17091AL0010009-01,AL,17091,Oscar Insurance Company,Gold Simple,Gold,EPO,https://d3ul0st9g52g6o.cloudfront.net/2026/AL/sbc/2026_17091AL001000901.pdf,ok
+17414NC0010007-01,NC,17414,AmeriHealth Caritas Next,AmeriHealth Caritas Next Bronze Signature + No Referrals,Expanded Bronze,HMO,https://www.amerihealthcaritasnext.com/content/dam/amerihealth-caritas/acnext/pdf/nc/2026/member/plan-documents/summary-of-benefits-nc-bronze-signature-on.pdf.coredownload.inline.pdf,ok
+17575IN1000002-02,IN,17575,Anthem Blue Cross and Blue Shield,Anthem Bronze Essential POS 5500 ($0 Virtual PCP + $0 Select Drugs + Incentives),Expanded Bronze,POS,https://sbc.anthem.com/dpsdeeplink/deepLink/AnthemBronzeEssentialPOSIncentivesAI/8XTP/English/DG166708945810.pdf,ok
+17933TX0010008-03,TX,17933,"Moda Health Plan, Inc.",Moda Select Texas Standard Silver,Silver,EPO,https://www.modahealth.com/-/media/modahealth/shared/plans/TX/2026/individual/Moda-Select-Texas-Standard-Silver-AI-AN-Limited-SBC-2026-TX.pdf,ok
+18167UT0010001-03,UT,18167,Molina Healthcare,Molina Gold Core 1640,Gold,HMO,https://www.molinamarketplace.com/members/ut/en-US/PDF/Marketplace/2026/UT26SBCE_G1_3.pdf,error: HTTPError
+18350HI0880013-03,HI,18350,HMSA,HMSA Gold PPO II,Gold,PPO,https://hmsa.com/content/assets/2026-gold-ppo-ii-ai-an-limited-cs-sbc.pdf,ok
+18558KS0400008-00,KS,18558,"Blue Cross and Blue Shield of Kansas, Inc.",BlueCare EPO Simple Silver HDHP,Silver,EPO,https://www.bcbsks.com/qhp-data/plan-docs/2026/MT024_BlueCareEPOSimpleSilverHDHP0_2026.pdf,error: HTTPError
+19636LA0610013-00,LA,19636,HMO Louisiana,Precision Blue Copay (PCP) 60/40 $6000 Standardized (BR),Silver,POS,https://www.lablue.com/web/applications/sbcportal/sbcs/2026/19636LA0610013-00.pdf,ok
+19898FL0340006-03,FL,19898,AvMed,AvMed Entrust Bronze 600 (2026),Expanded Bronze,HMO,https://apps.avmed.com/Public/OHBRFileManager/DownloadFile.aspx?filePath=%2Fpresales%2FAvMed%2F2026%2FSBC%2FIFP%2FAVINHB16490301260625.pdf,ok
+20069TX0510028-01,TX,20069,Oscar Insurance Company,Silver Simple Women's Health with Menopause Benefits Guided Care,Silver,HMO,https://d3ul0st9g52g6o.cloudfront.net/2026/TX/sbc/2026_20069TX051002801.pdf,ok
+20173WI0130011-03,WI,20173,HealthPartners,"Oak $2,000 Standard Gold",Gold,PPO,https://www.healthpartners.com/content/dam/plan/sbc/hp/2026/ir644.pdf,ok
+20305NE0040027-02,NE,20305,Medica,Medica Insure Silver Share,Silver,EPO,https://portal.medica.com/visitor/sbcsearch/docdisplay?plancode=2026-20305NE0040027-02&uid=FFM.pdf,ok
+20635MS0010006-01,MS,20635,"Oscar Health Plan, Inc.",Silver Simple Chronic Care CKM,Silver,HMO,https://d3ul0st9g52g6o.cloudfront.net/2026/MS/sbc/2026_20635MS001000601.pdf,ok
+21333OK0010045-03,OK,21333,Medica,Harmony by Medica Gold $0 Copay PCP Visits,Gold,PPO,https://portal.medica.com/visitor/sbcsearch/docdisplay?plancode=2026-21333OK0010045-03&uid=FFM.pdf,ok
+21525FL0010016-00,FL,21525,Oscar Health Maintenance Organization of Florida,Silver Simple PCP Saver | with AdventHealth,Silver,HMO,https://d3ul0st9g52g6o.cloudfront.net/2026/FL/sbc/2026_21525FL001001600.pdf,ok
+22013UT2680001-02,UT,22013,Regence BlueCross BlueShield of Utah,Bronze 8000,Expanded Bronze,EPO,https://regence.com/go/2026/SBC/UT/Bronze8000-300IndividualConnectEx.pdf,ok
+23552TN0020036-01,TN,23552,Oscar Insurance Company,Gold Elite,Gold,EPO,https://d3ul0st9g52g6o.cloudfront.net/2026/TN/sbc/2026_23552TN002003601.pdf,ok
+23603MT0380006-04,MT,23603,PacificSource Health Plans,Core Standard Silver,Silver,EPO,https://pacificsource.widen.net/content/lldkxzttd9/pdf/Core-Standard-Silver-73_23603MT0380006-04-2026-SBC.pdf,ok
