@@ -20,8 +20,8 @@ SBC PDFs ──► Markdown (pymupdf4llm) ──► teacher-labeled JSON (DeepSe
 | Phase | Learn | Build | Where | Status |
 |---|---|---|---|---|
 | 0 | Tokenization, chat templates, loss masking, memory math | Notes in `docs/` | Mac | ✅ |
-| 1 | Data sourcing, schema design, distillation labeling | SBC download → Markdown → labeled dataset | Mac | 🔄 gold review |
-| 2 | Evaluation design | Eval harness + baselines (base SLM, frontier model) | Mac | ⏳ |
+| 1 | Data sourcing, schema design, distillation labeling | SBC download → Markdown → labeled dataset | Mac | 🔄 gold review, scale-up |
+| 2 | Evaluation design | Eval harness + baselines (base SLM, frontier model) | Mac | 🔄 harness + first baseline |
 | 3 | LoRA, QLoRA, PEFT, TRL/Unsloth | Training runs (MLX on Mac to learn; CUDA for real runs) | Mac + Kaggle | ⏳ |
 | 4 | Error analysis, sweeps, (optional) DPO | Improved model | Kaggle | ⏳ |
 | 5 | Quantization: AWQ, GPTQ, FP8, GGUF | Accuracy / size / latency comparison table | Modal | ⏳ |
@@ -72,4 +72,9 @@ Learning notes for each step are in [docs/](docs/).
 
 ## Results
 
-_Filled in as phases complete._
+Field-level accuracy on the 10-document gold set (~2,700 fields). Details in [docs/05-evaluation.md](docs/05-evaluation.md).
+
+| Model | Field acc. | Hallucination rate | Schema-valid | Latency / doc |
+|---|---|---|---|---|
+| Qwen3-4B-Instruct-2507, zero-shot (MLX 8-bit, M2 Pro) | 75.2% | 35.7% | 20% | ~184 s |
+| Fine-tuned Qwen3-4B | _Phase 3_ | | | |

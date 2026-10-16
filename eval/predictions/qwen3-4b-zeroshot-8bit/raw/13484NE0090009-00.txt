@@ -1,0 +1,517 @@
+{
+  "plan_name": "Ambetter Health Standard Silver: Standard Silver Off Exchange Plan",
+  "issuer": "Celtic Insurance Company",
+  "plan_type": "EPO",
+  "coverage_period": "01/01/2026 - 12/31/2026",
+  "deductible": {
+    "in_network": {
+      "individual": 6000,
+      "family": 12000
+    },
+    "out_of_network": null
+  },
+  "out_of_pocket_limit": {
+    "in_network": {
+      "individual": 8900,
+      "family": 17800
+    },
+    "out_of_network": null
+  },
+  "services_before_deductible": [
+    "preventive care",
+    "primary care",
+    "specialist",
+    "urgent care",
+    "certain prescription drugs"
+  ],
+  "referral_required_for_specialist": null,
+  "services": {
+    "primary_care_visit": {
+      "in_network": {
+        "covered": true,
+        "copay": 40,
+        "coinsurance_pct": 0,
+        "deductible_applies": false,
+        "note": null
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "specialist_visit": {
+      "in_network": {
+        "covered": true,
+        "copay": 80,
+        "coinsurance_pct": 0,
+        "deductible_applies": false,
+        "note": null
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "preventive_care": {
+      "in_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 0,
+        "deductible_applies": false,
+        "note": null
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "diagnostic_test": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 40,
+        "deductible_applies": true,
+        "note": "Laboratory & professional services, x-ray & diagnostic imaging"
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": "Prior authorization may be required. Covered No Limit. Other places of service may include: Hospital, Emergency Room, or Outpatient Facility."
+      }
+    },
+    "imaging": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 40,
+        "deductible_applies": true,
+        "note": "CT/PET scans, MRIs"
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": "Prior authorization may be required. Covered No Limit."
+      }
+    },
+    "outpatient_facility_fee": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 40,
+        "deductible_applies": true,
+        "note": "Prior authorization may be required. Covered No Limit."
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "outpatient_surgeon_fee": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 40,
+        "deductible_applies": true,
+        "note": "Prior authorization may be required. Covered No Limit."
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "emergency_room": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 40,
+        "deductible_applies": true,
+        "note": null
+      },
+      "out_of_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 40,
+        "deductible_applies": true,
+        "note": "Covered No Limit. Note: Prior authorization is not required for emergency transport, however, all non-emergent transport requires prior authorization. If you receive service from an out of-network ground/water ambulance provider, you may be subject to balance billing."
+      }
+    },
+    "emergency_transportation": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 40,
+        "deductible_applies": true,
+        "note": "Covered No Limit. Note: Prior authorization is not required for emergency transport, however, all non-emergent transport requires prior authorization. If you receive service from an out of-network ground/water ambulance provider, you may be subject to balance billing."
+      },
+      "out_of_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 40,
+        "deductible_applies": true,
+        "note": "Covered No Limit. Note: Prior authorization is not required for emergency transport, however, all non-emergent transport requires prior authorization. If you receive service from an out of-network ground/water ambulance provider, you may be subject to balance billing."
+      }
+    },
+    "urgent_care": {
+      "in_network": {
+        "covered": true,
+        "copay": 60,
+        "coinsurance_pct": 0,
+        "deductible_applies": false,
+        "note": null
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "hospital_facility_fee": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 40,
+        "deductible_applies": true,
+        "note": "Prior authorization may be required. Covered No Limit."
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "hospital_surgeon_fee": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 40,
+        "deductible_applies": true,
+        "note": "Prior authorization may be required. Covered No Limit."
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "mental_health_outpatient": {
+      "in_network": {
+        "covered": true,
+        "copay": 40,
+        "coinsurance_pct": 0,
+        "deductible_applies": false,
+        "note": "Other outpatient services: 40% coinsurance. Primary Care Provider (PCP) and other practitioner office visits do not require prior authorization."
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "mental_health_inpatient": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 40,
+        "deductible_applies": true,
+        "note": "Prior authorization may be required. Covered No Limit."
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "pregnancy_office_visits": {
+      "in_network": {
+        "covered": true,
+        "copay": 40,
+        "coinsurance_pct": 0,
+        "deductible_applies": false,
+        "note": "Cost-sharing does not apply for preventive services, such as routine pre-natal and post-natal screenings."
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "childbirth_professional": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 40,
+        "deductible_applies": true,
+        "note": "Prior authorization may be required. Cost-sharing does not apply for preventive services. Depending on the type of services, copayment, coinsurance, or deductible may apply."
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "childbirth_facility": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 40,
+        "deductible_applies": true,
+        "note": "Prior authorization may be required. Cost-sharing does not apply for preventive services. Depending on the type of services, copayment, coinsurance, or deductible may apply."
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "home_health_care": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 40,
+        "deductible_applies": true,
+        "note": "Prior authorization may be required. Limited to 60 visits per year."
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "rehabilitation": {
+      "in_network": {
+        "covered": true,
+        "copay": 40,
+        "coinsurance_pct": 0,
+        "deductible_applies": false,
+        "note": "Outpatient: Prior authorization may be required. Limited to 45 combined visits per year for: physical therapy, occupational therapy, speech therapy, chiropractic physiotherapy and osteopathic physiotherapy (excludes chiropractic/osteopathic manipulative adjustments). Note: Limits do not apply when provided for a mental health/substance use disorder diagnosis. Inpatient: Prior authorization may be required. Covered No Limit."
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "habilitation": {
+      "in_network": {
+        "covered": true,
+        "copay": 40,
+        "coinsurance_pct": 0,
+        "deductible_applies": false,
+        "note": "Outpatient: Prior authorization may be required. Limited to 45 combined visits per year for: physical therapy, occupational therapy, speech therapy, chiropractic physiotherapy and osteopathic physiotherapy (excludes chiropractic/osteopathic manipulative adjustments). Note: Limits do not apply when provided for a mental health/substance use disorder diagnosis. Inpatient: Prior authorization may be required. Covered No Limit."
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "skilled_nursing": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 40,
+        "deductible_applies": true,
+        "note": "Prior authorization may be required. Limited to 60 days per year."
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "durable_medical_equipment": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 40,
+        "deductible_applies": true,
+        "note": "Prior authorization may be required. Covered No Limit."
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "hospice": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 40,
+        "deductible_applies": true,
+        "note": "Prior authorization may be required. Covered No Limit."
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "child_eye_exam": {
+      "in_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 0,
+        "deductible_applies": false,
+        "note": "Limited to 1 visit per year."
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "child_glasses": {
+      "in_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 0,
+        "deductible_applies": false,
+        "note": "Limited to 1 item per year."
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "child_dental_checkup": {
+      "in_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    }
+  },
+  "drug_tiers": [
+    {
+      "name": "Tier 1a - Preferred Generic",
+      "category": "generic",
+      "retail": {
+        "in_network": {
+          "individual": 20,
+          "family": 20
+        },
+        "out_of_network": null
+      }
+    },
+    {
+      "name": "Tier 1b - Generic",
+      "category": "generic",
+      "retail": {
+        "in_network": {
+          "individual": 20,
+          "family": 20
+        },
+        "out_of_network": null
+      }
+    },
+    {
+      "name": "Tier 2 - Preferred Brand",
+      "category": "preferred_brand",
+      "retail": {
+        "in_network": {
+          "individual": 40,
+          "family": 40
+        },
+        "out_of_network": null
+      }
+    },
+    {
+      "name": "Tier 3 - Non-Preferred Brand and Non-Preferred Generic",
+      "category": "non_preferred_brand",
+      "retail": {
+        "in_network": {
+          "individual": 80,
+          "family": 80
+        },
+        "out_of_network": null
+      }
+    },
+    {
+      "name": "Tier 4 - Specialty Drugs",
+      "category": "specialty",
+      "retail": {
+        "in_network": {
+          "individual": 350,
+          "family": 350
+        },
+        "out_of_network": null
+      }
+    }
+  ],
+  "excluded_services": [
+    "Abortion (Except in cases when the life of the member is endangered)",
+    "Acupuncture",
+    "Bariatric surgery",
+    "Cosmetic surgery",
+    "Dental care (Adult)",
+    "Dental care (Children)",
+    "Infertility treatment",
+    "Long-term care",
+    "Non-emergency care when traveling outside the U.S.",
+    "Private-duty nursing",
+    "Routine eye care (Adult)",
+    "Weight loss programs"
+  ]
+}

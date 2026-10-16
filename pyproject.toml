@@ -5,6 +5,7 @@ description = "Fine-tuned small language model for structured extraction from AC
 requires-python = ">=3.11"
 dependencies = [
     "jinja2>=3.1.6",
+    "mlx-lm>=0.32.2",
     "pandas>=3.0.6",
     "pydantic>=2.14.1",
     "pymupdf4llm>=1.28.2",

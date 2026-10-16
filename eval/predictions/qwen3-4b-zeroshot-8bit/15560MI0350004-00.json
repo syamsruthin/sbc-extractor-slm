@@ -1,0 +1,700 @@
+{
+  "plan_name": "Blue Cross® Premier PPO Gold Coverage",
+  "issuer": "Blue Cross Blue Shield of Michigan",
+  "plan_type": "PPO",
+  "coverage_period": "01/01/2026 - 12/31/2026",
+  "deductible": {
+    "in_network": {
+      "individual": 1450,
+      "family": 2900
+    },
+    "out_of_network": {
+      "individual": 2900,
+      "family": 5800
+    }
+  },
+  "out_of_pocket_limit": {
+    "in_network": {
+      "individual": 9000,
+      "family": 18000
+    },
+    "out_of_network": {
+      "individual": 18000,
+      "family": 36000
+    }
+  },
+  "services_before_deductible": [
+    "preventive care/screening/immunization"
+  ],
+  "referral_required_for_specialist": null,
+  "services": {
+    "primary_care_visit": {
+      "in_network": {
+        "covered": true,
+        "copay": 30,
+        "coinsurance_pct": 0,
+        "deductible_applies": true,
+        "note": "Deductible does not apply to 24/7 medical virtual visits. No charge for 24/7 medical virtual visits when performed through the BCBSM selected vendor app."
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": 40,
+        "deductible_applies": true,
+        "note": null
+      }
+    },
+    "specialist_visit": {
+      "in_network": {
+        "covered": true,
+        "copay": 50,
+        "coinsurance_pct": 0,
+        "deductible_applies": true,
+        "note": null
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": 40,
+        "deductible_applies": true,
+        "note": null
+      }
+    },
+    "preventive_care": {
+      "in_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 0,
+        "deductible_applies": false,
+        "note": "Deductible does not apply."
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": 40,
+        "deductible_applies": true,
+        "note": "You may have to pay for services that aren't preventive. Ask your provider if the services needed are preventive."
+      }
+    },
+    "diagnostic_test": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 20,
+        "deductible_applies": true,
+        "note": null
+      },
+      "out_of_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 40,
+        "deductible_applies": true,
+        "note": null
+      }
+    },
+    "imaging": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 20,
+        "deductible_applies": true,
+        "note": "Prior authorization required. Penalty for not having prior authorization is denial of payment."
+      },
+      "out_of_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 40,
+        "deductible_applies": true,
+        "note": "Prior authorization required. Penalty for not having prior authorization is denial of payment."
+      }
+    },
+    "outpatient_facility_fee": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 20,
+        "deductible_applies": true,
+        "note": "Excludes cosmetic surgery, corrective eye surgery, investigational and experimental procedures. 50% coinsurance for infertility, TMJ and weight reduction procedures. Weight reduction procedures limited to one per lifetime."
+      },
+      "out_of_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 40,
+        "deductible_applies": true,
+        "note": "Excludes cosmetic surgery, corrective eye surgery, investigational and experimental procedures. 50% coinsurance for infertility, TMJ and weight reduction procedures. Weight reduction procedures limited to one per lifetime."
+      }
+    },
+    "outpatient_surgeon_fee": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 20,
+        "deductible_applies": true,
+        "note": "Excludes cosmetic surgery, corrective eye surgery, investigational and experimental procedures. 50% coinsurance for infertility, TMJ and weight reduction procedures. Weight reduction procedures limited to one per lifetime."
+      },
+      "out_of_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 40,
+        "deductible_applies": true,
+        "note": "Excludes cosmetic surgery, corrective eye surgery, investigational and experimental procedures. 50% coinsurance for infertility, TMJ and weight reduction procedures. Weight reduction procedures limited to one per lifetime."
+      }
+    },
+    "emergency_room": {
+      "in_network": {
+        "covered": true,
+        "copay": 250,
+        "coinsurance_pct": 20,
+        "deductible_applies": true,
+        "note": "Copayment waived if admitted inpatient into the hospital."
+      },
+      "out_of_network": {
+        "covered": true,
+        "copay": 250,
+        "coinsurance_pct": 20,
+        "deductible_applies": true,
+        "note": "Copayment waived if admitted inpatient into the hospital. Emergency room visits covered at non-participating facilities for medical emergencies and accidental injuries only."
+      }
+    },
+    "emergency_transportation": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 20,
+        "deductible_applies": true,
+        "note": "Includes air and ground transportation. Excludes transportation for convenience."
+      },
+      "out_of_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 20,
+        "deductible_applies": true,
+        "note": "Includes air and ground transportation. Excludes transportation for convenience."
+      }
+    },
+    "urgent_care": {
+      "in_network": {
+        "covered": true,
+        "copay": 75,
+        "coinsurance_pct": 0,
+        "deductible_applies": false,
+        "note": "Cost sharing applies when urgent care visit is for an emergency or accidental injury."
+      },
+      "out_of_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 40,
+        "deductible_applies": true,
+        "note": "Cost sharing applies when urgent care visit is for an emergency or accidental injury."
+      }
+    },
+    "hospital_facility_fee": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 20,
+        "deductible_applies": true,
+        "note": "BCBSM participating hospitals only. Requires prior authorization. Penalty for not having prior authorization is denial of payment. 50% coinsurance for infertility, TMJ and weight reduction procedures. Weight reduction procedures limited to one per lifetime."
+      },
+      "out_of_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 40,
+        "deductible_applies": true,
+        "note": "BCBSM participating hospitals only. Requires prior authorization. Penalty for not having prior authorization is denial of payment. 50% coinsurance for infertility, TMJ and weight reduction procedures. Weight reduction procedures limited to one per lifetime."
+      }
+    },
+    "hospital_surgeon_fee": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 20,
+        "deductible_applies": true,
+        "note": "Excludes cosmetic surgery, corrective eye surgery, investigational and experimental procedures. 50% coinsurance for infertility, TMJ and weight reduction procedures. Weight reduction procedures limited to one per lifetime."
+      },
+      "out_of_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 40,
+        "deductible_applies": true,
+        "note": "Excludes cosmetic surgery, corrective eye surgery, investigational and experimental procedures. 50% coinsurance for infertility, TMJ and weight reduction procedures. Weight reduction procedures limited to one per lifetime."
+      }
+    },
+    "mental_health_outpatient": {
+      "in_network": {
+        "covered": true,
+        "copay": 30,
+        "coinsurance_pct": 20,
+        "deductible_applies": true,
+        "note": "Copayment applies to provider’s office, virtual visit by participating BCBSM provider and Blue Cross virtual care visit from BCBSM selected vendor app only. Additional services are subject to the plan’s deductible and coinsurance. BCBSM approved facilities only."
+      },
+      "out_of_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 40,
+        "deductible_applies": true,
+        "note": "Copayment applies to provider’s office, virtual visit by participating BCBSM provider and Blue Cross virtual care visit from BCBSM selected vendor app only. Additional services are subject to the plan’s deductible and coinsurance. BCBSM approved facilities only."
+      }
+    },
+    "mental_health_inpatient": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 20,
+        "deductible_applies": true,
+        "note": "BCBSM approved facilities only. Requires prior authorization. Penalty for not having prior authorization is denial of payment."
+      },
+      "out_of_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 40,
+        "deductible_applies": true,
+        "note": "BCBSM approved facilities only. Requires prior authorization. Penalty for not having prior authorization is denial of payment."
+      }
+    },
+    "pregnancy_office_visits": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 0,
+        "deductible_applies": false,
+        "note": "Deductible does not apply."
+      },
+      "out_of_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 40,
+        "deductible_applies": true,
+        "note": null
+      }
+    },
+    "childbirth_professional": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 20,
+        "deductible_applies": true,
+        "note": null
+      },
+      "out_of_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 40,
+        "deductible_applies": true,
+        "note": "BCBSM participating hospitals only. Requires prior authorization. Penalty for not having prior authorization is denial of payment."
+      }
+    },
+    "childbirth_facility": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 20,
+        "deductible_applies": true,
+        "note": "BCBSM participating hospitals only. Requires prior authorization. Penalty for not having prior authorization is denial of payment."
+      },
+      "out_of_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 40,
+        "deductible_applies": true,
+        "note": "BCBSM participating hospitals only. Requires prior authorization. Penalty for not having prior authorization is denial of payment."
+      }
+    },
+    "home_health_care": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 20,
+        "deductible_applies": true,
+        "note": "BCBSM participating agencies only. Excludes housekeeping and custodial services."
+      },
+      "out_of_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 20,
+        "deductible_applies": true,
+        "note": "BCBSM participating agencies only. Excludes housekeeping and custodial services."
+      }
+    },
+    "rehabilitation": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 20,
+        "deductible_applies": true,
+        "note": "Physical, occupational, chiropractic and osteopathic manipulative therapy limited to a combined maximum of 30 visits per member per calendar year. Speech therapy limited to a maximum of 30 visits per member per calendar year. Cardiac/pulmonary visits limited to a maximum of 30 visits per member per calendar year."
+      },
+      "out_of_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 40,
+        "deductible_applies": true,
+        "note": "Physical, occupational, chiropractic and osteopathic manipulative therapy limited to a combined maximum of 30 visits per member per calendar year. Speech therapy limited to a maximum of 30 visits per member per calendar year. Cardiac/pulmonary visits limited to a maximum of 30 visits per member per calendar year."
+      }
+    },
+    "habilitation": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 20,
+        "deductible_applies": true,
+        "note": "Physical and occupational therapy limited to a combined maximum of 30 visits per member per calendar year. Speech therapy limited to a maximum of 30 visits per member per calendar year."
+      },
+      "out_of_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 40,
+        "deductible_applies": true,
+        "note": "Physical and occupational therapy limited to a combined maximum of 30 visits per member per calendar year. Speech therapy limited to a maximum of 30 visits per member per calendar year."
+      }
+    },
+    "skilled_nursing": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 20,
+        "deductible_applies": true,
+        "note": "Limited to a maximum of 45 days per member per calendar year. BCBSM participating facilities only. Excludes custodial care. Requires prior authorization. Penalty for not having prior authorization is denial of payment."
+      },
+      "out_of_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 40,
+        "deductible_applies": true,
+        "note": "Limited to a maximum of 45 days per member per calendar year. BCBSM participating facilities only. Excludes custodial care. Requires prior authorization. Penalty for not having prior authorization is denial of payment."
+      }
+    },
+    "durable_medical_equipment": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 50,
+        "deductible_applies": true,
+        "note": "Excludes bath, exercise and deluxe equipment and comfort and convenience items. Prescription is required. Rental and purchase limited to basic equipment."
+      },
+      "out_of_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 70,
+        "deductible_applies": true,
+        "note": "Excludes bath, exercise and deluxe equipment and comfort and convenience items. Prescription is required. Rental and purchase limited to basic equipment."
+      }
+    },
+    "hospice": {
+      "in_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 0,
+        "deductible_applies": false,
+        "note": "Coverage includes inpatient and outpatient hospice care. BCBSM approved hospice programs only. Excludes housekeeping services."
+      },
+      "out_of_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 0,
+        "deductible_applies": false,
+        "note": "Coverage includes inpatient and outpatient hospice care. BCBSM approved hospice programs only. Excludes housekeeping services."
+      }
+    },
+    "child_eye_exam": {
+      "in_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 0,
+        "deductible_applies": false,
+        "note": "Limited to once in a calendar year. A child is defined as a member up to the age of 19."
+      },
+      "out_of_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 0,
+        "deductible_applies": false,
+        "note": "Limited to once in a calendar year. A child is defined as a member up to the age of 19. Out-of-network is paid up to the allowed amount."
+      }
+    },
+    "child_glasses": {
+      "in_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 0,
+        "deductible_applies": false,
+        "note": "Frames (chosen from a select collection) and lenses are covered once in a calendar year. A child is defined as a member up to the age of 19. Out-of-network is paid up to the allowed amount."
+      },
+      "out_of_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 0,
+        "deductible_applies": false,
+        "note": "Frames (chosen from a select collection) and lenses are covered once in a calendar year. A child is defined as a member up to the age of 19. Out-of-network is paid up to the allowed amount."
+      }
+    },
+    "child_dental_checkup": {
+      "in_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": "Not covered"
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": "Not covered"
+      }
+    }
+  },
+  "drug_tiers": [
+    {
+      "name": "Tier 1 - Generic",
+      "category": "generic",
+      "retail": {
+        "in_network": {
+          "individual": 15,
+          "family": 15
+        },
+        "out_of_network": {
+          "individual": null,
+          "family": null
+        }
+      }
+    },
+    {
+      "name": "Tier 2 - 84-90 day supply generic",
+      "category": "generic",
+      "retail": {
+        "in_network": {
+          "individual": 45,
+          "family": 45
+        },
+        "out_of_network": {
+          "individual": null,
+          "family": null
+        }
+      }
+    },
+    {
+      "name": "Tier 3 - Mail Order 1-30 day supply generic",
+      "category": "generic",
+      "retail": {
+        "in_network": {
+          "individual": 15,
+          "family": 15
+        },
+        "out_of_network": {
+          "individual": null,
+          "family": null
+        }
+      }
+    },
+    {
+      "name": "Tier 4 - Mail Order 31-60 day supply generic",
+      "category": "generic",
+      "retail": {
+        "in_network": {
+          "individual": 30,
+          "family": 30
+        },
+        "out_of_network": {
+          "individual": null,
+          "family": null
+        }
+      }
+    },
+    {
+      "name": "Tier 5 - Mail Order 61-90 day supply generic",
+      "category": "generic",
+      "retail": {
+        "in_network": {
+          "individual": 45,
+          "family": 45
+        },
+        "out_of_network": {
+          "individual": null,
+          "family": null
+        }
+      }
+    },
+    {
+      "name": "Tier 6 - Preferred Brand",
+      "category": "preferred_brand",
+      "retail": {
+        "in_network": {
+          "individual": 100,
+          "family": 100
+        },
+        "out_of_network": {
+          "individual": null,
+          "family": null
+        }
+      }
+    },
+    {
+      "name": "Tier 7 - 84-90 day supply preferred brand",
+      "category": "preferred_brand",
+      "retail": {
+        "in_network": {
+          "individual": 300,
+          "family": 300
+        },
+        "out_of_network": {
+          "individual": null,
+          "family": null
+        }
+      }
+    },
+    {
+      "name": "Tier 8 - Mail Order 1-30 day supply preferred brand",
+      "category": "preferred_brand",
+      "retail": {
+        "in_network": {
+          "individual": 100,
+          "family": 100
+        },
+        "out_of_network": {
+          "individual": null,
+          "family": null
+        }
+      }
+    },
+    {
+      "name": "Tier 9 - Mail Order 31-60 day supply preferred brand",
+      "category": "preferred_brand",
+      "retail": {
+        "in_network": {
+          "individual": 200,
+          "family": 200
+        },
+        "out_of_network": {
+          "individual": null,
+          "family": null
+        }
+      }
+    },
+    {
+      "name": "Tier 10 - Mail Order 61-90 day supply preferred brand",
+      "category": "preferred_brand",
+      "retail": {
+        "in_network": {
+          "individual": 300,
+          "family": 300
+        },
+        "out_of_network": {
+          "individual": null,
+          "family": null
+        }
+      }
+    },
+    {
+      "name": "Tier 11 - Non-Preferred Brand",
+      "category": "non_preferred_brand",
+      "retail": {
+        "in_network": {
+          "individual": 150,
+          "family": 150
+        },
+        "out_of_network": {
+          "individual": null,
+          "family": null
+        }
+      }
+    },
+    {
+      "name": "Tier 12 - 84-90 day supply non-preferred brand",
+      "category": "non_preferred_brand",
+      "retail": {
+        "in_network": {
+          "individual": 450,
+          "family": 450
+        },
+        "out_of_network": {
+          "individual": null,
+          "family": null
+        }
+      }
+    },
+    {
+      "name": "Tier 13 - Mail Order 1-30 day supply non-preferred brand",
+      "category": "non_preferred_brand",
+      "retail": {
+        "in_network": {
+          "individual": 150,
+          "family": 150
+        },
+        "out_of_network": {
+          "individual": null,
+          "family": null
+        }
+      }
+    },
+    {
+      "name": "Tier 14 - Mail Order 31-60 day supply non-preferred brand",
+      "category": "non_preferred_brand",
+      "retail": {
+        "in_network": {
+          "individual": 300,
+          "family": 300
+        },
+        "out_of_network": {
+          "individual": null,
+          "family": null
+        }
+      }
+    },
+    {
+      "name": "Tier 15 - Mail Order 61-90 day supply non-preferred brand",
+      "category": "non_preferred_brand",
+      "retail": {
+        "in_network": {
+          "individual": 450,
+          "family": 450
+        },
+        "out_of_network": {
+          "individual": null,
+          "family": null
+        }
+      }
+    },
+    {
+      "name": "Tier 16 - Specialty Drugs",
+      "category": "specialty",
+      "retail": {
+        "in_network": {
+          "individual": 40,
+          "family": 40
+        },
+        "out_of_network": {
+          "individual": null,
+          "family": null
+        }
+      }
+    },
+    {
+      "name": "Tier 17 - Specialty Drugs (Non-Preferred)",
+      "category": "specialty",
+      "retail": {
+        "in_network": {
+          "individual": 45,
+          "family": 45
+        },
+        "out_of_network": {
+          "individual": null,
+          "family": null
+        }
+      }
+    }
+  ],
+  "excluded_services": [
+    "Abortion (except in cases of rape, incest, or when the life of the mother is endangered)",
+    "Dental care (Adult)",
+    "Hearing aids",
+    "Acupuncture",
+    "Long-term care",
+    "Cosmetic Surgery",
+    "Non-emergency care when traveling outside the U.S.",
+    "Private-duty nursing",
+    "Routine eye care (Adult)",
+    "Routine foot care"
+  ]
+}

@@ -1,0 +1,503 @@
+{
+  "plan_name": "Oscar: Gold Elite Plan",
+  "issuer": "Oscar",
+  "plan_type": "EPO",
+  "coverage_period": "01/01/2026 - 12/31/2026",
+  "deductible": {
+    "in_network": {
+      "individual": 500,
+      "family": 1000
+    },
+    "out_of_network": null
+  },
+  "out_of_pocket_limit": {
+    "in_network": {
+      "individual": 7000,
+      "family": 14000
+    },
+    "out_of_network": null
+  },
+  "services_before_deductible": [
+    "preventive care",
+    "pre- and post-natal care"
+  ],
+  "referral_required_for_specialist": false,
+  "services": {
+    "primary_care_visit": {
+      "in_network": {
+        "covered": true,
+        "copay": 15,
+        "coinsurance_pct": 0,
+        "deductible_applies": null,
+        "note": "Cost share applies to both in-person and telemedicine services."
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "specialist_visit": {
+      "in_network": {
+        "covered": true,
+        "copay": 75,
+        "coinsurance_pct": 0,
+        "deductible_applies": null,
+        "note": "Cost share applies to both in-person and telemedicine services."
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "preventive_care": {
+      "in_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 0,
+        "deductible_applies": null,
+        "note": "Well Woman and Well Man exams are limited to one (1) visit per Benefit Period."
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "diagnostic_test": {
+      "in_network": {
+        "covered": true,
+        "copay": 100,
+        "coinsurance_pct": 0,
+        "deductible_applies": null,
+        "note": "Cost share applies to both in-person and telemedicine services."
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "imaging": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 30,
+        "deductible_applies": true,
+        "note": null
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "outpatient_facility_fee": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 30,
+        "deductible_applies": true,
+        "note": null
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "outpatient_surgeon_fee": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 30,
+        "deductible_applies": true,
+        "note": null
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "emergency_room": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 30,
+        "deductible_applies": true,
+        "note": "Emergency Room care by an Out-of-Network provider is covered if the services are for an emergency condition."
+      },
+      "out_of_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 30,
+        "deductible_applies": true,
+        "note": "Emergency Room care by an Out-of-Network provider is covered if the services are for an emergency condition."
+      }
+    },
+    "emergency_transportation": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 30,
+        "deductible_applies": true,
+        "note": "Emergency Transportation services by an Out-of-Network provider are covered if the services are for an emergency condition."
+      },
+      "out_of_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 30,
+        "deductible_applies": true,
+        "note": "Emergency Transportation services by an Out-of-Network provider are covered if the services are for an emergency condition."
+      }
+    },
+    "urgent_care": {
+      "in_network": {
+        "covered": true,
+        "copay": 50,
+        "coinsurance_pct": 0,
+        "deductible_applies": null,
+        "note": "Virtual urgent care services provided by Oscar-designated virtual care providers are covered in full. When temporarily out of the Service Area, Out-of-Network Urgent Care services are covered. In addition to applicable cost share, you may be responsible for balance billing."
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "hospital_facility_fee": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 30,
+        "deductible_applies": true,
+        "note": null
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "hospital_surgeon_fee": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 30,
+        "deductible_applies": true,
+        "note": null
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "mental_health_outpatient": {
+      "in_network": {
+        "covered": true,
+        "copay": 15,
+        "coinsurance_pct": 30,
+        "deductible_applies": true,
+        "note": null
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "mental_health_inpatient": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 30,
+        "deductible_applies": true,
+        "note": null
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "pregnancy_office_visits": {
+      "in_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 0,
+        "deductible_applies": null,
+        "note": "Well Woman and Well Man exams are limited to one (1) visit per Benefit Period."
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "childbirth_professional": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 30,
+        "deductible_applies": true,
+        "note": null
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "childbirth_facility": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 30,
+        "deductible_applies": true,
+        "note": "Covers 48-hour hospital stay for uncomplicated vaginal birth and 96-hour hospital stay for uncomplicated cesarean section."
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "home_health_care": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 30,
+        "deductible_applies": true,
+        "note": "60 visits per Benefit Period. The limit is not applicable to mental health and substance use disorder conditions."
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "rehabilitation": {
+      "in_network": {
+        "covered": true,
+        "copay": 75,
+        "coinsurance_pct": 0,
+        "deductible_applies": null,
+        "note": "20 visits per therapy per Benefit Period for Outpatient Physical, Occupational and Speech Therapies. Benefit limits do not apply to services provided for the treatment of a mental health condition, including Autism Spectrum Disorder, or for the treatment of a substance use disorder."
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "habilitation": {
+      "in_network": {
+        "covered": true,
+        "copay": 75,
+        "coinsurance_pct": 0,
+        "deductible_applies": null,
+        "note": "20 visits per therapy per Benefit Period for Outpatient Physical, Occupational and Speech Therapies. Benefit limits do not apply to services provided for the treatment of a mental health condition, including Autism Spectrum Disorder, or for the treatment of a substance use disorder."
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "skilled_nursing": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 30,
+        "deductible_applies": true,
+        "note": "60 days per Benefit Period."
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "durable_medical_equipment": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 30,
+        "deductible_applies": true,
+        "note": null
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "hospice": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 30,
+        "deductible_applies": true,
+        "note": "Preauthorization is required. If you do not get preauthorization, payment for care may be denied."
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "child_eye_exam": {
+      "in_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 0,
+        "deductible_applies": null,
+        "note": null
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "child_glasses": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 50,
+        "deductible_applies": null,
+        "note": null
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "child_dental_checkup": {
+      "in_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    }
+  },
+  "drug_tiers": [
+    {
+      "name": "Generic drugs (Tier 1)",
+      "category": "generic",
+      "retail": {
+        "in_network": {
+          "individual": 3,
+          "family": null
+        },
+        "out_of_network": null
+      }
+    },
+    {
+      "name": "Preferred brand drugs (Tier 2)",
+      "category": "preferred_brand",
+      "retail": {
+        "in_network": {
+          "individual": 75,
+          "family": null
+        },
+        "out_of_network": null
+      }
+    },
+    {
+      "name": "Non-preferred brand drugs (Tier 3)",
+      "category": "non_preferred_brand",
+      "retail": {
+        "in_network": {
+          "individual": null,
+          "family": null
+        },
+        "out_of_network": null
+      }
+    },
+    {
+      "name": "Specialty drugs (Tier 4)",
+      "category": "specialty",
+      "retail": {
+        "in_network": {
+          "individual": null,
+          "family": null
+        },
+        "out_of_network": null
+      }
+    }
+  ],
+  "excluded_services": [
+    "Abortion",
+    "Infertility treatment",
+    "Routine eye care (Adult)",
+    "Acupuncture",
+    "Long-term care",
+    "Routine foot care",
+    "Bariatric surgery",
+    "Non-emergency care when traveling outside the",
+    "Weight loss programs",
+    "Cosmetic surgery",
+    "U.S. Dental care (Adult)",
+    "Private-duty nursing"
+  ]
+}

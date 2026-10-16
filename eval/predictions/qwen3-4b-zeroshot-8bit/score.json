@@ -1,0 +1,3552 @@
+{
+  "run": "qwen3-4b-zeroshot-8bit",
+  "n_docs": 10,
+  "status": {
+    "schema_error": 8,
+    "ok": 2
+  },
+  "schema_valid_rate": 0.2,
+  "json_parse_rate": 1.0,
+  "all_docs": {
+    "ALL": {
+      "n": 2732,
+      "accuracy": 0.7518,
+      "wrong": 61,
+      "omission": 142,
+      "hallucination": 475,
+      "hallucination_rate": 0.3566
+    },
+    "covered": {
+      "n": 636,
+      "accuracy": 0.9104,
+      "wrong": 30,
+      "omission": 21,
+      "hallucination": 6,
+      "hallucination_rate": 0.1875
+    },
+    "deductible_applies": {
+      "n": 636,
+      "accuracy": 0.6855,
+      "wrong": 7,
+      "omission": 71,
+      "hallucination": 122,
+      "hallucination_rate": 0.2877
+    },
+    "drug_tier_category": {
+      "n": 58,
+      "accuracy": 0.6034,
+      "wrong": 7,
+      "omission": 0,
+      "hallucination": 16,
+      "hallucination_rate": 1.0
+    },
+    "money": {
+      "n": 716,
+      "accuracy": 0.6844,
+      "wrong": 4,
+      "omission": 21,
+      "hallucination": 201,
+      "hallucination_rate": 0.3821
+    },
+    "percent": {
+      "n": 636,
+      "accuracy": 0.7453,
+      "wrong": 7,
+      "omission": 25,
+      "hallucination": 130,
+      "hallucination_rate": 0.3892
+    },
+    "plan_info": {
+      "n": 50,
+      "accuracy": 0.8,
+      "wrong": 6,
+      "omission": 4,
+      "hallucination": 0,
+      "hallucination_rate": null
+    },
+    "list:services_before_deductible": {
+      "precision": 0.6857,
+      "recall": 0.6316,
+      "f1": 0.6575
+    },
+    "list:excluded_services": {
+      "precision": 0.9279,
+      "recall": 0.9626,
+      "f1": 0.945
+    },
+    "note_presence_agreement": 0.6855
+  },
+  "parsed_docs": {
+    "ALL": {
+      "n": 2732,
+      "accuracy": 0.7518,
+      "wrong": 61,
+      "omission": 142,
+      "hallucination": 475,
+      "hallucination_rate": 0.3566
+    },
+    "covered": {
+      "n": 636,
+      "accuracy": 0.9104,
+      "wrong": 30,
+      "omission": 21,
+      "hallucination": 6,
+      "hallucination_rate": 0.1875
+    },
+    "deductible_applies": {
+      "n": 636,
+      "accuracy": 0.6855,
+      "wrong": 7,
+      "omission": 71,
+      "hallucination": 122,
+      "hallucination_rate": 0.2877
+    },
+    "drug_tier_category": {
+      "n": 58,
+      "accuracy": 0.6034,
+      "wrong": 7,
+      "omission": 0,
+      "hallucination": 16,
+      "hallucination_rate": 1.0
+    },
+    "money": {
+      "n": 716,
+      "accuracy": 0.6844,
+      "wrong": 4,
+      "omission": 21,
+      "hallucination": 201,
+      "hallucination_rate": 0.3821
+    },
+    "percent": {
+      "n": 636,
+      "accuracy": 0.7453,
+      "wrong": 7,
+      "omission": 25,
+      "hallucination": 130,
+      "hallucination_rate": 0.3892
+    },
+    "plan_info": {
+      "n": 50,
+      "accuracy": 0.8,
+      "wrong": 6,
+      "omission": 4,
+      "hallucination": 0,
+      "hallucination_rate": null
+    },
+    "list:services_before_deductible": {
+      "precision": 0.6857,
+      "recall": 0.6316,
+      "f1": 0.6575
+    },
+    "list:excluded_services": {
+      "precision": 0.9279,
+      "recall": 0.9626,
+      "f1": 0.945
+    },
+    "note_presence_agreement": 0.6855
+  },
+  "per_doc_accuracy": {
+    "10091OR0780001-01": 0.7743,
+    "11718TX0140020-01": 0.8093,
+    "13262AR0230010-00": 0.5875,
+    "13484NE0090009-00": 0.9135,
+    "13887FL0010004-00": 0.8638,
+    "15560MI0350004-00": 0.7861,
+    "17414NC0010007-01": 0.5837,
+    "18350HI0880013-03": 0.5973,
+    "19636LA0610013-00": 0.716,
+    "23552TN0020036-01": 0.8872
+  },
+  "errors": [
+    {
+      "plan_id": "10091OR0780001-01",
+      "path": "plan_name",
+      "outcome": "wrong"
+    },
+    {
+      "plan_id": "10091OR0780001-01",
+      "path": "referral_required_for_specialist",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "10091OR0780001-01",
+      "path": "services.primary_care_visit.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "10091OR0780001-01",
+      "path": "services.specialist_visit.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "10091OR0780001-01",
+      "path": "services.diagnostic_test.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "10091OR0780001-01",
+      "path": "services.diagnostic_test.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "10091OR0780001-01",
+      "path": "services.imaging.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "10091OR0780001-01",
+      "path": "services.imaging.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "10091OR0780001-01",
+      "path": "services.outpatient_facility_fee.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "10091OR0780001-01",
+      "path": "services.outpatient_facility_fee.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "10091OR0780001-01",
+      "path": "services.outpatient_surgeon_fee.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "10091OR0780001-01",
+      "path": "services.outpatient_surgeon_fee.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "10091OR0780001-01",
+      "path": "services.emergency_room.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "10091OR0780001-01",
+      "path": "services.emergency_room.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "10091OR0780001-01",
+      "path": "services.emergency_room.out_of_network.covered",
+      "outcome": "wrong"
+    },
+    {
+      "plan_id": "10091OR0780001-01",
+      "path": "services.emergency_room.out_of_network.coinsurance_pct",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "10091OR0780001-01",
+      "path": "services.emergency_transportation.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "10091OR0780001-01",
+      "path": "services.emergency_transportation.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "10091OR0780001-01",
+      "path": "services.emergency_transportation.out_of_network.covered",
+      "outcome": "wrong"
+    },
+    {
+      "plan_id": "10091OR0780001-01",
+      "path": "services.emergency_transportation.out_of_network.coinsurance_pct",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "10091OR0780001-01",
+      "path": "services.urgent_care.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "10091OR0780001-01",
+      "path": "services.hospital_facility_fee.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "10091OR0780001-01",
+      "path": "services.hospital_facility_fee.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "10091OR0780001-01",
+      "path": "services.hospital_surgeon_fee.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "10091OR0780001-01",
+      "path": "services.hospital_surgeon_fee.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "10091OR0780001-01",
+      "path": "services.mental_health_outpatient.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "10091OR0780001-01",
+      "path": "services.mental_health_inpatient.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "10091OR0780001-01",
+      "path": "services.mental_health_inpatient.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "10091OR0780001-01",
+      "path": "services.pregnancy_office_visits.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "10091OR0780001-01",
+      "path": "services.pregnancy_office_visits.in_network.coinsurance_pct",
+      "outcome": "wrong"
+    },
+    {
+      "plan_id": "10091OR0780001-01",
+      "path": "services.pregnancy_office_visits.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "10091OR0780001-01",
+      "path": "services.childbirth_professional.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "10091OR0780001-01",
+      "path": "services.childbirth_professional.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "10091OR0780001-01",
+      "path": "services.childbirth_facility.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "10091OR0780001-01",
+      "path": "services.childbirth_facility.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "10091OR0780001-01",
+      "path": "services.home_health_care.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "10091OR0780001-01",
+      "path": "services.home_health_care.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "10091OR0780001-01",
+      "path": "services.rehabilitation.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "10091OR0780001-01",
+      "path": "services.rehabilitation.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "10091OR0780001-01",
+      "path": "services.habilitation.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "10091OR0780001-01",
+      "path": "services.habilitation.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "10091OR0780001-01",
+      "path": "services.skilled_nursing.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "10091OR0780001-01",
+      "path": "services.skilled_nursing.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "10091OR0780001-01",
+      "path": "services.durable_medical_equipment.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "10091OR0780001-01",
+      "path": "services.durable_medical_equipment.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "10091OR0780001-01",
+      "path": "services.hospice.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "10091OR0780001-01",
+      "path": "services.hospice.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "10091OR0780001-01",
+      "path": "services.child_eye_exam.out_of_network.covered",
+      "outcome": "wrong"
+    },
+    {
+      "plan_id": "10091OR0780001-01",
+      "path": "services.child_eye_exam.out_of_network.coinsurance_pct",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "10091OR0780001-01",
+      "path": "services.child_eye_exam.out_of_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "10091OR0780001-01",
+      "path": "services.child_glasses.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "10091OR0780001-01",
+      "path": "services.child_glasses.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "10091OR0780001-01",
+      "path": "services.child_glasses.out_of_network.covered",
+      "outcome": "wrong"
+    },
+    {
+      "plan_id": "10091OR0780001-01",
+      "path": "services.child_glasses.out_of_network.coinsurance_pct",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "10091OR0780001-01",
+      "path": "drug_tiers.0.retail.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "10091OR0780001-01",
+      "path": "drug_tiers.1.retail.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "10091OR0780001-01",
+      "path": "drug_tiers.2.retail.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "10091OR0780001-01",
+      "path": "drug_tiers.3.retail.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "11718TX0140020-01",
+      "path": "plan_name",
+      "outcome": "wrong"
+    },
+    {
+      "plan_id": "11718TX0140020-01",
+      "path": "services.primary_care_visit.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "11718TX0140020-01",
+      "path": "services.specialist_visit.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "11718TX0140020-01",
+      "path": "services.diagnostic_test.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "11718TX0140020-01",
+      "path": "services.imaging.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "11718TX0140020-01",
+      "path": "services.outpatient_facility_fee.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "11718TX0140020-01",
+      "path": "services.outpatient_surgeon_fee.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "11718TX0140020-01",
+      "path": "services.emergency_room.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "11718TX0140020-01",
+      "path": "services.emergency_room.out_of_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "11718TX0140020-01",
+      "path": "services.emergency_transportation.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "11718TX0140020-01",
+      "path": "services.emergency_transportation.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "11718TX0140020-01",
+      "path": "services.emergency_transportation.out_of_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "11718TX0140020-01",
+      "path": "services.emergency_transportation.out_of_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "11718TX0140020-01",
+      "path": "services.urgent_care.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "11718TX0140020-01",
+      "path": "services.hospital_facility_fee.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "11718TX0140020-01",
+      "path": "services.hospital_surgeon_fee.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "11718TX0140020-01",
+      "path": "services.hospital_surgeon_fee.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "11718TX0140020-01",
+      "path": "services.hospital_surgeon_fee.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "11718TX0140020-01",
+      "path": "services.mental_health_outpatient.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "11718TX0140020-01",
+      "path": "services.mental_health_inpatient.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "11718TX0140020-01",
+      "path": "services.pregnancy_office_visits.in_network.copay",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "11718TX0140020-01",
+      "path": "services.pregnancy_office_visits.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "11718TX0140020-01",
+      "path": "services.pregnancy_office_visits.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "11718TX0140020-01",
+      "path": "services.childbirth_professional.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "11718TX0140020-01",
+      "path": "services.childbirth_facility.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "11718TX0140020-01",
+      "path": "services.home_health_care.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "11718TX0140020-01",
+      "path": "services.home_health_care.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "11718TX0140020-01",
+      "path": "services.rehabilitation.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "11718TX0140020-01",
+      "path": "services.habilitation.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "11718TX0140020-01",
+      "path": "services.skilled_nursing.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "11718TX0140020-01",
+      "path": "services.durable_medical_equipment.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "11718TX0140020-01",
+      "path": "services.hospice.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "11718TX0140020-01",
+      "path": "services.hospice.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "11718TX0140020-01",
+      "path": "services.child_eye_exam.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "11718TX0140020-01",
+      "path": "services.child_eye_exam.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "11718TX0140020-01",
+      "path": "services.child_glasses.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "11718TX0140020-01",
+      "path": "services.child_glasses.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "11718TX0140020-01",
+      "path": "drug_tiers.0.retail.in_network.covered",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "11718TX0140020-01",
+      "path": "drug_tiers.0.retail.in_network.copay",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "11718TX0140020-01",
+      "path": "drug_tiers.0.retail.in_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "11718TX0140020-01",
+      "path": "drug_tiers.1.retail.in_network.covered",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "11718TX0140020-01",
+      "path": "drug_tiers.1.retail.in_network.copay",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "11718TX0140020-01",
+      "path": "drug_tiers.1.retail.in_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "11718TX0140020-01",
+      "path": "drug_tiers.2.retail.in_network.covered",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "11718TX0140020-01",
+      "path": "drug_tiers.2.retail.in_network.copay",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "11718TX0140020-01",
+      "path": "drug_tiers.2.retail.in_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "11718TX0140020-01",
+      "path": "drug_tiers.3.retail.in_network.covered",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "11718TX0140020-01",
+      "path": "drug_tiers.3.retail.in_network.copay",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "11718TX0140020-01",
+      "path": "drug_tiers.3.retail.in_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "out_of_pocket_limit.in_network.family",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.primary_care_visit.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.primary_care_visit.out_of_network.covered",
+      "outcome": "wrong"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.primary_care_visit.out_of_network.coinsurance_pct",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.primary_care_visit.out_of_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.specialist_visit.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.preventive_care.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.preventive_care.out_of_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.diagnostic_test.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.diagnostic_test.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.imaging.in_network.covered",
+      "outcome": "wrong"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.imaging.in_network.coinsurance_pct",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.imaging.in_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.imaging.out_of_network.covered",
+      "outcome": "wrong"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.imaging.out_of_network.coinsurance_pct",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.imaging.out_of_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.outpatient_facility_fee.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.outpatient_facility_fee.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.outpatient_surgeon_fee.in_network.covered",
+      "outcome": "wrong"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.outpatient_surgeon_fee.in_network.coinsurance_pct",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.outpatient_surgeon_fee.in_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.outpatient_surgeon_fee.out_of_network.covered",
+      "outcome": "wrong"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.outpatient_surgeon_fee.out_of_network.coinsurance_pct",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.outpatient_surgeon_fee.out_of_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.emergency_room.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.emergency_room.out_of_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.emergency_transportation.in_network.covered",
+      "outcome": "wrong"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.emergency_transportation.in_network.coinsurance_pct",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.emergency_transportation.in_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.emergency_transportation.out_of_network.covered",
+      "outcome": "wrong"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.emergency_transportation.out_of_network.coinsurance_pct",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.emergency_transportation.out_of_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.urgent_care.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.urgent_care.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.hospital_facility_fee.in_network.covered",
+      "outcome": "wrong"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.hospital_facility_fee.in_network.copay",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.hospital_facility_fee.in_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.hospital_facility_fee.out_of_network.covered",
+      "outcome": "wrong"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.hospital_facility_fee.out_of_network.coinsurance_pct",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.hospital_facility_fee.out_of_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.hospital_surgeon_fee.in_network.covered",
+      "outcome": "wrong"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.hospital_surgeon_fee.in_network.coinsurance_pct",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.hospital_surgeon_fee.in_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.hospital_surgeon_fee.out_of_network.covered",
+      "outcome": "wrong"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.hospital_surgeon_fee.out_of_network.coinsurance_pct",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.hospital_surgeon_fee.out_of_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.mental_health_outpatient.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.mental_health_outpatient.in_network.coinsurance_pct",
+      "outcome": "wrong"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.mental_health_outpatient.in_network.deductible_applies",
+      "outcome": "wrong"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.mental_health_outpatient.out_of_network.covered",
+      "outcome": "wrong"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.mental_health_outpatient.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.mental_health_outpatient.out_of_network.coinsurance_pct",
+      "outcome": "wrong"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.mental_health_outpatient.out_of_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.mental_health_inpatient.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.mental_health_inpatient.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.pregnancy_office_visits.in_network.covered",
+      "outcome": "wrong"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.pregnancy_office_visits.in_network.coinsurance_pct",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.pregnancy_office_visits.in_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.pregnancy_office_visits.out_of_network.covered",
+      "outcome": "wrong"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.pregnancy_office_visits.out_of_network.coinsurance_pct",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.pregnancy_office_visits.out_of_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.childbirth_professional.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.childbirth_professional.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.childbirth_facility.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.childbirth_facility.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.home_health_care.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.home_health_care.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.rehabilitation.in_network.coinsurance_pct",
+      "outcome": "wrong"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.rehabilitation.in_network.deductible_applies",
+      "outcome": "wrong"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.rehabilitation.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.rehabilitation.out_of_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.habilitation.in_network.coinsurance_pct",
+      "outcome": "wrong"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.habilitation.in_network.deductible_applies",
+      "outcome": "wrong"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.habilitation.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.habilitation.out_of_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.skilled_nursing.in_network.covered",
+      "outcome": "wrong"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.skilled_nursing.in_network.copay",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.skilled_nursing.in_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.skilled_nursing.out_of_network.covered",
+      "outcome": "wrong"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.skilled_nursing.out_of_network.coinsurance_pct",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.skilled_nursing.out_of_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.durable_medical_equipment.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.durable_medical_equipment.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.hospice.in_network.covered",
+      "outcome": "wrong"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.hospice.in_network.coinsurance_pct",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.hospice.in_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.hospice.out_of_network.covered",
+      "outcome": "wrong"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.hospice.out_of_network.coinsurance_pct",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.hospice.out_of_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.child_eye_exam.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.child_eye_exam.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.child_eye_exam.out_of_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.child_glasses.in_network.covered",
+      "outcome": "wrong"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.child_glasses.in_network.coinsurance_pct",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.child_glasses.in_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.child_glasses.out_of_network.covered",
+      "outcome": "wrong"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.child_glasses.out_of_network.coinsurance_pct",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.child_glasses.out_of_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.child_dental_checkup.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.child_dental_checkup.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.child_dental_checkup.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "services.child_dental_checkup.out_of_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "drug_tiers.0.retail.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "drug_tiers.1.retail.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "drug_tiers.2.retail.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13262AR0230010-00",
+      "path": "drug_tiers.3.retail.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13484NE0090009-00",
+      "path": "referral_required_for_specialist",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "13484NE0090009-00",
+      "path": "services.primary_care_visit.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13484NE0090009-00",
+      "path": "services.specialist_visit.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13484NE0090009-00",
+      "path": "services.urgent_care.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13484NE0090009-00",
+      "path": "services.mental_health_outpatient.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13484NE0090009-00",
+      "path": "services.pregnancy_office_visits.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13484NE0090009-00",
+      "path": "services.rehabilitation.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13484NE0090009-00",
+      "path": "services.habilitation.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13484NE0090009-00",
+      "path": "drug_tiers.0.retail.in_network.covered",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "13484NE0090009-00",
+      "path": "drug_tiers.0.retail.in_network.copay",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "13484NE0090009-00",
+      "path": "drug_tiers.0.retail.in_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "13484NE0090009-00",
+      "path": "drug_tiers.1.retail.in_network.covered",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "13484NE0090009-00",
+      "path": "drug_tiers.1.retail.in_network.copay",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "13484NE0090009-00",
+      "path": "drug_tiers.1.retail.in_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "13484NE0090009-00",
+      "path": "drug_tiers.2.retail.in_network.covered",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "13484NE0090009-00",
+      "path": "drug_tiers.2.retail.in_network.copay",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "13484NE0090009-00",
+      "path": "drug_tiers.2.retail.in_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "13484NE0090009-00",
+      "path": "drug_tiers.3.retail.in_network.covered",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "13484NE0090009-00",
+      "path": "drug_tiers.3.retail.in_network.copay",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "13484NE0090009-00",
+      "path": "drug_tiers.3.retail.in_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "13484NE0090009-00",
+      "path": "drug_tiers.4.retail.in_network.covered",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "13484NE0090009-00",
+      "path": "drug_tiers.4.retail.in_network.copay",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "13484NE0090009-00",
+      "path": "drug_tiers.4.retail.in_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "13887FL0010004-00",
+      "path": "issuer",
+      "outcome": "wrong"
+    },
+    {
+      "plan_id": "13887FL0010004-00",
+      "path": "services.primary_care_visit.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13887FL0010004-00",
+      "path": "services.primary_care_visit.in_network.deductible_applies",
+      "outcome": "wrong"
+    },
+    {
+      "plan_id": "13887FL0010004-00",
+      "path": "services.specialist_visit.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13887FL0010004-00",
+      "path": "services.diagnostic_test.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13887FL0010004-00",
+      "path": "services.imaging.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13887FL0010004-00",
+      "path": "services.outpatient_facility_fee.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13887FL0010004-00",
+      "path": "services.outpatient_surgeon_fee.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13887FL0010004-00",
+      "path": "services.emergency_room.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13887FL0010004-00",
+      "path": "services.emergency_room.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13887FL0010004-00",
+      "path": "services.emergency_transportation.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13887FL0010004-00",
+      "path": "services.emergency_transportation.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13887FL0010004-00",
+      "path": "services.urgent_care.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13887FL0010004-00",
+      "path": "services.urgent_care.in_network.deductible_applies",
+      "outcome": "wrong"
+    },
+    {
+      "plan_id": "13887FL0010004-00",
+      "path": "services.hospital_facility_fee.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13887FL0010004-00",
+      "path": "services.hospital_surgeon_fee.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13887FL0010004-00",
+      "path": "services.mental_health_outpatient.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13887FL0010004-00",
+      "path": "services.mental_health_outpatient.in_network.deductible_applies",
+      "outcome": "wrong"
+    },
+    {
+      "plan_id": "13887FL0010004-00",
+      "path": "services.mental_health_inpatient.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13887FL0010004-00",
+      "path": "services.pregnancy_office_visits.in_network.copay",
+      "outcome": "wrong"
+    },
+    {
+      "plan_id": "13887FL0010004-00",
+      "path": "services.pregnancy_office_visits.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13887FL0010004-00",
+      "path": "services.childbirth_professional.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13887FL0010004-00",
+      "path": "services.childbirth_facility.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13887FL0010004-00",
+      "path": "services.home_health_care.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13887FL0010004-00",
+      "path": "services.rehabilitation.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13887FL0010004-00",
+      "path": "services.habilitation.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13887FL0010004-00",
+      "path": "services.skilled_nursing.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13887FL0010004-00",
+      "path": "services.durable_medical_equipment.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13887FL0010004-00",
+      "path": "services.hospice.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13887FL0010004-00",
+      "path": "drug_tiers.0.retail.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13887FL0010004-00",
+      "path": "drug_tiers.0.retail.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13887FL0010004-00",
+      "path": "drug_tiers.1.retail.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13887FL0010004-00",
+      "path": "drug_tiers.1.retail.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13887FL0010004-00",
+      "path": "drug_tiers.2.retail.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "13887FL0010004-00",
+      "path": "drug_tiers.3.retail.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "plan_name",
+      "outcome": "wrong"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "referral_required_for_specialist",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "services.primary_care_visit.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "services.primary_care_visit.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "services.primary_care_visit.out_of_network.covered",
+      "outcome": "wrong"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "services.primary_care_visit.out_of_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "services.specialist_visit.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "services.specialist_visit.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "services.specialist_visit.out_of_network.covered",
+      "outcome": "wrong"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "services.specialist_visit.out_of_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "services.preventive_care.out_of_network.covered",
+      "outcome": "wrong"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "services.preventive_care.out_of_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "services.diagnostic_test.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "services.diagnostic_test.out_of_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "services.imaging.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "services.imaging.out_of_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "services.outpatient_facility_fee.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "services.outpatient_facility_fee.out_of_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "services.outpatient_surgeon_fee.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "services.outpatient_surgeon_fee.out_of_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "services.emergency_room.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "services.emergency_room.out_of_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "services.emergency_transportation.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "services.emergency_transportation.out_of_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "services.urgent_care.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "services.urgent_care.out_of_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "services.hospital_facility_fee.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "services.hospital_facility_fee.out_of_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "services.hospital_surgeon_fee.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "services.hospital_surgeon_fee.out_of_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "services.mental_health_outpatient.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "services.mental_health_outpatient.out_of_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "services.mental_health_inpatient.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "services.mental_health_inpatient.out_of_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "services.pregnancy_office_visits.in_network.copay",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "services.pregnancy_office_visits.out_of_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "services.childbirth_professional.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "services.childbirth_professional.out_of_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "services.childbirth_facility.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "services.childbirth_facility.out_of_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "services.home_health_care.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "services.home_health_care.out_of_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "services.rehabilitation.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "services.rehabilitation.out_of_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "services.habilitation.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "services.habilitation.out_of_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "services.skilled_nursing.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "services.skilled_nursing.out_of_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "services.durable_medical_equipment.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "services.durable_medical_equipment.out_of_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "services.hospice.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "services.hospice.out_of_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "drug_tiers.0.retail.in_network.covered",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "drug_tiers.0.retail.in_network.copay",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "drug_tiers.0.retail.out_of_network.covered",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "drug_tiers.1.category",
+      "outcome": "wrong"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "drug_tiers.1.retail.in_network.covered",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "drug_tiers.1.retail.in_network.copay",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "drug_tiers.1.retail.out_of_network.covered",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "drug_tiers.2.category",
+      "outcome": "wrong"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "drug_tiers.2.retail.in_network.covered",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "drug_tiers.2.retail.in_network.copay",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "drug_tiers.2.retail.out_of_network.covered",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "drug_tiers.3.category",
+      "outcome": "wrong"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "drug_tiers.3.retail.in_network.covered",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "drug_tiers.3.retail.in_network.coinsurance_pct",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "drug_tiers.3.retail.out_of_network.covered",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "drug_tiers.4.category",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "drug_tiers.5.category",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "drug_tiers.6.category",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "drug_tiers.7.category",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "drug_tiers.8.category",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "drug_tiers.9.category",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "drug_tiers.10.category",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "drug_tiers.11.category",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "drug_tiers.12.category",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "drug_tiers.13.category",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "drug_tiers.14.category",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "drug_tiers.15.category",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "15560MI0350004-00",
+      "path": "drug_tiers.16.category",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "plan_name",
+      "outcome": "wrong"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "deductible.in_network.individual",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "deductible.in_network.family",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.primary_care_visit.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.specialist_visit.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.diagnostic_test.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.diagnostic_test.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.diagnostic_test.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.diagnostic_test.out_of_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.diagnostic_test.out_of_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.imaging.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.imaging.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.imaging.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.imaging.out_of_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.imaging.out_of_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.outpatient_facility_fee.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.outpatient_facility_fee.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.outpatient_facility_fee.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.outpatient_facility_fee.out_of_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.outpatient_facility_fee.out_of_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.outpatient_surgeon_fee.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.outpatient_surgeon_fee.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.outpatient_surgeon_fee.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.outpatient_surgeon_fee.out_of_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.outpatient_surgeon_fee.out_of_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.emergency_room.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.emergency_room.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.emergency_room.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.emergency_room.out_of_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.emergency_transportation.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.emergency_transportation.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.emergency_transportation.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.emergency_transportation.out_of_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.urgent_care.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.urgent_care.out_of_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.hospital_facility_fee.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.hospital_facility_fee.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.hospital_facility_fee.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.hospital_facility_fee.out_of_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.hospital_facility_fee.out_of_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.hospital_surgeon_fee.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.hospital_surgeon_fee.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.hospital_surgeon_fee.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.hospital_surgeon_fee.out_of_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.hospital_surgeon_fee.out_of_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.mental_health_outpatient.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.mental_health_outpatient.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.mental_health_outpatient.out_of_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.mental_health_outpatient.out_of_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.mental_health_inpatient.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.mental_health_inpatient.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.mental_health_inpatient.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.mental_health_inpatient.out_of_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.mental_health_inpatient.out_of_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.childbirth_professional.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.childbirth_professional.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.childbirth_professional.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.childbirth_professional.out_of_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.childbirth_professional.out_of_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.childbirth_facility.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.childbirth_facility.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.childbirth_facility.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.childbirth_facility.out_of_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.childbirth_facility.out_of_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.home_health_care.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.home_health_care.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.home_health_care.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.home_health_care.out_of_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.home_health_care.out_of_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.rehabilitation.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.rehabilitation.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.rehabilitation.out_of_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.rehabilitation.out_of_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.habilitation.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.habilitation.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.habilitation.out_of_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.habilitation.out_of_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.skilled_nursing.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.skilled_nursing.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.skilled_nursing.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.skilled_nursing.out_of_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.skilled_nursing.out_of_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.durable_medical_equipment.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.durable_medical_equipment.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.durable_medical_equipment.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.durable_medical_equipment.out_of_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.durable_medical_equipment.out_of_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.hospice.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.hospice.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.hospice.out_of_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.hospice.out_of_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.child_eye_exam.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.child_eye_exam.out_of_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.child_eye_exam.out_of_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.child_glasses.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.child_glasses.out_of_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.child_glasses.out_of_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.child_dental_checkup.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.child_dental_checkup.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.child_dental_checkup.in_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.child_dental_checkup.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.child_dental_checkup.out_of_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "services.child_dental_checkup.out_of_network.deductible_applies",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "drug_tiers.0.retail.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "drug_tiers.1.retail.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "drug_tiers.2.retail.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "17414NC0010007-01",
+      "path": "drug_tiers.3.retail.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "deductible.in_network.individual",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "deductible.in_network.family",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "out_of_pocket_limit.in_network.individual",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "out_of_pocket_limit.in_network.family",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "services.primary_care_visit.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "services.primary_care_visit.in_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "services.primary_care_visit.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "services.specialist_visit.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "services.specialist_visit.in_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "services.specialist_visit.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "services.preventive_care.in_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "services.preventive_care.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "services.preventive_care.out_of_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "services.diagnostic_test.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "services.diagnostic_test.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "services.imaging.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "services.imaging.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "services.outpatient_facility_fee.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "services.outpatient_facility_fee.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "services.outpatient_surgeon_fee.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "services.outpatient_surgeon_fee.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "services.emergency_room.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "services.emergency_room.in_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "services.emergency_room.out_of_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "services.emergency_room.out_of_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "services.emergency_transportation.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "services.emergency_transportation.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "services.emergency_transportation.out_of_network.coinsurance_pct",
+      "outcome": "wrong"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "services.urgent_care.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "services.urgent_care.in_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "services.urgent_care.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "services.hospital_facility_fee.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "services.hospital_facility_fee.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "services.hospital_surgeon_fee.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "services.hospital_surgeon_fee.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "services.mental_health_outpatient.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "services.mental_health_outpatient.in_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "services.mental_health_outpatient.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "services.mental_health_inpatient.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "services.mental_health_inpatient.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "services.pregnancy_office_visits.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "services.pregnancy_office_visits.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "services.childbirth_professional.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "services.childbirth_professional.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "services.childbirth_facility.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "services.childbirth_facility.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "services.home_health_care.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "services.home_health_care.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "services.rehabilitation.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "services.rehabilitation.in_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "services.rehabilitation.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "services.habilitation.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "services.habilitation.in_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "services.habilitation.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "services.habilitation.out_of_network.coinsurance_pct",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "services.skilled_nursing.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "services.skilled_nursing.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "services.durable_medical_equipment.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "services.durable_medical_equipment.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "services.hospice.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "services.hospice.out_of_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "services.child_eye_exam.in_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "services.child_eye_exam.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "services.child_eye_exam.out_of_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "services.child_eye_exam.out_of_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "services.child_glasses.in_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "services.child_glasses.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "services.child_glasses.out_of_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "services.child_glasses.out_of_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "services.child_dental_checkup.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "services.child_dental_checkup.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "services.child_dental_checkup.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "services.child_dental_checkup.out_of_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "drug_tiers.0.retail.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "drug_tiers.0.retail.in_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "drug_tiers.1.category",
+      "outcome": "wrong"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "drug_tiers.1.retail.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "drug_tiers.1.retail.in_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "drug_tiers.1.retail.out_of_network.covered",
+      "outcome": "wrong"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "drug_tiers.1.retail.out_of_network.copay",
+      "outcome": "wrong"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "drug_tiers.1.retail.out_of_network.coinsurance_pct",
+      "outcome": "wrong"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "drug_tiers.2.category",
+      "outcome": "wrong"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "drug_tiers.2.retail.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "drug_tiers.2.retail.in_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "drug_tiers.3.category",
+      "outcome": "wrong"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "drug_tiers.3.retail.in_network.copay",
+      "outcome": "wrong"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "drug_tiers.3.retail.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "drug_tiers.3.retail.in_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "drug_tiers.3.retail.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "drug_tiers.3.retail.out_of_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "drug_tiers.4.category",
+      "outcome": "wrong"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "drug_tiers.4.retail.in_network.copay",
+      "outcome": "wrong"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "drug_tiers.4.retail.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "drug_tiers.4.retail.in_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "drug_tiers.4.retail.out_of_network.covered",
+      "outcome": "wrong"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "drug_tiers.4.retail.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "drug_tiers.4.retail.out_of_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "drug_tiers.5.category",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "drug_tiers.5.retail.in_network.covered",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "drug_tiers.5.retail.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "drug_tiers.5.retail.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "drug_tiers.5.retail.out_of_network.covered",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "drug_tiers.5.retail.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "drug_tiers.5.retail.out_of_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "drug_tiers.6.category",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "drug_tiers.6.retail.in_network.covered",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "drug_tiers.6.retail.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "drug_tiers.6.retail.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "drug_tiers.6.retail.out_of_network.covered",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "drug_tiers.6.retail.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "drug_tiers.6.retail.out_of_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "drug_tiers.7.category",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "drug_tiers.7.retail.in_network.covered",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "drug_tiers.7.retail.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "drug_tiers.7.retail.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "drug_tiers.7.retail.out_of_network.covered",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "drug_tiers.7.retail.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "18350HI0880013-03",
+      "path": "drug_tiers.7.retail.out_of_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "plan_name",
+      "outcome": "wrong"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "referral_required_for_specialist",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "deductible.in_network.individual",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "deductible.in_network.family",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "deductible.out_of_network.individual",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "deductible.out_of_network.family",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "out_of_pocket_limit.in_network.individual",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "out_of_pocket_limit.in_network.family",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "out_of_pocket_limit.out_of_network.individual",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "out_of_pocket_limit.out_of_network.family",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "services.primary_care_visit.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "services.primary_care_visit.in_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "services.primary_care_visit.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "services.specialist_visit.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "services.specialist_visit.in_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "services.specialist_visit.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "services.preventive_care.in_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "services.preventive_care.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "services.diagnostic_test.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "services.diagnostic_test.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "services.imaging.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "services.imaging.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "services.outpatient_facility_fee.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "services.outpatient_facility_fee.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "services.outpatient_surgeon_fee.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "services.outpatient_surgeon_fee.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "services.emergency_room.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "services.emergency_room.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "services.emergency_transportation.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "services.emergency_transportation.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "services.urgent_care.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "services.urgent_care.in_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "services.urgent_care.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "services.hospital_facility_fee.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "services.hospital_facility_fee.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "services.hospital_surgeon_fee.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "services.hospital_surgeon_fee.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "services.mental_health_outpatient.in_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "services.mental_health_outpatient.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "services.mental_health_inpatient.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "services.mental_health_inpatient.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "services.pregnancy_office_visits.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "services.childbirth_professional.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "services.childbirth_facility.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "services.childbirth_facility.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "services.home_health_care.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "services.home_health_care.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "services.rehabilitation.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "services.rehabilitation.in_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "services.rehabilitation.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "services.habilitation.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "services.habilitation.in_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "services.habilitation.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "services.skilled_nursing.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "services.skilled_nursing.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "services.durable_medical_equipment.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "services.durable_medical_equipment.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "services.hospice.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "services.hospice.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "services.child_eye_exam.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "services.child_glasses.out_of_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "drug_tiers.0.retail.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "drug_tiers.0.retail.in_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "drug_tiers.0.retail.out_of_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "drug_tiers.0.retail.out_of_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "drug_tiers.1.retail.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "drug_tiers.1.retail.in_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "drug_tiers.1.retail.out_of_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "drug_tiers.1.retail.out_of_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "drug_tiers.2.retail.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "drug_tiers.2.retail.out_of_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "drug_tiers.3.retail.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "19636LA0610013-00",
+      "path": "drug_tiers.3.retail.out_of_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "23552TN0020036-01",
+      "path": "services.primary_care_visit.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "23552TN0020036-01",
+      "path": "services.primary_care_visit.in_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "23552TN0020036-01",
+      "path": "services.specialist_visit.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "23552TN0020036-01",
+      "path": "services.specialist_visit.in_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "23552TN0020036-01",
+      "path": "services.diagnostic_test.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "23552TN0020036-01",
+      "path": "services.diagnostic_test.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "23552TN0020036-01",
+      "path": "services.diagnostic_test.in_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "23552TN0020036-01",
+      "path": "services.urgent_care.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "23552TN0020036-01",
+      "path": "services.urgent_care.in_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "23552TN0020036-01",
+      "path": "services.urgent_care.out_of_network.covered",
+      "outcome": "wrong"
+    },
+    {
+      "plan_id": "23552TN0020036-01",
+      "path": "services.mental_health_outpatient.in_network.copay",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "23552TN0020036-01",
+      "path": "services.mental_health_outpatient.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "23552TN0020036-01",
+      "path": "services.mental_health_outpatient.in_network.deductible_applies",
+      "outcome": "wrong"
+    },
+    {
+      "plan_id": "23552TN0020036-01",
+      "path": "services.rehabilitation.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "23552TN0020036-01",
+      "path": "services.rehabilitation.in_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "23552TN0020036-01",
+      "path": "services.habilitation.in_network.coinsurance_pct",
+      "outcome": "hallucination"
+    },
+    {
+      "plan_id": "23552TN0020036-01",
+      "path": "services.habilitation.in_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "23552TN0020036-01",
+      "path": "services.child_glasses.in_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "23552TN0020036-01",
+      "path": "drug_tiers.0.retail.in_network.covered",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "23552TN0020036-01",
+      "path": "drug_tiers.0.retail.in_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "23552TN0020036-01",
+      "path": "drug_tiers.1.retail.in_network.covered",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "23552TN0020036-01",
+      "path": "drug_tiers.1.retail.in_network.copay",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "23552TN0020036-01",
+      "path": "drug_tiers.1.retail.in_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "23552TN0020036-01",
+      "path": "drug_tiers.2.retail.in_network.covered",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "23552TN0020036-01",
+      "path": "drug_tiers.2.retail.in_network.coinsurance_pct",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "23552TN0020036-01",
+      "path": "drug_tiers.2.retail.in_network.deductible_applies",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "23552TN0020036-01",
+      "path": "drug_tiers.3.retail.in_network.covered",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "23552TN0020036-01",
+      "path": "drug_tiers.3.retail.in_network.coinsurance_pct",
+      "outcome": "omission"
+    },
+    {
+      "plan_id": "23552TN0020036-01",
+      "path": "drug_tiers.3.retail.in_network.deductible_applies",
+      "outcome": "omission"
+    }
+  ]
+}

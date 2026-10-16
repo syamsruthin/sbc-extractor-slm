@@ -1,0 +1,495 @@
+{
+  "plan_name": "Community Ultra Select Silver",
+  "issuer": "Community Health Choice",
+  "plan_type": "HMO",
+  "coverage_period": "01/01/2026 - 12/31/2026",
+  "deductible": {
+    "in_network": {
+      "individual": 6000,
+      "family": 12000
+    },
+    "out_of_network": null
+  },
+  "out_of_pocket_limit": {
+    "in_network": {
+      "individual": 8900,
+      "family": 17800
+    },
+    "out_of_network": null
+  },
+  "services_before_deductible": [
+    "preventive care",
+    "urgent care",
+    "mental/behavioral health",
+    "substance use disorder services",
+    "generic drugs"
+  ],
+  "referral_required_for_specialist": false,
+  "services": {
+    "primary_care_visit": {
+      "in_network": {
+        "covered": true,
+        "copay": 40,
+        "coinsurance_pct": 0,
+        "deductible_applies": false,
+        "note": null
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "specialist_visit": {
+      "in_network": {
+        "covered": true,
+        "copay": 80,
+        "coinsurance_pct": 0,
+        "deductible_applies": false,
+        "note": null
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "preventive_care": {
+      "in_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 0,
+        "deductible_applies": false,
+        "note": "You may have to pay for services that aren't preventive. Ask your provider if the services needed are preventive. Then check what your plan will pay for."
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "diagnostic_test": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 40,
+        "deductible_applies": true,
+        "note": "Requires preauthorization for certain services. Failure to obtain an authorization may result in denial of benefits."
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "imaging": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 40,
+        "deductible_applies": true,
+        "note": "Requires preauthorization for certain services. Failure to obtain an authorization may result in denial of benefits."
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "outpatient_facility_fee": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 40,
+        "deductible_applies": true,
+        "note": "Requires preauthorization for certain services. Failure to obtain preauthorization may result in denial of benefits."
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "outpatient_surgeon_fee": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 40,
+        "deductible_applies": true,
+        "note": null
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "emergency_room": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 40,
+        "deductible_applies": true,
+        "note": null
+      },
+      "out_of_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 40,
+        "deductible_applies": true,
+        "note": null
+      }
+    },
+    "emergency_transportation": {
+      "in_network": {
+        "covered": true,
+        "copay": 80,
+        "coinsurance_pct": 0,
+        "deductible_applies": false,
+        "note": "Requires preauthorization for certain services such as air transportation, non-emergency ground transportation, facility-to-facility transfers, out-of-network and out of area transfers."
+      },
+      "out_of_network": {
+        "covered": true,
+        "copay": 80,
+        "coinsurance_pct": 0,
+        "deductible_applies": false,
+        "note": "Requires preauthorization for certain services such as air transportation, non-emergency ground transportation, facility-to-facility transfers, out-of-network and out of area transfers."
+      }
+    },
+    "urgent_care": {
+      "in_network": {
+        "covered": true,
+        "copay": 60,
+        "coinsurance_pct": 0,
+        "deductible_applies": false,
+        "note": null
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "hospital_facility_fee": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 40,
+        "deductible_applies": true,
+        "note": "Requires preauthorization for certain services. Failure to obtain preauthorization may result in denial of benefits."
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "hospital_surgeon_fee": {
+      "in_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 0,
+        "deductible_applies": false,
+        "note": null
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "mental_health_outpatient": {
+      "in_network": {
+        "covered": true,
+        "copay": 40,
+        "coinsurance_pct": 40,
+        "deductible_applies": false,
+        "note": "Requires preauthorization for certain services. Failure to obtain preauthorization may result in denial of benefits. Depending on the type of service, a copayment or coinsurance may apply."
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "mental_health_inpatient": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 40,
+        "deductible_applies": true,
+        "note": "Requires preauthorization for certain services. Failure to obtain preauthorization may result in denial of benefits."
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "pregnancy_office_visits": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 0,
+        "deductible_applies": false,
+        "note": null
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "childbirth_professional": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 40,
+        "deductible_applies": true,
+        "note": "Requires preauthorization for certain services. Failure to obtain preauthorization may result in denial of benefits. Depending on the type of services, a copayment or coinsurance may apply."
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "childbirth_facility": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 40,
+        "deductible_applies": true,
+        "note": "Requires preauthorization for certain services. Failure to obtain preauthorization may result in denial of benefits. Depending on the type of services, a copayment or coinsurance may apply."
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "home_health_care": {
+      "in_network": {
+        "covered": true,
+        "copay": 80,
+        "coinsurance_pct": 0,
+        "deductible_applies": false,
+        "note": "Requires preauthorization for certain services. Failure to obtain preauthorization may result in denial of benefits. Limited to 60 visits per year."
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "rehabilitation": {
+      "in_network": {
+        "covered": true,
+        "copay": 40,
+        "coinsurance_pct": 0,
+        "deductible_applies": false,
+        "note": "Requires preauthorization for certain services. Failure to obtain preauthorization may result in denial of benefits."
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "habilitation": {
+      "in_network": {
+        "covered": true,
+        "copay": 40,
+        "coinsurance_pct": 0,
+        "deductible_applies": false,
+        "note": "Requires preauthorization for certain services. Failure to obtain preauthorization may result in denial of benefits."
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "skilled_nursing": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 40,
+        "deductible_applies": true,
+        "note": "Requires preauthorization for certain services. Failure to obtain preauthorization may result in denial of benefits. Limited to 25 days per year."
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "durable_medical_equipment": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 30,
+        "deductible_applies": true,
+        "note": "Requires preauthorization for certain services. Failure to obtain preauthorization may result in denial of benefits. Limited to plan requirements."
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "hospice": {
+      "in_network": {
+        "covered": true,
+        "copay": 80,
+        "coinsurance_pct": 40,
+        "deductible_applies": true,
+        "note": "Depending on the type of services, a copayment or coinsurance may apply. Limited to plan requirements."
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "child_eye_exam": {
+      "in_network": {
+        "covered": true,
+        "copay": 80,
+        "coinsurance_pct": 0,
+        "deductible_applies": false,
+        "note": "One routine eye exam annually."
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "child_glasses": {
+      "in_network": {
+        "covered": true,
+        "copay": 80,
+        "coinsurance_pct": 0,
+        "deductible_applies": false,
+        "note": "For select frames, standard lenses, and contact lenses only, for children 18 years old and younger. Limited to plan requirements."
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "child_dental_checkup": {
+      "in_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    }
+  },
+  "drug_tiers": [
+    {
+      "name": "Tier 1 - Generic",
+      "category": "generic",
+      "retail": {
+        "in_network": 20,
+        "out_of_network": null
+      }
+    },
+    {
+      "name": "Tier 2 - Preferred Brand",
+      "category": "preferred_brand",
+      "retail": {
+        "in_network": 40,
+        "out_of_network": null
+      }
+    },
+    {
+      "name": "Tier 3 - Non-Preferred Brand",
+      "category": "non_preferred_brand",
+      "retail": {
+        "in_network": 80,
+        "out_of_network": null
+      }
+    },
+    {
+      "name": "Tier 4 - Specialty Drugs",
+      "category": "specialty",
+      "retail": {
+        "in_network": 350,
+        "out_of_network": null
+      }
+    }
+  ],
+  "excluded_services": [
+    "abortion with exception of limited services",
+    "cosmetic surgery",
+    "non-emergency care when traveling outside the U.S.",
+    "acupuncture",
+    "dental care (adult)",
+    "bariatric surgery",
+    "infertility treatment",
+    "routine eye care (adult)",
+    "children's dental check-up",
+    "long-term care",
+    "weight loss programs",
+    "routine foot care",
+    "private-duty nursing (inpatient)"
+  ]
+}

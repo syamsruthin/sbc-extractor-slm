@@ -1,0 +1,160 @@
+{
+  "run": "_gold_vs_gold",
+  "n_docs": 10,
+  "status": {
+    "ok": 10
+  },
+  "schema_valid_rate": 1.0,
+  "json_parse_rate": 1.0,
+  "all_docs": {
+    "ALL": {
+      "n": 2588,
+      "accuracy": 1.0,
+      "wrong": 0,
+      "omission": 0,
+      "hallucination": 0,
+      "hallucination_rate": 0.0
+    },
+    "covered": {
+      "n": 604,
+      "accuracy": 1.0,
+      "wrong": 0,
+      "omission": 0,
+      "hallucination": 0,
+      "hallucination_rate": null
+    },
+    "deductible_applies": {
+      "n": 604,
+      "accuracy": 1.0,
+      "wrong": 0,
+      "omission": 0,
+      "hallucination": 0,
+      "hallucination_rate": 0.0
+    },
+    "drug_tier_category": {
+      "n": 42,
+      "accuracy": 1.0,
+      "wrong": 0,
+      "omission": 0,
+      "hallucination": 0,
+      "hallucination_rate": null
+    },
+    "money": {
+      "n": 684,
+      "accuracy": 1.0,
+      "wrong": 0,
+      "omission": 0,
+      "hallucination": 0,
+      "hallucination_rate": 0.0
+    },
+    "percent": {
+      "n": 604,
+      "accuracy": 1.0,
+      "wrong": 0,
+      "omission": 0,
+      "hallucination": 0,
+      "hallucination_rate": 0.0
+    },
+    "plan_info": {
+      "n": 50,
+      "accuracy": 1.0,
+      "wrong": 0,
+      "omission": 0,
+      "hallucination": 0,
+      "hallucination_rate": null
+    },
+    "list:services_before_deductible": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "list:excluded_services": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "note_presence_agreement": 1.0
+  },
+  "parsed_docs": {
+    "ALL": {
+      "n": 2588,
+      "accuracy": 1.0,
+      "wrong": 0,
+      "omission": 0,
+      "hallucination": 0,
+      "hallucination_rate": 0.0
+    },
+    "covered": {
+      "n": 604,
+      "accuracy": 1.0,
+      "wrong": 0,
+      "omission": 0,
+      "hallucination": 0,
+      "hallucination_rate": null
+    },
+    "deductible_applies": {
+      "n": 604,
+      "accuracy": 1.0,
+      "wrong": 0,
+      "omission": 0,
+      "hallucination": 0,
+      "hallucination_rate": 0.0
+    },
+    "drug_tier_category": {
+      "n": 42,
+      "accuracy": 1.0,
+      "wrong": 0,
+      "omission": 0,
+      "hallucination": 0,
+      "hallucination_rate": null
+    },
+    "money": {
+      "n": 684,
+      "accuracy": 1.0,
+      "wrong": 0,
+      "omission": 0,
+      "hallucination": 0,
+      "hallucination_rate": 0.0
+    },
+    "percent": {
+      "n": 604,
+      "accuracy": 1.0,
+      "wrong": 0,
+      "omission": 0,
+      "hallucination": 0,
+      "hallucination_rate": 0.0
+    },
+    "plan_info": {
+      "n": 50,
+      "accuracy": 1.0,
+      "wrong": 0,
+      "omission": 0,
+      "hallucination": 0,
+      "hallucination_rate": null
+    },
+    "list:services_before_deductible": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "list:excluded_services": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "note_presence_agreement": 1.0
+  },
+  "per_doc_accuracy": {
+    "10091OR0780001-01": 1.0,
+    "11718TX0140020-01": 1.0,
+    "13262AR0230010-00": 1.0,
+    "13484NE0090009-00": 1.0,
+    "13887FL0010004-00": 1.0,
+    "15560MI0350004-00": 1.0,
+    "17414NC0010007-01": 1.0,
+    "18350HI0880013-03": 1.0,
+    "19636LA0610013-00": 1.0,
+    "23552TN0020036-01": 1.0
+  },
+  "errors": []
+}

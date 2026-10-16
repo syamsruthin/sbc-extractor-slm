@@ -1,0 +1,357 @@
+{
+  "plan_name": "PacificSource: Core Gold 1500",
+  "issuer": "PacificSource",
+  "plan_type": "EPO",
+  "coverage_period": "01/01/2026 - 12/31/2026",
+  "deductible": {
+    "in_network": {
+      "individual": 1500,
+      "family": 3000
+    },
+    "out_of_network": null
+  },
+  "out_of_pocket_limit": {
+    "in_network": {
+      "individual": 9300,
+      "family": 18600
+    },
+    "out_of_network": null
+  },
+  "services_before_deductible": [
+    "preventive care",
+    "primary care visit",
+    "specialist visit",
+    "diagnostic test",
+    "imaging"
+  ],
+  "referral_required_for_specialist": null,
+  "services": {
+    "primary_care_visit": {
+      "in_network": {
+        "covered": true,
+        "copay": 5,
+        "coinsurance_pct": 0,
+        "deductible_applies": false,
+        "note": "First 3 visits per benefit year combined for primary care, mental health, behavioral health, and substance abuse visits."
+      },
+      "out_of_network": null
+    },
+    "specialist_visit": {
+      "in_network": {
+        "covered": true,
+        "copay": 50,
+        "coinsurance_pct": 0,
+        "deductible_applies": false,
+        "note": null
+      },
+      "out_of_network": null
+    },
+    "preventive_care": {
+      "in_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 0,
+        "deductible_applies": false,
+        "note": "Preventive Physicals: 13 visits ages 0-36 months, annually ages 3 and older. Well Woman Visits: annually. Tobacco cessation: Not covered out-of-network."
+      },
+      "out_of_network": null
+    },
+    "diagnostic_test": {
+      "in_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 20,
+        "deductible_applies": true,
+        "note": null
+      },
+      "out_of_network": null
+    },
+    "imaging": {
+      "in_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 20,
+        "deductible_applies": true,
+        "note": "Prior authorization required. If not received, you will be responsible for the expense."
+      },
+      "out_of_network": null
+    },
+    "outpatient_facility_fee": {
+      "in_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 20,
+        "deductible_applies": true,
+        "note": "Prior authorization required for some surgeries. If not received, you will be responsible for the expense."
+      },
+      "out_of_network": null
+    },
+    "outpatient_surgeon_fee": {
+      "in_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 20,
+        "deductible_applies": true,
+        "note": null
+      },
+      "out_of_network": null
+    },
+    "emergency_room": {
+      "in_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 20,
+        "deductible_applies": true,
+        "note": "Medical emergency: 20% co-insurance. Non-emergency: 20% co-insurance."
+      },
+      "out_of_network": null
+    },
+    "emergency_transportation": {
+      "in_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 20,
+        "deductible_applies": true,
+        "note": "Limited to nearest facility able to treat condition. Air covered if ground medically or physically inappropriate."
+      },
+      "out_of_network": null
+    },
+    "urgent_care": {
+      "in_network": {
+        "covered": true,
+        "copay": 25,
+        "coinsurance_pct": 0,
+        "deductible_applies": false,
+        "note": "Access to out-of-network urgent care is available at your in-network cost share only when accessed via our network."
+      },
+      "out_of_network": null
+    },
+    "hospital_facility_fee": {
+      "in_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 20,
+        "deductible_applies": true,
+        "note": "Limited to semi-private room, except when a private room is determined to be necessary. Prior authorization required for some inpatient services. If not received, you will be responsible for the expense."
+      },
+      "out_of_network": null
+    },
+    "hospital_surgeon_fee": {
+      "in_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 20,
+        "deductible_applies": true,
+        "note": null
+      },
+      "out_of_network": null
+    },
+    "mental_health_outpatient": {
+      "in_network": {
+        "covered": true,
+        "copay": 5,
+        "coinsurance_pct": 0,
+        "deductible_applies": false,
+        "note": "First 3 visits per benefit year combined for primary care, mental health, behavioral health, and substance abuse visits."
+      },
+      "out_of_network": null
+    },
+    "mental_health_inpatient": {
+      "in_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 20,
+        "deductible_applies": true,
+        "note": "Prior authorization required for some inpatient services. If not received, you will be responsible for the expense."
+      },
+      "out_of_network": null
+    },
+    "pregnancy_office_visits": {
+      "in_network": {
+        "covered": true,
+        "copay": 5,
+        "coinsurance_pct": 0,
+        "deductible_applies": false,
+        "note": "First 3 visits per benefit year combined for primary care, mental health, behavioral health, and substance abuse visits."
+      },
+      "out_of_network": null
+    },
+    "childbirth_professional": {
+      "in_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 20,
+        "deductible_applies": true,
+        "note": "Delivery and hospital visits are covered under prenatal and postnatal care. Facility is covered the same as an other hospital service."
+      },
+      "out_of_network": null
+    },
+    "childbirth_facility": {
+      "in_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 20,
+        "deductible_applies": true,
+        "note": "Delivery and hospital visits are covered under prenatal and postnatal care. Facility is covered the same as an other hospital service."
+      },
+      "out_of_network": null
+    },
+    "home_health_care": {
+      "in_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 20,
+        "deductible_applies": true,
+        "note": "No coverage for private duty nursing or custodial care."
+      },
+      "out_of_network": null
+    },
+    "rehabilitation": {
+      "in_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 20,
+        "deductible_applies": true,
+        "note": "Inpatient: Limited to 30 days/year. Outpatient: Limited to 30 visits/year. No coverage for recreation therapy."
+      },
+      "out_of_network": null
+    },
+    "habilitation": {
+      "in_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 20,
+        "deductible_applies": true,
+        "note": "Inpatient: Limited to 30 days/year. Outpatient: Limited to 30 visits/year. No coverage for recreation therapy."
+      },
+      "out_of_network": null
+    },
+    "skilled_nursing": {
+      "in_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 20,
+        "deductible_applies": true,
+        "note": "Limited to 60 days/year. No coverage for custodial care."
+      },
+      "out_of_network": null
+    },
+    "durable_medical_equipment": {
+      "in_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 20,
+        "deductible_applies": true,
+        "note": "Limited to: $5,000/year overall; one pair/year for glasses or contact lenses; one breast pump/pregnancy; one wig/year for chemotherapy or radiation therapy. Prior authorization required if equipment is over $2,500 and for power-assisted wheelchairs, if not received, you will be responsible for the expense."
+      },
+      "out_of_network": null
+    },
+    "hospice": {
+      "in_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 20,
+        "deductible_applies": true,
+        "note": "No coverage for private duty nursing. Respite care limited to 5 consecutive days and 30 days lifetime."
+      },
+      "out_of_network": null
+    },
+    "child_eye_exam": {
+      "in_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 0,
+        "deductible_applies": false,
+        "note": "For age 18 or younger, one routine eye exam/year."
+      },
+      "out_of_network": null
+    },
+    "child_glasses": {
+      "in_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 20,
+        "deductible_applies": true,
+        "note": "For age 18 or younger, one pair of glasses (frames and lenses) or contacts (lenses and fitting) per year. No charge up to $150 maximum, deductible does not apply."
+      },
+      "out_of_network": null
+    },
+    "child_dental_checkup": {
+      "in_network": null,
+      "out_of_network": null
+    }
+  },
+  "drug_tiers": [
+    {
+      "name": "Generic drugs - Tier 1",
+      "category": "generic",
+      "retail": {
+        "in_network": {
+          "covered": true,
+          "copay": 25,
+          "coinsurance_pct": 0,
+          "deductible_applies": false,
+          "note": null
+        },
+        "out_of_network": null
+      }
+    },
+    {
+      "name": "Preferred drugs - Tier 2",
+      "category": "preferred_brand",
+      "retail": {
+        "in_network": {
+          "covered": true,
+          "copay": 50,
+          "coinsurance_pct": 0,
+          "deductible_applies": false,
+          "note": "Cost share amounts represent a 30 day supply at retail and a 90 day supply at mail order. Quantity for retail and mail order are limited."
+        },
+        "out_of_network": null
+      }
+    },
+    {
+      "name": "Non-preferred drugs - Tier 3",
+      "category": "non_preferred_brand",
+      "retail": {
+        "in_network": {
+          "covered": true,
+          "copay": 0,
+          "coinsurance_pct": 20,
+          "deductible_applies": false,
+          "note": "Cost share amounts represent a 30 day supply at retail and a 90 day supply at mail order. Quantity for retail and mail order are limited. Prior authorization required for certain drugs. If not received, you will be responsible for the expense."
+        },
+        "out_of_network": null
+      }
+    },
+    {
+      "name": "Specialty drugs- Tier 4",
+      "category": "specialty",
+      "retail": {
+        "in_network": {
+          "covered": true,
+          "copay": 0,
+          "coinsurance_pct": 20,
+          "deductible_applies": false,
+          "note": "Prior authorization required for certain drugs. If not received, you will be responsible for the expense."
+        },
+        "out_of_network": null
+      }
+    }
+  ],
+  "excluded_services": [
+    "bariatric surgery",
+    "cosmetic surgery (except in certain situations)",
+    "dental care (Adult)",
+    "infertility treatment",
+    "long-term care",
+    "non-emergency care when traveling outside the U.S.",
+    "private-duty nursing",
+    "routine foot care, other than with diabetes mellitus",
+    "abortion",
+    "hearing aids (Adult)",
+    "routine eye care (Adult)",
+    "acupuncture, 12 visits/year",
+    "chiropractic care, 20 visits/year"
+  ]
+}

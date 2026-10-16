@@ -1,0 +1,611 @@
+{
+  "plan_name": "HMSA Gold PPO II AI_AN Limited CS",
+  "issuer": "HMSA",
+  "plan_type": "PPO",
+  "coverage_period": "01/01/2026 - 12/31/2026",
+  "deductible": {
+    "individual": 2000,
+    "family": 4000
+  },
+  "out_of_pocket_limit": {
+    "individual": 8200,
+    "family": 16400
+  },
+  "services_before_deductible": [
+    "preventive care",
+    "well-child care",
+    "screening",
+    "immunization (standard and travel)"
+  ],
+  "referral_required_for_specialist": false,
+  "services": {
+    "primary_care_visit": {
+      "in_network": {
+        "covered": true,
+        "copay": 30,
+        "coinsurance_pct": 0,
+        "deductible_applies": null,
+        "note": "deductible does not apply"
+      },
+      "out_of_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 45,
+        "deductible_applies": null,
+        "note": "deductible does not apply"
+      }
+    },
+    "specialist_visit": {
+      "in_network": {
+        "covered": true,
+        "copay": 60,
+        "coinsurance_pct": 0,
+        "deductible_applies": null,
+        "note": "deductible does not apply"
+      },
+      "out_of_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 45,
+        "deductible_applies": null,
+        "note": "deductible does not apply"
+      }
+    },
+    "preventive_care": {
+      "in_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 0,
+        "deductible_applies": null,
+        "note": "deductible does not apply"
+      },
+      "out_of_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 45,
+        "deductible_applies": null,
+        "note": "deductible does not apply"
+      }
+    },
+    "diagnostic_test": {
+      "in_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 25,
+        "deductible_applies": null,
+        "note": "deductible does not apply"
+      },
+      "out_of_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 45,
+        "deductible_applies": null,
+        "note": "deductible does not apply"
+      }
+    },
+    "imaging": {
+      "in_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 25,
+        "deductible_applies": null,
+        "note": "deductible does not apply"
+      },
+      "out_of_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 45,
+        "deductible_applies": null,
+        "note": "deductible does not apply"
+      }
+    },
+    "outpatient_facility_fee": {
+      "in_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 25,
+        "deductible_applies": null,
+        "note": "deductible does not apply"
+      },
+      "out_of_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 45,
+        "deductible_applies": null,
+        "note": "deductible does not apply"
+      }
+    },
+    "outpatient_surgeon_fee": {
+      "in_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 25,
+        "deductible_applies": null,
+        "note": "deductible does not apply"
+      },
+      "out_of_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 45,
+        "deductible_applies": null,
+        "note": "deductible does not apply"
+      }
+    },
+    "emergency_room": {
+      "in_network": {
+        "covered": true,
+        "copay": 60,
+        "coinsurance_pct": 25,
+        "deductible_applies": null,
+        "note": "deductible does not apply"
+      },
+      "out_of_network": {
+        "covered": true,
+        "copay": 60,
+        "coinsurance_pct": 25,
+        "deductible_applies": null,
+        "note": "deductible does not apply"
+      }
+    },
+    "emergency_transportation": {
+      "in_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 25,
+        "deductible_applies": null,
+        "note": "Limited to air transport to the nearest adequate hospital within the State of Hawaii, except in certain situations when transportation to the continental US is necessary for critical care in accord with HMSA's medical policy. Certain exclusions apply."
+      },
+      "out_of_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 45,
+        "deductible_applies": null,
+        "note": "Limited to air transport to the nearest adequate hospital within the State of Hawaii, except in certain situations when transportation to the continental US is necessary for critical care in accord with HMSA's medical policy. Certain exclusions apply."
+      }
+    },
+    "urgent_care": {
+      "in_network": {
+        "covered": true,
+        "copay": 45,
+        "coinsurance_pct": 0,
+        "deductible_applies": null,
+        "note": "deductible does not apply"
+      },
+      "out_of_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 45,
+        "deductible_applies": null,
+        "note": "deductible does not apply"
+      }
+    },
+    "hospital_facility_fee": {
+      "in_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 25,
+        "deductible_applies": null,
+        "note": "deductible does not apply"
+      },
+      "out_of_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 45,
+        "deductible_applies": null,
+        "note": "deductible does not apply"
+      }
+    },
+    "hospital_surgeon_fee": {
+      "in_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 25,
+        "deductible_applies": null,
+        "note": "deductible does not apply"
+      },
+      "out_of_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 45,
+        "deductible_applies": null,
+        "note": "deductible does not apply"
+      }
+    },
+    "mental_health_outpatient": {
+      "in_network": {
+        "covered": true,
+        "copay": 30,
+        "coinsurance_pct": 0,
+        "deductible_applies": null,
+        "note": "deductible does not apply"
+      },
+      "out_of_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 45,
+        "deductible_applies": null,
+        "note": "deductible does not apply"
+      }
+    },
+    "mental_health_inpatient": {
+      "in_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 25,
+        "deductible_applies": null,
+        "note": "deductible does not apply"
+      },
+      "out_of_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 45,
+        "deductible_applies": null,
+        "note": "deductible does not apply"
+      }
+    },
+    "pregnancy_office_visits": {
+      "in_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 25,
+        "deductible_applies": null,
+        "note": "deductible does not apply"
+      },
+      "out_of_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 45,
+        "deductible_applies": null,
+        "note": "deductible does not apply"
+      }
+    },
+    "childbirth_professional": {
+      "in_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 25,
+        "deductible_applies": null,
+        "note": "deductible does not apply"
+      },
+      "out_of_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 45,
+        "deductible_applies": null,
+        "note": "deductible does not apply"
+      }
+    },
+    "childbirth_facility": {
+      "in_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 25,
+        "deductible_applies": null,
+        "note": "deductible does not apply"
+      },
+      "out_of_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 45,
+        "deductible_applies": null,
+        "note": "deductible does not apply"
+      }
+    },
+    "home_health_care": {
+      "in_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 25,
+        "deductible_applies": null,
+        "note": "deductible does not apply"
+      },
+      "out_of_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 45,
+        "deductible_applies": null,
+        "note": "deductible does not apply"
+      }
+    },
+    "rehabilitation": {
+      "in_network": {
+        "covered": true,
+        "copay": 30,
+        "coinsurance_pct": 0,
+        "deductible_applies": null,
+        "note": "deductible does not apply; services may require preauthorization. Benefits may be denied if preauthorization is not obtained. Excludes cardiac rehabilitation."
+      },
+      "out_of_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 45,
+        "deductible_applies": null,
+        "note": "deductible does not apply; services may require preauthorization. Benefits may be denied if preauthorization is not obtained. Excludes cardiac rehabilitation."
+      }
+    },
+    "habilitation": {
+      "in_network": {
+        "covered": true,
+        "copay": 30,
+        "coinsurance_pct": 0,
+        "deductible_applies": null,
+        "note": "deductible does not apply; services may require preauthorization. Benefits may be denied if preauthorization is not obtained."
+      },
+      "out_of_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsinsurance_pct": 45,
+        "deductible_applies": null,
+        "note": "deductible does not apply; services may require preauthorization. Benefits may be denied if preauthorization is not obtained."
+      }
+    },
+    "skilled_nursing": {
+      "in_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 25,
+        "deductible_applies": null,
+        "note": "120 Days per Calendar Year. Includes extended care facilities (Skilled Nursing, Sub-Acute, and Long-Term Acute Care Facilities) to the extent care is for Skilled nursing care, sub-acute care, or long-term acute care."
+      },
+      "out_of_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 45,
+        "deductible_applies": null,
+        "note": "120 Days per Calendar Year. Includes extended care facilities (Skilled Nursing, Sub-Acute, and Long-Term Acute Care Facilities) to the extent care is for Skilled nursing care, sub-acute care, or long-term acute care."
+      }
+    },
+    "durable_medical_equipment": {
+      "in_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 25,
+        "deductible_applies": null,
+        "note": "deductible does not apply; services may require preauthorization. Benefits may be denied if preauthorization is not obtained."
+      },
+      "out_of_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 45,
+        "deductible_applies": null,
+        "note": "deductible does not apply; services may require preauthorization. Benefits may be denied if preauthorization is not obtained."
+      }
+    },
+    "hospice": {
+      "in_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 0,
+        "deductible_applies": null,
+        "note": "No charge"
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": 0,
+        "coinsurance_pct": 0,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "child_eye_exam": {
+      "in_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 0,
+        "deductible_applies": null,
+        "note": "Limited to one routine vision exam per calendar year. Benefits available through age 18."
+      },
+      "out_of_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 0,
+        "deductible_applies": null,
+        "note": "All charges less $35 plan payment; deductible does not apply. Limited to one routine vision exam per calendar year. Benefits available through age 18."
+      }
+    },
+    "child_glasses": {
+      "in_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 0,
+        "deductible_applies": null,
+        "note": "All charges less $85 plan payment; deductible does not apply. The frequency in which you can obtain a pair of glasses may vary."
+      },
+      "out_of_network": {
+        "covered": true,
+        "copay": 0,
+        "coinsurance_pct": 0,
+        "deductible_applies": null,
+        "note": "All charges less $85 plan payment; deductible does not apply. The frequency in which you can obtain a pair of glasses may vary."
+      }
+    },
+    "child_dental_checkup": {
+      "in_network": {
+        "covered": false,
+        "copay": 0,
+        "coinsurance_pct": 0,
+        "deductible_applies": null,
+        "note": "Not covered"
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": 0,
+        "coinsurance_pct": 0,
+        "deductible_applies": null,
+        "note": "Not covered"
+      }
+    }
+  },
+  "drug_tiers": [
+    {
+      "name": "Tier 1 - mostly Generic drugs (retail)",
+      "category": "generic",
+      "retail": {
+        "in_network": {
+          "covered": true,
+          "copay": 15,
+          "coinsurance_pct": 0,
+          "deductible_applies": null,
+          "note": "One retail copay for 1-30 day supply, two retail copays for 31-60 day supply, and three retail copays for 61-90 day supply."
+        },
+        "out_of_network": {
+          "covered": true,
+          "copay": 15,
+          "coinsurance_pct": 20,
+          "deductible_applies": null,
+          "note": "One retail copay for 1-30 day supply, two retail copays for 31-60 day supply, and three retail copays for 61-90 day supply."
+        }
+      }
+    },
+    {
+      "name": "Tier 1 - mostly Generic drugs (mail order)",
+      "category": "generic",
+      "retail": {
+        "in_network": {
+          "covered": true,
+          "copay": 30,
+          "coinsurance_pct": 0,
+          "deductible_applies": null,
+          "note": "One mail order copay for a 84-90 day supply at a 90 day at retail network or contracted mail order provider."
+        },
+        "out_of_network": {
+          "covered": false,
+          "copay": 0,
+          "coinsurance_pct": 0,
+          "deductible_applies": null,
+          "note": null
+        }
+      }
+    },
+    {
+      "name": "Tier 2 - mostly Preferred Formulary Drugs (retail)",
+      "category": "preferred_brand",
+      "retail": {
+        "in_network": {
+          "covered": true,
+          "copay": 30,
+          "coinsurance_pct": 0,
+          "deductible_applies": null,
+          "note": "One retail copay for 1-30 day supply, two retail copays for 31-60 day supply, and three retail copays for 61-90 day supply."
+        },
+        "out_of_network": {
+          "covered": true,
+          "copay": 30,
+          "coinsurance_pct": 20,
+          "deductible_applies": null,
+          "note": "One retail copay for 1-30 day supply, two retail copays for 31-60 day supply, and three retail copays for 61-90 day supply."
+        }
+      }
+    },
+    {
+      "name": "Tier 2 - mostly Preferred Formulary Drugs (mail order)",
+      "category": "preferred_brand",
+      "retail": {
+        "in_network": {
+          "covered": true,
+          "copay": 60,
+          "coinsurance_pct": 0,
+          "deductible_applies": null,
+          "note": "One mail order copay for a 84-90 day supply at a 90 day at retail network or contracted mail order provider."
+        },
+        "out_of_network": {
+          "covered": false,
+          "copay": 0,
+          "coinsurance_pct": 0,
+          "deductible_applies": null,
+          "note": null
+        }
+      }
+    },
+    {
+      "name": "Tier 3 - mostly Non-preferred Formulary Drugs (retail)",
+      "category": "non_preferred_brand",
+      "retail": {
+        "in_network": {
+          "covered": true,
+          "copay": 30,
+          "coinsurance_pct": 0,
+          "deductible_applies": null,
+          "note": "In addition to your copay and/or coinsurance, you will be responsible for a $30 Tier 3 Cost Share per retail copay. Cost to you for retail Tier 3 drugs: One copay plus one Tier 3 Cost Share for 1-30 day supply, two copays plus two Tier 3 Cost Shares for 31-60 day supply, and three copays plus three Tier 3 Cost Shares for 61-90 day supply."
+        },
+        "out_of_network": {
+          "covered": true,
+          "copay": 30,
+          "coinsurance_pct": 20,
+          "deductible_applies": null,
+          "note": "In addition to your copay and/or coinsurance, you will be responsible for a $30 Tier 3 Cost Share per retail copay. Cost to you for retail Tier 3 drugs: One copay plus one Tier 3 Cost Share for 1-30 day supply, two copays plus two Tier 3 Cost Shares for 31-60 day supply, and three copays plus three Tier 3 Cost Shares for 61-90 day supply."
+        }
+      }
+    },
+    {
+      "name": "Tier 3 - mostly Non-preferred Formulary Drugs (mail order)",
+      "category": "non_preferred_brand",
+      "retail": {
+        "in_network": {
+          "covered": true,
+          "copay": 60,
+          "coinsurance_pct": 0,
+          "deductible_applies": null,
+          "note": "In addition to your copay and/or coinsurance, you will be responsible for a $60 Tier 3 Cost Share per mail order copay. Cost to you for mail order Tier 3 drugs: One mail order copay plus one mail order Tier 3 Cost Share for an 84-90 day supply at a 90 day at retail network or contracted mail order provider."
+        },
+        "out_of_network": {
+          "covered": false,
+          "copay": 0,
+          "coinsurance_pct": 0,
+          "deductible_applies": null,
+          "note": null
+        }
+      }
+    },
+    {
+      "name": "Tier 4 - mostly Preferred Formulary Specialty drugs (retail)",
+      "category": "specialty",
+      "retail": {
+        "in_network": {
+          "covered": true,
+          "copay": 250,
+          "coinsurance_pct": 0,
+          "deductible_applies": null,
+          "note": "Retail benefits for Tier 4 and Tier 5 drugs are limited to a 30-day supply. Available in participating Specialty Pharmacies only."
+        },
+        "out_of_network": {
+          "covered": false,
+          "copay": 0,
+          "coinsurance_pct": 0,
+          "deductible_applies": null,
+          "note": null
+        }
+      }
+    },
+    {
+      "name": "Tier 5 - mostly Non-preferred Formulary Specialty drugs (retail)",
+      "category": "specialty",
+      "retail": {
+        "in_network": {
+          "covered": true,
+          "copay": 250,
+          "coinsurance_pct": 0,
+          "deductible_applies": null,
+          "note": "Retail benefits for Tier 4 and Tier 5 drugs are limited to a 30-day supply. Available in participating Specialty Pharmacies only."
+        },
+        "out_of_network": {
+          "covered": false,
+          "copay": 0,
+          "coinsurance_pct": 0,
+          "deductible_applies": null,
+          "note": null
+        }
+      }
+    }
+  ],
+  "excluded_services": [
+    "acupuncture",
+    "long-term care",
+    "cosmetic surgery",
+    "private-duty nursing",
+    "dental care (adult)",
+    "routine foot care",
+    "dental care (child)",
+    "weight loss programs"
+  ]
+}
