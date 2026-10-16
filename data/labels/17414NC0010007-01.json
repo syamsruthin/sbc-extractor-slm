@@ -1,5 +1,5 @@
 {
-  "plan_name": "AmeriHealth Caritas Next Bronze Signature + No Referrals",
+  "plan_name": "Bronze Signature + No Referrals",
   "issuer": "AmeriHealth Caritas Next",
   "plan_type": "HMO",
   "coverage_period": "01/01/2026 - 12/31/2026",
@@ -8,7 +8,10 @@
     "out_of_network": null
   },
   "out_of_pocket_limit": {
-    "in_network": null,
+    "in_network": {
+      "individual": 10000.0,
+      "family": 20000.0
+    },
     "out_of_network": null
   },
   "services_before_deductible": [
@@ -77,8 +80,8 @@
         "covered": true,
         "copay": null,
         "coinsurance_pct": 50.0,
-        "deductible_applies": true,
-        "note": null
+        "deductible_applies": null,
+        "note": "X-ray and blood work: 50% coinsurance"
       },
       "out_of_network": {
         "covered": false,
@@ -93,8 +96,8 @@
         "covered": true,
         "copay": null,
         "coinsurance_pct": 50.0,
-        "deductible_applies": true,
-        "note": "Prior authorization may be required."
+        "deductible_applies": null,
+        "note": null
       },
       "out_of_network": {
         "covered": false,
@@ -109,8 +112,8 @@
         "covered": true,
         "copay": null,
         "coinsurance_pct": 50.0,
-        "deductible_applies": true,
-        "note": "Prior authorization may be required."
+        "deductible_applies": null,
+        "note": null
       },
       "out_of_network": {
         "covered": false,
@@ -125,8 +128,8 @@
         "covered": true,
         "copay": null,
         "coinsurance_pct": 50.0,
-        "deductible_applies": true,
-        "note": "Prior authorization may be required."
+        "deductible_applies": null,
+        "note": null
       },
       "out_of_network": {
         "covered": false,
@@ -141,15 +144,15 @@
         "covered": true,
         "copay": null,
         "coinsurance_pct": 50.0,
-        "deductible_applies": true,
+        "deductible_applies": null,
         "note": null
       },
       "out_of_network": {
         "covered": true,
         "copay": null,
         "coinsurance_pct": 50.0,
-        "deductible_applies": true,
-        "note": "Covered only for emergencies; same cost as in-network."
+        "deductible_applies": null,
+        "note": "You pay the same level as in-network if it is an emergency as defined in your policy, otherwise not covered."
       }
     },
     "emergency_transportation": {
@@ -157,14 +160,14 @@
         "covered": true,
         "copay": null,
         "coinsurance_pct": 50.0,
-        "deductible_applies": true,
+        "deductible_applies": null,
         "note": null
       },
       "out_of_network": {
         "covered": true,
         "copay": null,
         "coinsurance_pct": 50.0,
-        "deductible_applies": true,
+        "deductible_applies": null,
         "note": null
       }
     },
@@ -181,7 +184,7 @@
         "copay": 75.0,
         "coinsurance_pct": null,
         "deductible_applies": false,
-        "note": "Covered when network providers unavailable or inaccessible for urgent condition."
+        "note": "Out-of-network Urgent Care services are covered when network providers are temporarily unavailable or inaccessible and if the services are for an ur"
       }
     },
     "hospital_facility_fee": {
@@ -189,8 +192,8 @@
         "covered": true,
         "copay": null,
         "coinsurance_pct": 50.0,
-        "deductible_applies": true,
-        "note": "Prior authorization may be required."
+        "deductible_applies": null,
+        "note": null
       },
       "out_of_network": {
         "covered": false,
@@ -205,8 +208,8 @@
         "covered": true,
         "copay": null,
         "coinsurance_pct": 50.0,
-        "deductible_applies": true,
-        "note": "Prior authorization may be required."
+        "deductible_applies": null,
+        "note": null
       },
       "out_of_network": {
         "covered": false,
@@ -220,9 +223,9 @@
       "in_network": {
         "covered": true,
         "copay": 50.0,
-        "coinsurance_pct": 50.0,
-        "deductible_applies": null,
-        "note": "Office visits: $50 copay, deductible does not apply; other outpatient: 50% coinsurance after deductible."
+        "coinsurance_pct": null,
+        "deductible_applies": false,
+        "note": "Copayment applies to office visits only. Additional services are subject to the plan's deductible and coinsurance (50% coinsurance for other services)"
       },
       "out_of_network": {
         "covered": false,
@@ -237,8 +240,8 @@
         "covered": true,
         "copay": null,
         "coinsurance_pct": 50.0,
-        "deductible_applies": true,
-        "note": "Prior authorization may be required."
+        "deductible_applies": null,
+        "note": null
       },
       "out_of_network": {
         "covered": false,
@@ -269,7 +272,7 @@
         "covered": true,
         "copay": null,
         "coinsurance_pct": 50.0,
-        "deductible_applies": true,
+        "deductible_applies": null,
         "note": null
       },
       "out_of_network": {
@@ -285,8 +288,8 @@
         "covered": true,
         "copay": null,
         "coinsurance_pct": 50.0,
-        "deductible_applies": true,
-        "note": "Prior authorization may be required."
+        "deductible_applies": null,
+        "note": null
       },
       "out_of_network": {
         "covered": false,
@@ -301,8 +304,8 @@
         "covered": true,
         "copay": null,
         "coinsurance_pct": 50.0,
-        "deductible_applies": true,
-        "note": "Prior authorization may be required."
+        "deductible_applies": null,
+        "note": null
       },
       "out_of_network": {
         "covered": false,
@@ -318,7 +321,7 @@
         "copay": 50.0,
         "coinsurance_pct": null,
         "deductible_applies": false,
-        "note": "Combined limit 30 visits per benefit period for rehab chiropractic, PT, OT. Prior authorization may be required."
+        "note": "Combined limit of 30 visits per benefit period for Rehabilitative Chiropractic Care, Physical Therapy, and Occupational Therapy."
       },
       "out_of_network": {
         "covered": false,
@@ -334,7 +337,7 @@
         "copay": 50.0,
         "coinsurance_pct": null,
         "deductible_applies": false,
-        "note": "Combined limit 30 visits per benefit period for habilitative chiropractic, PT, OT. Prior authorization may be required."
+        "note": "Combined limit of 30 visits per benefit period for Habilitative Chiropractic Care, Physical Therapy, and Occupational Therapy."
       },
       "out_of_network": {
         "covered": false,
@@ -349,8 +352,8 @@
         "covered": true,
         "copay": null,
         "coinsurance_pct": 50.0,
-        "deductible_applies": true,
-        "note": "60 days per benefit period. Prior authorization may be required."
+        "deductible_applies": null,
+        "note": "60 days per benefit period"
       },
       "out_of_network": {
         "covered": false,
@@ -365,8 +368,8 @@
         "covered": true,
         "copay": null,
         "coinsurance_pct": 50.0,
-        "deductible_applies": true,
-        "note": "Prior authorization may be required."
+        "deductible_applies": null,
+        "note": null
       },
       "out_of_network": {
         "covered": false,
@@ -382,7 +385,7 @@
         "copay": 0.0,
         "coinsurance_pct": 0.0,
         "deductible_applies": null,
-        "note": "Prior authorization may be required."
+        "note": null
       },
       "out_of_network": {
         "covered": false,
@@ -414,7 +417,7 @@
         "copay": 0.0,
         "coinsurance_pct": 0.0,
         "deductible_applies": false,
-        "note": "1 pair of children's eye glasses (standard frames and lenses) or contact lenses per benefit period"
+        "note": "1 pair of children's eye glasses (with standard frames and lenses) or contact lenses per benefit period"
       },
       "out_of_network": {
         "covered": false,
@@ -451,7 +454,7 @@
           "copay": 25.0,
           "coinsurance_pct": null,
           "deductible_applies": false,
-          "note": "Prior authorization/step therapy may be required. 30-day retail supply."
+          "note": null
         },
         "out_of_network": {
           "covered": false,
@@ -471,7 +474,7 @@
           "copay": 50.0,
           "coinsurance_pct": null,
           "deductible_applies": false,
-          "note": "Prior authorization/step therapy may be required. 30-day retail supply."
+          "note": null
         },
         "out_of_network": {
           "covered": false,
@@ -491,7 +494,7 @@
           "copay": 100.0,
           "coinsurance_pct": null,
           "deductible_applies": false,
-          "note": "Prior authorization/step therapy may be required. 30-day retail supply."
+          "note": null
         },
         "out_of_network": {
           "covered": false,
@@ -511,7 +514,7 @@
           "copay": 500.0,
           "coinsurance_pct": null,
           "deductible_applies": false,
-          "note": "Prior authorization/step therapy may be required. 30-day retail supply."
+          "note": null
         },
         "out_of_network": {
           "covered": false,

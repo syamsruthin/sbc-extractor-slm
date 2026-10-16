@@ -1,5 +1,5 @@
 {
-  "plan_name": "Precision Blue Copay (PCP) 60/40 $6000 Standardized (BR)",
+  "plan_name": "HMO Louisiana, Inc.: Precision Blue Copay (PCP) 60/40 $6000 Standardized (BR)",
   "issuer": "HMO Louisiana, Inc.",
   "plan_type": "IND POS",
   "coverage_period": "01/01/2026 - 12/31/2026",
@@ -23,7 +23,7 @@
         "copay": 40.0,
         "coinsurance_pct": null,
         "deductible_applies": false,
-        "note": "Copay may be reduced or waived for Quality Blue Provider; up to 2 $0 PCP Virtual Visits"
+        "note": null
       },
       "out_of_network": {
         "covered": true,
@@ -53,7 +53,7 @@
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
+        "coinsurance_pct": 0.0,
         "deductible_applies": false,
         "note": null
       },
@@ -71,14 +71,14 @@
         "copay": null,
         "coinsurance_pct": 40.0,
         "deductible_applies": null,
-        "note": "May be required to obtain authorization"
+        "note": null
       },
       "out_of_network": {
         "covered": true,
         "copay": null,
         "coinsurance_pct": 60.0,
         "deductible_applies": null,
-        "note": "May be required to obtain authorization"
+        "note": null
       }
     },
     "imaging": {
@@ -87,14 +87,14 @@
         "copay": null,
         "coinsurance_pct": 40.0,
         "deductible_applies": null,
-        "note": "Must obtain authorization"
+        "note": null
       },
       "out_of_network": {
         "covered": true,
         "copay": null,
         "coinsurance_pct": 60.0,
         "deductible_applies": null,
-        "note": "Must obtain authorization"
+        "note": null
       }
     },
     "outpatient_facility_fee": {
@@ -103,14 +103,14 @@
         "copay": null,
         "coinsurance_pct": 40.0,
         "deductible_applies": null,
-        "note": "Must obtain authorization; failure may result in 30% penalty"
+        "note": null
       },
       "out_of_network": {
         "covered": true,
         "copay": null,
         "coinsurance_pct": 60.0,
         "deductible_applies": null,
-        "note": "Must obtain authorization; failure may result in 30% penalty"
+        "note": null
       }
     },
     "outpatient_surgeon_fee": {
@@ -119,14 +119,14 @@
         "copay": null,
         "coinsurance_pct": 40.0,
         "deductible_applies": null,
-        "note": "Must obtain authorization; failure may result in 30% penalty"
+        "note": null
       },
       "out_of_network": {
         "covered": true,
         "copay": null,
         "coinsurance_pct": 60.0,
         "deductible_applies": null,
-        "note": "Must obtain authorization; failure may result in 30% penalty"
+        "note": null
       }
     },
     "emergency_room": {
@@ -135,14 +135,14 @@
         "copay": null,
         "coinsurance_pct": 40.0,
         "deductible_applies": null,
-        "note": "Balance billing prohibited"
+        "note": null
       },
       "out_of_network": {
         "covered": true,
         "copay": null,
         "coinsurance_pct": 40.0,
         "deductible_applies": null,
-        "note": "Balance billing prohibited"
+        "note": null
       }
     },
     "emergency_transportation": {
@@ -158,7 +158,7 @@
         "copay": null,
         "coinsurance_pct": 60.0,
         "deductible_applies": null,
-        "note": "Balance billing may be prohibited"
+        "note": null
       }
     },
     "urgent_care": {
@@ -183,14 +183,14 @@
         "copay": null,
         "coinsurance_pct": 40.0,
         "deductible_applies": null,
-        "note": "Must obtain authorization"
+        "note": null
       },
       "out_of_network": {
         "covered": true,
         "copay": null,
         "coinsurance_pct": 60.0,
         "deductible_applies": null,
-        "note": "Must obtain authorization"
+        "note": null
       }
     },
     "hospital_surgeon_fee": {
@@ -215,7 +215,7 @@
         "copay": 40.0,
         "coinsurance_pct": 40.0,
         "deductible_applies": false,
-        "note": "Copay for office visit, coinsurance for other outpatient services"
+        "note": "Office visit $40 copay; other outpatient 40% coinsurance"
       },
       "out_of_network": {
         "covered": true,
@@ -231,21 +231,21 @@
         "copay": null,
         "coinsurance_pct": 40.0,
         "deductible_applies": null,
-        "note": "Must obtain authorization"
+        "note": null
       },
       "out_of_network": {
         "covered": true,
         "copay": null,
         "coinsurance_pct": 60.0,
         "deductible_applies": null,
-        "note": "Must obtain authorization"
+        "note": null
       }
     },
     "pregnancy_office_visits": {
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
+        "coinsurance_pct": 0.0,
         "deductible_applies": null,
         "note": null
       },
@@ -261,7 +261,7 @@
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
+        "coinsurance_pct": 0.0,
         "deductible_applies": null,
         "note": null
       },
@@ -295,14 +295,14 @@
         "copay": null,
         "coinsurance_pct": 40.0,
         "deductible_applies": null,
-        "note": "Must obtain authorization"
+        "note": null
       },
       "out_of_network": {
         "covered": true,
         "copay": null,
         "coinsurance_pct": 60.0,
         "deductible_applies": null,
-        "note": "Must obtain authorization"
+        "note": null
       }
     },
     "rehabilitation": {
@@ -343,14 +343,14 @@
         "copay": null,
         "coinsurance_pct": 40.0,
         "deductible_applies": null,
-        "note": "Must obtain authorization"
+        "note": null
       },
       "out_of_network": {
         "covered": true,
         "copay": null,
         "coinsurance_pct": 60.0,
         "deductible_applies": null,
-        "note": "Must obtain authorization"
+        "note": null
       }
     },
     "durable_medical_equipment": {
@@ -359,14 +359,14 @@
         "copay": null,
         "coinsurance_pct": 40.0,
         "deductible_applies": null,
-        "note": "May be required to obtain authorization"
+        "note": null
       },
       "out_of_network": {
         "covered": true,
         "copay": null,
         "coinsurance_pct": 60.0,
         "deductible_applies": null,
-        "note": "May be required to obtain authorization"
+        "note": null
       }
     },
     "hospice": {
@@ -375,62 +375,62 @@
         "copay": null,
         "coinsurance_pct": 40.0,
         "deductible_applies": null,
-        "note": "Must obtain authorization"
+        "note": null
       },
       "out_of_network": {
         "covered": true,
         "copay": null,
         "coinsurance_pct": 60.0,
         "deductible_applies": null,
-        "note": "Must obtain authorization"
+        "note": null
       }
     },
     "child_eye_exam": {
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
+        "coinsurance_pct": 0.0,
         "deductible_applies": null,
-        "note": "For members under age 19"
+        "note": null
       },
       "out_of_network": {
         "covered": true,
         "copay": null,
         "coinsurance_pct": 100.0,
         "deductible_applies": null,
-        "note": "For members under age 19"
+        "note": null
       }
     },
     "child_glasses": {
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
+        "coinsurance_pct": 0.0,
         "deductible_applies": null,
-        "note": "For members under age 19"
+        "note": null
       },
       "out_of_network": {
         "covered": true,
         "copay": null,
         "coinsurance_pct": 100.0,
         "deductible_applies": null,
-        "note": "For members under age 19"
+        "note": null
       }
     },
     "child_dental_checkup": {
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
+        "coinsurance_pct": 0.0,
         "deductible_applies": null,
-        "note": "For members under age 19"
+        "note": null
       },
       "out_of_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
+        "coinsurance_pct": 0.0,
         "deductible_applies": null,
-        "note": "For members under age 19"
+        "note": null
       }
     }
   },

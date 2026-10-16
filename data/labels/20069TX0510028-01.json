@@ -27,7 +27,7 @@
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
+        "coinsurance_pct": 0.0,
         "deductible_applies": false,
         "note": null
       },
@@ -45,7 +45,7 @@
         "copay": 40.0,
         "coinsurance_pct": null,
         "deductible_applies": false,
-        "note": null
+        "note": "Gynecologist office visits covered in full"
       },
       "out_of_network": {
         "covered": false,
@@ -59,9 +59,9 @@
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
+        "coinsurance_pct": 0.0,
         "deductible_applies": false,
-        "note": null
+        "note": "Well Woman and Well Man exams limited to one visit per Benefit Period"
       },
       "out_of_network": {
         "covered": false,
@@ -77,7 +77,7 @@
         "copay": null,
         "coinsurance_pct": 50.0,
         "deductible_applies": true,
-        "note": "Lab work $40 copay not subject to deductible"
+        "note": "x-ray: 50% coinsurance subject to deductible; lab work: $40 copay not subject to deductible"
       },
       "out_of_network": {
         "covered": false,
@@ -148,7 +148,7 @@
         "copay": null,
         "coinsurance_pct": 50.0,
         "deductible_applies": true,
-        "note": null
+        "note": "Covered if for an emergency condition"
       }
     },
     "emergency_transportation": {
@@ -164,7 +164,7 @@
         "copay": null,
         "coinsurance_pct": 50.0,
         "deductible_applies": true,
-        "note": null
+        "note": "Covered if for an emergency condition"
       }
     },
     "urgent_care": {
@@ -176,11 +176,11 @@
         "note": null
       },
       "out_of_network": {
-        "covered": false,
+        "covered": true,
         "copay": null,
         "coinsurance_pct": null,
-        "deductible_applies": null,
-        "note": null
+        "deductible_applies": false,
+        "note": "Covered when temporarily out of Service Area; balance billing may apply"
       }
     },
     "hospital_facility_fee": {
@@ -218,10 +218,10 @@
     "mental_health_outpatient": {
       "in_network": {
         "covered": true,
-        "copay": 0.0,
+        "copay": null,
         "coinsurance_pct": 50.0,
-        "deductible_applies": false,
-        "note": "Office visit no charge; other outpatient 50% coinsurance subject to deductible"
+        "deductible_applies": true,
+        "note": "Office visit: no charge; other outpatient services: 50% coinsurance subject to deductible"
       },
       "out_of_network": {
         "covered": false,
@@ -251,9 +251,9 @@
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
+        "coinsurance_pct": 0.0,
         "deductible_applies": false,
-        "note": null
+        "note": "Depending on type of service, applicable cost-sharing will apply"
       },
       "out_of_network": {
         "covered": false,
@@ -285,7 +285,7 @@
         "copay": null,
         "coinsurance_pct": 50.0,
         "deductible_applies": true,
-        "note": null
+        "note": "Covers 48-hour stay for uncomplicated vaginal birth and 96-hour stay for uncomplicated cesarean section"
       },
       "out_of_network": {
         "covered": false,
@@ -301,7 +301,7 @@
         "copay": null,
         "coinsurance_pct": 50.0,
         "deductible_applies": true,
-        "note": null
+        "note": "60 visits per Benefit Period; limit not applicable to mental health and substance use disorder conditions"
       },
       "out_of_network": {
         "covered": false,
@@ -317,7 +317,7 @@
         "copay": null,
         "coinsurance_pct": 50.0,
         "deductible_applies": true,
-        "note": null
+        "note": "35 visits per Benefit Period combined for Physical, Occupational, and Manipulation Therapy; limit does not apply to Speech Therapy or mental health / "
       },
       "out_of_network": {
         "covered": false,
@@ -333,7 +333,7 @@
         "copay": null,
         "coinsurance_pct": 50.0,
         "deductible_applies": true,
-        "note": null
+        "note": "35 visits per Benefit Period combined for Physical, Occupational, and Manipulation Therapy; limit does not apply to Speech Therapy or mental health / "
       },
       "out_of_network": {
         "covered": false,
@@ -349,7 +349,7 @@
         "copay": null,
         "coinsurance_pct": 50.0,
         "deductible_applies": true,
-        "note": null
+        "note": "25 visits per Benefit Period; limit not applicable to mental health and substance use disorder conditions"
       },
       "out_of_network": {
         "covered": false,
@@ -395,7 +395,7 @@
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
+        "coinsurance_pct": 0.0,
         "deductible_applies": false,
         "note": null
       },
@@ -448,9 +448,9 @@
         "in_network": {
           "covered": true,
           "copay": 0.0,
-          "coinsurance_pct": null,
+          "coinsurance_pct": 0.0,
           "deductible_applies": false,
-          "note": "Tier 1A no charge; Tier 1B $25 copay not subject to deductible"
+          "note": "Tier 1A: no charge; Tier 1B: $25 copay not subject to deductible"
         },
         "out_of_network": {
           "covered": false,

@@ -1,5 +1,5 @@
 {
-  "plan_name": "Core Standard Silver (73)",
+  "plan_name": "PacificSource: Core Standard Silver (73)",
   "issuer": "PacificSource",
   "plan_type": "EPO",
   "coverage_period": "01/01/2026 - 12/31/2026",
@@ -12,16 +12,16 @@
     "out_of_network": null
   },
   "services_before_deductible": [
-    "Preventive care",
-    "Primary care visit",
-    "Specialist visit",
-    "Urgent care",
-    "Generic drugs (Tier 1)",
-    "Preferred drugs (Tier 2)",
-    "Mental health outpatient",
-    "Rehabilitation outpatient",
-    "Habilitation outpatient",
-    "Children's eye exam"
+    "primary care visit",
+    "specialist visit",
+    "preventive care",
+    "generic drugs (Tier 1)",
+    "preferred drugs (Tier 2)",
+    "urgent care",
+    "outpatient mental health/substance abuse",
+    "outpatient rehabilitation services",
+    "outpatient habilitation services",
+    "children's eye exam"
   ],
   "referral_required_for_specialist": false,
   "services": {
@@ -63,7 +63,7 @@
         "copay": 0.0,
         "coinsurance_pct": 0.0,
         "deductible_applies": false,
-        "note": null
+        "note": "Preventive physicals: 1 at birth, ages 0-7 as recommended, annually ages 8+. Well woman visits annually. Tobacco cessation not covered out-of-network."
       },
       "out_of_network": {
         "covered": false,
@@ -143,14 +143,14 @@
         "copay": null,
         "coinsurance_pct": 40.0,
         "deductible_applies": null,
-        "note": null
+        "note": "Non-emergency use not covered out-of-network."
       },
       "out_of_network": {
         "covered": true,
         "copay": null,
         "coinsurance_pct": 40.0,
         "deductible_applies": null,
-        "note": "Non-emergency not covered"
+        "note": "Non-emergency use not covered."
       }
     },
     "emergency_transportation": {
@@ -159,14 +159,14 @@
         "copay": null,
         "coinsurance_pct": 40.0,
         "deductible_applies": null,
-        "note": null
+        "note": "Ground and air both 40% coinsurance. Air covered if ground medically inappropriate."
       },
       "out_of_network": {
         "covered": true,
         "copay": null,
         "coinsurance_pct": 40.0,
         "deductible_applies": null,
-        "note": null
+        "note": "Ground and air both 40% coinsurance."
       }
     },
     "urgent_care": {
@@ -182,7 +182,7 @@
         "copay": null,
         "coinsurance_pct": null,
         "deductible_applies": null,
-        "note": null
+        "note": "Access at in-network cost share only when accessed via network."
       }
     },
     "hospital_facility_fee": {
@@ -255,7 +255,7 @@
         "copay": null,
         "coinsurance_pct": 40.0,
         "deductible_applies": null,
-        "note": null
+        "note": "Cost sharing does not apply for preventive services."
       },
       "out_of_network": {
         "covered": false,
@@ -303,7 +303,7 @@
         "copay": null,
         "coinsurance_pct": 40.0,
         "deductible_applies": null,
-        "note": "Limited to 180 visits/year"
+        "note": "Limited to 180 visits/year."
       },
       "out_of_network": {
         "covered": false,
@@ -317,9 +317,9 @@
       "in_network": {
         "covered": true,
         "copay": null,
-        "coinsurance_pct": 40.0,
+        "coinsurance_pct": null,
         "deductible_applies": null,
-        "note": "Outpatient: $40 copay/visit, deductible does not apply"
+        "note": "Inpatient: 40% coinsurance. Outpatient: $40 copay/visit, deductible does not apply."
       },
       "out_of_network": {
         "covered": false,
@@ -333,9 +333,9 @@
       "in_network": {
         "covered": true,
         "copay": null,
-        "coinsurance_pct": 40.0,
+        "coinsurance_pct": null,
         "deductible_applies": null,
-        "note": "Outpatient: $40 copay/visit, deductible does not apply"
+        "note": "Inpatient: 40% coinsurance. Outpatient: $40 copay/visit, deductible does not apply."
       },
       "out_of_network": {
         "covered": false,
@@ -351,7 +351,7 @@
         "copay": null,
         "coinsurance_pct": 40.0,
         "deductible_applies": null,
-        "note": "Limited to 60 days/year"
+        "note": "Limited to 60 days/year."
       },
       "out_of_network": {
         "covered": false,
@@ -367,7 +367,7 @@
         "copay": null,
         "coinsurance_pct": 40.0,
         "deductible_applies": null,
-        "note": "Limited to $5,000/year overall"
+        "note": "Limited to $5,000/year overall; one pair/year glasses/contacts; one breast pump/pregnancy; $150/year wig."
       },
       "out_of_network": {
         "covered": false,
@@ -383,7 +383,7 @@
         "copay": null,
         "coinsurance_pct": 40.0,
         "deductible_applies": null,
-        "note": null
+        "note": "Respite care limited to 5 consecutive days, 30 days lifetime."
       },
       "out_of_network": {
         "covered": false,
@@ -399,14 +399,14 @@
         "copay": 0.0,
         "coinsurance_pct": 0.0,
         "deductible_applies": false,
-        "note": null
+        "note": "Age 18 or younger, one routine eye exam/year."
       },
       "out_of_network": {
         "covered": true,
         "copay": null,
-        "coinsurance_pct": 100.0,
+        "coinsurance_pct": null,
         "deductible_applies": false,
-        "note": "No charge up to $40 maximum"
+        "note": "No charge up to $40 maximum, then 100% coinsurance."
       }
     },
     "child_glasses": {
@@ -415,14 +415,14 @@
         "copay": null,
         "coinsurance_pct": 40.0,
         "deductible_applies": null,
-        "note": "No charge up to $150 maximum, deductible does not apply"
+        "note": "Age 18 or younger, one pair glasses or contacts per year. No charge up to $150 maximum, deductible does not apply."
       },
       "out_of_network": {
         "covered": true,
         "copay": null,
         "coinsurance_pct": 40.0,
         "deductible_applies": null,
-        "note": "No charge up to $150 maximum, deductible does not apply"
+        "note": "Same as in-network."
       }
     },
     "child_dental_checkup": {
@@ -452,9 +452,15 @@
           "copay": 20.0,
           "coinsurance_pct": null,
           "deductible_applies": false,
-          "note": null
+          "note": "30-day supply."
         },
-        "out_of_network": null
+        "out_of_network": {
+          "covered": false,
+          "copay": null,
+          "coinsurance_pct": null,
+          "deductible_applies": null,
+          "note": null
+        }
       }
     },
     {
@@ -466,9 +472,15 @@
           "copay": 40.0,
           "coinsurance_pct": null,
           "deductible_applies": false,
-          "note": null
+          "note": "30-day supply."
         },
-        "out_of_network": null
+        "out_of_network": {
+          "covered": false,
+          "copay": null,
+          "coinsurance_pct": null,
+          "deductible_applies": null,
+          "note": null
+        }
       }
     },
     {
@@ -480,9 +492,15 @@
           "copay": 80.0,
           "coinsurance_pct": null,
           "deductible_applies": null,
-          "note": null
+          "note": "30-day supply."
         },
-        "out_of_network": null
+        "out_of_network": {
+          "covered": false,
+          "copay": null,
+          "coinsurance_pct": null,
+          "deductible_applies": null,
+          "note": null
+        }
       }
     },
     {
@@ -494,22 +512,28 @@
           "copay": 350.0,
           "coinsurance_pct": null,
           "deductible_applies": null,
-          "note": null
+          "note": "30-day supply."
         },
-        "out_of_network": null
+        "out_of_network": {
+          "covered": false,
+          "copay": null,
+          "coinsurance_pct": null,
+          "deductible_applies": null,
+          "note": null
+        }
       }
     }
   ],
   "excluded_services": [
-    "Abortion (except rape/incest/life of mother)",
+    "Abortion (except rape, incest, or life of mother)",
     "Bariatric surgery",
-    "Cosmetic surgery",
-    "Dental care (Adult)",
-    "Hearing aids (Adult)",
+    "Cosmetic surgery (except medically necessary or reconstructive)",
+    "Dental care (adult)",
+    "Hearing aids (adult)",
     "Long-term care",
     "Non-emergency care when traveling outside U.S.",
     "Private-duty nursing",
-    "Routine eye care (Adult)",
-    "Routine foot care (other than diabetes)"
+    "Routine eye care (adult)",
+    "Routine foot care (other than with diabetes)"
   ]
 }

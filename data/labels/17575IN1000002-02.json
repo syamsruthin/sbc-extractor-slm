@@ -15,33 +15,33 @@
     "out_of_network": null
   },
   "services_before_deductible": [
-    "preventive care",
-    "primary care visit",
-    "specialist visit",
-    "diagnostic test",
-    "imaging",
-    "generic drugs",
-    "preferred brand drugs",
-    "non-preferred brand drugs",
-    "specialty drugs",
-    "outpatient surgery",
-    "emergency room care",
-    "emergency medical transportation",
-    "urgent care",
-    "hospital stay",
-    "mental health outpatient",
-    "mental health inpatient",
-    "pregnancy office visits",
-    "childbirth delivery professional",
-    "childbirth delivery facility",
-    "home health care",
-    "rehabilitation",
-    "habilitation",
-    "skilled nursing",
-    "durable medical equipment",
-    "hospice",
-    "child eye exam",
-    "child glasses"
+    "Primary care visit",
+    "Specialist visit",
+    "Preventive care",
+    "Diagnostic test",
+    "Imaging",
+    "Generic drugs",
+    "Preferred brand drugs",
+    "Non-preferred brand drugs",
+    "Specialty drugs",
+    "Outpatient surgery",
+    "Emergency room care",
+    "Emergency medical transportation",
+    "Urgent care",
+    "Hospital stay",
+    "Mental health outpatient",
+    "Mental health inpatient",
+    "Substance abuse outpatient",
+    "Substance abuse inpatient",
+    "Maternity care",
+    "Home health care",
+    "Rehabilitation services",
+    "Habilitation services",
+    "Skilled nursing care",
+    "Durable medical equipment",
+    "Hospice services",
+    "Children's eye exam",
+    "Children's glasses"
   ],
   "referral_required_for_specialist": false,
   "services": {
@@ -49,15 +49,15 @@
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
         "note": null
       },
       "out_of_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
         "note": null
       }
     },
@@ -65,15 +65,15 @@
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
         "note": null
       },
       "out_of_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
         "note": null
       }
     },
@@ -81,15 +81,15 @@
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
         "note": null
       },
       "out_of_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
         "note": null
       }
     },
@@ -97,15 +97,15 @@
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
         "note": null
       },
       "out_of_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
         "note": null
       }
     },
@@ -113,15 +113,15 @@
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
         "note": null
       },
       "out_of_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
         "note": null
       }
     },
@@ -129,15 +129,15 @@
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
         "note": null
       },
       "out_of_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
         "note": null
       }
     },
@@ -145,15 +145,15 @@
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
         "note": null
       },
       "out_of_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
         "note": null
       }
     },
@@ -161,15 +161,15 @@
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
         "note": null
       },
       "out_of_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
         "note": null
       }
     },
@@ -177,15 +177,15 @@
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
         "note": null
       },
       "out_of_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
         "note": null
       }
     },
@@ -193,15 +193,15 @@
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
         "note": null
       },
       "out_of_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
         "note": null
       }
     },
@@ -209,47 +209,47 @@
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
-        "note": null
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
+        "note": "60 days/year for Inpatient rehabilitation"
       },
       "out_of_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
-        "note": null
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
+        "note": "60 days/year for Inpatient rehabilitation"
       }
     },
     "hospital_surgeon_fee": {
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
-        "note": null
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
+        "note": "60 days/year for Inpatient rehabilitation"
       },
       "out_of_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
-        "note": null
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
+        "note": "60 days/year for Inpatient rehabilitation"
       }
     },
     "mental_health_outpatient": {
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
         "note": null
       },
       "out_of_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
         "note": null
       }
     },
@@ -257,15 +257,15 @@
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
         "note": null
       },
       "out_of_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
         "note": null
       }
     },
@@ -273,15 +273,15 @@
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
         "note": null
       },
       "out_of_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
         "note": null
       }
     },
@@ -289,15 +289,15 @@
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
         "note": null
       },
       "out_of_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
         "note": null
       }
     },
@@ -305,15 +305,15 @@
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
         "note": null
       },
       "out_of_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
         "note": null
       }
     },
@@ -321,15 +321,15 @@
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
         "note": "100 visits/year"
       },
       "out_of_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
         "note": "100 visits/year"
       }
     },
@@ -337,15 +337,15 @@
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
         "note": null
       },
       "out_of_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
         "note": null
       }
     },
@@ -353,15 +353,15 @@
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
         "note": null
       },
       "out_of_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
         "note": null
       }
     },
@@ -369,15 +369,15 @@
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
         "note": "90 days/year"
       },
       "out_of_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
         "note": "90 days/year"
       }
     },
@@ -385,15 +385,15 @@
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
         "note": null
       },
       "out_of_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
         "note": null
       }
     },
@@ -401,15 +401,15 @@
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
         "note": null
       },
       "out_of_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
         "note": null
       }
     },
@@ -417,32 +417,32 @@
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
         "note": null
       },
       "out_of_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
-        "note": "up to plan's Maximum Allowed Amount"
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
+        "note": null
       }
     },
     "child_glasses": {
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
         "note": null
       },
       "out_of_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
-        "note": "up to plan's Maximum Allowed Amount"
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
+        "note": null
       }
     },
     "child_dental_checkup": {
@@ -470,15 +470,15 @@
         "in_network": {
           "covered": true,
           "copay": 0.0,
-          "coinsurance_pct": null,
-          "deductible_applies": null,
+          "coinsurance_pct": 0.0,
+          "deductible_applies": false,
           "note": null
         },
         "out_of_network": {
           "covered": true,
           "copay": 0.0,
-          "coinsurance_pct": null,
-          "deductible_applies": null,
+          "coinsurance_pct": 0.0,
+          "deductible_applies": false,
           "note": null
         }
       }
@@ -490,15 +490,15 @@
         "in_network": {
           "covered": true,
           "copay": 0.0,
-          "coinsurance_pct": null,
-          "deductible_applies": null,
+          "coinsurance_pct": 0.0,
+          "deductible_applies": false,
           "note": null
         },
         "out_of_network": {
           "covered": true,
           "copay": 0.0,
-          "coinsurance_pct": null,
-          "deductible_applies": null,
+          "coinsurance_pct": 0.0,
+          "deductible_applies": false,
           "note": null
         }
       }
@@ -510,15 +510,15 @@
         "in_network": {
           "covered": true,
           "copay": 0.0,
-          "coinsurance_pct": null,
-          "deductible_applies": null,
+          "coinsurance_pct": 0.0,
+          "deductible_applies": false,
           "note": null
         },
         "out_of_network": {
           "covered": true,
           "copay": 0.0,
-          "coinsurance_pct": null,
-          "deductible_applies": null,
+          "coinsurance_pct": 0.0,
+          "deductible_applies": false,
           "note": null
         }
       }
@@ -530,15 +530,15 @@
         "in_network": {
           "covered": true,
           "copay": 0.0,
-          "coinsurance_pct": null,
-          "deductible_applies": null,
+          "coinsurance_pct": 0.0,
+          "deductible_applies": false,
           "note": null
         },
         "out_of_network": {
           "covered": true,
           "copay": 0.0,
-          "coinsurance_pct": null,
-          "deductible_applies": null,
+          "coinsurance_pct": 0.0,
+          "deductible_applies": false,
           "note": null
         }
       }
@@ -546,7 +546,7 @@
   ],
   "excluded_services": [
     "Abortion (except in cases of rape, incest, or when the life of the mother is endangered)",
-    "Children’s dental check-up",
+    "Children's dental check-up",
     "Hearing aids",
     "Acupuncture",
     "Cosmetic surgery",

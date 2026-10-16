@@ -61,7 +61,7 @@
         "copay": 0.0,
         "coinsurance_pct": 0.0,
         "deductible_applies": false,
-        "note": "Well baby visits limited to 9 per 24 months"
+        "note": "Well baby visits limited to nine visits in 24-month period"
       },
       "out_of_network": {
         "covered": false,
@@ -221,7 +221,7 @@
         "copay": 5.0,
         "coinsurance_pct": null,
         "deductible_applies": false,
-        "note": "20% coinsurance after deductible for other outpatient services"
+        "note": "Office visit; other outpatient services: 20% coinsurance subject to deductible"
       },
       "out_of_network": {
         "covered": false,
@@ -285,7 +285,7 @@
         "copay": null,
         "coinsurance_pct": 20.0,
         "deductible_applies": true,
-        "note": "48-hour stay for vaginal, 96-hour for cesarean"
+        "note": null
       },
       "out_of_network": {
         "covered": false,
@@ -317,7 +317,7 @@
         "copay": 10.0,
         "coinsurance_pct": null,
         "deductible_applies": false,
-        "note": "30 combined visits per benefit period for OT/PT/speech"
+        "note": "30 combined visits per benefit period for occupational, physical and speech therapy"
       },
       "out_of_network": {
         "covered": false,
@@ -333,7 +333,7 @@
         "copay": 10.0,
         "coinsurance_pct": null,
         "deductible_applies": false,
-        "note": "30 combined visits per benefit period for OT/PT/speech"
+        "note": "30 combined visits per benefit period for occupational, physical and speech therapy"
       },
       "out_of_network": {
         "covered": false,
@@ -413,7 +413,7 @@
         "copay": null,
         "coinsurance_pct": 50.0,
         "deductible_applies": false,
-        "note": "One per benefit period, $150 allowance"
+        "note": "One prescribed lenses and frames per benefit period; contacts covered in lieu; $150 allowance"
       },
       "out_of_network": {
         "covered": false,

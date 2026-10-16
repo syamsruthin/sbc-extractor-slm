@@ -1,5 +1,5 @@
 {
-  "plan_name": "Oscar: Silver Simple Chronic Care CKM Plan",
+  "plan_name": "Silver Simple Chronic Care CKM Plan",
   "issuer": "Oscar",
   "plan_type": "HMO",
   "coverage_period": "01/01/2026 - 12/31/2026",
@@ -45,7 +45,7 @@
         "copay": 35.0,
         "coinsurance_pct": null,
         "deductible_applies": false,
-        "note": "Qualified cardiology, pulmonology, endocrinology visits covered in full; diabetic eye/foot exams covered in full"
+        "note": "Qualified visits for cardiology, pulmonology, and endocrinology are covered in full. Diabetic eye exams and diabetic foot exams are covered in full."
       },
       "out_of_network": {
         "covered": false,
@@ -61,7 +61,7 @@
         "copay": 0.0,
         "coinsurance_pct": 0.0,
         "deductible_applies": false,
-        "note": "Well Woman/Well Man limited to 1 visit per Benefit Period"
+        "note": "Well Woman and Well Man exams limited to one (1) visit per Benefit Period."
       },
       "out_of_network": {
         "covered": false,
@@ -75,9 +75,9 @@
       "in_network": {
         "covered": true,
         "copay": null,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
-        "note": "X-ray: 50% coinsurance after deductible; lab work: $65 copay not subject to deductible; specific labs covered in full"
+        "coinsurance_pct": 50.0,
+        "deductible_applies": true,
+        "note": "X-ray: 50% coinsurance subject to deductible. Lab work: $65 copayment/visit not subject to deductible. Labs (HbA1c screening, urinalysis, metabolic, l"
       },
       "out_of_network": {
         "covered": false,
@@ -93,7 +93,7 @@
         "copay": null,
         "coinsurance_pct": 50.0,
         "deductible_applies": true,
-        "note": null
+        "note": "Office/Ind facility/other outpatient facility"
       },
       "out_of_network": {
         "covered": false,
@@ -109,7 +109,7 @@
         "copay": null,
         "coinsurance_pct": 50.0,
         "deductible_applies": true,
-        "note": null
+        "note": "Surgical and non-surgical services"
       },
       "out_of_network": {
         "covered": false,
@@ -148,7 +148,7 @@
         "copay": null,
         "coinsurance_pct": 50.0,
         "deductible_applies": true,
-        "note": "Covered for emergency condition"
+        "note": "Covered if services are for an emergency condition."
       }
     },
     "emergency_transportation": {
@@ -164,7 +164,7 @@
         "copay": null,
         "coinsurance_pct": 50.0,
         "deductible_applies": true,
-        "note": "Covered for emergency condition"
+        "note": "Covered if services are for an emergency condition."
       }
     },
     "urgent_care": {
@@ -173,14 +173,14 @@
         "copay": 75.0,
         "coinsurance_pct": null,
         "deductible_applies": false,
-        "note": "Virtual urgent care by Oscar-designated providers covered in full"
+        "note": "Virtual urgent care services provided by Oscar-designated virtual care providers are covered in full."
       },
       "out_of_network": {
-        "covered": true,
+        "covered": false,
         "copay": null,
         "coinsurance_pct": null,
         "deductible_applies": null,
-        "note": "Covered when temporarily out of Service Area; balance billing may apply"
+        "note": "When temporarily out of the Service Area, Out-of-Network Urgent Care services are covered. In addition to applicable cost share, you may be responsib"
       }
     },
     "hospital_facility_fee": {
@@ -218,10 +218,10 @@
     "mental_health_outpatient": {
       "in_network": {
         "covered": true,
-        "copay": null,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
-        "note": "Office visit: no charge; other outpatient: 50% coinsurance after deductible"
+        "copay": 0.0,
+        "coinsurance_pct": 50.0,
+        "deductible_applies": true,
+        "note": "Office visit: no charge. Other outpatient services: 50% coinsurance subject to deductible."
       },
       "out_of_network": {
         "covered": false,
@@ -253,7 +253,7 @@
         "copay": 0.0,
         "coinsurance_pct": 0.0,
         "deductible_applies": false,
-        "note": "Depending on type of service, applicable cost-sharing may apply"
+        "note": "Depending on the type of services such as Primary Care Office Visits, Specialist Office Visits, Diagnostic Imaging Services, etc., the applicable cost"
       },
       "out_of_network": {
         "covered": false,
@@ -285,7 +285,7 @@
         "copay": null,
         "coinsurance_pct": 50.0,
         "deductible_applies": true,
-        "note": "Covers 48-hour stay for vaginal birth, 96-hour for cesarean"
+        "note": "Covers 48-hour hospital stay for uncomplicated vaginal birth and 96-hour hospital stay for uncomplicated cesarean section."
       },
       "out_of_network": {
         "covered": false,
@@ -317,7 +317,7 @@
         "copay": null,
         "coinsurance_pct": 50.0,
         "deductible_applies": true,
-        "note": "Cardiac/pulmonary rehab covered in full; 20 visits per Benefit Period per therapy for chiropractic, OT, PT"
+        "note": "Cardiac and pulmonary rehab visits covered in full. 20 visits per Benefit Period per therapy for chiropractic, occupational, and physical therapy. Li"
       },
       "out_of_network": {
         "covered": false,
@@ -333,7 +333,7 @@
         "copay": null,
         "coinsurance_pct": 50.0,
         "deductible_applies": true,
-        "note": "20 visits per Benefit Period per therapy for chiropractic, OT, PT"
+        "note": "20 visits per Benefit Period per therapy for chiropractic, occupational, and physical therapy. Limits do not apply for mental health, autism, or subst"
       },
       "out_of_network": {
         "covered": false,
@@ -365,7 +365,7 @@
         "copay": null,
         "coinsurance_pct": 50.0,
         "deductible_applies": true,
-        "note": "Oxygen covered in full for COPD and other qualifying conditions"
+        "note": "Oxygen is covered in full for members with COPD and other medical conditions that can be treated with long-term supportive oxygen therapy."
       },
       "out_of_network": {
         "covered": false,
@@ -413,7 +413,7 @@
         "copay": null,
         "coinsurance_pct": 50.0,
         "deductible_applies": false,
-        "note": "One pair per Benefit Period; $150 allowance; contacts covered in lieu"
+        "note": "One (1) prescribed lenses and frames per Benefit Period. Contacts covered in lieu of glasses. $150 allowance for Lenses and Frames, or Contact Lenses."
       },
       "out_of_network": {
         "covered": false,
@@ -450,7 +450,7 @@
           "copay": 3.0,
           "coinsurance_pct": null,
           "deductible_applies": false,
-          "note": "Common generic statins, antiasthmatics, bronchodilators covered in full"
+          "note": null
         },
         "out_of_network": {
           "covered": false,
@@ -544,16 +544,16 @@
   ],
   "excluded_services": [
     "Abortion",
-    "Acupuncture",
-    "Bariatric surgery",
-    "Cosmetic surgery",
-    "Dental care (Adult)",
     "Hearing aids",
-    "Infertility treatment",
-    "Long-term care",
-    "Non-emergency care when traveling outside the U.S.",
     "Private-duty nursing",
+    "Acupuncture",
+    "Infertility treatment",
     "Routine eye care (Adult)",
-    "Weight loss programs"
+    "Bariatric surgery",
+    "Long-term care",
+    "Weight loss programs",
+    "Cosmetic surgery",
+    "Non-emergency care when traveling outside the U.S.",
+    "Dental care (Adult)"
   ]
 }

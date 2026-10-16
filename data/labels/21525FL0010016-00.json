@@ -1,5 +1,5 @@
 {
-  "plan_name": "Oscar: Silver Simple PCP Saver | with AdventHealth Plan",
+  "plan_name": "Silver Simple PCP Saver | with AdventHealth Plan",
   "issuer": "Oscar",
   "plan_type": "HMO",
   "coverage_period": "01/01/2026 - 12/31/2026",
@@ -29,7 +29,7 @@
         "copay": 20.0,
         "coinsurance_pct": null,
         "deductible_applies": false,
-        "note": null
+        "note": "Cost share applies to both in-person and telemedicine"
       },
       "out_of_network": {
         "covered": false,
@@ -45,7 +45,7 @@
         "copay": 80.0,
         "coinsurance_pct": null,
         "deductible_applies": false,
-        "note": null
+        "note": "Cost share applies to both in-person and telemedicine"
       },
       "out_of_network": {
         "covered": false,
@@ -61,7 +61,7 @@
         "copay": 0.0,
         "coinsurance_pct": 0.0,
         "deductible_applies": false,
-        "note": "Well Woman and Well Man exams limited to 1 visit per Benefit Period"
+        "note": "Well Woman and Well Man exams limited to one visit per benefit period"
       },
       "out_of_network": {
         "covered": false,
@@ -77,7 +77,7 @@
         "copay": 35.0,
         "coinsurance_pct": 40.0,
         "deductible_applies": true,
-        "note": "x-ray: 40% coinsurance subject to deductible; lab work: $35 copay not subject to deductible"
+        "note": "40% coinsurance subject to deductible for x-ray; $35 copay not subject to deductible for lab work"
       },
       "out_of_network": {
         "covered": false,
@@ -93,7 +93,7 @@
         "copay": null,
         "coinsurance_pct": 40.0,
         "deductible_applies": true,
-        "note": null
+        "note": "Office/independent facility/other outpatient facility"
       },
       "out_of_network": {
         "covered": false,
@@ -109,7 +109,7 @@
         "copay": null,
         "coinsurance_pct": 40.0,
         "deductible_applies": true,
-        "note": null
+        "note": "Surgical and non-surgical services"
       },
       "out_of_network": {
         "covered": false,
@@ -148,7 +148,7 @@
         "copay": null,
         "coinsurance_pct": 40.0,
         "deductible_applies": true,
-        "note": "Covered for emergency condition only"
+        "note": "Covered for emergency condition"
       }
     },
     "emergency_transportation": {
@@ -164,7 +164,7 @@
         "copay": null,
         "coinsurance_pct": 40.0,
         "deductible_applies": true,
-        "note": "Covered for emergency condition only"
+        "note": "Covered for emergency condition"
       }
     },
     "urgent_care": {
@@ -173,14 +173,14 @@
         "copay": 75.0,
         "coinsurance_pct": null,
         "deductible_applies": false,
-        "note": null
+        "note": "Virtual urgent care by Oscar-designated providers covered in full"
       },
       "out_of_network": {
         "covered": true,
         "copay": null,
         "coinsurance_pct": null,
-        "deductible_applies": null,
-        "note": "Covered when temporarily out of Service Area; may be balance billed"
+        "deductible_applies": false,
+        "note": "Covered when temporarily out of service area; balance billing may apply"
       }
     },
     "hospital_facility_fee": {
@@ -220,7 +220,7 @@
         "covered": true,
         "copay": 20.0,
         "coinsurance_pct": 40.0,
-        "deductible_applies": true,
+        "deductible_applies": false,
         "note": "$20 copay/visit not subject to deductible for office visit; 40% coinsurance subject to deductible for other outpatient services"
       },
       "out_of_network": {
@@ -253,7 +253,7 @@
         "copay": 0.0,
         "coinsurance_pct": 0.0,
         "deductible_applies": false,
-        "note": "Office visits: No charge"
+        "note": "No charge for office visits; other services (e.g., imaging) have separate cost-sharing"
       },
       "out_of_network": {
         "covered": false,
@@ -285,7 +285,7 @@
         "copay": null,
         "coinsurance_pct": 40.0,
         "deductible_applies": true,
-        "note": "Covers 48-hour stay for uncomplicated vaginal birth, 96-hour for cesarean"
+        "note": "48-hour stay for vaginal birth, 96-hour for cesarean"
       },
       "out_of_network": {
         "covered": false,
@@ -301,7 +301,7 @@
         "copay": null,
         "coinsurance_pct": 40.0,
         "deductible_applies": true,
-        "note": "20 days per Benefit Period"
+        "note": "20 days per benefit period"
       },
       "out_of_network": {
         "covered": false,
@@ -333,7 +333,7 @@
         "copay": null,
         "coinsurance_pct": 40.0,
         "deductible_applies": true,
-        "note": "35 visits per benefit period combined for PT, OT, spinal manipulation, speech, audiology"
+        "note": "35 visits per benefit period combined with PT, OT, spinal manipulation, speech, audiology"
       },
       "out_of_network": {
         "covered": false,
@@ -349,7 +349,7 @@
         "copay": null,
         "coinsurance_pct": 40.0,
         "deductible_applies": true,
-        "note": "60 days per Benefit Period"
+        "note": "60 days per benefit period"
       },
       "out_of_network": {
         "covered": false,
@@ -413,7 +413,7 @@
         "copay": null,
         "coinsurance_pct": 50.0,
         "deductible_applies": false,
-        "note": "One pair lenses and frames per Benefit Period; $150 allowance"
+        "note": "One pair per benefit period; $150 allowance for lenses and frames or contact lenses"
       },
       "out_of_network": {
         "covered": false,
@@ -442,7 +442,7 @@
   },
   "drug_tiers": [
     {
-      "name": "Generic drugs (Tier 1)",
+      "name": "Tier 1",
       "category": "generic",
       "retail": {
         "in_network": {
@@ -450,7 +450,7 @@
           "copay": 3.0,
           "coinsurance_pct": null,
           "deductible_applies": false,
-          "note": "Tier 1A: $3 copay; Tier 1B: $35 copay"
+          "note": "Tier 1A $3 copay; Tier 1B $35 copay"
         },
         "out_of_network": {
           "covered": false,
@@ -462,7 +462,7 @@
       }
     },
     {
-      "name": "Preferred brand drugs (Tier 2)",
+      "name": "Tier 2",
       "category": "preferred_brand",
       "retail": {
         "in_network": {
@@ -470,7 +470,7 @@
           "copay": 125.0,
           "coinsurance_pct": null,
           "deductible_applies": false,
-          "note": "Retail limited to 30-day supply; mail order 90-day supply at 3x retail cost-sharing"
+          "note": null
         },
         "out_of_network": {
           "covered": false,
@@ -482,7 +482,7 @@
       }
     },
     {
-      "name": "Non-preferred brand drugs (Tier 3)",
+      "name": "Tier 3",
       "category": "non_preferred_brand",
       "retail": {
         "in_network": {
@@ -502,7 +502,7 @@
       }
     },
     {
-      "name": "Specialty drugs (Tier 4)",
+      "name": "Tier 4",
       "category": "specialty",
       "retail": {
         "in_network": {
@@ -510,7 +510,7 @@
           "copay": null,
           "coinsurance_pct": 50.0,
           "deductible_applies": true,
-          "note": "Limited to 30-day supply"
+          "note": null
         },
         "out_of_network": {
           "covered": false,

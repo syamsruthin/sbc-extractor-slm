@@ -1,6 +1,6 @@
 {
   "plan_name": "Health Advantage: Platinum Premier National OFF-Exchange (with BlueCard)",
-  "issuer": null,
+  "issuer": "Health Advantage",
   "plan_type": "POS",
   "coverage_period": "01/01/2026 – 12/31/2026",
   "deductible": {
@@ -16,20 +16,14 @@
   "out_of_pocket_limit": {
     "in_network": {
       "individual": 2050.0,
-      "family": 4100.0
+      "family": null
     },
     "out_of_network": {
-      "individual": 6150.0,
-      "family": 12300.0
+      "individual": null,
+      "family": null
     }
   },
   "services_before_deductible": [
-    "Primary care visit",
-    "Urgent care",
-    "Generic drugs",
-    "Preferred brand drugs",
-    "Non-preferred brand drugs",
-    "Specialty drugs",
     "Preventive care"
   ],
   "referral_required_for_specialist": false,
@@ -46,7 +40,7 @@
         "covered": true,
         "copay": null,
         "coinsurance_pct": 50.0,
-        "deductible_applies": null,
+        "deductible_applies": true,
         "note": null
       }
     },
@@ -54,15 +48,15 @@
       "in_network": {
         "covered": true,
         "copay": 75.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
-        "note": null
+        "coinsurance_pct": 50.0,
+        "deductible_applies": true,
+        "note": "Services and procedures other than consult and eval are paid at 50% coinsurance in-network."
       },
       "out_of_network": {
         "covered": true,
         "copay": null,
         "coinsurance_pct": 50.0,
-        "deductible_applies": null,
+        "deductible_applies": true,
         "note": null
       }
     },
@@ -200,7 +194,7 @@
         "copay": 575.0,
         "coinsurance_pct": null,
         "deductible_applies": true,
-        "note": "$575 copay per day"
+        "note": "Copay per day."
       },
       "out_of_network": {
         "covered": true,
@@ -231,14 +225,14 @@
         "covered": true,
         "copay": 20.0,
         "coinsurance_pct": 50.0,
-        "deductible_applies": null,
-        "note": "First 3 visits free for consult/eval services"
+        "deductible_applies": true,
+        "note": "$20 copay for consultation, evaluation, and psychotherapy services; 50% coinsurance for other outpatient services."
       },
       "out_of_network": {
         "covered": true,
         "copay": null,
         "coinsurance_pct": 50.0,
-        "deductible_applies": null,
+        "deductible_applies": true,
         "note": null
       }
     },
@@ -248,7 +242,7 @@
         "copay": 575.0,
         "coinsurance_pct": null,
         "deductible_applies": true,
-        "note": "$575 copay per day"
+        "note": "Copay per day."
       },
       "out_of_network": {
         "covered": true,
@@ -264,14 +258,14 @@
         "copay": null,
         "coinsurance_pct": 50.0,
         "deductible_applies": true,
-        "note": "Routine ultrasound limited to 1; prior notification required"
+        "note": "Routine ultrasounds limited to 1; cost sharing does not apply for preventive services."
       },
       "out_of_network": {
         "covered": true,
         "copay": null,
         "coinsurance_pct": 50.0,
         "deductible_applies": true,
-        "note": "Routine ultrasound limited to 1; prior notification required"
+        "note": "Routine ultrasounds limited to 1; cost sharing does not apply for preventive services."
       }
     },
     "childbirth_professional": {
@@ -280,14 +274,14 @@
         "copay": null,
         "coinsurance_pct": 50.0,
         "deductible_applies": true,
-        "note": "Prior notification required"
+        "note": "Coverage requires prior notification."
       },
       "out_of_network": {
         "covered": true,
         "copay": null,
         "coinsurance_pct": 50.0,
         "deductible_applies": true,
-        "note": "Prior notification required"
+        "note": "Coverage requires prior notification."
       }
     },
     "childbirth_facility": {
@@ -296,14 +290,14 @@
         "copay": null,
         "coinsurance_pct": 50.0,
         "deductible_applies": true,
-        "note": "Out-of-network newborn services limited to $2,000 first 90 days; prior notification required"
+        "note": "Coverage requires prior notification."
       },
       "out_of_network": {
         "covered": true,
         "copay": null,
         "coinsurance_pct": 50.0,
         "deductible_applies": true,
-        "note": "Out-of-network newborn services limited to $2,000 first 90 days; prior notification required"
+        "note": "Coverage for out-of-network newborn services limited to $2,000 per Member for first 90 days after birth; coverage requires prior notification."
       }
     },
     "home_health_care": {
@@ -312,14 +306,14 @@
         "copay": null,
         "coinsurance_pct": 50.0,
         "deductible_applies": true,
-        "note": "Limited to 50 visits per year"
+        "note": "Limited to 50 visits/Member/calendar year."
       },
       "out_of_network": {
         "covered": true,
         "copay": null,
         "coinsurance_pct": 50.0,
         "deductible_applies": true,
-        "note": "Limited to 50 visits per year"
+        "note": "Limited to 50 visits/Member/calendar year."
       }
     },
     "rehabilitation": {
@@ -327,8 +321,8 @@
         "covered": true,
         "copay": 20.0,
         "coinsurance_pct": 50.0,
-        "deductible_applies": null,
-        "note": "Outpatient 30 visits/yr, inpatient 60 days/yr; first 3 visits free for consult/eval"
+        "deductible_applies": true,
+        "note": "Outpatient services limited to 30 visits/Member/calendar year; inpatient services limited to 60 days/Member/calendar year."
       },
       "out_of_network": {
         "covered": false,
@@ -343,8 +337,8 @@
         "covered": true,
         "copay": 20.0,
         "coinsurance_pct": 50.0,
-        "deductible_applies": null,
-        "note": "Developmental services 180 units/yr; outpatient 30 visits/yr; first 3 visits free for consult/eval"
+        "deductible_applies": true,
+        "note": "Outpatient services limited to 30 visits/Member/calendar year; developmental services limited to 180 units/Member/calendar year."
       },
       "out_of_network": {
         "covered": false,
@@ -360,14 +354,14 @@
         "copay": 575.0,
         "coinsurance_pct": null,
         "deductible_applies": true,
-        "note": "$575 copay per day; limited to 60 days/year"
+        "note": "Limited to 60 days/Member/calendar year; copay per day."
       },
       "out_of_network": {
         "covered": true,
         "copay": null,
         "coinsurance_pct": 50.0,
         "deductible_applies": true,
-        "note": "limited to 60 days/year"
+        "note": "Limited to 60 days/Member/calendar year."
       }
     },
     "durable_medical_equipment": {
@@ -392,14 +386,14 @@
         "copay": null,
         "coinsurance_pct": 50.0,
         "deductible_applies": true,
-        "note": "Must be certified with life expectancy ≤6 months"
+        "note": "Must be certified by a physician as having a life expectancy of six months or less."
       },
       "out_of_network": {
         "covered": true,
         "copay": null,
         "coinsurance_pct": 50.0,
         "deductible_applies": true,
-        "note": "Must be certified with life expectancy ≤6 months"
+        "note": "Must be certified by a physician as having a life expectancy of six months or less."
       }
     },
     "child_eye_exam": {
@@ -407,8 +401,8 @@
         "covered": true,
         "copay": 0.0,
         "coinsurance_pct": 0.0,
-        "deductible_applies": false,
-        "note": "Limited to one exam per child per calendar year"
+        "deductible_applies": null,
+        "note": null
       },
       "out_of_network": {
         "covered": false,
@@ -424,14 +418,14 @@
         "copay": null,
         "coinsurance_pct": 50.0,
         "deductible_applies": true,
-        "note": "Limited to one pair per child per year"
+        "note": "Limited to one pair of glasses with lenses or contacts per child per calendar year."
       },
       "out_of_network": {
         "covered": true,
         "copay": null,
         "coinsurance_pct": 50.0,
         "deductible_applies": true,
-        "note": "Limited to one pair per child per year"
+        "note": "Limited to one pair of glasses with lenses or contacts per child per calendar year."
       }
     },
     "child_dental_checkup": {
@@ -461,7 +455,7 @@
           "copay": 25.0,
           "coinsurance_pct": null,
           "deductible_applies": false,
-          "note": "Covers up to 30-day supply retail; 31-90 day supply mail order"
+          "note": null
         },
         "out_of_network": {
           "covered": false,
@@ -481,7 +475,7 @@
           "copay": 85.0,
           "coinsurance_pct": null,
           "deductible_applies": false,
-          "note": "Covers up to 30-day supply retail; 31-90 day supply mail order"
+          "note": null
         },
         "out_of_network": {
           "covered": false,
@@ -501,7 +495,7 @@
           "copay": 1500.0,
           "coinsurance_pct": null,
           "deductible_applies": false,
-          "note": "Covers up to 30-day supply retail; 31-90 day supply mail order"
+          "note": null
         },
         "out_of_network": {
           "covered": false,
@@ -534,13 +528,13 @@
     }
   ],
   "excluded_services": [
-    "Abortions",
+    "Abortions (except physician-directed terminations in in-network/outpatient hospital)",
     "Acupuncture",
     "Cosmetic Surgery",
     "Dental Care",
     "Infertility Treatment",
     "Long term care",
-    "Non-emergency care when traveling outside of U.S.",
+    "Non-emergency care when traveling outside U.S.",
     "Private-duty nursing",
     "Routine eye care (Adult)"
   ]

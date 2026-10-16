@@ -12,10 +12,10 @@
     "out_of_network": null
   },
   "services_before_deductible": [
-    "Preventive care",
-    "Office visits",
-    "Urgent care",
-    "Outpatient rehabilitation"
+    "preventive care",
+    "office visits",
+    "urgent care",
+    "outpatient rehabilitation"
   ],
   "referral_required_for_specialist": true,
   "services": {
@@ -43,7 +43,7 @@
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
+        "coinsurance_pct": 0.0,
         "deductible_applies": false,
         "note": null
       },
@@ -55,7 +55,7 @@
         "copay": 75.0,
         "coinsurance_pct": null,
         "deductible_applies": true,
-        "note": "Independent facility; hospital-affiliated $150 copay"
+        "note": "Independent facility: $75 copay; Hospital-affiliated: $150 copay"
       },
       "out_of_network": null
     },
@@ -65,7 +65,7 @@
         "copay": 250.0,
         "coinsurance_pct": null,
         "deductible_applies": true,
-        "note": "Independent facility; hospital-affiliated $500 copay"
+        "note": "Independent facility: $250 copay; Hospital-affiliated: $500 copay"
       },
       "out_of_network": null
     },
@@ -75,7 +75,7 @@
         "copay": null,
         "coinsurance_pct": 30.0,
         "deductible_applies": true,
-        "note": "Prior authorization required"
+        "note": null
       },
       "out_of_network": null
     },
@@ -85,7 +85,7 @@
         "copay": null,
         "coinsurance_pct": 30.0,
         "deductible_applies": true,
-        "note": "Prior authorization required"
+        "note": null
       },
       "out_of_network": null
     },
@@ -111,14 +111,14 @@
         "copay": 200.0,
         "coinsurance_pct": null,
         "deductible_applies": true,
-        "note": "Ground; air/water 50% coinsurance after deductible"
+        "note": "Ground: $200 copay; Air/Water: 50% coinsurance after deductible"
       },
       "out_of_network": {
         "covered": true,
         "copay": 200.0,
         "coinsurance_pct": null,
         "deductible_applies": true,
-        "note": "Ground; air/water 50% coinsurance after deductible"
+        "note": "Ground: $200 copay; Air/Water: 50% coinsurance after deductible"
       }
     },
     "urgent_care": {
@@ -127,15 +127,9 @@
         "copay": 125.0,
         "coinsurance_pct": null,
         "deductible_applies": false,
-        "note": "Independent facility; hospital-affiliated $250; retail clinic $80"
+        "note": "Independent: $125 copay; Hospital-affiliated: $250 copay; Retail clinic: $80 copay"
       },
-      "out_of_network": {
-        "covered": true,
-        "copay": 125.0,
-        "coinsurance_pct": null,
-        "deductible_applies": false,
-        "note": "Independent facility; hospital-affiliated $250; retail clinic not covered"
-      }
+      "out_of_network": null
     },
     "hospital_facility_fee": {
       "in_network": {
@@ -143,7 +137,7 @@
         "copay": 500.0,
         "coinsurance_pct": null,
         "deductible_applies": true,
-        "note": "Per admission; prior authorization required"
+        "note": "Per admission"
       },
       "out_of_network": null
     },
@@ -151,9 +145,9 @@
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
+        "coinsurance_pct": 0.0,
         "deductible_applies": true,
-        "note": "Prior authorization required"
+        "note": null
       },
       "out_of_network": null
     },
@@ -163,7 +157,7 @@
         "copay": 70.0,
         "coinsurance_pct": null,
         "deductible_applies": false,
-        "note": "Applies to office visits only"
+        "note": "Applies to office visits only; other services may have additional cost sharing"
       },
       "out_of_network": null
     },
@@ -173,7 +167,7 @@
         "copay": 500.0,
         "coinsurance_pct": null,
         "deductible_applies": true,
-        "note": "Prior authorization may be required"
+        "note": "Per admission"
       },
       "out_of_network": null
     },
@@ -183,7 +177,7 @@
         "copay": 70.0,
         "coinsurance_pct": null,
         "deductible_applies": false,
-        "note": "Visit 1 copay; visit 2+ no charge"
+        "note": "Visit 1: $70 copay; Visit 2 and after: No Charge"
       },
       "out_of_network": null
     },
@@ -191,7 +185,7 @@
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
+        "coinsurance_pct": 0.0,
         "deductible_applies": true,
         "note": null
       },
@@ -203,7 +197,7 @@
         "copay": 500.0,
         "coinsurance_pct": null,
         "deductible_applies": true,
-        "note": "Prior authorization required"
+        "note": "Birthing center: same as routine OB"
       },
       "out_of_network": null
     },
@@ -223,7 +217,7 @@
         "copay": 140.0,
         "coinsurance_pct": null,
         "deductible_applies": true,
-        "note": "Limited to 35 visits per year combined PT/OT/ST/cardiac/pulmonary/chiropractic"
+        "note": "Limited to 35 visits per year combined PT, OT, ST, cardiac/pulmonary rehab, chiropractic"
       },
       "out_of_network": null
     },
@@ -233,7 +227,7 @@
         "copay": 140.0,
         "coinsurance_pct": null,
         "deductible_applies": true,
-        "note": "Limited to 35 visits per year combined PT/OT/ST"
+        "note": "Limited to 35 visits per year combined PT, OT, ST"
       },
       "out_of_network": null
     },
@@ -243,7 +237,7 @@
         "copay": 250.0,
         "coinsurance_pct": null,
         "deductible_applies": true,
-        "note": "Day 1-2 copay; day 3+ no charge; limited to 60 days per year"
+        "note": "Day 1-2: $250 copay per day; Day 3+: No charge; limited to 60 days per year"
       },
       "out_of_network": null
     },
@@ -261,9 +255,9 @@
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
+        "coinsurance_pct": 0.0,
         "deductible_applies": true,
-        "note": "Physician certification required"
+        "note": null
       },
       "out_of_network": null
     },
@@ -271,7 +265,7 @@
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
+        "coinsurance_pct": 0.0,
         "deductible_applies": false,
         "note": "Limited to one exam per calendar year"
       },
@@ -281,7 +275,7 @@
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
+        "coinsurance_pct": 0.0,
         "deductible_applies": false,
         "note": "Limited to one pair per calendar year from pre-selected frames"
       },
@@ -291,7 +285,7 @@
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
+        "coinsurance_pct": 0.0,
         "deductible_applies": false,
         "note": "Limited to one exam every 6 months"
       },
@@ -308,21 +302,7 @@
           "copay": 25.0,
           "coinsurance_pct": null,
           "deductible_applies": false,
-          "note": null
-        },
-        "out_of_network": null
-      }
-    },
-    {
-      "name": "Tier 1 & Tier 2",
-      "category": "generic",
-      "retail": {
-        "in_network": {
-          "covered": true,
-          "copay": 45.0,
-          "coinsurance_pct": null,
-          "deductible_applies": false,
-          "note": null
+          "note": "Preferred generic drugs: $25 copay; Generic drugs: $45 copay"
         },
         "out_of_network": null
       }

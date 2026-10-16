@@ -1,27 +1,18 @@
 {
-  "plan_name": "HealthPartners:Oak $2,000 Standard Limited Cost Sharing Gold",
+  "plan_name": "Oak $2,000 Standard Limited Cost Sharing Gold",
   "issuer": "HealthPartners",
   "plan_type": "PPO",
   "coverage_period": "01/01/2026-12/31/2026",
   "deductible": {
-    "in_network": {
-      "individual": 2000.0,
-      "family": 4000.0
-    },
-    "out_of_network": {
-      "individual": 20000.0,
-      "family": 40000.0
-    }
+    "in_network": null,
+    "out_of_network": null
   },
   "out_of_pocket_limit": {
-    "in_network": {
-      "individual": 8200.0,
-      "family": 16400.0
-    },
+    "in_network": null,
     "out_of_network": null
   },
   "services_before_deductible": [
-    "preventive care"
+    "Preventive care"
   ],
   "referral_required_for_specialist": false,
   "services": {
@@ -31,7 +22,7 @@
         "copay": 30.0,
         "coinsurance_pct": null,
         "deductible_applies": false,
-        "note": null
+        "note": "Convenience Care: $15 copay/per visit, Deductible does not apply; Virtuwell: No charge"
       },
       "out_of_network": {
         "covered": true,
@@ -62,7 +53,7 @@
         "covered": true,
         "copay": 0.0,
         "coinsurance_pct": 0.0,
-        "deductible_applies": false,
+        "deductible_applies": null,
         "note": null
       },
       "out_of_network": {
@@ -254,7 +245,7 @@
         "covered": true,
         "copay": 0.0,
         "coinsurance_pct": 0.0,
-        "deductible_applies": false,
+        "deductible_applies": null,
         "note": null
       },
       "out_of_network": {
@@ -383,7 +374,7 @@
         "copay": null,
         "coinsurance_pct": 25.0,
         "deductible_applies": null,
-        "note": "Respite care limited to 5 day(s) per episode; respite and continuous care combined limited to 30 day(s)"
+        "note": "Respite care limited to 5 day(s) per episode; respite care and continuous care combined limited to 30 day(s)"
       },
       "out_of_network": {
         "covered": false,
@@ -398,7 +389,7 @@
         "covered": true,
         "copay": 0.0,
         "coinsurance_pct": 0.0,
-        "deductible_applies": false,
+        "deductible_applies": null,
         "note": null
       },
       "out_of_network": {
@@ -512,7 +503,7 @@
           "copay": 250.0,
           "coinsurance_pct": null,
           "deductible_applies": false,
-          "note": null
+          "note": "Specialty generic and brand drugs $250 copay; Oral Chemotherapy drugs $250 copay"
         },
         "out_of_network": {
           "covered": false,
@@ -527,7 +518,7 @@
   "excluded_services": [
     "Acupuncture",
     "Bariatric surgery",
-    "Cosmetic surgery with the exception of port wine stain removal and reconstructive surgery",
+    "Cosmetic surgery (except port wine stain removal and reconstructive surgery)",
     "Dental care (Adults)",
     "Infertility treatment",
     "Long-term care",

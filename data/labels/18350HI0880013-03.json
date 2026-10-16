@@ -18,8 +18,8 @@
     "out_of_network": null
   },
   "services_before_deductible": [
-    "preventive care",
-    "well-child care"
+    "Preventive care",
+    "Well-child care"
   ],
   "referral_required_for_specialist": false,
   "services": {
@@ -61,7 +61,7 @@
         "copay": 0.0,
         "coinsurance_pct": 0.0,
         "deductible_applies": false,
-        "note": null
+        "note": "Well Child Physician Visit, Screening, Immunization (Standard and Travel)"
       },
       "out_of_network": {
         "covered": true,
@@ -125,14 +125,14 @@
         "copay": null,
         "coinsurance_pct": 25.0,
         "deductible_applies": null,
-        "note": null
+        "note": "Cutting and non-cutting both 25% coinsurance"
       },
       "out_of_network": {
         "covered": true,
         "copay": null,
         "coinsurance_pct": 45.0,
         "deductible_applies": null,
-        "note": null
+        "note": "Cutting and non-cutting both 45% coinsurance"
       }
     },
     "emergency_room": {
@@ -141,14 +141,14 @@
         "copay": 60.0,
         "coinsurance_pct": 25.0,
         "deductible_applies": false,
-        "note": null
+        "note": "Physician visit $60 copay, deductible does not apply; emergency room 25% coinsurance"
       },
       "out_of_network": {
         "covered": true,
         "copay": 60.0,
         "coinsurance_pct": 25.0,
         "deductible_applies": false,
-        "note": null
+        "note": "Physician visit $60 copay, deductible does not apply; emergency room 25% coinsurance"
       }
     },
     "emergency_transportation": {
@@ -157,14 +157,14 @@
         "copay": null,
         "coinsurance_pct": 25.0,
         "deductible_applies": null,
-        "note": null
+        "note": "Air transport limited to nearest adequate hospital within State of Hawaii, except certain situations; ground transport to nearest adequate hospital."
       },
       "out_of_network": {
         "covered": true,
         "copay": null,
-        "coinsurance_pct": 45.0,
+        "coinsurance_pct": 25.0,
         "deductible_applies": null,
-        "note": null
+        "note": "Air transport limited to nearest adequate hospital within State of Hawaii, except certain situations; ground transport 45% coinsurance."
       }
     },
     "urgent_care": {
@@ -205,14 +205,14 @@
         "copay": null,
         "coinsurance_pct": 25.0,
         "deductible_applies": null,
-        "note": null
+        "note": "Cutting and non-cutting both 25% coinsurance"
       },
       "out_of_network": {
         "covered": true,
         "copay": null,
         "coinsurance_pct": 45.0,
         "deductible_applies": null,
-        "note": null
+        "note": "Cutting and non-cutting both 45% coinsurance"
       }
     },
     "mental_health_outpatient": {
@@ -221,14 +221,14 @@
         "copay": 30.0,
         "coinsurance_pct": null,
         "deductible_applies": false,
-        "note": null
+        "note": "Physician services: $30 copay; Hospital and facility services: 25% coinsurance"
       },
       "out_of_network": {
         "covered": true,
         "copay": null,
         "coinsurance_pct": 45.0,
         "deductible_applies": null,
-        "note": null
+        "note": "Physician services: 45% coinsurance; Hospital and facility services: 45% coinsurance"
       }
     },
     "mental_health_inpatient": {
@@ -237,14 +237,14 @@
         "copay": null,
         "coinsurance_pct": 25.0,
         "deductible_applies": null,
-        "note": null
+        "note": "Physician services: 25% coinsurance; Hospital and facility services: 25% coinsurance"
       },
       "out_of_network": {
         "covered": true,
         "copay": null,
         "coinsurance_pct": 45.0,
         "deductible_applies": null,
-        "note": null
+        "note": "Physician services: 45% coinsurance; Hospital and facility services: 45% coinsurance"
       }
     },
     "pregnancy_office_visits": {
@@ -253,7 +253,7 @@
         "copay": null,
         "coinsurance_pct": 25.0,
         "deductible_applies": null,
-        "note": null
+        "note": "Cost sharing does not apply to certain preventive services."
       },
       "out_of_network": {
         "covered": true,
@@ -301,14 +301,14 @@
         "copay": null,
         "coinsurance_pct": 25.0,
         "deductible_applies": null,
-        "note": "150 visits per calendar year"
+        "note": "150 Visits per Calendar Year"
       },
       "out_of_network": {
         "covered": true,
         "copay": null,
         "coinsurance_pct": 45.0,
         "deductible_applies": null,
-        "note": "150 visits per calendar year"
+        "note": null
       }
     },
     "rehabilitation": {
@@ -317,7 +317,7 @@
         "copay": 30.0,
         "coinsurance_pct": null,
         "deductible_applies": false,
-        "note": null
+        "note": "Excludes cardiac rehabilitation."
       },
       "out_of_network": {
         "covered": true,
@@ -330,17 +330,17 @@
     "habilitation": {
       "in_network": {
         "covered": true,
-        "copay": null,
+        "copay": 30.0,
         "coinsurance_pct": null,
-        "deductible_applies": null,
-        "note": "DME 25% coinsurance; PT/OT outpatient $30 copay; Speech Therapy outpatient $30 copay"
+        "deductible_applies": false,
+        "note": "DME: 25% coinsurance; PT/OT outpatient: $30 copay; Speech Therapy outpatient: $30 copay"
       },
       "out_of_network": {
         "covered": true,
         "copay": null,
-        "coinsurance_pct": null,
+        "coinsurance_pct": 45.0,
         "deductible_applies": null,
-        "note": "DME 45% coinsurance; PT/OT outpatient 45% coinsurance; Speech Therapy outpatient 45% coinsurance"
+        "note": "DME: 45% coinsurance; PT/OT outpatient: 45% coinsurance; Speech Therapy outpatient: 45% coinsurance"
       }
     },
     "skilled_nursing": {
@@ -349,14 +349,14 @@
         "copay": null,
         "coinsurance_pct": 25.0,
         "deductible_applies": null,
-        "note": "120 days per calendar year"
+        "note": "120 Days per Calendar Year. Includes extended care facilities."
       },
       "out_of_network": {
         "covered": true,
         "copay": null,
         "coinsurance_pct": 45.0,
         "deductible_applies": null,
-        "note": "120 days per calendar year"
+        "note": null
       }
     },
     "durable_medical_equipment": {
@@ -397,7 +397,7 @@
         "copay": 0.0,
         "coinsurance_pct": 0.0,
         "deductible_applies": false,
-        "note": "Limited to one routine vision exam per calendar year, benefits through age 18"
+        "note": "Limited to one routine vision exam per calendar year. Benefits available through age 18."
       },
       "out_of_network": {
         "covered": true,
@@ -413,7 +413,7 @@
         "copay": 0.0,
         "coinsurance_pct": 0.0,
         "deductible_applies": false,
-        "note": null
+        "note": "The frequency in which you can obtain a pair of glasses may vary"
       },
       "out_of_network": {
         "covered": true,
@@ -450,7 +450,7 @@
           "copay": 15.0,
           "coinsurance_pct": null,
           "deductible_applies": false,
-          "note": null
+          "note": "One retail copay for 1-30 day supply, two retail copays for 31-60 day supply, three retail copays for 61-90 day supply."
         },
         "out_of_network": {
           "covered": true,
@@ -470,7 +470,7 @@
           "copay": 30.0,
           "coinsurance_pct": null,
           "deductible_applies": false,
-          "note": null
+          "note": "One retail copay for 1-30 day supply, two retail copays for 31-60 day supply, three retail copays for 61-90 day supply."
         },
         "out_of_network": {
           "covered": true,
@@ -490,14 +490,14 @@
           "copay": 30.0,
           "coinsurance_pct": null,
           "deductible_applies": false,
-          "note": "plus $30 Tier 3 Cost Share per retail copay"
+          "note": "In addition to your copay and/or coinsurance, you will be responsible for a $30 Tier 3 Cost Share per retail copay. Cost to you for retail Tier 3: one"
         },
         "out_of_network": {
           "covered": true,
           "copay": 30.0,
           "coinsurance_pct": 20.0,
           "deductible_applies": null,
-          "note": "plus $30 Tier 3 Cost Share per retail copay"
+          "note": null
         }
       }
     },
@@ -510,7 +510,7 @@
           "copay": 250.0,
           "coinsurance_pct": null,
           "deductible_applies": false,
-          "note": "30-day supply limit"
+          "note": "Retail benefits for Tier 4 and Tier 5 drugs are limited to a 30-day supply. Available in participating Specialty Pharmacies only."
         },
         "out_of_network": {
           "covered": false,
@@ -530,7 +530,7 @@
           "copay": 250.0,
           "coinsurance_pct": null,
           "deductible_applies": false,
-          "note": "30-day supply limit"
+          "note": "Retail benefits for Tier 4 and Tier 5 drugs are limited to a 30-day supply. Available in participating Specialty Pharmacies only."
         },
         "out_of_network": {
           "covered": false,

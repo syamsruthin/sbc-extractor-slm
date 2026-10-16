@@ -1,4 +1,4 @@
-"""SBC extraction schema v1. Design rationale: docs/03-schema.md
+"""SBC extraction schema v1.1. Design rationale: docs/03-schema.md
 
 One schema drives three things, so it's defined once here:
   - teacher labeling:  sent to the teacher model as a JSON schema (structured outputs)
@@ -23,11 +23,16 @@ ANNOTATION_GUIDELINES = """\
 - "after deductible"          -> deductible_applies=true
 - nothing said about it       -> deductible_applies=null
 - Copay AND coinsurance both stated (e.g. "$250 copay then 20% coinsurance") -> fill both.
+- One cell with different prices for parts of a service (e.g. "Office visit: $40 copay;
+  other outpatient: 40% coinsurance") -> put the office-visit / outpatient value in the
+  structured fields and summarize the other parts in note. Never leave copay and
+  coinsurance_pct both null when the document gives a price.
 - in_network is the standard in-network tier. Ignore special tiers such as
   Indian Health Care Providers (IHCP).
 - out_of_network is null if the document says not applicable, unlimited, or gives no amount.
 - note is only for terms the structured fields can't express (per-day copays,
-  visit limits, "first 3 visits free"). Keep it under 20 words; otherwise null.
+  visit limits, "first 3 visits free"). At most 150 characters; otherwise null.
+  Don't repeat prior-authorization or "balance billing may apply" boilerplate.
 - drug_tiers: one entry per tier row in the SBC, in document order, retail
   30-day prices only. category=other if the tier fits none of the standard categories.
 - services_before_deductible: services the SBC says are covered before you meet
@@ -41,7 +46,7 @@ class CostShare(BaseModel):
     copay: float | None = Field(description="Dollar copay; 0 for 'No charge'")
     coinsurance_pct: float | None = Field(description="0-100; 0 for 'No charge'")
     deductible_applies: bool | None
-    note: str | None
+    note: str | None = Field(max_length=150)
 
 
 class ServiceCost(BaseModel):
@@ -123,3 +128,23 @@ class SBCExtraction(BaseModel):
     services: Services
     drug_tiers: list[DrugTier]
     excluded_services: list[str]
+
+
+def normalize(label: SBCExtraction) -> SBCExtraction:
+    """Deterministic fixes for conventions the teacher applies inconsistently.
+
+    "No charge" should be copay=0 AND coinsurance_pct=0, but the teacher often
+    fills only one of them. Fixing it in code keeps every label consistent,
+    which a prompt alone doesn't guarantee.
+    """
+    cells = []
+    for svc in [*label.services.__dict__.values(), *(t.retail for t in label.drug_tiers)]:
+        cells += [svc.in_network, svc.out_of_network]
+    for c in cells:
+        if c is None or not c.covered:
+            continue
+        if c.copay == 0 and c.coinsurance_pct is None:
+            c.coinsurance_pct = 0
+        elif c.coinsurance_pct == 0 and c.copay is None:
+            c.copay = 0
+    return label

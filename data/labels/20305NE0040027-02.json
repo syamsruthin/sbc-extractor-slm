@@ -1,62 +1,32 @@
 {
-  "plan_name": "Silver Share Zero",
-  "issuer": "NE Medica Insure",
+  "plan_name": "NE Medica Insure Silver Share Zero",
+  "issuer": "Medica",
   "plan_type": "EPO",
   "coverage_period": "01/01/2026 - 12/31/2026",
   "deductible": {
     "in_network": {
       "individual": 0.0,
-      "family": null
+      "family": 0.0
     },
     "out_of_network": null
   },
   "out_of_pocket_limit": {
     "in_network": {
       "individual": 0.0,
-      "family": null
+      "family": 0.0
     },
     "out_of_network": null
   },
-  "services_before_deductible": [
-    "Primary care visit",
-    "Specialist visit",
-    "Preventive care/screening/immunization",
-    "Diagnostic test (x-ray, blood work)",
-    "Imaging (CT/PET scans, MRIs)",
-    "Preferred generic drugs",
-    "Preferred brand, Non-preferred generic drugs",
-    "Non-preferred brand, Non-preferred generic drugs",
-    "Specialty drugs",
-    "Facility fee (e.g., ambulatory surgery center)",
-    "Physician/surgeon fees",
-    "Emergency room care",
-    "Emergency medical transportation",
-    "Urgent care",
-    "Facility fee (e.g., hospital room)",
-    "Physician/surgeon fees",
-    "Outpatient services",
-    "Inpatient services",
-    "Office visits",
-    "Childbirth/delivery professional services",
-    "Childbirth/delivery facility services",
-    "Home health care",
-    "Rehabilitation services",
-    "Habilitation services",
-    "Skilled nursing care",
-    "Durable medical equipment",
-    "Hospice services",
-    "Children's eye exam",
-    "Children's glasses"
-  ],
+  "services_before_deductible": [],
   "referral_required_for_specialist": false,
   "services": {
     "primary_care_visit": {
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
-        "note": "Manipulations limited to 20 visits/year"
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
+        "note": "Manipulations limited to 20 visits/year."
       },
       "out_of_network": {
         "covered": false,
@@ -70,8 +40,8 @@
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
         "note": null
       },
       "out_of_network": {
@@ -86,9 +56,9 @@
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
-        "note": "Limited to one physical exam/year, unless additional visits are necessary"
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
+        "note": "Limited to one physical exam/year, unless additional visits necessary."
       },
       "out_of_network": {
         "covered": false,
@@ -102,8 +72,8 @@
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
         "note": null
       },
       "out_of_network": {
@@ -118,9 +88,9 @@
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
-        "note": null
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
+        "note": "Prior authorization required for PET scans."
       },
       "out_of_network": {
         "covered": false,
@@ -134,9 +104,9 @@
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
-        "note": null
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
+        "note": "May require prior authorization."
       },
       "out_of_network": {
         "covered": false,
@@ -150,9 +120,9 @@
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
-        "note": null
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
+        "note": "May require prior authorization."
       },
       "out_of_network": {
         "covered": false,
@@ -166,15 +136,15 @@
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
         "note": null
       },
       "out_of_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
         "note": null
       }
     },
@@ -182,15 +152,15 @@
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
         "note": null
       },
       "out_of_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
         "note": null
       }
     },
@@ -198,25 +168,25 @@
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
         "note": null
       },
       "out_of_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
-        "note": "If a non-network provider charges more than the allowed amount, you may have to pay the difference (balance billing)."
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
+        "note": "Balance billing may apply if non-network provider charges more than allowed amount."
       }
     },
     "hospital_facility_fee": {
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
-        "note": null
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
+        "note": "May require prior authorization."
       },
       "out_of_network": {
         "covered": false,
@@ -230,9 +200,9 @@
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
-        "note": null
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
+        "note": "May require prior authorization."
       },
       "out_of_network": {
         "covered": false,
@@ -246,9 +216,9 @@
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
-        "note": null
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
+        "note": "May require prior authorization."
       },
       "out_of_network": {
         "covered": false,
@@ -262,9 +232,9 @@
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
-        "note": null
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
+        "note": "Notification required. May require prior authorization."
       },
       "out_of_network": {
         "covered": false,
@@ -278,8 +248,8 @@
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
         "note": null
       },
       "out_of_network": {
@@ -294,9 +264,9 @@
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
-        "note": null
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
+        "note": "May require prior authorization."
       },
       "out_of_network": {
         "covered": false,
@@ -310,8 +280,8 @@
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
         "note": null
       },
       "out_of_network": {
@@ -326,9 +296,9 @@
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
-        "note": "Limited to 4 hours/day; 60 visits/year"
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
+        "note": "Limited to 4 hours/day; 60 visits/year. Prior authorization required."
       },
       "out_of_network": {
         "covered": false,
@@ -342,9 +312,9 @@
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
-        "note": "Outpatient: Physical, occupational, speech and physiotherapy 45 visits/year; Cardiac rehabilitation 18 visits/year; Pulmonary rehabilitation 18 visits/year. Visit limits do not apply to services for treatment of a mental health and/or substance use disorder condition."
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
+        "note": "Outpatient: PT/OT/ST 45 visits/year; Cardiac rehab 18 visits/year; Pulmonary rehab 18 visits/year. Visit limits do not apply to MH/SUD."
       },
       "out_of_network": {
         "covered": false,
@@ -358,9 +328,9 @@
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
-        "note": "Outpatient: Physical, occupational, speech and physiotherapy 45 visits/year; Cardiac rehabilitation 18 visits/year; Pulmonary rehabilitation 18 visits/year. Visit limits do not apply to services for treatment of a mental health and/or substance use disorder condition."
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
+        "note": "Outpatient: PT/OT/ST 45 visits/year; Cardiac rehab 18 visits/year; Pulmonary rehab 18 visits/year. Visit limits do not apply to MH/SUD."
       },
       "out_of_network": {
         "covered": false,
@@ -374,9 +344,9 @@
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
-        "note": "Limited to 60 inpatient days/year"
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
+        "note": "Limited to 60 inpatient days/year. Prior authorization required."
       },
       "out_of_network": {
         "covered": false,
@@ -390,9 +360,9 @@
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
-        "note": null
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
+        "note": "May require prior authorization."
       },
       "out_of_network": {
         "covered": false,
@@ -406,8 +376,8 @@
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
         "note": null
       },
       "out_of_network": {
@@ -422,9 +392,9 @@
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
-        "note": "Limited to one routine vision exam/year to end of month member turns 19"
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
+        "note": "Limited to one routine vision exam/year to end of month member turns 19."
       },
       "out_of_network": {
         "covered": false,
@@ -438,9 +408,9 @@
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": null,
-        "note": "Limited to one pair of glasses or contacts/year to end of month member turns 19"
+        "coinsurance_pct": 0.0,
+        "deductible_applies": false,
+        "note": "Limited to one pair of glasses or contacts/year to end of month member turns 19."
       },
       "out_of_network": {
         "covered": false,
@@ -456,7 +426,7 @@
         "copay": null,
         "coinsurance_pct": null,
         "deductible_applies": null,
-        "note": null
+        "note": "Coverage is available through a stand-alone dental policy."
       },
       "out_of_network": {
         "covered": false,
@@ -470,14 +440,14 @@
   "drug_tiers": [
     {
       "name": "Preferred generic drugs",
-      "category": "preferred_brand",
+      "category": "generic",
       "retail": {
         "in_network": {
           "covered": true,
           "copay": 0.0,
-          "coinsurance_pct": null,
-          "deductible_applies": null,
-          "note": null
+          "coinsurance_pct": 0.0,
+          "deductible_applies": false,
+          "note": "Up to 31-day supply. May require prior authorization. Insulin cost-share ≤ $35/retail prescription unit."
         },
         "out_of_network": {
           "covered": false,
@@ -495,9 +465,9 @@
         "in_network": {
           "covered": true,
           "copay": 0.0,
-          "coinsurance_pct": null,
-          "deductible_applies": null,
-          "note": null
+          "coinsurance_pct": 0.0,
+          "deductible_applies": false,
+          "note": "Up to 31-day supply. May require prior authorization. Insulin cost-share ≤ $35/retail prescription unit."
         },
         "out_of_network": {
           "covered": false,
@@ -515,9 +485,9 @@
         "in_network": {
           "covered": true,
           "copay": 0.0,
-          "coinsurance_pct": null,
-          "deductible_applies": null,
-          "note": null
+          "coinsurance_pct": 0.0,
+          "deductible_applies": false,
+          "note": "Up to 31-day supply. May require prior authorization. Insulin cost-share ≤ $35/retail prescription unit."
         },
         "out_of_network": {
           "covered": false,
@@ -535,9 +505,9 @@
         "in_network": {
           "covered": true,
           "copay": 0.0,
-          "coinsurance_pct": null,
-          "deductible_applies": null,
-          "note": null
+          "coinsurance_pct": 0.0,
+          "deductible_applies": false,
+          "note": "Up to 31-day supply. May require prior authorization. Insulin cost-share ≤ $35/retail prescription unit."
         },
         "out_of_network": {
           "covered": false,
@@ -550,12 +520,12 @@
     }
   ],
   "excluded_services": [
-    "Abortion, elective, induced, except as medically necessary to protect the life of the mother",
+    "Abortion, elective",
     "Acupuncture",
     "Bariatric surgery",
     "Cosmetic surgery",
     "Dental care (Adult)",
-    "Dental care (Child) (coverage is available through a stand-alone dental policy)",
+    "Dental care (Child)",
     "Dental check-up",
     "Infertility treatment",
     "Long-term care",

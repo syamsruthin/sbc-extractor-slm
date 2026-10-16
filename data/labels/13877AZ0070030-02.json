@@ -45,7 +45,7 @@
         "copay": 0.0,
         "coinsurance_pct": 0.0,
         "deductible_applies": null,
-        "note": "Cost share applies to both in-person and telemedicine services."
+        "note": "Cost share applies to both in-person and telemedicine"
       },
       "out_of_network": {
         "covered": false,
@@ -61,7 +61,7 @@
         "copay": 0.0,
         "coinsurance_pct": 0.0,
         "deductible_applies": null,
-        "note": "Well Woman and Well Man exams limited to one visit per Benefit Period."
+        "note": "Well Woman and Well Man exams limited to one visit per Benefit Period"
       },
       "out_of_network": {
         "covered": false,
@@ -148,7 +148,7 @@
         "copay": 0.0,
         "coinsurance_pct": 0.0,
         "deductible_applies": null,
-        "note": "Covered if for an emergency condition."
+        "note": "Covered if for emergency condition"
       }
     },
     "emergency_transportation": {
@@ -164,7 +164,7 @@
         "copay": 0.0,
         "coinsurance_pct": 0.0,
         "deductible_applies": null,
-        "note": "Covered if for an emergency condition."
+        "note": "Covered if for emergency condition"
       }
     },
     "urgent_care": {
@@ -173,14 +173,14 @@
         "copay": 0.0,
         "coinsurance_pct": 0.0,
         "deductible_applies": null,
-        "note": null
+        "note": "Virtual urgent care by Oscar-designated providers covered in full; Tier 1 drugs and labs may be covered in full when prescribed by Oscar-designated"
       },
       "out_of_network": {
         "covered": true,
         "copay": 0.0,
         "coinsurance_pct": 0.0,
         "deductible_applies": null,
-        "note": "Covered at in-network cost share."
+        "note": "Covered at in-network cost share"
       }
     },
     "hospital_facility_fee": {
@@ -285,7 +285,7 @@
         "copay": 0.0,
         "coinsurance_pct": 0.0,
         "deductible_applies": null,
-        "note": "Covers 48-hour stay for vaginal birth, 96-hour for cesarean. Preauthorization may be required."
+        "note": "Covers 48-hour stay for vaginal, 96-hour for cesarean; preauthorization may affect payment"
       },
       "out_of_network": {
         "covered": false,
@@ -301,7 +301,7 @@
         "copay": 0.0,
         "coinsurance_pct": 0.0,
         "deductible_applies": null,
-        "note": "42 visits per Benefit Period."
+        "note": "42 visits per Benefit Period; limits not apply for mental health or substance use"
       },
       "out_of_network": {
         "covered": false,
@@ -317,7 +317,7 @@
         "copay": 0.0,
         "coinsurance_pct": 0.0,
         "deductible_applies": null,
-        "note": "60 visits per Benefit Period for all therapy types combined."
+        "note": "60 visits per Benefit Period for all therapy types combined; limits not apply for mental health or substance use"
       },
       "out_of_network": {
         "covered": false,
@@ -333,7 +333,7 @@
         "copay": 0.0,
         "coinsurance_pct": 0.0,
         "deductible_applies": null,
-        "note": "60 visits per Benefit Period for all therapy types combined."
+        "note": "60 visits per Benefit Period for all therapy types combined; limits not apply for mental health or substance use"
       },
       "out_of_network": {
         "covered": false,
@@ -349,7 +349,7 @@
         "copay": 0.0,
         "coinsurance_pct": 0.0,
         "deductible_applies": null,
-        "note": "90 days per Benefit Period."
+        "note": "90 days per Benefit Period; limits not apply for mental health or substance use"
       },
       "out_of_network": {
         "covered": false,
@@ -397,7 +397,7 @@
         "copay": 0.0,
         "coinsurance_pct": 0.0,
         "deductible_applies": null,
-        "note": "One per Benefit Period."
+        "note": "One per Benefit Period"
       },
       "out_of_network": {
         "covered": false,
@@ -413,7 +413,7 @@
         "copay": 0.0,
         "coinsurance_pct": 0.0,
         "deductible_applies": null,
-        "note": "One prescribed lenses and frames per Benefit Period. $150 allowance."
+        "note": "One prescribed lenses and frames per Benefit Period; contacts in lieu; $150 allowance"
       },
       "out_of_network": {
         "covered": false,
@@ -442,7 +442,7 @@
   },
   "drug_tiers": [
     {
-      "name": "Generic drugs (Tier 1)",
+      "name": "Tier 1",
       "category": "generic",
       "retail": {
         "in_network": {
@@ -462,7 +462,7 @@
       }
     },
     {
-      "name": "Preferred brand drugs (Tier 2)",
+      "name": "Tier 2",
       "category": "preferred_brand",
       "retail": {
         "in_network": {
@@ -470,7 +470,7 @@
           "copay": 0.0,
           "coinsurance_pct": 0.0,
           "deductible_applies": null,
-          "note": "90-day supply for Maintenance Drugs subject to 3x retail cost-sharing amount."
+          "note": "90-day supply for Maintenance Drugs subject to 3x retail cost-sharing"
         },
         "out_of_network": {
           "covered": false,
@@ -482,7 +482,7 @@
       }
     },
     {
-      "name": "Non-preferred brand drugs (Tier 3)",
+      "name": "Tier 3",
       "category": "non_preferred_brand",
       "retail": {
         "in_network": {
@@ -502,7 +502,7 @@
       }
     },
     {
-      "name": "Specialty drugs (Tier 4)",
+      "name": "Tier 4",
       "category": "specialty",
       "retail": {
         "in_network": {
@@ -510,7 +510,7 @@
           "copay": 0.0,
           "coinsurance_pct": 0.0,
           "deductible_applies": null,
-          "note": "Limited to a 30-day supply."
+          "note": "Limited to 30-day supply"
         },
         "out_of_network": {
           "covered": false,
@@ -524,12 +524,12 @@
   ],
   "excluded_services": [
     "Abortion",
-    "Acupuncture",
-    "Cosmetic surgery",
     "Dental Care (Adult and Child)",
-    "Non-emergency care when traveling outside the U.S.",
     "Routine eye care (Adult)",
+    "Acupuncture",
+    "Non-emergency care when traveling outside the U.S.",
     "Routine foot care",
+    "Cosmetic surgery",
     "Weight loss programs"
   ]
 }

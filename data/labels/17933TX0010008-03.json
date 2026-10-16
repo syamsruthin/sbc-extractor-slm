@@ -12,19 +12,16 @@
     "out_of_network": null
   },
   "services_before_deductible": [
-    "IHCP services",
-    "In-network preventive care",
-    "Primary care",
-    "Specialist",
-    "Urgent care",
-    "Virtual visits",
-    "Outpatient behavioral health",
-    "Outpatient rehabilitation",
-    "Outpatient habilitation",
-    "Adult eye exams",
-    "Children's vision services",
-    "Most in-network prescription medications",
-    "Most out-of-network prescription medications"
+    "preventive care",
+    "primary care",
+    "specialist",
+    "urgent care",
+    "virtual visits",
+    "outpatient behavioral health",
+    "outpatient rehabilitation and habilitation",
+    "adult eye exams",
+    "children's vision services",
+    "most in and out of network prescription medications"
   ],
   "referral_required_for_specialist": false,
   "services": {
@@ -50,7 +47,7 @@
         "copay": 80.0,
         "coinsurance_pct": null,
         "deductible_applies": false,
-        "note": "Virtual: $40 copay; adult eye exam: $10 copay; hearing exam: $45 copay"
+        "note": "Virtual care $40 copay; adult eye exam $10 copay; hearing exam $45 copay; limited to one adult eye exam per year, one hearing exam per year"
       },
       "out_of_network": {
         "covered": false,
@@ -64,9 +61,9 @@
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
+        "coinsurance_pct": 0.0,
         "deductible_applies": false,
-        "note": "Most services no charge; some have $40 copay or 40% coinsurance"
+        "note": "Most services no charge; some services $40 copay or 40% coinsurance"
       },
       "out_of_network": {
         "covered": false,
@@ -82,7 +79,7 @@
         "copay": null,
         "coinsurance_pct": 40.0,
         "deductible_applies": null,
-        "note": null
+        "note": "Includes EKG, allergy testing, sleep study"
       },
       "out_of_network": {
         "covered": false,
@@ -145,7 +142,7 @@
         "covered": true,
         "copay": null,
         "coinsurance_pct": 40.0,
-        "deductible_applies": true,
+        "deductible_applies": null,
         "note": null
       },
       "out_of_network": {
@@ -161,7 +158,7 @@
         "covered": true,
         "copay": null,
         "coinsurance_pct": 40.0,
-        "deductible_applies": true,
+        "deductible_applies": null,
         "note": null
       },
       "out_of_network": {
@@ -178,7 +175,7 @@
         "copay": 60.0,
         "coinsurance_pct": null,
         "deductible_applies": false,
-        "note": "Virtual: $40 copay"
+        "note": "Virtual care $40 copay"
       },
       "out_of_network": {
         "covered": false,
@@ -224,9 +221,9 @@
       "in_network": {
         "covered": true,
         "copay": 40.0,
-        "coinsurance_pct": 40.0,
+        "coinsurance_pct": null,
         "deductible_applies": false,
-        "note": "Office/intensive outpatient/virtual: $40 copay; other: 40% coinsurance"
+        "note": "Intensive outpatient and virtual care $40 copay; other outpatient 40% coinsurance"
       },
       "out_of_network": {
         "covered": false,
@@ -320,9 +317,9 @@
       "in_network": {
         "covered": true,
         "copay": 40.0,
-        "coinsurance_pct": 40.0,
+        "coinsurance_pct": null,
         "deductible_applies": false,
-        "note": "Outpatient: $40 copay; inpatient: 40% coinsurance"
+        "note": "Outpatient $40 copay; inpatient 40% coinsurance; calendar year max 35 outpatient sessions; spinal manipulation included"
       },
       "out_of_network": {
         "covered": false,
@@ -336,9 +333,9 @@
       "in_network": {
         "covered": true,
         "copay": 40.0,
-        "coinsurance_pct": 40.0,
+        "coinsurance_pct": null,
         "deductible_applies": false,
-        "note": "Outpatient: $40 copay; inpatient: 40% coinsurance"
+        "note": "Outpatient $40 copay; inpatient 40% coinsurance; calendar year max 35 outpatient sessions"
       },
       "out_of_network": {
         "covered": false,
@@ -370,7 +367,7 @@
         "copay": null,
         "coinsurance_pct": 40.0,
         "deductible_applies": null,
-        "note": null
+        "note": "Includes supplies and prosthetics; frequency limits apply"
       },
       "out_of_network": {
         "covered": false,
@@ -400,9 +397,9 @@
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
+        "coinsurance_pct": 0.0,
         "deductible_applies": null,
-        "note": "Limited to one eye exam per calendar year for children under age 19"
+        "note": "Limited to one exam per calendar year for children under 19"
       },
       "out_of_network": {
         "covered": false,
@@ -416,9 +413,9 @@
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
+        "coinsurance_pct": 0.0,
         "deductible_applies": null,
-        "note": "Limited to one pair of glasses per calendar year for children under age 19"
+        "note": "Limited to one pair per calendar year for children under 19"
       },
       "out_of_network": {
         "covered": false,
@@ -455,7 +452,7 @@
           "copay": 20.0,
           "coinsurance_pct": null,
           "deductible_applies": false,
-          "note": null
+          "note": "90-day retail and mail order $60 copay"
         },
         "out_of_network": {
           "covered": true,
@@ -475,7 +472,7 @@
           "copay": 20.0,
           "coinsurance_pct": null,
           "deductible_applies": false,
-          "note": null
+          "note": "90-day retail and mail order $60 copay"
         },
         "out_of_network": {
           "covered": true,
@@ -495,7 +492,7 @@
           "copay": 40.0,
           "coinsurance_pct": null,
           "deductible_applies": false,
-          "note": null
+          "note": "90-day retail and mail order $120 copay"
         },
         "out_of_network": {
           "covered": true,
@@ -515,7 +512,7 @@
           "copay": 80.0,
           "coinsurance_pct": null,
           "deductible_applies": null,
-          "note": null
+          "note": "90-day retail and mail order $240 copay"
         },
         "out_of_network": {
           "covered": true,
@@ -535,7 +532,7 @@
           "copay": 350.0,
           "coinsurance_pct": null,
           "deductible_applies": null,
-          "note": null
+          "note": "Maximum cost sharing for insulin per 30-day fill is $25"
         },
         "out_of_network": {
           "covered": false,
@@ -548,11 +545,11 @@
     }
   ],
   "excluded_services": [
-    "Abortion (except medical emergency)",
+    "Abortion (except medical emergency of pregnant woman)",
     "Acupuncture",
     "Bariatric surgery",
     "Children's dental check-up",
-    "Cosmetic surgery (except as required)",
+    "Cosmetic surgery (except as required for certain situations)",
     "Dental care (Adult)",
     "Infertility treatment",
     "Long-term care",

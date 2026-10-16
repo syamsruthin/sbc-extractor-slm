@@ -21,7 +21,7 @@ import requests
 from dotenv import load_dotenv
 from pydantic import ValidationError
 
-from schema import ANNOTATION_GUIDELINES, SBCExtraction
+from schema import ANNOTATION_GUIDELINES, SBCExtraction, normalize
 
 ROOT = Path(__file__).resolve().parent.parent
 MD_DIR = ROOT / "data/markdown"
@@ -61,26 +61,23 @@ RESPONSE_FORMAT = {
 }
 
 
-def call_teacher(markdown: str, model: str, api_key: str) -> tuple[str, dict]:
+def call_teacher(messages: list[dict], model: str, api_key: str) -> tuple[str, dict]:
     resp = requests.post(
         API_URL,
         headers={"Authorization": f"Bearer {api_key}"},
         json={
             "model": model,
-            "messages": [
-                {"role": "system", "content": SYSTEM_PROMPT},
-                {"role": "user", "content": markdown},
-            ],
+            "messages": messages,
             "response_format": RESPONSE_FORMAT,
             "temperature": 0,
-            # A valid label is ~4k tokens. Some runs emitted 10k+ tokens (whitespace
-            # padding inside the JSON) at 7x the cost; cap it and let the retry handle it.
-            "max_tokens": 8000,
+            # A typical label is ~4k tokens (the teacher writes indented JSON); long SBCs
+            # reach ~8k. The cap bounds the cost of runaway whitespace padding.
+            "max_tokens": 12000,
             "reasoning": {"enabled": False},  # thinking tokens are billed as output
             "provider": {"require_parameters": True},  # only providers that enforce the schema
             "usage": {"include": True},
         },
-        timeout=300,
+        timeout=600,
     )
     resp.raise_for_status()
     body = resp.json()
@@ -91,26 +88,44 @@ def call_teacher(markdown: str, model: str, api_key: str) -> tuple[str, dict]:
 
 def label_one(md_path: Path, model: str, api_key: str, retries: int = 2) -> dict:
     record = {"plan_id": md_path.stem, "model": model, "attempts": 0, "cost": 0.0}
-    markdown = md_path.read_text()
+    out = LABEL_DIR / f"{md_path.stem}.json"
+    base = [
+        {"role": "system", "content": SYSTEM_PROMPT},
+        {"role": "user", "content": md_path.read_text()},
+    ]
+    messages = base
     start = time.time()
     for attempt in range(1, retries + 2):
         record["attempts"] = attempt
         try:
-            content, usage = call_teacher(markdown, model, api_key)
+            content, usage = call_teacher(messages, model, api_key)
             record["cost"] += usage.get("cost", 0.0)
             record["prompt_tokens"] = usage.get("prompt_tokens")
             record["completion_tokens"] = usage.get("completion_tokens")
-            label = SBCExtraction.model_validate_json(content)
-        except (requests.RequestException, RuntimeError, ValidationError, KeyError) as e:
+            label = normalize(SBCExtraction.model_validate_json(content))
+        except ValidationError as e:
+            record["error"] = f"ValidationError: {str(e)[:300]}"
+            if any(err["type"] == "json_invalid" for err in e.errors()):
+                messages = base  # truncated output: feedback can't help, start over
+            else:
+                # Valid JSON that breaks a constraint (e.g. note too long): show the
+                # teacher its own answer and the exact errors so it can fix them.
+                messages = base + [
+                    {"role": "assistant", "content": content},
+                    {"role": "user", "content": f"Fix these validation errors and return the full corrected JSON:\n{e}"},
+                ]
+            continue
+        except (requests.RequestException, RuntimeError, KeyError) as e:
             record["error"] = f"{type(e).__name__}: {str(e)[:300]}"
             time.sleep(2 * attempt)
             continue
-        (LABEL_DIR / f"{md_path.stem}.json").write_text(label.model_dump_json(indent=2))
+        out.write_text(label.model_dump_json(indent=2))
         record.pop("error", None)
         record["status"] = "ok"
         break
     else:
         record["status"] = "failed"
+        out.unlink(missing_ok=True)  # never leave a stale label from an older run
     record["seconds"] = round(time.time() - start, 1)
     return record
 
@@ -120,6 +135,7 @@ def main() -> None:
     parser.add_argument("--model", default=DEFAULT_MODEL)
     parser.add_argument("--limit", type=int, default=None)
     parser.add_argument("--workers", type=int, default=5)
+    parser.add_argument("--overwrite", action="store_true", help="relabel docs that already have labels")
     args = parser.parse_args()
 
     load_dotenv(ROOT / ".env")
@@ -128,7 +144,8 @@ def main() -> None:
         raise SystemExit("OPENROUTER_API_KEY not found in .env at the repo root")
 
     LABEL_DIR.mkdir(parents=True, exist_ok=True)
-    todo = [p for p in sorted(MD_DIR.glob("*.md")) if not (LABEL_DIR / f"{p.stem}.json").exists()]
+    todo = [p for p in sorted(MD_DIR.glob("*.md"))
+            if args.overwrite or not (LABEL_DIR / f"{p.stem}.json").exists()]
     todo = todo[: args.limit] if args.limit else todo
     print(f"labeling {len(todo)} docs with {args.model}")
 

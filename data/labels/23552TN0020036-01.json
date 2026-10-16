@@ -1,5 +1,5 @@
 {
-  "plan_name": "Gold Elite Plan",
+  "plan_name": "Oscar: Gold Elite Plan",
   "issuer": "Oscar",
   "plan_type": "EPO",
   "coverage_period": "01/01/2026 - 12/31/2026",
@@ -18,8 +18,8 @@
     "out_of_network": null
   },
   "services_before_deductible": [
-    "Preventive care",
-    "Pre- and post-natal care"
+    "preventive care",
+    "pre- and post-natal care"
   ],
   "referral_required_for_specialist": false,
   "services": {
@@ -59,9 +59,9 @@
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": false,
-        "note": "Well Woman/Man exam limited to 1 per benefit period"
+        "coinsurance_pct": 0.0,
+        "deductible_applies": null,
+        "note": "Well Woman/Man exams limited to 1 visit per Benefit Period."
       },
       "out_of_network": {
         "covered": false,
@@ -74,10 +74,10 @@
     "diagnostic_test": {
       "in_network": {
         "covered": true,
-        "copay": 100.0,
+        "copay": null,
         "coinsurance_pct": null,
         "deductible_applies": false,
-        "note": "X-ray $100 copay; lab work $30 copay"
+        "note": "X-ray: $100 copay; lab work: $30 copay."
       },
       "out_of_network": {
         "covered": false,
@@ -93,7 +93,7 @@
         "copay": null,
         "coinsurance_pct": 30.0,
         "deductible_applies": true,
-        "note": null
+        "note": "CT/PET scans, MRIs — Office/Independent facility/other outpatient facility."
       },
       "out_of_network": {
         "covered": false,
@@ -109,7 +109,7 @@
         "copay": null,
         "coinsurance_pct": 30.0,
         "deductible_applies": true,
-        "note": null
+        "note": "Surgical and non-surgical services."
       },
       "out_of_network": {
         "covered": false,
@@ -141,14 +141,14 @@
         "copay": null,
         "coinsurance_pct": 30.0,
         "deductible_applies": true,
-        "note": null
+        "note": "Includes ER Facility Fee and ER Physician Fee."
       },
       "out_of_network": {
         "covered": true,
         "copay": null,
         "coinsurance_pct": 30.0,
         "deductible_applies": true,
-        "note": null
+        "note": "Covered only for emergency condition."
       }
     },
     "emergency_transportation": {
@@ -164,7 +164,7 @@
         "copay": null,
         "coinsurance_pct": 30.0,
         "deductible_applies": true,
-        "note": null
+        "note": "Covered only for emergency condition."
       }
     },
     "urgent_care": {
@@ -176,11 +176,11 @@
         "note": null
       },
       "out_of_network": {
-        "covered": false,
+        "covered": true,
         "copay": null,
         "coinsurance_pct": null,
         "deductible_applies": null,
-        "note": null
+        "note": "Covered when temporarily out of Service Area; balance billing may apply."
       }
     },
     "hospital_facility_fee": {
@@ -218,10 +218,10 @@
     "mental_health_outpatient": {
       "in_network": {
         "covered": true,
-        "copay": 15.0,
-        "coinsurance_pct": 30.0,
+        "copay": null,
+        "coinsurance_pct": null,
         "deductible_applies": false,
-        "note": "Office visit $15 copay; other outpatient 30% coinsurance after deductible"
+        "note": "Office visit: $15 copay; other outpatient: 30% coinsurance subject to deductible."
       },
       "out_of_network": {
         "covered": false,
@@ -251,8 +251,8 @@
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": false,
+        "coinsurance_pct": 0.0,
+        "deductible_applies": null,
         "note": null
       },
       "out_of_network": {
@@ -285,7 +285,7 @@
         "copay": null,
         "coinsurance_pct": 30.0,
         "deductible_applies": true,
-        "note": "Covers 48-hour stay for vaginal, 96-hour for cesarean"
+        "note": "Covers 48-hour stay for uncomplicated vaginal birth and 96-hour for cesarean section."
       },
       "out_of_network": {
         "covered": false,
@@ -301,7 +301,7 @@
         "copay": null,
         "coinsurance_pct": 30.0,
         "deductible_applies": true,
-        "note": "60 visits per benefit period"
+        "note": "60 visits per Benefit Period; limit not applicable for mental health and SUD."
       },
       "out_of_network": {
         "covered": false,
@@ -317,7 +317,7 @@
         "copay": 75.0,
         "coinsurance_pct": null,
         "deductible_applies": false,
-        "note": "20 visits per therapy per benefit period"
+        "note": "20 visits per therapy per Benefit Period for outpatient physical, occupational, and speech therapies; limits do not apply for mental health or SUD."
       },
       "out_of_network": {
         "covered": false,
@@ -333,7 +333,7 @@
         "copay": 75.0,
         "coinsurance_pct": null,
         "deductible_applies": false,
-        "note": "20 visits per therapy per benefit period"
+        "note": "20 visits per therapy per Benefit Period for outpatient physical, occupational, and speech therapies; limits do not apply for mental health or SUD."
       },
       "out_of_network": {
         "covered": false,
@@ -349,7 +349,7 @@
         "copay": null,
         "coinsurance_pct": 30.0,
         "deductible_applies": true,
-        "note": "60 days per benefit period"
+        "note": "60 days per Benefit Period."
       },
       "out_of_network": {
         "covered": false,
@@ -381,7 +381,7 @@
         "copay": null,
         "coinsurance_pct": 30.0,
         "deductible_applies": true,
-        "note": "Preauthorization required"
+        "note": null
       },
       "out_of_network": {
         "covered": false,
@@ -395,8 +395,8 @@
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
-        "deductible_applies": false,
+        "coinsurance_pct": 0.0,
+        "deductible_applies": null,
         "note": null
       },
       "out_of_network": {
@@ -442,15 +442,15 @@
   },
   "drug_tiers": [
     {
-      "name": "Tier 1",
+      "name": "Generic drugs (Tier 1)",
       "category": "generic",
       "retail": {
         "in_network": {
           "covered": true,
-          "copay": 3.0,
+          "copay": null,
           "coinsurance_pct": null,
           "deductible_applies": false,
-          "note": "Tier 1A $3 copay; Tier 1B $25 copay"
+          "note": "Tier 1A: $3 copay; Tier 1B: $25 copay"
         },
         "out_of_network": {
           "covered": false,
@@ -462,7 +462,7 @@
       }
     },
     {
-      "name": "Tier 2",
+      "name": "Preferred brand drugs (Tier 2)",
       "category": "preferred_brand",
       "retail": {
         "in_network": {
@@ -482,7 +482,7 @@
       }
     },
     {
-      "name": "Tier 3",
+      "name": "Non-preferred brand drugs (Tier 3)",
       "category": "non_preferred_brand",
       "retail": {
         "in_network": {
@@ -502,7 +502,7 @@
       }
     },
     {
-      "name": "Tier 4",
+      "name": "Specialty drugs (Tier 4)",
       "category": "specialty",
       "retail": {
         "in_network": {

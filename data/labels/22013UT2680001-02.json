@@ -1,6 +1,6 @@
 {
   "plan_name": "Bronze 8000 (Less than 300)",
-  "issuer": "Regence BlueCross BlueShield of Utah (domiciled in Utah)",
+  "issuer": "Regence BlueCross BlueShield of Utah",
   "plan_type": "EPO",
   "coverage_period": "01/01/2026 – 12/31/2026",
   "deductible": {
@@ -14,7 +14,35 @@
     "in_network": null,
     "out_of_network": null
   },
-  "services_before_deductible": [],
+  "services_before_deductible": [
+    "Primary care visit",
+    "Specialist visit",
+    "Preventive care",
+    "Diagnostic test",
+    "Imaging",
+    "Generic drugs",
+    "Preferred brand drugs",
+    "Brand drugs",
+    "Specialty drugs",
+    "Outpatient surgery",
+    "Emergency room care",
+    "Emergency medical transportation",
+    "Urgent care",
+    "Hospital stay",
+    "Mental health outpatient",
+    "Mental health inpatient",
+    "Pregnancy office visits",
+    "Childbirth professional",
+    "Childbirth facility",
+    "Home health care",
+    "Rehabilitation",
+    "Habilitation",
+    "Skilled nursing",
+    "Durable medical equipment",
+    "Hospice",
+    "Children's eye exam",
+    "Children's glasses"
+  ],
   "referral_required_for_specialist": false,
   "services": {
     "primary_care_visit": {
@@ -22,7 +50,7 @@
         "covered": true,
         "copay": 0.0,
         "coinsurance_pct": 0.0,
-        "deductible_applies": false,
+        "deductible_applies": null,
         "note": null
       },
       "out_of_network": {
@@ -38,7 +66,7 @@
         "covered": true,
         "copay": 0.0,
         "coinsurance_pct": 0.0,
-        "deductible_applies": false,
+        "deductible_applies": null,
         "note": null
       },
       "out_of_network": {
@@ -54,7 +82,7 @@
         "covered": true,
         "copay": 0.0,
         "coinsurance_pct": 0.0,
-        "deductible_applies": false,
+        "deductible_applies": null,
         "note": null
       },
       "out_of_network": {
@@ -70,7 +98,7 @@
         "covered": true,
         "copay": 0.0,
         "coinsurance_pct": 0.0,
-        "deductible_applies": false,
+        "deductible_applies": null,
         "note": null
       },
       "out_of_network": {
@@ -86,7 +114,7 @@
         "covered": true,
         "copay": 0.0,
         "coinsurance_pct": 0.0,
-        "deductible_applies": false,
+        "deductible_applies": null,
         "note": null
       },
       "out_of_network": {
@@ -102,7 +130,7 @@
         "covered": true,
         "copay": 0.0,
         "coinsurance_pct": 0.0,
-        "deductible_applies": false,
+        "deductible_applies": null,
         "note": null
       },
       "out_of_network": {
@@ -118,7 +146,7 @@
         "covered": true,
         "copay": 0.0,
         "coinsurance_pct": 0.0,
-        "deductible_applies": false,
+        "deductible_applies": null,
         "note": null
       },
       "out_of_network": {
@@ -134,14 +162,14 @@
         "covered": true,
         "copay": 0.0,
         "coinsurance_pct": 0.0,
-        "deductible_applies": false,
+        "deductible_applies": null,
         "note": null
       },
       "out_of_network": {
         "covered": true,
         "copay": 0.0,
         "coinsurance_pct": 0.0,
-        "deductible_applies": false,
+        "deductible_applies": null,
         "note": null
       }
     },
@@ -150,14 +178,14 @@
         "covered": true,
         "copay": 0.0,
         "coinsurance_pct": 0.0,
-        "deductible_applies": false,
+        "deductible_applies": null,
         "note": null
       },
       "out_of_network": {
         "covered": true,
         "copay": 0.0,
         "coinsurance_pct": 0.0,
-        "deductible_applies": false,
+        "deductible_applies": null,
         "note": null
       }
     },
@@ -166,14 +194,14 @@
         "covered": true,
         "copay": 0.0,
         "coinsurance_pct": 0.0,
-        "deductible_applies": false,
+        "deductible_applies": null,
         "note": null
       },
       "out_of_network": {
         "covered": true,
         "copay": 0.0,
         "coinsurance_pct": 0.0,
-        "deductible_applies": false,
+        "deductible_applies": null,
         "note": null
       }
     },
@@ -182,7 +210,7 @@
         "covered": true,
         "copay": 0.0,
         "coinsurance_pct": 0.0,
-        "deductible_applies": false,
+        "deductible_applies": null,
         "note": null
       },
       "out_of_network": {
@@ -198,7 +226,7 @@
         "covered": true,
         "copay": 0.0,
         "coinsurance_pct": 0.0,
-        "deductible_applies": false,
+        "deductible_applies": null,
         "note": null
       },
       "out_of_network": {
@@ -214,7 +242,7 @@
         "covered": true,
         "copay": 0.0,
         "coinsurance_pct": 0.0,
-        "deductible_applies": false,
+        "deductible_applies": null,
         "note": null
       },
       "out_of_network": {
@@ -230,7 +258,7 @@
         "covered": true,
         "copay": 0.0,
         "coinsurance_pct": 0.0,
-        "deductible_applies": false,
+        "deductible_applies": null,
         "note": null
       },
       "out_of_network": {
@@ -246,7 +274,7 @@
         "covered": true,
         "copay": 0.0,
         "coinsurance_pct": 0.0,
-        "deductible_applies": false,
+        "deductible_applies": null,
         "note": null
       },
       "out_of_network": {
@@ -262,8 +290,8 @@
         "covered": true,
         "copay": 0.0,
         "coinsurance_pct": 0.0,
-        "deductible_applies": false,
-        "note": null
+        "deductible_applies": null,
+        "note": "Adoption coverage limited to $4,000 / pregnancy"
       },
       "out_of_network": {
         "covered": false,
@@ -278,7 +306,7 @@
         "covered": true,
         "copay": 0.0,
         "coinsurance_pct": 0.0,
-        "deductible_applies": false,
+        "deductible_applies": null,
         "note": null
       },
       "out_of_network": {
@@ -294,8 +322,8 @@
         "covered": true,
         "copay": 0.0,
         "coinsurance_pct": 0.0,
-        "deductible_applies": false,
-        "note": "30 visits/year"
+        "deductible_applies": null,
+        "note": "30 visits / year"
       },
       "out_of_network": {
         "covered": false,
@@ -310,8 +338,8 @@
         "covered": true,
         "copay": 0.0,
         "coinsurance_pct": 0.0,
-        "deductible_applies": false,
-        "note": "30 inpatient days/year; 20 outpatient visits combined/year"
+        "deductible_applies": null,
+        "note": "30 inpatient days / year for rehab and skilled nursing combined, 20 outpatient visits combined / year"
       },
       "out_of_network": {
         "covered": false,
@@ -326,8 +354,8 @@
         "covered": true,
         "copay": 0.0,
         "coinsurance_pct": 0.0,
-        "deductible_applies": false,
-        "note": "30 inpatient days/year; 20 outpatient visits combined/year"
+        "deductible_applies": null,
+        "note": "30 inpatient days / year, 20 outpatient visits combined / year"
       },
       "out_of_network": {
         "covered": false,
@@ -342,8 +370,8 @@
         "covered": true,
         "copay": 0.0,
         "coinsurance_pct": 0.0,
-        "deductible_applies": false,
-        "note": "30 inpatient days/year combined with rehabilitation"
+        "deductible_applies": null,
+        "note": "30 inpatient days / year for rehab and skilled nursing combined"
       },
       "out_of_network": {
         "covered": false,
@@ -358,7 +386,7 @@
         "covered": true,
         "copay": 0.0,
         "coinsurance_pct": 0.0,
-        "deductible_applies": false,
+        "deductible_applies": null,
         "note": null
       },
       "out_of_network": {
@@ -374,8 +402,8 @@
         "covered": true,
         "copay": 0.0,
         "coinsurance_pct": 0.0,
-        "deductible_applies": false,
-        "note": "6 months hospice services/3 years"
+        "deductible_applies": null,
+        "note": "6 months hospice services / 3 years"
       },
       "out_of_network": {
         "covered": false,
@@ -390,8 +418,8 @@
         "covered": true,
         "copay": 0.0,
         "coinsurance_pct": 0.0,
-        "deductible_applies": false,
-        "note": "1 routine eye exam/year for under 19"
+        "deductible_applies": null,
+        "note": "1 routine eye examination / year for individuals under age 19"
       },
       "out_of_network": {
         "covered": false,
@@ -406,8 +434,8 @@
         "covered": true,
         "copay": 0.0,
         "coinsurance_pct": 0.0,
-        "deductible_applies": false,
-        "note": "1 pair lenses/year, 1 set frames/year for under 19"
+        "deductible_applies": null,
+        "note": "1 pair of lenses / year, 1 set of frames / year, for individuals under age 19"
       },
       "out_of_network": {
         "covered": false,
@@ -443,7 +471,7 @@
           "covered": true,
           "copay": 0.0,
           "coinsurance_pct": 0.0,
-          "deductible_applies": false,
+          "deductible_applies": null,
           "note": null
         },
         "out_of_network": {
@@ -463,7 +491,7 @@
           "covered": true,
           "copay": 0.0,
           "coinsurance_pct": 0.0,
-          "deductible_applies": false,
+          "deductible_applies": null,
           "note": null
         },
         "out_of_network": {
@@ -483,7 +511,7 @@
           "covered": true,
           "copay": 0.0,
           "coinsurance_pct": 0.0,
-          "deductible_applies": false,
+          "deductible_applies": null,
           "note": null
         },
         "out_of_network": {
@@ -503,7 +531,7 @@
           "covered": true,
           "copay": 0.0,
           "coinsurance_pct": 0.0,
-          "deductible_applies": false,
+          "deductible_applies": null,
           "note": null
         },
         "out_of_network": {

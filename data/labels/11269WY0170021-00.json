@@ -4,27 +4,20 @@
   "plan_type": "PPO",
   "coverage_period": "01/01/2026 - 12/31/2026",
   "deductible": {
-    "in_network": {
-      "individual": 5500.0,
-      "family": 11000.0
-    },
-    "out_of_network": {
-      "individual": 20000.0,
-      "family": 40000.0
-    }
+    "in_network": null,
+    "out_of_network": null
   },
   "out_of_pocket_limit": {
-    "in_network": {
-      "individual": 9400.0,
-      "family": 18800.0
-    },
+    "in_network": null,
     "out_of_network": null
   },
   "services_before_deductible": [
-    "preventive care",
-    "primary care visit",
-    "mental health outpatient",
-    "pregnancy office visits"
+    "Preventive care",
+    "Primary care visit",
+    "Mental health outpatient",
+    "Pregnancy office visits",
+    "Tier 1 drugs",
+    "Tier 2 drugs"
   ],
   "referral_required_for_specialist": false,
   "services": {
@@ -146,7 +139,7 @@
         "copay": null,
         "coinsurance_pct": 25.0,
         "deductible_applies": null,
-        "note": "Out-of-network emergency applies in-network cost share"
+        "note": "For out-of-network emergency apply in-network cost share"
       },
       "out_of_network": {
         "covered": true,
@@ -162,7 +155,7 @@
         "copay": null,
         "coinsurance_pct": 25.0,
         "deductible_applies": null,
-        "note": "Out-of-network emergency ground and air ambulance applies in-network cost share"
+        "note": "For out-of-network emergency ground and air ambulance apply in-network cost share"
       },
       "out_of_network": {
         "covered": true,
@@ -322,7 +315,7 @@
         "copay": null,
         "coinsurance_pct": 25.0,
         "deductible_applies": null,
-        "note": "Outpatient limited to 60 visits per year for certain conditions; other PT 40 visits per year"
+        "note": "Outpatient limited to 60 visits per member per calendar year for certain conditions; other physical therapy limited to 40 visits per calendar year; In"
       },
       "out_of_network": {
         "covered": true,
@@ -338,7 +331,7 @@
         "copay": null,
         "coinsurance_pct": 25.0,
         "deductible_applies": null,
-        "note": "Outpatient limited to 20 visits per year; inpatient limited to 45 days per year"
+        "note": "Outpatient limited to 20 visits per member per calendar year; inpatient limited to 45 days per member per calendar year"
       },
       "out_of_network": {
         "covered": true,
@@ -402,7 +395,7 @@
         "copay": null,
         "coinsurance_pct": 25.0,
         "deductible_applies": null,
-        "note": "1 exam per year for children through age 19"
+        "note": "1 exam per calendar year for individuals through end of year they turn age 19"
       },
       "out_of_network": {
         "covered": true,
@@ -418,7 +411,7 @@
         "copay": null,
         "coinsurance_pct": 25.0,
         "deductible_applies": null,
-        "note": "1 pair glasses or 12-month contacts per year for children through age 19"
+        "note": "1 pair of eyeglasses or 12 month supply of contacts per calendar year for individuals through end of year they turn age 19"
       },
       "out_of_network": {
         "covered": true,
@@ -457,13 +450,7 @@
           "deductible_applies": false,
           "note": null
         },
-        "out_of_network": {
-          "covered": false,
-          "copay": null,
-          "coinsurance_pct": null,
-          "deductible_applies": null,
-          "note": null
-        }
+        "out_of_network": null
       }
     },
     {
@@ -477,13 +464,7 @@
           "deductible_applies": false,
           "note": null
         },
-        "out_of_network": {
-          "covered": false,
-          "copay": null,
-          "coinsurance_pct": null,
-          "deductible_applies": null,
-          "note": null
-        }
+        "out_of_network": null
       }
     },
     {
@@ -497,13 +478,7 @@
           "deductible_applies": null,
           "note": null
         },
-        "out_of_network": {
-          "covered": false,
-          "copay": null,
-          "coinsurance_pct": null,
-          "deductible_applies": null,
-          "note": null
-        }
+        "out_of_network": null
       }
     },
     {
@@ -517,18 +492,12 @@
           "deductible_applies": null,
           "note": null
         },
-        "out_of_network": {
-          "covered": false,
-          "copay": null,
-          "coinsurance_pct": null,
-          "deductible_applies": null,
-          "note": null
-        }
+        "out_of_network": null
       }
     }
   ],
   "excluded_services": [
-    "Abortion (except rape, incest, life of mother)",
+    "Abortion (except rape, incest, life endangerment)",
     "Acupuncture",
     "Dental care (Adult)",
     "Dental care (Child)",

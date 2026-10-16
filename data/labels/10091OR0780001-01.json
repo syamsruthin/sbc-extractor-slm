@@ -24,7 +24,7 @@
     "Urgent care",
     "Mental health outpatient (first 3 visits)",
     "Children's eye exam",
-    "Children's glasses (up to $150 max)",
+    "Children's glasses (up to $150 maximum)",
     "Generic drugs (Tier 1)",
     "Preferred drugs (Tier 2)",
     "Non-preferred drugs (Tier 3)",
@@ -38,7 +38,7 @@
         "copay": 5.0,
         "coinsurance_pct": null,
         "deductible_applies": false,
-        "note": "First 3 visits $5 copay, then $25 copay; combined with mental health and substance abuse"
+        "note": "First 3 visits $5 copay, subsequent visits $25 copay. First 3 visits per benefit year combined for primary care, mental health, behavioral health, and"
       },
       "out_of_network": {
         "covered": false,
@@ -68,9 +68,9 @@
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
+        "coinsurance_pct": 0.0,
         "deductible_applies": false,
-        "note": "Preventive physicals: 13 visits ages 0-36 months, annually ages 3+; Well Woman annually"
+        "note": "Preventive Physicals: 13 visits ages 0-36 months, annually ages 3 and older. Well Woman Visits: annually."
       },
       "out_of_network": {
         "covered": false,
@@ -102,7 +102,7 @@
         "copay": null,
         "coinsurance_pct": 20.0,
         "deductible_applies": null,
-        "note": "Prior authorization required"
+        "note": "Prior authorization required."
       },
       "out_of_network": {
         "covered": false,
@@ -118,7 +118,7 @@
         "copay": null,
         "coinsurance_pct": 20.0,
         "deductible_applies": null,
-        "note": "Prior authorization required for some surgeries"
+        "note": null
       },
       "out_of_network": {
         "covered": false,
@@ -150,14 +150,14 @@
         "copay": null,
         "coinsurance_pct": 20.0,
         "deductible_applies": null,
-        "note": "Non-emergency not covered out-of-network"
+        "note": "Non-emergency: Not covered out-of-network"
       },
       "out_of_network": {
         "covered": true,
         "copay": null,
         "coinsurance_pct": 20.0,
         "deductible_applies": null,
-        "note": "Medical emergency only"
+        "note": "Medical emergency only; non-emergency not covered"
       }
     },
     "emergency_transportation": {
@@ -173,7 +173,7 @@
         "copay": null,
         "coinsurance_pct": 20.0,
         "deductible_applies": null,
-        "note": null
+        "note": "Air covered if ground medically or physically inappropriate"
       }
     },
     "urgent_care": {
@@ -189,7 +189,7 @@
         "copay": null,
         "coinsurance_pct": null,
         "deductible_applies": null,
-        "note": "Access at in-network cost share only when accessed via our network"
+        "note": "Access to out-of-network urgent care is available at your in-network cost share only when accessed via our network."
       }
     },
     "hospital_facility_fee": {
@@ -198,7 +198,7 @@
         "copay": null,
         "coinsurance_pct": 20.0,
         "deductible_applies": null,
-        "note": "Limited to semi-private room"
+        "note": "Limited to semi-private room, except when a private room is determined to be necessary."
       },
       "out_of_network": {
         "covered": false,
@@ -230,7 +230,7 @@
         "copay": 5.0,
         "coinsurance_pct": null,
         "deductible_applies": false,
-        "note": "First 3 visits $5 copay, then $25 copay; combined with primary care and substance abuse"
+        "note": "First 3 visits $5 copay, subsequent visits $25 copay. First 3 visits per benefit year combined for primary care, mental health, behavioral health, and"
       },
       "out_of_network": {
         "covered": false,
@@ -246,7 +246,7 @@
         "copay": null,
         "coinsurance_pct": 20.0,
         "deductible_applies": null,
-        "note": "Prior authorization required for some services"
+        "note": null
       },
       "out_of_network": {
         "covered": false,
@@ -262,7 +262,7 @@
         "copay": null,
         "coinsurance_pct": 20.0,
         "deductible_applies": null,
-        "note": "Cost sharing does not apply for preventive services"
+        "note": "Cost sharing does not apply for preventive services."
       },
       "out_of_network": {
         "covered": false,
@@ -310,7 +310,7 @@
         "copay": null,
         "coinsurance_pct": 20.0,
         "deductible_applies": null,
-        "note": "No coverage for private duty nursing or custodial care"
+        "note": "No coverage for private duty nursing or custodial care."
       },
       "out_of_network": {
         "covered": false,
@@ -326,7 +326,7 @@
         "copay": null,
         "coinsurance_pct": 20.0,
         "deductible_applies": null,
-        "note": "Inpatient limited to 30 days/year; outpatient limited to 30 visits/year"
+        "note": "Inpatient: Limited to 30 days/year. Outpatient: Limited to 30 visits/year. No coverage for recreation therapy."
       },
       "out_of_network": {
         "covered": false,
@@ -342,7 +342,7 @@
         "copay": null,
         "coinsurance_pct": 20.0,
         "deductible_applies": null,
-        "note": "Inpatient limited to 30 days/year; outpatient limited to 30 visits/year"
+        "note": "Inpatient: Limited to 30 days/year. Outpatient: Limited to 30 visits/year. No coverage for recreation therapy."
       },
       "out_of_network": {
         "covered": false,
@@ -358,7 +358,7 @@
         "copay": null,
         "coinsurance_pct": 20.0,
         "deductible_applies": null,
-        "note": "Limited to 60 days/year"
+        "note": "Limited to 60 days/year. No coverage for custodial care."
       },
       "out_of_network": {
         "covered": false,
@@ -374,7 +374,7 @@
         "copay": null,
         "coinsurance_pct": 20.0,
         "deductible_applies": null,
-        "note": "Limited to $5,000/year overall; prior authorization required if over $2,500"
+        "note": "Limited to: $5,000/year overall; one pair/year for glasses or contact lenses; one breast pump/pregnancy; one wig/year for chemotherapy or radiation"
       },
       "out_of_network": {
         "covered": false,
@@ -390,7 +390,7 @@
         "copay": null,
         "coinsurance_pct": 20.0,
         "deductible_applies": null,
-        "note": "Respite care limited to 5 consecutive days and 30 days lifetime"
+        "note": "No coverage for private duty nursing. Respite care limited to 5 consecutive days and 30 days lifetime."
       },
       "out_of_network": {
         "covered": false,
@@ -404,16 +404,16 @@
       "in_network": {
         "covered": true,
         "copay": 0.0,
-        "coinsurance_pct": null,
+        "coinsurance_pct": 0.0,
         "deductible_applies": false,
-        "note": "Age 18 or younger, one routine eye exam per year"
+        "note": "For age 18 or younger, one routine eye exam/year"
       },
       "out_of_network": {
         "covered": true,
-        "copay": 0.0,
+        "copay": null,
         "coinsurance_pct": 100.0,
         "deductible_applies": false,
-        "note": "Up to $40 maximum, then 100% coinsurance"
+        "note": "No charge up to $40 maximum, then 100% coinsurance"
       }
     },
     "child_glasses": {
@@ -422,14 +422,14 @@
         "copay": null,
         "coinsurance_pct": 20.0,
         "deductible_applies": null,
-        "note": "Age 18 or younger, one pair per year; no charge up to $150 max, deductible does not apply"
+        "note": "Combined in-network and out-of-network: For age 18 or younger, one pair of glasses (frames and lenses) or contacts (lenses and fitting) per year. No 0"
       },
       "out_of_network": {
         "covered": true,
         "copay": null,
         "coinsurance_pct": 20.0,
         "deductible_applies": null,
-        "note": "Combined in-network and out-of-network"
+        "note": "Combined in-network and out-of-network: For age 18 or younger, one pair of glasses (frames and lenses) or contacts (lenses and fitting) per year. No 0"
       }
     },
     "child_dental_checkup": {
@@ -451,7 +451,7 @@
   },
   "drug_tiers": [
     {
-      "name": "Tier 1",
+      "name": "Generic drugs - Tier 1",
       "category": "generic",
       "retail": {
         "in_network": {
@@ -471,7 +471,7 @@
       }
     },
     {
-      "name": "Tier 2",
+      "name": "Preferred drugs - Tier 2",
       "category": "preferred_brand",
       "retail": {
         "in_network": {
@@ -491,7 +491,7 @@
       }
     },
     {
-      "name": "Tier 3",
+      "name": "Non-preferred drugs - Tier 3",
       "category": "non_preferred_brand",
       "retail": {
         "in_network": {
@@ -511,7 +511,7 @@
       }
     },
     {
-      "name": "Tier 4",
+      "name": "Specialty drugs- Tier 4",
       "category": "specialty",
       "retail": {
         "in_network": {
@@ -533,12 +533,12 @@
   ],
   "excluded_services": [
     "Bariatric surgery",
-    "Cosmetic surgery",
+    "Cosmetic surgery (except in certain situations)",
     "Dental care (Adult)",
     "Infertility treatment",
     "Long-term care",
     "Non-emergency care when traveling outside the U.S.",
     "Private-duty nursing",
-    "Routine foot care"
+    "Routine foot care, other than with diabetes mellitus"
   ]
 }

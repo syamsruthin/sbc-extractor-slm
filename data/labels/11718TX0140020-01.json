@@ -33,7 +33,13 @@
         "deductible_applies": false,
         "note": null
       },
-      "out_of_network": null
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
     },
     "specialist_visit": {
       "in_network": {
@@ -43,7 +49,13 @@
         "deductible_applies": false,
         "note": null
       },
-      "out_of_network": null
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
     },
     "preventive_care": {
       "in_network": {
@@ -53,7 +65,13 @@
         "deductible_applies": false,
         "note": null
       },
-      "out_of_network": null
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
     },
     "diagnostic_test": {
       "in_network": {
@@ -63,7 +81,13 @@
         "deductible_applies": null,
         "note": null
       },
-      "out_of_network": null
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
     },
     "imaging": {
       "in_network": {
@@ -73,7 +97,13 @@
         "deductible_applies": null,
         "note": null
       },
-      "out_of_network": null
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
     },
     "outpatient_facility_fee": {
       "in_network": {
@@ -83,7 +113,13 @@
         "deductible_applies": null,
         "note": null
       },
-      "out_of_network": null
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
     },
     "outpatient_surgeon_fee": {
       "in_network": {
@@ -93,7 +129,13 @@
         "deductible_applies": null,
         "note": null
       },
-      "out_of_network": null
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
     },
     "emergency_room": {
       "in_network": {
@@ -117,14 +159,14 @@
         "copay": 80.0,
         "coinsurance_pct": null,
         "deductible_applies": null,
-        "note": null
+        "note": "per transportation"
       },
       "out_of_network": {
         "covered": true,
         "copay": 80.0,
         "coinsurance_pct": null,
         "deductible_applies": null,
-        "note": null
+        "note": "per transportation"
       }
     },
     "urgent_care": {
@@ -133,9 +175,15 @@
         "copay": 60.0,
         "coinsurance_pct": null,
         "deductible_applies": false,
-        "note": null
+        "note": "per visit"
       },
-      "out_of_network": null
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
     },
     "hospital_facility_fee": {
       "in_network": {
@@ -145,7 +193,13 @@
         "deductible_applies": null,
         "note": null
       },
-      "out_of_network": null
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
     },
     "hospital_surgeon_fee": {
       "in_network": {
@@ -155,17 +209,29 @@
         "deductible_applies": null,
         "note": "No charge"
       },
-      "out_of_network": null
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
     },
     "mental_health_outpatient": {
       "in_network": {
         "covered": true,
         "copay": 40.0,
-        "coinsurance_pct": 40.0,
+        "coinsurance_pct": null,
         "deductible_applies": false,
-        "note": "40% coinsurance for other outpatient services"
+        "note": "office visit; 40% coinsurance for other outpatient services"
       },
-      "out_of_network": null
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
     },
     "mental_health_inpatient": {
       "in_network": {
@@ -175,7 +241,13 @@
         "deductible_applies": null,
         "note": null
       },
-      "out_of_network": null
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
     },
     "pregnancy_office_visits": {
       "in_network": {
@@ -183,9 +255,15 @@
         "copay": 80.0,
         "coinsurance_pct": null,
         "deductible_applies": null,
-        "note": null
+        "note": "per occurrence; cost sharing does not apply for preventive services"
       },
-      "out_of_network": null
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
     },
     "childbirth_professional": {
       "in_network": {
@@ -195,7 +273,13 @@
         "deductible_applies": null,
         "note": null
       },
-      "out_of_network": null
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
     },
     "childbirth_facility": {
       "in_network": {
@@ -205,7 +289,13 @@
         "deductible_applies": null,
         "note": null
       },
-      "out_of_network": null
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
     },
     "home_health_care": {
       "in_network": {
@@ -213,9 +303,15 @@
         "copay": 80.0,
         "coinsurance_pct": null,
         "deductible_applies": null,
-        "note": "Limited to 60 visits per year"
+        "note": "limited to 60 visits per year"
       },
-      "out_of_network": null
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
     },
     "rehabilitation": {
       "in_network": {
@@ -223,9 +319,15 @@
         "copay": 40.0,
         "coinsurance_pct": null,
         "deductible_applies": false,
-        "note": null
+        "note": "per visit"
       },
-      "out_of_network": null
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
     },
     "habilitation": {
       "in_network": {
@@ -233,9 +335,15 @@
         "copay": 40.0,
         "coinsurance_pct": null,
         "deductible_applies": false,
-        "note": null
+        "note": "per visit"
       },
-      "out_of_network": null
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
     },
     "skilled_nursing": {
       "in_network": {
@@ -243,9 +351,15 @@
         "copay": null,
         "coinsurance_pct": 40.0,
         "deductible_applies": null,
-        "note": "Limited to 25 days per year"
+        "note": "limited to 25 days per year"
       },
-      "out_of_network": null
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
     },
     "durable_medical_equipment": {
       "in_network": {
@@ -255,7 +369,13 @@
         "deductible_applies": null,
         "note": null
       },
-      "out_of_network": null
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
     },
     "hospice": {
       "in_network": {
@@ -265,7 +385,13 @@
         "deductible_applies": null,
         "note": "40% coinsurance in inpatient setting"
       },
-      "out_of_network": null
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
     },
     "child_eye_exam": {
       "in_network": {
@@ -273,9 +399,15 @@
         "copay": 80.0,
         "coinsurance_pct": null,
         "deductible_applies": null,
-        "note": "One routine eye exam annually"
+        "note": "one routine eye exam annually"
       },
-      "out_of_network": null
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
     },
     "child_glasses": {
       "in_network": {
@@ -283,9 +415,15 @@
         "copay": 80.0,
         "coinsurance_pct": null,
         "deductible_applies": null,
-        "note": "For select frames, standard lenses, and contact lenses only, for children 18 and younger"
+        "note": "for select frames, standard lenses, and contact lenses only, for children 18 and younger"
       },
-      "out_of_network": null
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
     },
     "child_dental_checkup": {
       "in_network": {
@@ -295,7 +433,13 @@
         "deductible_applies": null,
         "note": null
       },
-      "out_of_network": null
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
     }
   },
   "drug_tiers": [
@@ -308,9 +452,15 @@
           "copay": 20.0,
           "coinsurance_pct": null,
           "deductible_applies": false,
-          "note": null
+          "note": "up to 30-day supply; mail order $50 for 90-day supply"
         },
-        "out_of_network": null
+        "out_of_network": {
+          "covered": false,
+          "copay": null,
+          "coinsurance_pct": null,
+          "deductible_applies": null,
+          "note": null
+        }
       }
     },
     {
@@ -322,9 +472,15 @@
           "copay": 40.0,
           "coinsurance_pct": null,
           "deductible_applies": false,
-          "note": null
+          "note": "up to 30-day supply; mail order $100 for 90-day supply"
         },
-        "out_of_network": null
+        "out_of_network": {
+          "covered": false,
+          "copay": null,
+          "coinsurance_pct": null,
+          "deductible_applies": null,
+          "note": null
+        }
       }
     },
     {
@@ -336,9 +492,15 @@
           "copay": 80.0,
           "coinsurance_pct": null,
           "deductible_applies": false,
-          "note": null
+          "note": "up to 30-day supply; mail order $200 for 90-day supply"
         },
-        "out_of_network": null
+        "out_of_network": {
+          "covered": false,
+          "copay": null,
+          "coinsurance_pct": null,
+          "deductible_applies": null,
+          "note": null
+        }
       }
     },
     {
@@ -350,14 +512,20 @@
           "copay": 350.0,
           "coinsurance_pct": null,
           "deductible_applies": false,
-          "note": null
+          "note": "up to 30-day supply"
         },
-        "out_of_network": null
+        "out_of_network": {
+          "covered": false,
+          "copay": null,
+          "coinsurance_pct": null,
+          "deductible_applies": null,
+          "note": null
+        }
       }
     }
   ],
   "excluded_services": [
-    "Abortion (except limited services)",
+    "Abortion with exception of limited services",
     "Acupuncture",
     "Bariatric surgery",
     "Children's dental check-up",

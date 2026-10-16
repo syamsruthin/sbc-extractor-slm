@@ -1,8 +1,8 @@
 {
-  "plan_name": "Standard Silver: Standard Silver Off Exchange Plan",
-  "issuer": "Ambetter Health",
+  "plan_name": "Ambetter Health Standard Silver: Standard Silver Off Exchange Plan",
+  "issuer": "Celtic Insurance Company",
   "plan_type": "EPO",
-  "coverage_period": "01/01/2026 – 12/31/2026",
+  "coverage_period": "01/01/2026 - 12/31/2026",
   "deductible": {
     "in_network": {
       "individual": 6000.0,
@@ -18,11 +18,11 @@
     "out_of_network": null
   },
   "services_before_deductible": [
-    "Preventive care",
-    "Primary care visits",
-    "Specialist visits",
-    "Urgent care visits",
-    "Certain prescription drugs"
+    "preventive care",
+    "primary care visits",
+    "specialist visits",
+    "urgent care visits",
+    "certain prescription drugs"
   ],
   "referral_required_for_specialist": false,
   "services": {
@@ -79,8 +79,8 @@
         "covered": true,
         "copay": null,
         "coinsurance_pct": 40.0,
-        "deductible_applies": null,
-        "note": null
+        "deductible_applies": true,
+        "note": "40% coinsurance for laboratory & professional services, x-ray & diagnostic imaging, and other places of service"
       },
       "out_of_network": {
         "covered": false,
@@ -95,7 +95,7 @@
         "covered": true,
         "copay": null,
         "coinsurance_pct": 40.0,
-        "deductible_applies": null,
+        "deductible_applies": true,
         "note": null
       },
       "out_of_network": {
@@ -111,7 +111,7 @@
         "covered": true,
         "copay": null,
         "coinsurance_pct": 40.0,
-        "deductible_applies": null,
+        "deductible_applies": true,
         "note": null
       },
       "out_of_network": {
@@ -127,7 +127,7 @@
         "covered": true,
         "copay": null,
         "coinsurance_pct": 40.0,
-        "deductible_applies": null,
+        "deductible_applies": true,
         "note": null
       },
       "out_of_network": {
@@ -143,14 +143,14 @@
         "covered": true,
         "copay": null,
         "coinsurance_pct": 40.0,
-        "deductible_applies": null,
+        "deductible_applies": true,
         "note": null
       },
       "out_of_network": {
         "covered": true,
         "copay": null,
         "coinsurance_pct": 40.0,
-        "deductible_applies": null,
+        "deductible_applies": true,
         "note": null
       }
     },
@@ -159,14 +159,14 @@
         "covered": true,
         "copay": null,
         "coinsurance_pct": 40.0,
-        "deductible_applies": null,
+        "deductible_applies": true,
         "note": null
       },
       "out_of_network": {
         "covered": true,
         "copay": null,
         "coinsurance_pct": 40.0,
-        "deductible_applies": null,
+        "deductible_applies": true,
         "note": null
       }
     },
@@ -191,7 +191,7 @@
         "covered": true,
         "copay": null,
         "coinsurance_pct": 40.0,
-        "deductible_applies": null,
+        "deductible_applies": true,
         "note": null
       },
       "out_of_network": {
@@ -207,7 +207,7 @@
         "covered": true,
         "copay": null,
         "coinsurance_pct": 40.0,
-        "deductible_applies": null,
+        "deductible_applies": true,
         "note": null
       },
       "out_of_network": {
@@ -221,9 +221,9 @@
     "mental_health_outpatient": {
       "in_network": {
         "covered": true,
-        "copay": null,
+        "copay": 40.0,
         "coinsurance_pct": null,
-        "deductible_applies": null,
+        "deductible_applies": false,
         "note": "Office visit: $40 copay, deductible does not apply; Other outpatient: 40% coinsurance"
       },
       "out_of_network": {
@@ -239,7 +239,7 @@
         "covered": true,
         "copay": null,
         "coinsurance_pct": 40.0,
-        "deductible_applies": null,
+        "deductible_applies": true,
         "note": null
       },
       "out_of_network": {
@@ -271,7 +271,7 @@
         "covered": true,
         "copay": null,
         "coinsurance_pct": 40.0,
-        "deductible_applies": null,
+        "deductible_applies": true,
         "note": null
       },
       "out_of_network": {
@@ -287,7 +287,7 @@
         "covered": true,
         "copay": null,
         "coinsurance_pct": 40.0,
-        "deductible_applies": null,
+        "deductible_applies": true,
         "note": null
       },
       "out_of_network": {
@@ -303,7 +303,7 @@
         "covered": true,
         "copay": null,
         "coinsurance_pct": 40.0,
-        "deductible_applies": null,
+        "deductible_applies": true,
         "note": "Limited to 60 visits per year"
       },
       "out_of_network": {
@@ -317,10 +317,10 @@
     "rehabilitation": {
       "in_network": {
         "covered": true,
-        "copay": null,
+        "copay": 40.0,
         "coinsurance_pct": null,
-        "deductible_applies": null,
-        "note": "Outpatient: $40 copay, deductible does not apply, limited to 45 combined visits per year; Inpatient: 40% coinsurance"
+        "deductible_applies": false,
+        "note": "Outpatient: $40 copay, deductible does not apply; Inpatient: 40% coinsurance. Limited to 45 combined visits per year"
       },
       "out_of_network": {
         "covered": false,
@@ -333,10 +333,10 @@
     "habilitation": {
       "in_network": {
         "covered": true,
-        "copay": null,
+        "copay": 40.0,
         "coinsurance_pct": null,
-        "deductible_applies": null,
-        "note": "Outpatient: $40 copay, deductible does not apply, limited to 45 combined visits per year; Inpatient: 40% coinsurance"
+        "deductible_applies": false,
+        "note": "Outpatient: $40 copay, deductible does not apply; Inpatient: 40% coinsurance. Limited to 45 combined visits per year"
       },
       "out_of_network": {
         "covered": false,
@@ -351,7 +351,7 @@
         "covered": true,
         "copay": null,
         "coinsurance_pct": 40.0,
-        "deductible_applies": null,
+        "deductible_applies": true,
         "note": "Limited to 60 days per year"
       },
       "out_of_network": {
@@ -367,7 +367,7 @@
         "covered": true,
         "copay": null,
         "coinsurance_pct": 40.0,
-        "deductible_applies": null,
+        "deductible_applies": true,
         "note": null
       },
       "out_of_network": {
@@ -383,7 +383,7 @@
         "covered": true,
         "copay": null,
         "coinsurance_pct": 40.0,
-        "deductible_applies": null,
+        "deductible_applies": true,
         "note": null
       },
       "out_of_network": {
@@ -445,68 +445,8 @@
   },
   "drug_tiers": [
     {
-      "name": "Tier 2 - Retail",
-      "category": "preferred_brand",
-      "retail": {
-        "in_network": {
-          "covered": true,
-          "copay": 40.0,
-          "coinsurance_pct": null,
-          "deductible_applies": false,
-          "note": null
-        },
-        "out_of_network": {
-          "covered": false,
-          "copay": null,
-          "coinsurance_pct": null,
-          "deductible_applies": null,
-          "note": null
-        }
-      }
-    },
-    {
-      "name": "Tier 3 - Retail",
-      "category": "non_preferred_brand",
-      "retail": {
-        "in_network": {
-          "covered": true,
-          "copay": 80.0,
-          "coinsurance_pct": null,
-          "deductible_applies": null,
-          "note": null
-        },
-        "out_of_network": {
-          "covered": false,
-          "copay": null,
-          "coinsurance_pct": null,
-          "deductible_applies": null,
-          "note": null
-        }
-      }
-    },
-    {
-      "name": "Tier 4 - Retail",
-      "category": "specialty",
-      "retail": {
-        "in_network": {
-          "covered": true,
-          "copay": 350.0,
-          "coinsurance_pct": null,
-          "deductible_applies": null,
-          "note": null
-        },
-        "out_of_network": {
-          "covered": false,
-          "copay": null,
-          "coinsurance_pct": null,
-          "deductible_applies": null,
-          "note": null
-        }
-      }
-    },
-    {
       "name": "Tier 1a - Preferred Generic",
-      "category": "preferred_brand",
+      "category": "generic",
       "retail": {
         "in_network": {
           "covered": true,
@@ -526,7 +466,7 @@
     },
     {
       "name": "Tier 1b - Generic",
-      "category": "preferred_brand",
+      "category": "generic",
       "retail": {
         "in_network": {
           "covered": true,
@@ -543,10 +483,70 @@
           "note": null
         }
       }
+    },
+    {
+      "name": "Tier 2 - Preferred Brand",
+      "category": "preferred_brand",
+      "retail": {
+        "in_network": {
+          "covered": true,
+          "copay": 40.0,
+          "coinsurance_pct": null,
+          "deductible_applies": false,
+          "note": null
+        },
+        "out_of_network": {
+          "covered": false,
+          "copay": null,
+          "coinsurance_pct": null,
+          "deductible_applies": null,
+          "note": null
+        }
+      }
+    },
+    {
+      "name": "Tier 3 - Non-preferred Brand and Non-preferred Generic",
+      "category": "non_preferred_brand",
+      "retail": {
+        "in_network": {
+          "covered": true,
+          "copay": 80.0,
+          "coinsurance_pct": null,
+          "deductible_applies": true,
+          "note": null
+        },
+        "out_of_network": {
+          "covered": false,
+          "copay": null,
+          "coinsurance_pct": null,
+          "deductible_applies": null,
+          "note": null
+        }
+      }
+    },
+    {
+      "name": "Tier 4 - Specialty",
+      "category": "specialty",
+      "retail": {
+        "in_network": {
+          "covered": true,
+          "copay": 350.0,
+          "coinsurance_pct": null,
+          "deductible_applies": true,
+          "note": null
+        },
+        "out_of_network": {
+          "covered": false,
+          "copay": null,
+          "coinsurance_pct": null,
+          "deductible_applies": null,
+          "note": null
+        }
+      }
     }
   ],
   "excluded_services": [
-    "Abortion (except life endangerment)",
+    "Abortion (Except in cases when the life of the member is endangered)",
     "Acupuncture",
     "Bariatric surgery",
     "Cosmetic surgery",
@@ -554,7 +554,7 @@
     "Dental care (Children)",
     "Infertility treatment",
     "Long-term care",
-    "Non-emergency care outside U.S.",
+    "Non-emergency care when traveling outside the U.S.",
     "Private-duty nursing",
     "Routine eye care (Adult)",
     "Weight loss programs"
