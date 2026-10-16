@@ -64,6 +64,11 @@ uv run python src/build_gold.py                # gold labels = teacher labels + 
   targets and vLLM guided decoding.
 - **Teacher labeling:** DeepSeek V4 Flash via OpenRouter, using structured outputs, Pydantic
   validation and error-feedback retries. Cost: **~$0.0015 per document** (~$2 for 1,500).
+- **Dataset:** 450 labeled SBCs (390 train / 60 val) from 49 template families. Splits are by
+  SBC-URL domain so no layout crosses train/val/test; the 10 gold families are excluded entirely.
+  [Details](docs/06-dataset.md). Total labeling spend for the scale-up: **~$0.34**.
+- **Two-pass extraction:** QA found the teacher dropping deductible/OOP amounts in ~40% of docs.
+  A targeted re-ask of just those fields (~$0.00008/doc) fixed 778 values.
 - **Label quality:** first-pass gold review shows ~99% service-cell accuracy. Errors cluster in
   multi-part cells, which led to [annotation guideline v1.2](docs/04-labeling.md) plus a
   deterministic normalizer.

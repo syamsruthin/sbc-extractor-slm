@@ -21,3 +21,6 @@ checkpoints/
 wandb/
 
 .DS_Store
+
+# Bulk teacher labels (published as a HF dataset instead; small v1.1 set stays in git)
+data/labels/v1.2/

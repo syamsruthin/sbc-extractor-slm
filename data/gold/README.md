@@ -44,6 +44,21 @@ listed part goes in the structured fields and the rest in `note`. Prices come on
 price columns, never from the limitations column. The 4 remaining "proposed" rows need
 confirming against the PDFs.
 
+### Found later by dataset QA (deductible / OOP)
+
+The teacher sometimes returns null for the deductible or OOP limit (see docs/06). In the gold
+set this affects 3 docs. Proposed corrections, with source text in `corrections.json`:
+
+| Plan | Field | Teacher | Proposed |
+|---|---|---|---|
+| 17414NC | deductible (in) | null | $7,500 / $15,000 |
+| 19636LA | deductible (in / out) | null | $6,000 / $12,000; $18,000 / $36,000 |
+| 19636LA | out_of_pocket_limit (in / out) | null | $8,900 / $17,800; $26,700 / $53,400 |
+| 13262AR | out_of_pocket_limit in-network family | null | $4,100 |
+| 13262AR | out_of_pocket_limit (out) | null | $6,150 / $12,300 |
+
+**When reviewing, check the deductible and OOP rows of every doc**, not just flagged rows.
+
 ## Review status
 
 - [ ] 10091OR0780001-01

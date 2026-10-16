@@ -15,7 +15,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 MD_DIR = ROOT / "data/markdown"
-LABEL_DIR = ROOT / "data/labels"
+LABEL_DIR = ROOT / "data/gold/teacher_labels"  # what the gold review is based on
 OUT_DIR = ROOT / "data/gold/review"
 
 # field -> (row-label regex, which match to use). "Physician/surgeon fees" and

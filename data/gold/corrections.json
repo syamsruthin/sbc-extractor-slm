@@ -89,5 +89,64 @@
     },
     "reason": "Rule clarification: price column says only 50% coinsurance; the $20 copay comes from the limitations column (guideline v1.2)",
     "status": "accepted"
+  },
+  {
+    "plan_id": "17414NC0010007-01",
+    "path": "deductible.in_network",
+    "value": {
+      "individual": 7500,
+      "family": 15000
+    },
+    "reason": "Teacher returned null; source: 'In Network: $7,500/Individual, $15,000/Family Out of Network: Not Covered'. Found by dataset QA + repair pass",
+    "status": "proposed"
+  },
+  {
+    "plan_id": "19636LA0610013-00",
+    "path": "deductible",
+    "value": {
+      "in_network": {
+        "individual": 6000,
+        "family": 12000
+      },
+      "out_of_network": {
+        "individual": 18000,
+        "family": 36000
+      }
+    },
+    "reason": "Teacher returned null; source: 'network providers $6,000 individual or $12,000 family; out-of-network $18,000 individual or $36,000 family'",
+    "status": "proposed"
+  },
+  {
+    "plan_id": "19636LA0610013-00",
+    "path": "out_of_pocket_limit",
+    "value": {
+      "in_network": {
+        "individual": 8900,
+        "family": 17800
+      },
+      "out_of_network": {
+        "individual": 26700,
+        "family": 53400
+      }
+    },
+    "reason": "Teacher returned null; source: 'network providers $8,900 individual / $17,800 family; out-of-network $26,700 individual / $53,400 family'",
+    "status": "proposed"
+  },
+  {
+    "plan_id": "13262AR0230010-00",
+    "path": "out_of_pocket_limit.in_network.family",
+    "value": 4100,
+    "reason": "Source: '$2,050 Individual / $4,100' (the word 'family' is lost in the PDF text); teacher left family null",
+    "status": "proposed"
+  },
+  {
+    "plan_id": "13262AR0230010-00",
+    "path": "out_of_pocket_limit.out_of_network",
+    "value": {
+      "individual": 6150,
+      "family": 12300
+    },
+    "reason": "Teacher returned null; source: 'For out-of-network provider - $6,150 individual / $12,300 family'",
+    "status": "proposed"
   }
 ]

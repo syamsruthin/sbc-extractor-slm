@@ -10,6 +10,8 @@ from enum import Enum
 
 from pydantic import BaseModel, Field
 
+GUIDELINE_VERSION = "1.2"
+
 
 # Given verbatim to the teacher model; also the rules a human follows when
 # checking gold labels, so both label the same way.

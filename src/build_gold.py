@@ -13,7 +13,9 @@ from pathlib import Path
 from schema import SBCExtraction
 
 ROOT = Path(__file__).resolve().parent.parent
-LABEL_DIR = ROOT / "data/labels"
+# Frozen copy of the v1.1 teacher labels the review is based on, so relabeling
+# data/labels never shifts the gold set underneath the corrections.
+LABEL_DIR = ROOT / "data/gold/teacher_labels"
 GOLD_DIR = ROOT / "data/gold"
 
 GOLD_IDS = [
