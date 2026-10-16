@@ -1,4 +1,4 @@
-"""SBC extraction schema v1.1. Design rationale: docs/03-schema.md
+"""SBC extraction schema v1.2. Design rationale: docs/03-schema.md
 
 One schema drives three things, so it's defined once here:
   - teacher labeling:  sent to the teacher model as a JSON schema (structured outputs)
@@ -22,11 +22,15 @@ ANNOTATION_GUIDELINES = """\
 - "deductible does not apply" -> deductible_applies=false
 - "after deductible"          -> deductible_applies=true
 - nothing said about it       -> deductible_applies=null
-- Copay AND coinsurance both stated (e.g. "$250 copay then 20% coinsurance") -> fill both.
-- One cell with different prices for parts of a service (e.g. "Office visit: $40 copay;
-  other outpatient: 40% coinsurance") -> put the office-visit / outpatient value in the
-  structured fields and summarize the other parts in note. Never leave copay and
-  coinsurance_pct both null when the document gives a price.
+- Fill BOTH copay and coinsurance_pct only when one charge combines them
+  (e.g. "$250 copay then 20% coinsurance").
+- Different prices for different parts of a service (e.g. "Office visit: $40 copay;
+  other outpatient: 40% coinsurance", or "Physician: $60 copay; facility: 25%
+  coinsurance") -> put the FIRST listed part in the structured fields and summarize
+  the other parts in note. Never leave copay and coinsurance_pct both null when the
+  document gives a price.
+- Prices come from the price columns only. Text in the limitations column goes in
+  note at most; it never overrides the price column.
 - in_network is the standard in-network tier. Ignore special tiers such as
   Indian Health Care Providers (IHCP).
 - out_of_network is null if the document says not applicable, unlimited, or gives no amount.

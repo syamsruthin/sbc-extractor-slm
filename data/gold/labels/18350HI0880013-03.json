@@ -139,16 +139,16 @@
       "in_network": {
         "covered": true,
         "copay": 60.0,
-        "coinsurance_pct": 25.0,
+        "coinsurance_pct": null,
         "deductible_applies": false,
-        "note": "Physician visit $60 copay, deductible does not apply; emergency room 25% coinsurance"
+        "note": "Emergency room facility: 25% coinsurance"
       },
       "out_of_network": {
         "covered": true,
         "copay": 60.0,
-        "coinsurance_pct": 25.0,
+        "coinsurance_pct": null,
         "deductible_applies": false,
-        "note": "Physician visit $60 copay, deductible does not apply; emergency room 25% coinsurance"
+        "note": "Emergency room facility: 25% coinsurance"
       }
     },
     "emergency_transportation": {

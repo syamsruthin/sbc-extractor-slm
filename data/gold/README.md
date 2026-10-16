@@ -35,13 +35,14 @@ Oscar share one template across many issuer IDs).
 | 23552TN | diagnostic_test (in) | prices null, all in note | $100 copay (x-ray), lab in note | proposed |
 | 23552TN | mental_health_outpatient (in) | prices null, all in note | $15 copay, rest in note | proposed |
 | 23552TN | urgent_care (out) | covered, from limitations text | not covered (price column) | proposed |
-| 18350HI | emergency_room (in/out) | $60 copay **and** 25% coins | $60 copay, 25% facility in note | needs decision |
-| 13262AR | mental_health_outpatient (in) | $20 copay **and** 50% coins | 50% coins, $20 copay in note | needs decision |
+| 18350HI | emergency_room (in/out) | $60 copay **and** 25% coins | $60 copay, 25% facility in note | accepted (v1.2) |
+| 13262AR | mental_health_outpatient (in) | $20 copay **and** 50% coins | 50% coins, $20 copay in note | accepted (v1.2) |
 
-**The open question:** should `copay` and `coinsurance_pct` both be filled only when one
-charge combines them ("$250 copay then 20%"), and different parts of a service go in
-`note`? If yes, both "needs decision" rows become accepted, and the rule is added as
-guideline v1.2.
+**Resolved by guideline v1.2:** `copay` and `coinsurance_pct` are both filled only when one
+charge combines them ("$250 copay then 20%"). When a service has different parts, the first
+listed part goes in the structured fields and the rest in `note`. Prices come only from the
+price columns, never from the limitations column. The 4 remaining "proposed" rows need
+confirming against the PDFs.
 
 ## Review status
 

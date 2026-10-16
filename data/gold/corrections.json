@@ -2,50 +2,92 @@
   {
     "plan_id": "11718TX0140020-01",
     "path": "services.hospital_surgeon_fee.in_network",
-    "value": {"covered": true, "copay": 0, "coinsurance_pct": 0, "deductible_applies": null, "note": null},
+    "value": {
+      "covered": true,
+      "copay": 0,
+      "coinsurance_pct": 0,
+      "deductible_applies": null,
+      "note": null
+    },
     "reason": "Source says 'No charge'; teacher left both prices null and copied 'No charge' into note",
     "status": "proposed"
   },
   {
     "plan_id": "23552TN0020036-01",
     "path": "services.diagnostic_test.in_network",
-    "value": {"covered": true, "copay": 100, "coinsurance_pct": null, "deductible_applies": false, "note": "Lab work: $30 copay, deductible does not apply"},
+    "value": {
+      "covered": true,
+      "copay": 100,
+      "coinsurance_pct": null,
+      "deductible_applies": false,
+      "note": "Lab work: $30 copay, deductible does not apply"
+    },
     "reason": "v1.1 multi-part cell: structured fields were left empty; first listed part is x-ray $100",
     "status": "proposed"
   },
   {
     "plan_id": "23552TN0020036-01",
     "path": "services.mental_health_outpatient.in_network",
-    "value": {"covered": true, "copay": 15, "coinsurance_pct": null, "deductible_applies": false, "note": "Other outpatient services: 30% coinsurance after deductible"},
+    "value": {
+      "covered": true,
+      "copay": 15,
+      "coinsurance_pct": null,
+      "deductible_applies": false,
+      "note": "Other outpatient services: 30% coinsurance after deductible"
+    },
     "reason": "v1.1 multi-part cell: structured fields were left empty; office visit is $15 copay",
     "status": "proposed"
   },
   {
     "plan_id": "23552TN0020036-01",
     "path": "services.urgent_care.out_of_network",
-    "value": {"covered": false, "copay": null, "coinsurance_pct": null, "deductible_applies": null, "note": null},
+    "value": {
+      "covered": false,
+      "copay": null,
+      "coinsurance_pct": null,
+      "deductible_applies": null,
+      "note": null
+    },
     "reason": "Out-of-network price column says 'Not Covered'; teacher used limitations text instead",
     "status": "proposed"
   },
   {
     "plan_id": "18350HI0880013-03",
     "path": "services.emergency_room.in_network",
-    "value": {"covered": true, "copay": 60, "coinsurance_pct": null, "deductible_applies": false, "note": "Emergency room facility: 25% coinsurance"},
-    "reason": "Rule clarification: $60 (physician) and 25% (facility) are different parts, not one combined charge",
-    "status": "needs_decision"
+    "value": {
+      "covered": true,
+      "copay": 60,
+      "coinsurance_pct": null,
+      "deductible_applies": false,
+      "note": "Emergency room facility: 25% coinsurance"
+    },
+    "reason": "Rule clarification: $60 (physician) and 25% (facility) are different parts, not one combined charge (guideline v1.2)",
+    "status": "accepted"
   },
   {
     "plan_id": "18350HI0880013-03",
     "path": "services.emergency_room.out_of_network",
-    "value": {"covered": true, "copay": 60, "coinsurance_pct": null, "deductible_applies": false, "note": "Emergency room facility: 25% coinsurance"},
-    "reason": "Same as in-network (identical source cells)",
-    "status": "needs_decision"
+    "value": {
+      "covered": true,
+      "copay": 60,
+      "coinsurance_pct": null,
+      "deductible_applies": false,
+      "note": "Emergency room facility: 25% coinsurance"
+    },
+    "reason": "Same as in-network (identical source cells) (guideline v1.2)",
+    "status": "accepted"
   },
   {
     "plan_id": "13262AR0230010-00",
     "path": "services.mental_health_outpatient.in_network",
-    "value": {"covered": true, "copay": null, "coinsurance_pct": 50, "deductible_applies": true, "note": "$20 copay for consultation, evaluation and psychotherapy"},
-    "reason": "Rule clarification: price column says only 50% coinsurance; the $20 copay comes from the limitations column",
-    "status": "needs_decision"
+    "value": {
+      "covered": true,
+      "copay": null,
+      "coinsurance_pct": 50,
+      "deductible_applies": true,
+      "note": "$20 copay for consultation, evaluation and psychotherapy"
+    },
+    "reason": "Rule clarification: price column says only 50% coinsurance; the $20 copay comes from the limitations column (guideline v1.2)",
+    "status": "accepted"
   }
 ]

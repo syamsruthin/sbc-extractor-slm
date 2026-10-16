@@ -37,10 +37,26 @@ uv run python src/label_sbcs.py             # everything not yet labeled
 4. **Accurate in general.** Deductibles, OOP limits, copays, "deductible does not apply"
    flags, and drug tiers all matched the source in the documents checked.
 
-## Proposed guideline v1.1
+## Guideline v1.1 (applied)
 
 - Cells with several components: put the **office-visit / outpatient** value in the
   structured fields, and the rest in `note`.
 - Enforce a note limit with `maxLength` in the schema, not just in the prompt.
 
 Then relabel the 25 (~$0.03) and hand-check ~10 documents to make the gold set.
+
+## Gold review → guideline v1.2
+
+The first-pass gold review (see `data/gold/README.md`) found the teacher ~99% accurate on
+service cells, with errors clustered in **multi-part cells**. v1.2 makes the rule unambiguous:
+
+- Fill both copay and coinsurance only for one combined charge ("$250 copay then 20%").
+- Different parts of a service: the first listed part goes in the structured fields, the rest in `note`.
+- Prices come from the price columns only, never from the limitations column.
+
+The 25 teacher labels are still v1.1. Relabeling with v1.2 happens when the dataset is scaled
+up. Gold labels follow v1.2 through tracked corrections.
+
+**Takeaway:** review the labels, find a cluster of errors, sharpen the guideline, and add a
+deterministic check if possible. That loop is how label quality improves. Prompt tweaks
+alone don't make a teacher consistent.

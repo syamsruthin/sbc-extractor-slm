@@ -223,10 +223,10 @@
     "mental_health_outpatient": {
       "in_network": {
         "covered": true,
-        "copay": 20.0,
+        "copay": null,
         "coinsurance_pct": 50.0,
         "deductible_applies": true,
-        "note": "$20 copay for consultation, evaluation, and psychotherapy services; 50% coinsurance for other outpatient services."
+        "note": "$20 copay for consultation, evaluation and psychotherapy"
       },
       "out_of_network": {
         "covered": true,
