@@ -1,5 +1,5 @@
 {
-  "plan_name": "Oscar: Gold Elite Plan",
+  "plan_name": "Gold Elite Plan",
   "issuer": "Oscar",
   "plan_type": "EPO",
   "coverage_period": "01/01/2026 - 12/31/2026",
@@ -74,10 +74,10 @@
     "diagnostic_test": {
       "in_network": {
         "covered": true,
-        "copay": null,
+        "copay": 100.0,
         "coinsurance_pct": null,
         "deductible_applies": false,
-        "note": "X-ray: $100 copay; lab work: $30 copay."
+        "note": "Lab work: $30 copay, deductible does not apply"
       },
       "out_of_network": {
         "covered": false,
@@ -176,11 +176,11 @@
         "note": null
       },
       "out_of_network": {
-        "covered": true,
+        "covered": false,
         "copay": null,
         "coinsurance_pct": null,
         "deductible_applies": null,
-        "note": "Covered when temporarily out of Service Area; balance billing may apply."
+        "note": null
       }
     },
     "hospital_facility_fee": {
@@ -218,10 +218,10 @@
     "mental_health_outpatient": {
       "in_network": {
         "covered": true,
-        "copay": null,
+        "copay": 15.0,
         "coinsurance_pct": null,
         "deductible_applies": false,
-        "note": "Office visit: $15 copay; other outpatient: 30% coinsurance subject to deductible."
+        "note": "Other outpatient services: 30% coinsurance after deductible"
       },
       "out_of_network": {
         "covered": false,
@@ -447,10 +447,10 @@
       "retail": {
         "in_network": {
           "covered": true,
-          "copay": null,
+          "copay": 3.0,
           "coinsurance_pct": null,
           "deductible_applies": false,
-          "note": "Tier 1A: $3 copay; Tier 1B: $25 copay"
+          "note": "Tier 1B: $25 copay, not subject to deductible"
         },
         "out_of_network": {
           "covered": false,

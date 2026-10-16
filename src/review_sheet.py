@@ -67,7 +67,11 @@ def find_row(rows: list[list[str]], pattern: str, nth: int) -> list[str] | None:
     pattern = re.sub(r"\\s\*| \?| ", "", pattern)
     hits = []
     for r, cells in enumerate(rows):
-        for i, cell in enumerate(cells):
+        # Row labels live in the first two columns (event, service). Searching every
+        # cell let "outpatient services" match inside a specialist *price* cell
+        # ("... 50% coinsurance for other outpatient services"), which produced a wrong
+        # gold correction for 13262AR.
+        for i, cell in enumerate(cells[:2]):
             if re.search(pattern, cell.replace(" ", ""), re.I) and len(cell) < 90:
                 found = cells[i + 1:]  # the cells after the row label
                 if not any(found[:2]) and r + 1 < len(rows):

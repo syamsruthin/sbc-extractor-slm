@@ -10,7 +10,8 @@
       "note": null
     },
     "reason": "Source says 'No charge'; teacher left both prices null and copied 'No charge' into note",
-    "status": "proposed"
+    "status": "accepted",
+    "verified": "PDF review (Claude), 2026-10-17"
   },
   {
     "plan_id": "23552TN0020036-01",
@@ -23,7 +24,8 @@
       "note": "Lab work: $30 copay, deductible does not apply"
     },
     "reason": "v1.1 multi-part cell: structured fields were left empty; first listed part is x-ray $100",
-    "status": "proposed"
+    "status": "accepted",
+    "verified": "PDF review (Claude), 2026-10-17"
   },
   {
     "plan_id": "23552TN0020036-01",
@@ -36,7 +38,8 @@
       "note": "Other outpatient services: 30% coinsurance after deductible"
     },
     "reason": "v1.1 multi-part cell: structured fields were left empty; office visit is $15 copay",
-    "status": "proposed"
+    "status": "accepted",
+    "verified": "PDF review (Claude), 2026-10-17"
   },
   {
     "plan_id": "23552TN0020036-01",
@@ -49,7 +52,8 @@
       "note": null
     },
     "reason": "Out-of-network price column says 'Not Covered'; teacher used limitations text instead",
-    "status": "proposed"
+    "status": "accepted",
+    "verified": "PDF review (Claude), 2026-10-17"
   },
   {
     "plan_id": "18350HI0880013-03",
@@ -62,7 +66,8 @@
       "note": "Emergency room facility: 25% coinsurance"
     },
     "reason": "Rule clarification: $60 (physician) and 25% (facility) are different parts, not one combined charge (guideline v1.2)",
-    "status": "accepted"
+    "status": "accepted",
+    "verified": "PDF review (Claude), 2026-10-17"
   },
   {
     "plan_id": "18350HI0880013-03",
@@ -75,20 +80,8 @@
       "note": "Emergency room facility: 25% coinsurance"
     },
     "reason": "Same as in-network (identical source cells) (guideline v1.2)",
-    "status": "accepted"
-  },
-  {
-    "plan_id": "13262AR0230010-00",
-    "path": "services.mental_health_outpatient.in_network",
-    "value": {
-      "covered": true,
-      "copay": null,
-      "coinsurance_pct": 50,
-      "deductible_applies": true,
-      "note": "$20 copay for consultation, evaluation and psychotherapy"
-    },
-    "reason": "Rule clarification: price column says only 50% coinsurance; the $20 copay comes from the limitations column (guideline v1.2)",
-    "status": "accepted"
+    "status": "accepted",
+    "verified": "PDF review (Claude), 2026-10-17"
   },
   {
     "plan_id": "17414NC0010007-01",
@@ -98,7 +91,8 @@
       "family": 15000
     },
     "reason": "Teacher returned null; source: 'In Network: $7,500/Individual, $15,000/Family Out of Network: Not Covered'. Found by dataset QA + repair pass",
-    "status": "proposed"
+    "status": "accepted",
+    "verified": "PDF review (Claude), 2026-10-17"
   },
   {
     "plan_id": "19636LA0610013-00",
@@ -114,7 +108,8 @@
       }
     },
     "reason": "Teacher returned null; source: 'network providers $6,000 individual or $12,000 family; out-of-network $18,000 individual or $36,000 family'",
-    "status": "proposed"
+    "status": "accepted",
+    "verified": "PDF review (Claude), 2026-10-17"
   },
   {
     "plan_id": "19636LA0610013-00",
@@ -130,14 +125,16 @@
       }
     },
     "reason": "Teacher returned null; source: 'network providers $8,900 individual / $17,800 family; out-of-network $26,700 individual / $53,400 family'",
-    "status": "proposed"
+    "status": "accepted",
+    "verified": "PDF review (Claude), 2026-10-17"
   },
   {
     "plan_id": "13262AR0230010-00",
     "path": "out_of_pocket_limit.in_network.family",
     "value": 4100,
     "reason": "Source: '$2,050 Individual / $4,100' (the word 'family' is lost in the PDF text); teacher left family null",
-    "status": "proposed"
+    "status": "accepted",
+    "verified": "PDF review (Claude), 2026-10-17"
   },
   {
     "plan_id": "13262AR0230010-00",
@@ -147,6 +144,488 @@
       "family": 12300
     },
     "reason": "Teacher returned null; source: 'For out-of-network provider - $6,150 individual / $12,300 family'",
-    "status": "proposed"
+    "status": "accepted",
+    "verified": "PDF review (Claude), 2026-10-17"
+  },
+  {
+    "plan_id": "10091OR0780001-01",
+    "path": "services.emergency_room.in_network.note",
+    "value": null,
+    "reason": "PDF p.3: in-network is 20% for both medical and non-emergency; the note described the out-of-network rule",
+    "status": "accepted",
+    "verified": "PDF review (Claude), 2026-10-17"
+  },
+  {
+    "plan_id": "10091OR0780001-01",
+    "path": "services.child_glasses.in_network.note",
+    "value": "Combined in/out-of-network. Age 18 or younger: one pair of glasses or contacts per year; no charge up to $150 maximum.",
+    "reason": "PDF p.5: note text was garbled ('... per year. No 0')",
+    "status": "accepted",
+    "verified": "PDF review (Claude), 2026-10-17"
+  },
+  {
+    "plan_id": "10091OR0780001-01",
+    "path": "services.child_glasses.out_of_network.note",
+    "value": "Combined in/out-of-network. Age 18 or younger: one pair of glasses or contacts per year; no charge up to $150 maximum.",
+    "reason": "PDF p.5: note text was garbled ('... per year. No 0')",
+    "status": "accepted",
+    "verified": "PDF review (Claude), 2026-10-17"
+  },
+  {
+    "plan_id": "11718TX0140020-01",
+    "path": "drug_tiers.2.retail.in_network.deductible_applies",
+    "value": null,
+    "reason": "PDF p.3: non-preferred brand cell ('$80 copay/prescription (retail); $200 ... (mail order)') says nothing about the deductible",
+    "status": "accepted",
+    "verified": "PDF review (Claude), 2026-10-17"
+  },
+  {
+    "plan_id": "11718TX0140020-01",
+    "path": "drug_tiers.3.retail.in_network.deductible_applies",
+    "value": null,
+    "reason": "PDF p.3: specialty cell ('$350 copay/prescription (retail)') says nothing about the deductible",
+    "status": "accepted",
+    "verified": "PDF review (Claude), 2026-10-17"
+  },
+  {
+    "plan_id": "13262AR0230010-00",
+    "path": "services.mental_health_outpatient.in_network",
+    "value": {
+      "covered": true,
+      "copay": 20,
+      "coinsurance_pct": null,
+      "deductible_applies": null,
+      "note": "50% coinsurance for other outpatient services"
+    },
+    "reason": "REVISED after PDF review (p.3): price cell is '$20 copay/visit; and 50% coinsurance for other outpatient services' -> v1.2 first listed part. The earlier correction came from a review-sheet row mismatch",
+    "status": "accepted",
+    "verified": "PDF review (Claude), 2026-10-17"
+  },
+  {
+    "plan_id": "13262AR0230010-00",
+    "path": "services.mental_health_outpatient.out_of_network.deductible_applies",
+    "value": null,
+    "reason": "PDF p.3: '50% coinsurance', no deductible statement for this row",
+    "status": "accepted",
+    "verified": "PDF review (Claude), 2026-10-17"
+  },
+  {
+    "plan_id": "13262AR0230010-00",
+    "path": "services.primary_care_visit.out_of_network.deductible_applies",
+    "value": null,
+    "reason": "PDF p.2: '50% coinsurance', limitations only point to Other Covered Services; no deductible statement",
+    "status": "accepted",
+    "verified": "PDF review (Claude), 2026-10-17"
+  },
+  {
+    "plan_id": "13262AR0230010-00",
+    "path": "services.specialist_visit.in_network",
+    "value": {
+      "covered": true,
+      "copay": 75,
+      "coinsurance_pct": null,
+      "deductible_applies": null,
+      "note": "50% coinsurance after deductible for other outpatient services"
+    },
+    "reason": "PDF p.2: '$75 copay/visit and 50% coinsurance for other outpatient services' -> v1.2 first listed part; deductible stated only for the coinsurance",
+    "status": "accepted",
+    "verified": "PDF review (Claude), 2026-10-17"
+  },
+  {
+    "plan_id": "13262AR0230010-00",
+    "path": "services.rehabilitation.in_network",
+    "value": {
+      "covered": true,
+      "copay": 20,
+      "coinsurance_pct": null,
+      "deductible_applies": null,
+      "note": "50% coinsurance for other outpatient services. Outpatient 30 visits/yr; inpatient 60 days/yr"
+    },
+    "reason": "PDF p.4: '$20 copay/visit; and 50% coinsurance for other outpatient services' -> v1.2 first listed part",
+    "status": "accepted",
+    "verified": "PDF review (Claude), 2026-10-17"
+  },
+  {
+    "plan_id": "13262AR0230010-00",
+    "path": "services.habilitation.in_network",
+    "value": {
+      "covered": true,
+      "copay": 20,
+      "coinsurance_pct": null,
+      "deductible_applies": null,
+      "note": "50% coinsurance for other outpatient services. Outpatient 30 visits/yr; developmental 180 units/yr"
+    },
+    "reason": "PDF p.4: '$20 copay/visit; and 50% coinsurance for other outpatient services' -> v1.2 first listed part",
+    "status": "accepted",
+    "verified": "PDF review (Claude), 2026-10-17"
+  },
+  {
+    "plan_id": "13484NE0090009-00",
+    "path": "services.diagnostic_test.in_network.deductible_applies",
+    "value": null,
+    "reason": "PDF pp.2-5: cell is a plain '40% Coinsurance' with no deductible statement in the row; teacher inferred 'applies' from the page-1 list (guideline: never infer)",
+    "status": "accepted",
+    "verified": "PDF review (Claude), 2026-10-17"
+  },
+  {
+    "plan_id": "13484NE0090009-00",
+    "path": "services.imaging.in_network.deductible_applies",
+    "value": null,
+    "reason": "PDF pp.2-5: cell is a plain '40% Coinsurance' with no deductible statement in the row; teacher inferred 'applies' from the page-1 list (guideline: never infer)",
+    "status": "accepted",
+    "verified": "PDF review (Claude), 2026-10-17"
+  },
+  {
+    "plan_id": "13484NE0090009-00",
+    "path": "services.outpatient_facility_fee.in_network.deductible_applies",
+    "value": null,
+    "reason": "PDF pp.2-5: cell is a plain '40% Coinsurance' with no deductible statement in the row; teacher inferred 'applies' from the page-1 list (guideline: never infer)",
+    "status": "accepted",
+    "verified": "PDF review (Claude), 2026-10-17"
+  },
+  {
+    "plan_id": "13484NE0090009-00",
+    "path": "services.outpatient_surgeon_fee.in_network.deductible_applies",
+    "value": null,
+    "reason": "PDF pp.2-5: cell is a plain '40% Coinsurance' with no deductible statement in the row; teacher inferred 'applies' from the page-1 list (guideline: never infer)",
+    "status": "accepted",
+    "verified": "PDF review (Claude), 2026-10-17"
+  },
+  {
+    "plan_id": "13484NE0090009-00",
+    "path": "services.emergency_room.in_network.deductible_applies",
+    "value": null,
+    "reason": "PDF pp.2-5: cell is a plain '40% Coinsurance' with no deductible statement in the row; teacher inferred 'applies' from the page-1 list (guideline: never infer)",
+    "status": "accepted",
+    "verified": "PDF review (Claude), 2026-10-17"
+  },
+  {
+    "plan_id": "13484NE0090009-00",
+    "path": "services.emergency_room.out_of_network.deductible_applies",
+    "value": null,
+    "reason": "PDF pp.2-5: cell is a plain '40% Coinsurance' with no deductible statement in the row; teacher inferred 'applies' from the page-1 list (guideline: never infer)",
+    "status": "accepted",
+    "verified": "PDF review (Claude), 2026-10-17"
+  },
+  {
+    "plan_id": "13484NE0090009-00",
+    "path": "services.emergency_transportation.in_network.deductible_applies",
+    "value": null,
+    "reason": "PDF pp.2-5: cell is a plain '40% Coinsurance' with no deductible statement in the row; teacher inferred 'applies' from the page-1 list (guideline: never infer)",
+    "status": "accepted",
+    "verified": "PDF review (Claude), 2026-10-17"
+  },
+  {
+    "plan_id": "13484NE0090009-00",
+    "path": "services.emergency_transportation.out_of_network.deductible_applies",
+    "value": null,
+    "reason": "PDF pp.2-5: cell is a plain '40% Coinsurance' with no deductible statement in the row; teacher inferred 'applies' from the page-1 list (guideline: never infer)",
+    "status": "accepted",
+    "verified": "PDF review (Claude), 2026-10-17"
+  },
+  {
+    "plan_id": "13484NE0090009-00",
+    "path": "services.hospital_facility_fee.in_network.deductible_applies",
+    "value": null,
+    "reason": "PDF pp.2-5: cell is a plain '40% Coinsurance' with no deductible statement in the row; teacher inferred 'applies' from the page-1 list (guideline: never infer)",
+    "status": "accepted",
+    "verified": "PDF review (Claude), 2026-10-17"
+  },
+  {
+    "plan_id": "13484NE0090009-00",
+    "path": "services.hospital_surgeon_fee.in_network.deductible_applies",
+    "value": null,
+    "reason": "PDF pp.2-5: cell is a plain '40% Coinsurance' with no deductible statement in the row; teacher inferred 'applies' from the page-1 list (guideline: never infer)",
+    "status": "accepted",
+    "verified": "PDF review (Claude), 2026-10-17"
+  },
+  {
+    "plan_id": "13484NE0090009-00",
+    "path": "services.mental_health_inpatient.in_network.deductible_applies",
+    "value": null,
+    "reason": "PDF pp.2-5: cell is a plain '40% Coinsurance' with no deductible statement in the row; teacher inferred 'applies' from the page-1 list (guideline: never infer)",
+    "status": "accepted",
+    "verified": "PDF review (Claude), 2026-10-17"
+  },
+  {
+    "plan_id": "13484NE0090009-00",
+    "path": "services.childbirth_professional.in_network.deductible_applies",
+    "value": null,
+    "reason": "PDF pp.2-5: cell is a plain '40% Coinsurance' with no deductible statement in the row; teacher inferred 'applies' from the page-1 list (guideline: never infer)",
+    "status": "accepted",
+    "verified": "PDF review (Claude), 2026-10-17"
+  },
+  {
+    "plan_id": "13484NE0090009-00",
+    "path": "services.childbirth_facility.in_network.deductible_applies",
+    "value": null,
+    "reason": "PDF pp.2-5: cell is a plain '40% Coinsurance' with no deductible statement in the row; teacher inferred 'applies' from the page-1 list (guideline: never infer)",
+    "status": "accepted",
+    "verified": "PDF review (Claude), 2026-10-17"
+  },
+  {
+    "plan_id": "13484NE0090009-00",
+    "path": "services.home_health_care.in_network.deductible_applies",
+    "value": null,
+    "reason": "PDF pp.2-5: cell is a plain '40% Coinsurance' with no deductible statement in the row; teacher inferred 'applies' from the page-1 list (guideline: never infer)",
+    "status": "accepted",
+    "verified": "PDF review (Claude), 2026-10-17"
+  },
+  {
+    "plan_id": "13484NE0090009-00",
+    "path": "services.skilled_nursing.in_network.deductible_applies",
+    "value": null,
+    "reason": "PDF pp.2-5: cell is a plain '40% Coinsurance' with no deductible statement in the row; teacher inferred 'applies' from the page-1 list (guideline: never infer)",
+    "status": "accepted",
+    "verified": "PDF review (Claude), 2026-10-17"
+  },
+  {
+    "plan_id": "13484NE0090009-00",
+    "path": "services.durable_medical_equipment.in_network.deductible_applies",
+    "value": null,
+    "reason": "PDF pp.2-5: cell is a plain '40% Coinsurance' with no deductible statement in the row; teacher inferred 'applies' from the page-1 list (guideline: never infer)",
+    "status": "accepted",
+    "verified": "PDF review (Claude), 2026-10-17"
+  },
+  {
+    "plan_id": "13484NE0090009-00",
+    "path": "services.hospice.in_network.deductible_applies",
+    "value": null,
+    "reason": "PDF pp.2-5: cell is a plain '40% Coinsurance' with no deductible statement in the row; teacher inferred 'applies' from the page-1 list (guideline: never infer)",
+    "status": "accepted",
+    "verified": "PDF review (Claude), 2026-10-17"
+  },
+  {
+    "plan_id": "13484NE0090009-00",
+    "path": "drug_tiers.3.retail.in_network.deductible_applies",
+    "value": null,
+    "reason": "PDF p.3: tier cell gives only the copay, no deductible statement",
+    "status": "accepted",
+    "verified": "PDF review (Claude), 2026-10-17"
+  },
+  {
+    "plan_id": "13484NE0090009-00",
+    "path": "drug_tiers.4.retail.in_network.deductible_applies",
+    "value": null,
+    "reason": "PDF p.3: tier cell gives only the copay, no deductible statement",
+    "status": "accepted",
+    "verified": "PDF review (Claude), 2026-10-17"
+  },
+  {
+    "plan_id": "13484NE0090009-00",
+    "path": "issuer",
+    "value": "Ambetter Health",
+    "reason": "Consistency: issuer = brand in the SBC header; 'Celtic Insurance Company' is only the underwriter in the footer",
+    "status": "accepted",
+    "verified": "PDF review (Claude), 2026-10-17"
+  },
+  {
+    "plan_id": "13484NE0090009-00",
+    "path": "plan_name",
+    "value": "Standard Silver: Standard Silver Off Exchange Plan",
+    "reason": "Consistency: plan_name excludes the issuer prefix shown in the header",
+    "status": "accepted",
+    "verified": "PDF review (Claude), 2026-10-17"
+  },
+  {
+    "plan_id": "13262AR0230010-00",
+    "path": "plan_name",
+    "value": "Platinum Premier National OFF-Exchange (with BlueCard)",
+    "reason": "Consistency: plan_name excludes the issuer prefix ('Health Advantage:') shown in the header",
+    "status": "accepted",
+    "verified": "PDF review (Claude), 2026-10-17"
+  },
+  {
+    "plan_id": "13887FL0010004-00",
+    "path": "services.primary_care_visit.in_network.deductible_applies",
+    "value": null,
+    "reason": "PDF pp.2-3: cell is '$25 copay / visit' with no deductible statement (guideline: never infer)",
+    "status": "accepted",
+    "verified": "PDF review (Claude), 2026-10-17"
+  },
+  {
+    "plan_id": "13887FL0010004-00",
+    "path": "services.urgent_care.in_network.deductible_applies",
+    "value": null,
+    "reason": "PDF pp.2-3: cell is '$60 copay / visit' with no deductible statement (guideline: never infer)",
+    "status": "accepted",
+    "verified": "PDF review (Claude), 2026-10-17"
+  },
+  {
+    "plan_id": "13887FL0010004-00",
+    "path": "services.mental_health_outpatient.in_network.deductible_applies",
+    "value": null,
+    "reason": "PDF pp.2-3: cell is '$25 copay / visit' with no deductible statement (guideline: never infer)",
+    "status": "accepted",
+    "verified": "PDF review (Claude), 2026-10-17"
+  },
+  {
+    "plan_id": "13887FL0010004-00",
+    "path": "services.pregnancy_office_visits.in_network.deductible_applies",
+    "value": null,
+    "reason": "PDF pp.2-3: cell is '$25 copay / visit' with no deductible statement (guideline: never infer)",
+    "status": "accepted",
+    "verified": "PDF review (Claude), 2026-10-17"
+  },
+  {
+    "plan_id": "13887FL0010004-00",
+    "path": "services.skilled_nursing.in_network.deductible_applies",
+    "value": null,
+    "reason": "PDF pp.2-3: cell is '$700.00 Copay per Day' with no deductible statement (guideline: never infer)",
+    "status": "accepted",
+    "verified": "PDF review (Claude), 2026-10-17"
+  },
+  {
+    "plan_id": "13887FL0010004-00",
+    "path": "services.child_eye_exam.in_network.deductible_applies",
+    "value": null,
+    "reason": "PDF pp.2-3: cell is 'No Charge' with no deductible statement (guideline: never infer)",
+    "status": "accepted",
+    "verified": "PDF review (Claude), 2026-10-17"
+  },
+  {
+    "plan_id": "13887FL0010004-00",
+    "path": "services.child_glasses.in_network.deductible_applies",
+    "value": null,
+    "reason": "PDF pp.2-3: cell is 'No Charge' with no deductible statement (guideline: never infer)",
+    "status": "accepted",
+    "verified": "PDF review (Claude), 2026-10-17"
+  },
+  {
+    "plan_id": "15560MI0350004-00",
+    "path": "services.mental_health_outpatient.in_network",
+    "value": {
+      "covered": true,
+      "copay": 30,
+      "coinsurance_pct": null,
+      "deductible_applies": null,
+      "note": "20% coinsurance for other outpatient services"
+    },
+    "reason": "PDF p.4: '$30 copayment/office visit and ABA treatment. 20% coinsurance for other outpatient services' -> v1.2 first listed part",
+    "status": "accepted",
+    "verified": "PDF review (Claude), 2026-10-17"
+  },
+  {
+    "plan_id": "15560MI0350004-00",
+    "path": "services.mental_health_inpatient.out_of_network",
+    "value": {
+      "covered": true,
+      "copay": null,
+      "coinsurance_pct": 20,
+      "deductible_applies": null,
+      "note": "40% coinsurance for other inpatient services"
+    },
+    "reason": "PDF p.5: '20% coinsurance for substance abuse; 40% coinsurance for other inpatient services' -> v1.2 first listed part",
+    "status": "accepted",
+    "verified": "PDF review (Claude), 2026-10-17"
+  },
+  {
+    "plan_id": "17414NC0010007-01",
+    "path": "drug_tiers.1.retail.in_network.deductible_applies",
+    "value": null,
+    "reason": "PDF p.2: preferred brand cell gives only '$50 copayment/prescription'; only the generic tier states 'Deductible does not apply'",
+    "status": "accepted",
+    "verified": "PDF review (Claude), 2026-10-17"
+  },
+  {
+    "plan_id": "17414NC0010007-01",
+    "path": "drug_tiers.2.retail.in_network.deductible_applies",
+    "value": null,
+    "reason": "PDF p.2: non-preferred brand cell gives only '$100 copayment/prescription'; only the generic tier states 'Deductible does not apply'",
+    "status": "accepted",
+    "verified": "PDF review (Claude), 2026-10-17"
+  },
+  {
+    "plan_id": "17414NC0010007-01",
+    "path": "drug_tiers.3.retail.in_network.deductible_applies",
+    "value": null,
+    "reason": "PDF p.2: specialty cell gives only '$500 copayment/prescription'; only the generic tier states 'Deductible does not apply'",
+    "status": "accepted",
+    "verified": "PDF review (Claude), 2026-10-17"
+  },
+  {
+    "plan_id": "18350HI0880013-03",
+    "path": "services.habilitation.in_network",
+    "value": {
+      "covered": true,
+      "copay": null,
+      "coinsurance_pct": 25,
+      "deductible_applies": null,
+      "note": "PT/OT and speech therapy outpatient: $30 copay, deductible does not apply"
+    },
+    "reason": "PDF p.6: cell lists '25% coinsurance (DME)' first, then '$30 copay ... (PT/OT outpatient)' -> v1.2 first listed part",
+    "status": "accepted",
+    "verified": "PDF review (Claude), 2026-10-17"
+  },
+  {
+    "plan_id": "19636LA0610013-00",
+    "path": "excluded_services",
+    "value": [
+      "Acupuncture",
+      "Bariatric surgery",
+      "Cosmetic surgery",
+      "Dental care (Adult)",
+      "Expected abortions (except when the life of the mother is endangered)",
+      "Infertility treatment",
+      "Long-term care",
+      "Routine eye care (Adult)",
+      "Routine foot care",
+      "Weight Loss Programs"
+    ],
+    "reason": "PDF p.6: chiropractic care, hearing aids, non-emergency care outside the US and private-duty nursing are under 'Other Covered Services', not exclusions",
+    "status": "accepted",
+    "verified": "PDF review (Claude), 2026-10-17"
+  },
+  {
+    "plan_id": "19636LA0610013-00",
+    "path": "services.mental_health_outpatient.in_network",
+    "value": {
+      "covered": true,
+      "copay": 40,
+      "coinsurance_pct": null,
+      "deductible_applies": false,
+      "note": "40% coinsurance for other outpatient services"
+    },
+    "reason": "PDF p.4: '$40 Copayment\u2020 /office visit and 40% Coinsurance other outpatient services' -> v1.2 first listed part; \u2020 = deductible does not apply",
+    "status": "accepted",
+    "verified": "PDF review (Claude), 2026-10-17"
+  },
+  {
+    "plan_id": "19636LA0610013-00",
+    "path": "plan_type",
+    "value": "POS",
+    "reason": "PDF p.1 header 'Plan Type: IND POS' (IND = individual market); plan type is POS",
+    "status": "accepted",
+    "verified": "PDF review (Claude), 2026-10-17"
+  },
+  {
+    "plan_id": "19636LA0610013-00",
+    "path": "plan_name",
+    "value": "Precision Blue Copay (PCP) 60/40 $6000 Standardized (BR)",
+    "reason": "Consistency: plan_name excludes the issuer prefix ('HMO Louisiana, Inc.:') shown in the header",
+    "status": "accepted",
+    "verified": "PDF review (Claude), 2026-10-17"
+  },
+  {
+    "plan_id": "23552TN0020036-01",
+    "path": "drug_tiers.0.retail.in_network",
+    "value": {
+      "covered": true,
+      "copay": 3,
+      "coinsurance_pct": null,
+      "deductible_applies": false,
+      "note": "Tier 1B: $25 copay, not subject to deductible"
+    },
+    "reason": "PDF p.2: '$3 copayment/prescription not subject to deductible (retail, Tier 1A), $25 ... (retail, Tier 1B)' -> v1.2 first listed part; teacher left both prices null",
+    "status": "accepted",
+    "verified": "PDF review (Claude), 2026-10-17"
+  },
+  {
+    "plan_id": "23552TN0020036-01",
+    "path": "plan_name",
+    "value": "Gold Elite Plan",
+    "reason": "Consistency: plan_name excludes the issuer prefix ('Oscar:') shown in the header",
+    "status": "accepted",
+    "verified": "PDF review (Claude), 2026-10-17"
   }
 ]

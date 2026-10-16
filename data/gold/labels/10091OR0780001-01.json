@@ -150,7 +150,7 @@
         "copay": null,
         "coinsurance_pct": 20.0,
         "deductible_applies": null,
-        "note": "Non-emergency: Not covered out-of-network"
+        "note": null
       },
       "out_of_network": {
         "covered": true,
@@ -422,14 +422,14 @@
         "copay": null,
         "coinsurance_pct": 20.0,
         "deductible_applies": null,
-        "note": "Combined in-network and out-of-network: For age 18 or younger, one pair of glasses (frames and lenses) or contacts (lenses and fitting) per year. No 0"
+        "note": "Combined in/out-of-network. Age 18 or younger: one pair of glasses or contacts per year; no charge up to $150 maximum."
       },
       "out_of_network": {
         "covered": true,
         "copay": null,
         "coinsurance_pct": 20.0,
         "deductible_applies": null,
-        "note": "Combined in-network and out-of-network: For age 18 or younger, one pair of glasses (frames and lenses) or contacts (lenses and fitting) per year. No 0"
+        "note": "Combined in/out-of-network. Age 18 or younger: one pair of glasses or contacts per year; no charge up to $150 maximum."
       }
     },
     "child_dental_checkup": {

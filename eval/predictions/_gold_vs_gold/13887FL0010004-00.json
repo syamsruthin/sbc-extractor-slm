@@ -27,7 +27,7 @@
         "covered": true,
         "copay": 25.0,
         "coinsurance_pct": null,
-        "deductible_applies": false,
+        "deductible_applies": null,
         "note": null
       },
       "out_of_network": null
@@ -129,7 +129,7 @@
         "covered": true,
         "copay": 60.0,
         "coinsurance_pct": null,
-        "deductible_applies": false,
+        "deductible_applies": null,
         "note": null
       },
       "out_of_network": null
@@ -159,7 +159,7 @@
         "covered": true,
         "copay": 25.0,
         "coinsurance_pct": null,
-        "deductible_applies": false,
+        "deductible_applies": null,
         "note": null
       },
       "out_of_network": null
@@ -179,7 +179,7 @@
         "covered": true,
         "copay": 25.0,
         "coinsurance_pct": null,
-        "deductible_applies": false,
+        "deductible_applies": null,
         "note": null
       },
       "out_of_network": null
@@ -239,7 +239,7 @@
         "covered": true,
         "copay": 700.0,
         "coinsurance_pct": null,
-        "deductible_applies": true,
+        "deductible_applies": null,
         "note": "60 days per benefit period; per day copay"
       },
       "out_of_network": null
@@ -269,7 +269,7 @@
         "covered": true,
         "copay": 0.0,
         "coinsurance_pct": 0.0,
-        "deductible_applies": false,
+        "deductible_applies": null,
         "note": "1 exam per year"
       },
       "out_of_network": null
@@ -279,7 +279,7 @@
         "covered": true,
         "copay": 0.0,
         "coinsurance_pct": 0.0,
-        "deductible_applies": false,
+        "deductible_applies": null,
         "note": "1 pair per year"
       },
       "out_of_network": null

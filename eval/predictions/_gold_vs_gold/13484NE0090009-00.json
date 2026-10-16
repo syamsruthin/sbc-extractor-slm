@@ -1,6 +1,6 @@
 {
-  "plan_name": "Ambetter Health Standard Silver: Standard Silver Off Exchange Plan",
-  "issuer": "Celtic Insurance Company",
+  "plan_name": "Standard Silver: Standard Silver Off Exchange Plan",
+  "issuer": "Ambetter Health",
   "plan_type": "EPO",
   "coverage_period": "01/01/2026 - 12/31/2026",
   "deductible": {
@@ -79,7 +79,7 @@
         "covered": true,
         "copay": null,
         "coinsurance_pct": 40.0,
-        "deductible_applies": true,
+        "deductible_applies": null,
         "note": "40% coinsurance for laboratory & professional services, x-ray & diagnostic imaging, and other places of service"
       },
       "out_of_network": {
@@ -95,7 +95,7 @@
         "covered": true,
         "copay": null,
         "coinsurance_pct": 40.0,
-        "deductible_applies": true,
+        "deductible_applies": null,
         "note": null
       },
       "out_of_network": {
@@ -111,7 +111,7 @@
         "covered": true,
         "copay": null,
         "coinsurance_pct": 40.0,
-        "deductible_applies": true,
+        "deductible_applies": null,
         "note": null
       },
       "out_of_network": {
@@ -127,7 +127,7 @@
         "covered": true,
         "copay": null,
         "coinsurance_pct": 40.0,
-        "deductible_applies": true,
+        "deductible_applies": null,
         "note": null
       },
       "out_of_network": {
@@ -143,14 +143,14 @@
         "covered": true,
         "copay": null,
         "coinsurance_pct": 40.0,
-        "deductible_applies": true,
+        "deductible_applies": null,
         "note": null
       },
       "out_of_network": {
         "covered": true,
         "copay": null,
         "coinsurance_pct": 40.0,
-        "deductible_applies": true,
+        "deductible_applies": null,
         "note": null
       }
     },
@@ -159,14 +159,14 @@
         "covered": true,
         "copay": null,
         "coinsurance_pct": 40.0,
-        "deductible_applies": true,
+        "deductible_applies": null,
         "note": null
       },
       "out_of_network": {
         "covered": true,
         "copay": null,
         "coinsurance_pct": 40.0,
-        "deductible_applies": true,
+        "deductible_applies": null,
         "note": null
       }
     },
@@ -191,7 +191,7 @@
         "covered": true,
         "copay": null,
         "coinsurance_pct": 40.0,
-        "deductible_applies": true,
+        "deductible_applies": null,
         "note": null
       },
       "out_of_network": {
@@ -207,7 +207,7 @@
         "covered": true,
         "copay": null,
         "coinsurance_pct": 40.0,
-        "deductible_applies": true,
+        "deductible_applies": null,
         "note": null
       },
       "out_of_network": {
@@ -239,7 +239,7 @@
         "covered": true,
         "copay": null,
         "coinsurance_pct": 40.0,
-        "deductible_applies": true,
+        "deductible_applies": null,
         "note": null
       },
       "out_of_network": {
@@ -271,7 +271,7 @@
         "covered": true,
         "copay": null,
         "coinsurance_pct": 40.0,
-        "deductible_applies": true,
+        "deductible_applies": null,
         "note": null
       },
       "out_of_network": {
@@ -287,7 +287,7 @@
         "covered": true,
         "copay": null,
         "coinsurance_pct": 40.0,
-        "deductible_applies": true,
+        "deductible_applies": null,
         "note": null
       },
       "out_of_network": {
@@ -303,7 +303,7 @@
         "covered": true,
         "copay": null,
         "coinsurance_pct": 40.0,
-        "deductible_applies": true,
+        "deductible_applies": null,
         "note": "Limited to 60 visits per year"
       },
       "out_of_network": {
@@ -351,7 +351,7 @@
         "covered": true,
         "copay": null,
         "coinsurance_pct": 40.0,
-        "deductible_applies": true,
+        "deductible_applies": null,
         "note": "Limited to 60 days per year"
       },
       "out_of_network": {
@@ -367,7 +367,7 @@
         "covered": true,
         "copay": null,
         "coinsurance_pct": 40.0,
-        "deductible_applies": true,
+        "deductible_applies": null,
         "note": null
       },
       "out_of_network": {
@@ -383,7 +383,7 @@
         "covered": true,
         "copay": null,
         "coinsurance_pct": 40.0,
-        "deductible_applies": true,
+        "deductible_applies": null,
         "note": null
       },
       "out_of_network": {
@@ -512,7 +512,7 @@
           "covered": true,
           "copay": 80.0,
           "coinsurance_pct": null,
-          "deductible_applies": true,
+          "deductible_applies": null,
           "note": null
         },
         "out_of_network": {
@@ -532,7 +532,7 @@
           "covered": true,
           "copay": 350.0,
           "coinsurance_pct": null,
-          "deductible_applies": true,
+          "deductible_applies": null,
           "note": null
         },
         "out_of_network": {

@@ -330,10 +330,10 @@
     "habilitation": {
       "in_network": {
         "covered": true,
-        "copay": 30.0,
-        "coinsurance_pct": null,
-        "deductible_applies": false,
-        "note": "DME: 25% coinsurance; PT/OT outpatient: $30 copay; Speech Therapy outpatient: $30 copay"
+        "copay": null,
+        "coinsurance_pct": 25.0,
+        "deductible_applies": null,
+        "note": "PT/OT and speech therapy outpatient: $30 copay, deductible does not apply"
       },
       "out_of_network": {
         "covered": true,

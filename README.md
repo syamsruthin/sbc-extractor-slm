@@ -20,8 +20,8 @@ SBC PDFs ──► Markdown (pymupdf4llm) ──► teacher-labeled JSON (DeepSe
 | Phase | Learn | Build | Where | Status |
 |---|---|---|---|---|
 | 0 | Tokenization, chat templates, loss masking, memory math | Notes in `docs/` | Mac | ✅ |
-| 1 | Data sourcing, schema design, distillation labeling | SBC download → Markdown → labeled dataset | Mac | 🔄 gold review, scale-up |
-| 2 | Evaluation design | Eval harness + baselines (base SLM, frontier model) | Mac | 🔄 harness + first baseline |
+| 1 | Data sourcing, schema design, distillation labeling | SBC download → Markdown → labeled dataset | Mac | ✅ 450 labeled + verified gold |
+| 2 | Evaluation design | Eval harness + baselines (base SLM, frontier model) | Mac | ✅ harness, teacher + zero-shot baselines |
 | 3 | LoRA, QLoRA, PEFT, TRL/Unsloth | Training runs (MLX on Mac to learn; CUDA for real runs) | Mac + Kaggle | ⏳ |
 | 4 | Error analysis, sweeps, (optional) DPO | Improved model | Kaggle | ⏳ |
 | 5 | Quantization: AWQ, GPTQ, FP8, GGUF | Accuracy / size / latency comparison table | Modal | ⏳ |
@@ -69,7 +69,7 @@ uv run python src/build_gold.py                # gold labels = teacher labels + 
   [Details](docs/06-dataset.md). Total labeling spend for the scale-up: **~$0.34**.
 - **Two-pass extraction:** QA found the teacher dropping deductible/OOP amounts in ~40% of docs.
   A targeted re-ask of just those fields (~$0.00008/doc) fixed 778 values.
-- **Label quality:** first-pass gold review shows ~99% service-cell accuracy. Errors cluster in
+- **Label quality:** against the PDF-verified gold set, the teacher scores 97.6% field accuracy; its weak spot is inferring `deductible_applies` (8.8% hallucination). Errors cluster in
   multi-part cells, which led to [annotation guideline v1.2](docs/04-labeling.md) plus a
   deterministic normalizer.
 
@@ -81,5 +81,9 @@ Field-level accuracy on the 10-document gold set (~2,700 fields). Details in [do
 
 | Model | Field acc. | Hallucination rate | Schema-valid | Latency / doc |
 |---|---|---|---|---|
-| Qwen3-4B-Instruct-2507, zero-shot (MLX 8-bit, M2 Pro) | 75.2% | 35.7% | 20% | ~184 s |
+| Teacher: DeepSeek V4 Flash + repair pass (API) | 97.6% | 3.9% | 100% | ~50 s |
+| Qwen3-4B-Instruct-2507, zero-shot (MLX 8-bit, M2 Pro) | 74.7% | 36.5% | 20% | ~184 s |
 | Fine-tuned Qwen3-4B | _Phase 3_ | | | |
+
+Gold set: 10 SBCs from 10 held-out template families, ~2,600 fields, every field verified
+against the source PDF ([review notes](data/gold/README.md)).

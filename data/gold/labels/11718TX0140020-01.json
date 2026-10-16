@@ -204,10 +204,10 @@
     "hospital_surgeon_fee": {
       "in_network": {
         "covered": true,
-        "copay": null,
-        "coinsurance_pct": null,
+        "copay": 0.0,
+        "coinsurance_pct": 0.0,
         "deductible_applies": null,
-        "note": "No charge"
+        "note": null
       },
       "out_of_network": {
         "covered": false,
@@ -491,7 +491,7 @@
           "covered": true,
           "copay": 80.0,
           "coinsurance_pct": null,
-          "deductible_applies": false,
+          "deductible_applies": null,
           "note": "up to 30-day supply; mail order $200 for 90-day supply"
         },
         "out_of_network": {
@@ -511,7 +511,7 @@
           "covered": true,
           "copay": 350.0,
           "coinsurance_pct": null,
-          "deductible_applies": false,
+          "deductible_applies": null,
           "note": "up to 30-day supply"
         },
         "out_of_network": {

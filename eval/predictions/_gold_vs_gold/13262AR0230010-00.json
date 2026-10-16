@@ -1,5 +1,5 @@
 {
-  "plan_name": "Health Advantage: Platinum Premier National OFF-Exchange (with BlueCard)",
+  "plan_name": "Platinum Premier National OFF-Exchange (with BlueCard)",
   "issuer": "Health Advantage",
   "plan_type": "POS",
   "coverage_period": "01/01/2026 – 12/31/2026",
@@ -16,11 +16,11 @@
   "out_of_pocket_limit": {
     "in_network": {
       "individual": 2050.0,
-      "family": null
+      "family": 4100.0
     },
     "out_of_network": {
-      "individual": null,
-      "family": null
+      "individual": 6150.0,
+      "family": 12300.0
     }
   },
   "services_before_deductible": [
@@ -40,7 +40,7 @@
         "covered": true,
         "copay": null,
         "coinsurance_pct": 50.0,
-        "deductible_applies": true,
+        "deductible_applies": null,
         "note": null
       }
     },
@@ -48,9 +48,9 @@
       "in_network": {
         "covered": true,
         "copay": 75.0,
-        "coinsurance_pct": 50.0,
-        "deductible_applies": true,
-        "note": "Services and procedures other than consult and eval are paid at 50% coinsurance in-network."
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": "50% coinsurance after deductible for other outpatient services"
       },
       "out_of_network": {
         "covered": true,
@@ -223,16 +223,16 @@
     "mental_health_outpatient": {
       "in_network": {
         "covered": true,
-        "copay": null,
-        "coinsurance_pct": 50.0,
-        "deductible_applies": true,
-        "note": "$20 copay for consultation, evaluation and psychotherapy"
+        "copay": 20.0,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": "50% coinsurance for other outpatient services"
       },
       "out_of_network": {
         "covered": true,
         "copay": null,
         "coinsurance_pct": 50.0,
-        "deductible_applies": true,
+        "deductible_applies": null,
         "note": null
       }
     },
@@ -320,9 +320,9 @@
       "in_network": {
         "covered": true,
         "copay": 20.0,
-        "coinsurance_pct": 50.0,
-        "deductible_applies": true,
-        "note": "Outpatient services limited to 30 visits/Member/calendar year; inpatient services limited to 60 days/Member/calendar year."
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": "50% coinsurance for other outpatient services. Outpatient 30 visits/yr; inpatient 60 days/yr"
       },
       "out_of_network": {
         "covered": false,
@@ -336,9 +336,9 @@
       "in_network": {
         "covered": true,
         "copay": 20.0,
-        "coinsurance_pct": 50.0,
-        "deductible_applies": true,
-        "note": "Outpatient services limited to 30 visits/Member/calendar year; developmental services limited to 180 units/Member/calendar year."
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": "50% coinsurance for other outpatient services. Outpatient 30 visits/yr; developmental 180 units/yr"
       },
       "out_of_network": {
         "covered": false,

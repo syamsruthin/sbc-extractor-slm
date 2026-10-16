@@ -48,8 +48,8 @@ Other metrics:
 
 - 10 documents means ~2,600 field comparisons. That's enough to see big gaps between models,
   not to separate models within ~1 percentage point.
-- Until the PDF review is done, gold = teacher + corrections, so the **teacher's score is
-  circular** and serves only as a ceiling reference.
+- The gold set is LLM-verified against the PDFs (see `data/gold/README.md`), not hand-verified
+  by a person.
 
 ## Baseline 1: Qwen3-4B-Instruct-2507, zero-shot (MLX 8-bit, M2 Pro)
 
@@ -86,3 +86,26 @@ Per-document accuracy ranges from 58% (AmeriHealth NC, Health Advantage AR, HMSA
 labels targets directly. The fine-tune should also drop the ~1.7k-token schema from the
 prompt (the model learns the shape) and shorten generation, which is the latency bottleneck
 (~26 tok/s × ~3.8k tokens). Target: >95% field accuracy with <3% hallucination rate.
+
+## Re-scored against the PDF-verified gold set (2026-10-17)
+
+After all 10 gold documents were reviewed against their PDFs (63 corrections), the teacher
+can be measured for real. Before this, gold *was* the teacher's labels, so the score was circular.
+
+| Model | Field acc. | Halluc. rate | money | percent | deductible_applies | plan_info | excluded F1 |
+|---|---|---|---|---|---|---|---|
+| Teacher: DeepSeek V4 Flash (v1.1, single pass) | 97.1% | 3.9% | 97.4% | 98.2% | 93.7% | 88.0% | 98.1% |
+| Teacher + deductible/OOP repair pass | **97.6%** | 3.9% | **99.1%** | 98.2% | 93.7% | 88.0% | 98.1% |
+| Qwen3-4B zero-shot (MLX 8-bit) | 74.7% | 36.5% | 69.8% | 74.1% | 65.7% | 72.0% | 92.5% |
+
+- **The repair pass is worth it:** money accuracy goes from 97.4% to 99.1% for ~$0.0001/doc.
+- **The teacher's weak spot is `deductible_applies` (8.8% hallucination rate).** It infers
+  "applies" or "doesn't apply" from the page-1 list instead of reading the row. Since the
+  student learns from the teacher, the 390 training labels carry this noise too. Options before
+  Phase 3: relabel with guideline v1.3 (the rule made explicit; ~$0.27 for 450 docs), or
+  accept the noise and measure what the student learns.
+- **plan_info (88%)** is mostly naming conventions (issuer prefix, underwriter vs brand), now
+  written down as gold conventions for v1.3.
+- **Qwen baseline barely moved (75.2% → 74.7%).** Some "hallucinations" became correct
+  (LA/NC deductibles), while stricter deductible flags made others wrong. The gap the
+  fine-tune has to close is ~23 points to teacher level.
