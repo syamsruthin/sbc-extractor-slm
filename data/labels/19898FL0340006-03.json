@@ -1,0 +1,387 @@
+{
+  "plan_name": "Individual AvMed Entrust Bronze 600 Limited Cost Share (2026)",
+  "issuer": "AvMed",
+  "plan_type": "HMO",
+  "coverage_period": "Beginning on or after 01/01/2026",
+  "deductible": {
+    "in_network": null,
+    "out_of_network": null
+  },
+  "out_of_pocket_limit": {
+    "in_network": null,
+    "out_of_network": null
+  },
+  "services_before_deductible": [
+    "Preventive care",
+    "Office visits",
+    "Urgent care",
+    "Outpatient rehabilitation"
+  ],
+  "referral_required_for_specialist": true,
+  "services": {
+    "primary_care_visit": {
+      "in_network": {
+        "covered": true,
+        "copay": 70.0,
+        "coinsurance_pct": null,
+        "deductible_applies": false,
+        "note": null
+      },
+      "out_of_network": null
+    },
+    "specialist_visit": {
+      "in_network": {
+        "covered": true,
+        "copay": 140.0,
+        "coinsurance_pct": null,
+        "deductible_applies": false,
+        "note": null
+      },
+      "out_of_network": null
+    },
+    "preventive_care": {
+      "in_network": {
+        "covered": true,
+        "copay": 0.0,
+        "coinsurance_pct": null,
+        "deductible_applies": false,
+        "note": null
+      },
+      "out_of_network": null
+    },
+    "diagnostic_test": {
+      "in_network": {
+        "covered": true,
+        "copay": 75.0,
+        "coinsurance_pct": null,
+        "deductible_applies": true,
+        "note": "Independent facility; hospital-affiliated $150 copay"
+      },
+      "out_of_network": null
+    },
+    "imaging": {
+      "in_network": {
+        "covered": true,
+        "copay": 250.0,
+        "coinsurance_pct": null,
+        "deductible_applies": true,
+        "note": "Independent facility; hospital-affiliated $500 copay"
+      },
+      "out_of_network": null
+    },
+    "outpatient_facility_fee": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 30.0,
+        "deductible_applies": true,
+        "note": "Prior authorization required"
+      },
+      "out_of_network": null
+    },
+    "outpatient_surgeon_fee": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 30.0,
+        "deductible_applies": true,
+        "note": "Prior authorization required"
+      },
+      "out_of_network": null
+    },
+    "emergency_room": {
+      "in_network": {
+        "covered": true,
+        "copay": 500.0,
+        "coinsurance_pct": null,
+        "deductible_applies": true,
+        "note": "Charges waived if admitted"
+      },
+      "out_of_network": {
+        "covered": true,
+        "copay": 500.0,
+        "coinsurance_pct": null,
+        "deductible_applies": true,
+        "note": null
+      }
+    },
+    "emergency_transportation": {
+      "in_network": {
+        "covered": true,
+        "copay": 200.0,
+        "coinsurance_pct": null,
+        "deductible_applies": true,
+        "note": "Ground; air/water 50% coinsurance after deductible"
+      },
+      "out_of_network": {
+        "covered": true,
+        "copay": 200.0,
+        "coinsurance_pct": null,
+        "deductible_applies": true,
+        "note": "Ground; air/water 50% coinsurance after deductible"
+      }
+    },
+    "urgent_care": {
+      "in_network": {
+        "covered": true,
+        "copay": 125.0,
+        "coinsurance_pct": null,
+        "deductible_applies": false,
+        "note": "Independent facility; hospital-affiliated $250; retail clinic $80"
+      },
+      "out_of_network": {
+        "covered": true,
+        "copay": 125.0,
+        "coinsurance_pct": null,
+        "deductible_applies": false,
+        "note": "Independent facility; hospital-affiliated $250; retail clinic not covered"
+      }
+    },
+    "hospital_facility_fee": {
+      "in_network": {
+        "covered": true,
+        "copay": 500.0,
+        "coinsurance_pct": null,
+        "deductible_applies": true,
+        "note": "Per admission; prior authorization required"
+      },
+      "out_of_network": null
+    },
+    "hospital_surgeon_fee": {
+      "in_network": {
+        "covered": true,
+        "copay": 0.0,
+        "coinsurance_pct": null,
+        "deductible_applies": true,
+        "note": "Prior authorization required"
+      },
+      "out_of_network": null
+    },
+    "mental_health_outpatient": {
+      "in_network": {
+        "covered": true,
+        "copay": 70.0,
+        "coinsurance_pct": null,
+        "deductible_applies": false,
+        "note": "Applies to office visits only"
+      },
+      "out_of_network": null
+    },
+    "mental_health_inpatient": {
+      "in_network": {
+        "covered": true,
+        "copay": 500.0,
+        "coinsurance_pct": null,
+        "deductible_applies": true,
+        "note": "Prior authorization may be required"
+      },
+      "out_of_network": null
+    },
+    "pregnancy_office_visits": {
+      "in_network": {
+        "covered": true,
+        "copay": 70.0,
+        "coinsurance_pct": null,
+        "deductible_applies": false,
+        "note": "Visit 1 copay; visit 2+ no charge"
+      },
+      "out_of_network": null
+    },
+    "childbirth_professional": {
+      "in_network": {
+        "covered": true,
+        "copay": 0.0,
+        "coinsurance_pct": null,
+        "deductible_applies": true,
+        "note": null
+      },
+      "out_of_network": null
+    },
+    "childbirth_facility": {
+      "in_network": {
+        "covered": true,
+        "copay": 500.0,
+        "coinsurance_pct": null,
+        "deductible_applies": true,
+        "note": "Prior authorization required"
+      },
+      "out_of_network": null
+    },
+    "home_health_care": {
+      "in_network": {
+        "covered": true,
+        "copay": 140.0,
+        "coinsurance_pct": null,
+        "deductible_applies": true,
+        "note": "Limited to 20 skilled visits per year"
+      },
+      "out_of_network": null
+    },
+    "rehabilitation": {
+      "in_network": {
+        "covered": true,
+        "copay": 140.0,
+        "coinsurance_pct": null,
+        "deductible_applies": true,
+        "note": "Limited to 35 visits per year combined PT/OT/ST/cardiac/pulmonary/chiropractic"
+      },
+      "out_of_network": null
+    },
+    "habilitation": {
+      "in_network": {
+        "covered": true,
+        "copay": 140.0,
+        "coinsurance_pct": null,
+        "deductible_applies": true,
+        "note": "Limited to 35 visits per year combined PT/OT/ST"
+      },
+      "out_of_network": null
+    },
+    "skilled_nursing": {
+      "in_network": {
+        "covered": true,
+        "copay": 250.0,
+        "coinsurance_pct": null,
+        "deductible_applies": true,
+        "note": "Day 1-2 copay; day 3+ no charge; limited to 60 days per year"
+      },
+      "out_of_network": null
+    },
+    "durable_medical_equipment": {
+      "in_network": {
+        "covered": true,
+        "copay": 100.0,
+        "coinsurance_pct": null,
+        "deductible_applies": true,
+        "note": "Per episode of illness"
+      },
+      "out_of_network": null
+    },
+    "hospice": {
+      "in_network": {
+        "covered": true,
+        "copay": 0.0,
+        "coinsurance_pct": null,
+        "deductible_applies": true,
+        "note": "Physician certification required"
+      },
+      "out_of_network": null
+    },
+    "child_eye_exam": {
+      "in_network": {
+        "covered": true,
+        "copay": 0.0,
+        "coinsurance_pct": null,
+        "deductible_applies": false,
+        "note": "Limited to one exam per calendar year"
+      },
+      "out_of_network": null
+    },
+    "child_glasses": {
+      "in_network": {
+        "covered": true,
+        "copay": 0.0,
+        "coinsurance_pct": null,
+        "deductible_applies": false,
+        "note": "Limited to one pair per calendar year from pre-selected frames"
+      },
+      "out_of_network": null
+    },
+    "child_dental_checkup": {
+      "in_network": {
+        "covered": true,
+        "copay": 0.0,
+        "coinsurance_pct": null,
+        "deductible_applies": false,
+        "note": "Limited to one exam every 6 months"
+      },
+      "out_of_network": null
+    }
+  },
+  "drug_tiers": [
+    {
+      "name": "Tier 1 & Tier 2",
+      "category": "generic",
+      "retail": {
+        "in_network": {
+          "covered": true,
+          "copay": 25.0,
+          "coinsurance_pct": null,
+          "deductible_applies": false,
+          "note": null
+        },
+        "out_of_network": null
+      }
+    },
+    {
+      "name": "Tier 1 & Tier 2",
+      "category": "generic",
+      "retail": {
+        "in_network": {
+          "covered": true,
+          "copay": 45.0,
+          "coinsurance_pct": null,
+          "deductible_applies": false,
+          "note": null
+        },
+        "out_of_network": null
+      }
+    },
+    {
+      "name": "Tier 3",
+      "category": "preferred_brand",
+      "retail": {
+        "in_network": {
+          "covered": true,
+          "copay": 85.0,
+          "coinsurance_pct": null,
+          "deductible_applies": true,
+          "note": null
+        },
+        "out_of_network": null
+      }
+    },
+    {
+      "name": "Tier 4",
+      "category": "non_preferred_brand",
+      "retail": {
+        "in_network": {
+          "covered": true,
+          "copay": null,
+          "coinsurance_pct": 50.0,
+          "deductible_applies": true,
+          "note": null
+        },
+        "out_of_network": null
+      }
+    },
+    {
+      "name": "Tier 5",
+      "category": "specialty",
+      "retail": {
+        "in_network": {
+          "covered": true,
+          "copay": null,
+          "coinsurance_pct": 50.0,
+          "deductible_applies": true,
+          "note": null
+        },
+        "out_of_network": null
+      }
+    }
+  ],
+  "excluded_services": [
+    "Acupuncture",
+    "Bariatric Surgery",
+    "Cosmetic Surgery",
+    "Dental Care (Adult)",
+    "Hearing Aids",
+    "Private-Duty Nursing",
+    "Infertility Treatment",
+    "Routine Eye Care (Adult)",
+    "Long-term Care",
+    "Routine Foot Care",
+    "Non-Emergency Care When Traveling Outside the U.S.",
+    "Weight Loss Programs"
+  ]
+}

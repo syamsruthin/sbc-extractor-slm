@@ -1,0 +1,565 @@
+{
+  "plan_name": "Moda Select Texas Standard Silver – AI/AN Limited",
+  "issuer": "Moda Health Plan, Inc.",
+  "plan_type": "EPO",
+  "coverage_period": "01/01/2026-12/31/2026",
+  "deductible": {
+    "in_network": null,
+    "out_of_network": null
+  },
+  "out_of_pocket_limit": {
+    "in_network": null,
+    "out_of_network": null
+  },
+  "services_before_deductible": [
+    "IHCP services",
+    "In-network preventive care",
+    "Primary care",
+    "Specialist",
+    "Urgent care",
+    "Virtual visits",
+    "Outpatient behavioral health",
+    "Outpatient rehabilitation",
+    "Outpatient habilitation",
+    "Adult eye exams",
+    "Children's vision services",
+    "Most in-network prescription medications",
+    "Most out-of-network prescription medications"
+  ],
+  "referral_required_for_specialist": false,
+  "services": {
+    "primary_care_visit": {
+      "in_network": {
+        "covered": true,
+        "copay": 40.0,
+        "coinsurance_pct": null,
+        "deductible_applies": false,
+        "note": null
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "specialist_visit": {
+      "in_network": {
+        "covered": true,
+        "copay": 80.0,
+        "coinsurance_pct": null,
+        "deductible_applies": false,
+        "note": "Virtual: $40 copay; adult eye exam: $10 copay; hearing exam: $45 copay"
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "preventive_care": {
+      "in_network": {
+        "covered": true,
+        "copay": 0.0,
+        "coinsurance_pct": null,
+        "deductible_applies": false,
+        "note": "Most services no charge; some have $40 copay or 40% coinsurance"
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "diagnostic_test": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 40.0,
+        "deductible_applies": null,
+        "note": null
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "imaging": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 40.0,
+        "deductible_applies": null,
+        "note": null
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "outpatient_facility_fee": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 40.0,
+        "deductible_applies": null,
+        "note": null
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "outpatient_surgeon_fee": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 40.0,
+        "deductible_applies": null,
+        "note": null
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "emergency_room": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 40.0,
+        "deductible_applies": true,
+        "note": null
+      },
+      "out_of_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 40.0,
+        "deductible_applies": true,
+        "note": null
+      }
+    },
+    "emergency_transportation": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 40.0,
+        "deductible_applies": true,
+        "note": null
+      },
+      "out_of_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 40.0,
+        "deductible_applies": true,
+        "note": null
+      }
+    },
+    "urgent_care": {
+      "in_network": {
+        "covered": true,
+        "copay": 60.0,
+        "coinsurance_pct": null,
+        "deductible_applies": false,
+        "note": "Virtual: $40 copay"
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "hospital_facility_fee": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 40.0,
+        "deductible_applies": null,
+        "note": null
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "hospital_surgeon_fee": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 40.0,
+        "deductible_applies": null,
+        "note": null
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "mental_health_outpatient": {
+      "in_network": {
+        "covered": true,
+        "copay": 40.0,
+        "coinsurance_pct": 40.0,
+        "deductible_applies": false,
+        "note": "Office/intensive outpatient/virtual: $40 copay; other: 40% coinsurance"
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "mental_health_inpatient": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 40.0,
+        "deductible_applies": null,
+        "note": null
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "pregnancy_office_visits": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 40.0,
+        "deductible_applies": null,
+        "note": null
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "childbirth_professional": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 40.0,
+        "deductible_applies": null,
+        "note": null
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "childbirth_facility": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 40.0,
+        "deductible_applies": null,
+        "note": null
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "home_health_care": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 40.0,
+        "deductible_applies": null,
+        "note": "Calendar year maximum of 60 visits"
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "rehabilitation": {
+      "in_network": {
+        "covered": true,
+        "copay": 40.0,
+        "coinsurance_pct": 40.0,
+        "deductible_applies": false,
+        "note": "Outpatient: $40 copay; inpatient: 40% coinsurance"
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "habilitation": {
+      "in_network": {
+        "covered": true,
+        "copay": 40.0,
+        "coinsurance_pct": 40.0,
+        "deductible_applies": false,
+        "note": "Outpatient: $40 copay; inpatient: 40% coinsurance"
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "skilled_nursing": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 40.0,
+        "deductible_applies": null,
+        "note": "Calendar year maximum of 25 days"
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "durable_medical_equipment": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 40.0,
+        "deductible_applies": null,
+        "note": null
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "hospice": {
+      "in_network": {
+        "covered": true,
+        "copay": null,
+        "coinsurance_pct": 40.0,
+        "deductible_applies": null,
+        "note": null
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "child_eye_exam": {
+      "in_network": {
+        "covered": true,
+        "copay": 0.0,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": "Limited to one eye exam per calendar year for children under age 19"
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "child_glasses": {
+      "in_network": {
+        "covered": true,
+        "copay": 0.0,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": "Limited to one pair of glasses per calendar year for children under age 19"
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    },
+    "child_dental_checkup": {
+      "in_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      },
+      "out_of_network": {
+        "covered": false,
+        "copay": null,
+        "coinsurance_pct": null,
+        "deductible_applies": null,
+        "note": null
+      }
+    }
+  },
+  "drug_tiers": [
+    {
+      "name": "Value drug tier",
+      "category": "other",
+      "retail": {
+        "in_network": {
+          "covered": true,
+          "copay": 20.0,
+          "coinsurance_pct": null,
+          "deductible_applies": false,
+          "note": null
+        },
+        "out_of_network": {
+          "covered": true,
+          "copay": 20.0,
+          "coinsurance_pct": null,
+          "deductible_applies": false,
+          "note": null
+        }
+      }
+    },
+    {
+      "name": "Generic drugs (Select tier)",
+      "category": "generic",
+      "retail": {
+        "in_network": {
+          "covered": true,
+          "copay": 20.0,
+          "coinsurance_pct": null,
+          "deductible_applies": false,
+          "note": null
+        },
+        "out_of_network": {
+          "covered": true,
+          "copay": 20.0,
+          "coinsurance_pct": null,
+          "deductible_applies": false,
+          "note": null
+        }
+      }
+    },
+    {
+      "name": "Preferred brand drug tier",
+      "category": "preferred_brand",
+      "retail": {
+        "in_network": {
+          "covered": true,
+          "copay": 40.0,
+          "coinsurance_pct": null,
+          "deductible_applies": false,
+          "note": null
+        },
+        "out_of_network": {
+          "covered": true,
+          "copay": 40.0,
+          "coinsurance_pct": null,
+          "deductible_applies": false,
+          "note": null
+        }
+      }
+    },
+    {
+      "name": "Non-preferred brand drug tier",
+      "category": "non_preferred_brand",
+      "retail": {
+        "in_network": {
+          "covered": true,
+          "copay": 80.0,
+          "coinsurance_pct": null,
+          "deductible_applies": null,
+          "note": null
+        },
+        "out_of_network": {
+          "covered": true,
+          "copay": 80.0,
+          "coinsurance_pct": null,
+          "deductible_applies": null,
+          "note": null
+        }
+      }
+    },
+    {
+      "name": "Specialty drug tier",
+      "category": "specialty",
+      "retail": {
+        "in_network": {
+          "covered": true,
+          "copay": 350.0,
+          "coinsurance_pct": null,
+          "deductible_applies": null,
+          "note": null
+        },
+        "out_of_network": {
+          "covered": false,
+          "copay": null,
+          "coinsurance_pct": null,
+          "deductible_applies": null,
+          "note": null
+        }
+      }
+    }
+  ],
+  "excluded_services": [
+    "Abortion (except medical emergency)",
+    "Acupuncture",
+    "Bariatric surgery",
+    "Children's dental check-up",
+    "Cosmetic surgery (except as required)",
+    "Dental care (Adult)",
+    "Infertility treatment",
+    "Long-term care",
+    "Naturopathic substances",
+    "Non-emergency care when traveling outside the U.S.",
+    "Private-duty nursing",
+    "Routine foot care",
+    "Weight loss programs"
+  ]
+}

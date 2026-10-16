@@ -1,28 +1,39 @@
 """SBC extraction schema v1. Design rationale: docs/03-schema.md
 
 One schema drives three things, so it's defined once here:
-  - teacher labeling:  passed to Gemini as `response_schema`
+  - teacher labeling:  sent to the teacher model as a JSON schema (structured outputs)
   - training targets:  the student learns to emit exactly this JSON
   - serving:           vLLM guided decoding via `SBCExtraction.model_json_schema()`
-
-Conventions (these are also the annotation guidelines given to the teacher model):
-  - Every key is always present. Use null for "not stated in the document",
-    never omit a key. A fixed shape keeps evaluation and guided decoding simple.
-  - Money is a number in dollars (1500, not "$1,500"); percentages are 0-100.
-  - "No charge"                -> covered=true, copay=0, coinsurance_pct=0
-  - "Not covered"              -> covered=false, every other field null
-  - "deductible does not apply"-> deductible_applies=false
-  - "after deductible"         -> deductible_applies=true
-  - nothing said about it      -> deductible_applies=null
-  - `in_network` = the standard in-network tier. Special tiers such as
-    Indian Health Care Providers are ignored in v1.
-  - `note` is only for terms the structured fields can't express (per-day
-    copays, visit limits, "first 3 visits free"). Keep it short; otherwise null.
 """
 
 from enum import Enum
 
 from pydantic import BaseModel, Field
+
+
+# Given verbatim to the teacher model; also the rules a human follows when
+# checking gold labels, so both label the same way.
+ANNOTATION_GUIDELINES = """\
+- Extract only what the document states. Never infer from typical plans.
+- Every key is always present. Use null for "not stated in the document".
+- Money is a number in dollars (1500, not "$1,500"); percentages are 0-100.
+- "No charge"                 -> covered=true, copay=0, coinsurance_pct=0
+- "Not covered"               -> covered=false, every other field null
+- "deductible does not apply" -> deductible_applies=false
+- "after deductible"          -> deductible_applies=true
+- nothing said about it       -> deductible_applies=null
+- Copay AND coinsurance both stated (e.g. "$250 copay then 20% coinsurance") -> fill both.
+- in_network is the standard in-network tier. Ignore special tiers such as
+  Indian Health Care Providers (IHCP).
+- out_of_network is null if the document says not applicable, unlimited, or gives no amount.
+- note is only for terms the structured fields can't express (per-day copays,
+  visit limits, "first 3 visits free"). Keep it under 20 words; otherwise null.
+- drug_tiers: one entry per tier row in the SBC, in document order, retail
+  30-day prices only. category=other if the tier fits none of the standard categories.
+- services_before_deductible: services the SBC says are covered before you meet
+  the deductible, as short names. Empty list if none.
+- excluded_services: the "Services Your Plan Generally Does NOT Cover" list, as short names.
+"""
 
 
 class CostShare(BaseModel):
