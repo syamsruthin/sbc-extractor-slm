@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.ipynb_checkpoints/
+
+# Env / secrets
+.env
+
+# Data (large; keep structure only)
+data/raw/*
+data/markdown/*
+!data/**/.gitkeep
+
+# Model artifacts
+models/
+outputs/
+checkpoints/
+*.safetensors
+*.gguf
+wandb/
+
+.DS_Store
