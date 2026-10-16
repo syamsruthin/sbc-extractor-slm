@@ -105,6 +105,39 @@ Rule of thumb: on a 16 GB Mac, use MLX for **inference and evaluation** (the bas
 run is only safe at a much shorter `--max-seq-length` (e.g. ≤ 4k) with a small model, which
 can test the pipeline but tells you nothing about this task.
 
+## Local pipeline smoke test (safe on 16 GB)
+
+```bash
+uv run python training/build_smoke_sft.py     # mini-task: "Important Questions" section -> deductible/OOP
+uv run python training/mlx_smoke.py           # Qwen3-0.6B 4-bit LoRA, 40 iters, memory watchdog
+uv run python training/mlx_smoke.py --eval    # base vs adapter on 12 held-out examples
+```
+
+- **Why a mini-task:** truncating the real ~8k-token examples to 4,096 tokens would cut off the
+  answer, which comes last. With prompt masking, that leaves zero tokens to learn from. The
+  mini-task (input ~0.8–2.6k tokens, answer = the 8 deductible/OOP amounts) is short **and**
+  fully supported by its input, so nothing teaches hallucination.
+- **Watchdog:** kills training if system free memory drops below 15%. (The process RSS reported
+  by `ps` badly undercounts Metal/unified-memory buffers, at 0.36 GB, so the system-wide
+  check is the one that matters.) Lowest free memory during the run: 23%.
+
+| Iteration | 1 | 5 | 10 | 20 | 30 | 40 |
+|---|---|---|---|---|---|---|
+| train loss | | 0.64 | 0.28 | 0.06 | 0.13 | 0.16 |
+| val loss | 1.365 | | | **0.043** | | 0.076 |
+
+Validation loss bottoms out at step 20 and rises by step 40: overfitting on 80 examples, which
+is exactly what `load_best_model_at_end` in the Kaggle script is for.
+
+| 12 held-out examples | Valid JSON | All 8 amounts exact |
+|---|---|---|
+| Qwen3-0.6B base | 12/12 (in ```json fences, wrong shape: no in/out-of-network nesting) | 0/12 |
+| + LoRA, 40 steps (~6 min) | 12/12 (minified, exact schema shape) | **6/12** |
+
+The pipeline works: chat-format data → prompt masking → LoRA training → adapter
+save → load → generation. The base model's failure is the same one the fine-tune targets on
+the full task: it reads the numbers but doesn't know our output conventions.
+
 ## Running on Kaggle (free T4)
 
 1. **Bundle:** `uv run python training/package_kaggle.py --kaggle-user <you>` creates

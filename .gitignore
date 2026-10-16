@@ -33,3 +33,4 @@ training/runs/
 
 # Upload bundles
 dist/
+data/sft_smoke/*.jsonl
