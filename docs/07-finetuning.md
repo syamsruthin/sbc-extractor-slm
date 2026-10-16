@@ -90,6 +90,21 @@ chunks without ever materializing the full logits tensor.
   accuracy, hallucination rate, schema-valid rate. Loss can improve while the
   `deductible_applies` habits (docs/04) stay the same.
 
+## What happened on the Mac (16 GB): don't train full-length locally
+
+The MLX smoke run (Qwen3-4B 4-bit, LoRA, 12,288-token sequences) loaded fine and computed
+an initial **validation loss of 0.275**. The base model already finds much of the JSON
+predictable, since the keys and structure repeat. Then the **first training step ran the
+Mac out of memory and the machine restarted.** It's the logits trap above: MLX has no fused
+cross-entropy kernel, so the backward pass needs the full 12k × 152k logits (and their
+gradients) on top of the model, activations and optimizer state. 16 GB of unified memory
+can't hold that.
+
+Rule of thumb: on a 16 GB Mac, use MLX for **inference and evaluation** (the baseline used
+7.2 GB peak), and run **training on a CUDA GPU** with a fused-loss kernel. A local training
+run is only safe at a much shorter `--max-seq-length` (e.g. ≤ 4k) with a small model, which
+can test the pipeline but tells you nothing about this task.
+
 ## Running on Kaggle (free T4)
 
 1. **Bundle:** `uv run python training/package_kaggle.py --kaggle-user <you>` creates
