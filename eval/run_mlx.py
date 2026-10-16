@@ -6,6 +6,10 @@ constrained decoding here, so JSON validity is measured as part of the baseline.
 
     uv run python eval/run_mlx.py --model mlx-community/Qwen3-4B-Instruct-2507-8bit --run qwen3-4b-zeroshot-8bit
     uv run python eval/score.py eval/predictions/qwen3-4b-zeroshot-8bit
+
+    # a LoRA adapter trained with the short student prompt (training/build_sft.py):
+    uv run python eval/run_mlx.py --model mlx-community/Qwen3-4B-Instruct-2507-4bit \
+        --adapter-path training/runs/mlx-smoke --prompt student --run qwen3-4b-mlx-smoke
 """
 
 import argparse
@@ -22,6 +26,7 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "src"))
 from label_sbcs import SYSTEM_PROMPT  # noqa: E402
 from schema import SBCExtraction  # noqa: E402
+from student import build_messages  # noqa: E402
 
 GOLD_DIR = ROOT / "data/gold/labels"
 MD_DIR = ROOT / "data/markdown"
@@ -46,21 +51,23 @@ def main() -> None:
     parser.add_argument("--run", required=True, help="name of eval/predictions/<run>")
     parser.add_argument("--limit", type=int, default=None)
     parser.add_argument("--max-tokens", type=int, default=8000)
+    parser.add_argument("--adapter-path", default=None, help="LoRA adapter dir from mlx_lm.lora")
+    parser.add_argument("--prompt", choices=["zeroshot", "student"], default="zeroshot",
+                        help="zeroshot = teacher rules + schema; student = the short fine-tuning prompt")
     args = parser.parse_args()
 
     run_dir = ROOT / "eval/predictions" / args.run
     (run_dir / "raw").mkdir(parents=True, exist_ok=True)
-    model, tokenizer = load(args.model)
+    model, tokenizer = load(args.model, adapter_path=args.adapter_path)
     sampler = make_sampler(temp=0.0)  # greedy: deterministic, standard for extraction evals
 
     plan_ids = [p.stem for p in sorted(GOLD_DIR.glob("*.json"))][: args.limit]
     for plan_id in plan_ids:
         if (run_dir / f"{plan_id}.json").exists():
             continue
-        messages = [
-            {"role": "system", "content": ZERO_SHOT_PROMPT},
-            {"role": "user", "content": (MD_DIR / f"{plan_id}.md").read_text()},
-        ]
+        markdown = (MD_DIR / f"{plan_id}.md").read_text()
+        messages = (build_messages(markdown) if args.prompt == "student" else
+                    [{"role": "system", "content": ZERO_SHOT_PROMPT}, {"role": "user", "content": markdown}])
         prompt = tokenizer.apply_chat_template(messages, add_generation_prompt=True, tokenize=False)
         start, text, last = time.time(), "", None
         for last in stream_generate(model, tokenizer, prompt, max_tokens=args.max_tokens, sampler=sampler):
@@ -68,6 +75,8 @@ def main() -> None:
         stats = {
             "plan_id": plan_id,
             "model": args.model,
+            "adapter": args.adapter_path,
+            "prompt": args.prompt,
             "seconds": round(time.time() - start, 1),
             "prompt_tokens": last.prompt_tokens,
             "prompt_tps": round(last.prompt_tps, 1),

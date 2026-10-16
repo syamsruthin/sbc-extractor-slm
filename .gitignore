@@ -24,3 +24,12 @@ wandb/
 
 # Bulk teacher labels (published as a HF dataset instead; small v1.1 set stays in git)
 data/labels/v1.2/
+
+# SFT data (rebuilt from labels by training/build_sft.py)
+data/sft/*.jsonl
+
+# Training outputs (adapters are published separately)
+training/runs/
+
+# Upload bundles
+dist/
