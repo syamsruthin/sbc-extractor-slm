@@ -48,7 +48,7 @@ flowchart LR
 ```mermaid
 flowchart TB
     subgraph client ["Client"]
-        ui["Web UI<br/>(app/: Next.js or Streamlit MVP)<br/>upload · side-by-side · scenarios · explanation · PDF viewer"]
+        ui["Web UI<br/>(frontend/: React + Vite + TS)<br/>upload · side-by-side · scenarios · explanation · PDF viewer"]
     end
 
     subgraph api ["API layer"]
@@ -126,10 +126,10 @@ flowchart LR
 | Step | LLM? | Model class | Input size | Why |
 |---|---|---|---|---|
 | Layout, segmentation, anchoring, cell parsing | No | — | — | Fixed CMS template; regex + table structure is exact and fast |
-| Cell fallback | Yes, ≤ 10% of docs, few cells each | Small (Qwen3-1.7B/4B on vLLM, or hosted small) | ~150 tokens/cell | Long-tail cell wording the rules don't cover |
-| Section summaries | Yes, 13 calls/doc (parallel), cached | Small (Qwen3-4B, later fine-tuned 1.7B) | ~300–600 tokens/section | Turns limitations text into readable sentences |
+| Cell fallback | Yes, ≤ 10% of docs, few cells each | OpenRouter (configurable, `SBCX_MODEL_FALLBACK`) | ~150 tokens/cell | Long-tail cell wording the rules don't cover |
+| Section summaries | Yes, 13 calls/doc (parallel), cached | OpenRouter (`SBCX_MODEL_SUMMARY`) | ~300–600 tokens/section | Turns limitations text into readable sentences |
 | Comparison, cost simulation, ranking | **No** | — | — | Money math must be exact and auditable |
-| Explanation | Yes, 1 call per comparison | Mid-size hosted (e.g. Claude Haiku) or tuned SLM | ~2–4k tokens | Narrative quality matters most here |
+| Explanation | Yes, 1 call per comparison | OpenRouter (`SBCX_MODEL_EXPLANATION`) | ~2–4k tokens | Narrative quality matters most here |
 
 ## 6. Deployment view
 

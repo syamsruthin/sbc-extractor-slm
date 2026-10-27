@@ -163,10 +163,10 @@ The principle: **code does the reading and the math; LLMs only write prose about
 
 | # | Question | Default if not decided |
 |---|---|---|
-| Q1 | Primary comparison target: user's uploads only, or uploads + marketplace catalog? | Uploads first (P0); catalog P1 |
-| Q2 | Explanation model: hosted (e.g. Claude Haiku via API) or self-hosted SLM on vLLM? | Provider-agnostic interface; start hosted, evaluate the fine-tuned SLM against it |
-| Q3 | Summarizer model size: Qwen3-1.7B vs Qwen3-4B | Start with 4B-Instruct; distill to 1.7B if quality holds |
-| Q4 | Do we keep the doc-level fine-tuned extractor as a fallback or drop it? | Repurpose for cell-level fallback + summaries ([09-decisions](09-decisions.md) ADR-009) |
+| Q1 | Primary comparison target: user's uploads only, or uploads + marketplace catalog? | **Decided: both** (catalog moves into v2.0) |
+| Q2 | Explanation model: hosted or self-hosted SLM? | **Decided: OpenRouter** |
+| Q3 | Summarizer model | **Decided: capable OpenRouter model**, configurable per task |
+| Q4 | Keep the doc-level fine-tuned extractor? | **Decided: fine-tuning deferred**; OpenRouter handles fallback and summaries |
 | Q5 | Source for reference allowed amounts | Configurable YAML with illustrative national medians, user-overridable |
 | Q6 | Include HSA tax savings in annual cost? | No for v2.0; show employer HSA/HRA contribution only |
 

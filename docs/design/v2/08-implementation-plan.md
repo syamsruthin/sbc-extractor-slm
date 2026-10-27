@@ -1,5 +1,7 @@
 # Implementation plan
 
+> Superseded by the detailed, tracked [IMPLEMENTATION_ROADMAP.md](../../../IMPLEMENTATION_ROADMAP.md). Kept for the original rationale.
+
 Milestones are ordered so that something usable and measurable exists after each one.
 Durations assume one developer working with Claude Code; adjust as needed.
 
@@ -95,7 +97,7 @@ Turn the prototype in `audit_tools/` into `src/sbcx/parse/`.
 
 ### M9 — MVP UI
 
-- Streamlit (fastest path) in `app/`: upload, benefits view with section summaries, comparison table, scenario picker, premium inputs, cost chart, explanation, warnings.
+- React + Vite app in `frontend/`: upload, benefits view with section summaries, comparison table, scenario picker, premium inputs, cost chart, explanation, warnings.
 
 ### M10 — Hardening
 

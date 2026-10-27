@@ -318,5 +318,5 @@ summaries (~13 × 500 tokens/doc), cents per hundred docs on a small model.
 | Queue | Arq/RQ on Redis; FastAPI BackgroundTasks for MVP | Celery (heavier) |
 | DB | Postgres 16 JSONB; SQLite for MVP | Mongo |
 | LLM serving | vLLM with structured outputs (self-hosted SLM), hosted API via OpenAI-compatible client | TGI, llama.cpp |
-| UI | Streamlit for MVP → Next.js | Gradio |
+| UI | React + TypeScript + Vite, TanStack Query, Tailwind | Streamlit, Next.js |
 | Testing | pytest, hypothesis (property tests for cost engine), syrupy snapshots | — |

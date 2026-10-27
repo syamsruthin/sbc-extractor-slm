@@ -35,11 +35,12 @@ flowchart LR
 | 08 | [Implementation plan](08-implementation-plan.md) | Milestones, timeline, work breakdown, what happens to existing work, risks |
 | 09 | [Decisions](09-decisions.md) | ADR-001 … ADR-011 |
 
-## Decisions that need your input
+## Decisions (2026-10-27)
 
-From [PRD §9](01-PRD.md#9-open-questions):
+1. Compare **both** uploaded plans and marketplace catalog plans.
+2. **OpenRouter** for every LLM step (cell fallback, summaries, explanation), model configurable per task.
+3. **No fine-tuning for now**; use a capable OpenRouter model. The SLM track is deferred (ADR-009).
+4. Reference allowed amounts: illustrative YAML, user-editable.
+5. Frontend: React + TypeScript + Vite (not Streamlit).
 
-1. Compare uploads only, or uploads + the marketplace catalog? (default: uploads first)
-2. Explanation model: hosted or self-hosted SLM? (default: hosted, behind a provider-agnostic client)
-3. Keep finishing the full-document fine-tune, or retarget training to cell fallback + summaries? (default: retarget, ADR-009)
-4. Where reference allowed amounts come from. (default: illustrative YAML, user-editable)
+Implementation is tracked in [IMPLEMENTATION_ROADMAP.md](../../../IMPLEMENTATION_ROADMAP.md).

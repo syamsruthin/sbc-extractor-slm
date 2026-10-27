@@ -72,6 +72,8 @@ Format: context → decision → consequences. Status is "Proposed" until the de
 
 ## ADR-009 Retarget fine-tuning to small, narrow tasks
 
+> **Update 2026-10-27: deferred.** All LLM steps use OpenRouter for now. This ADR describes the path if a self-hosted SLM is revisited.
+
 - **Context.** Phase 3 (QLoRA on Kaggle) targeted full-document extraction, which ADR-001 replaces.
 - **Decision.** Reuse the training stack for two narrow LoRA adapters on one small base model:
   1. **Cell fallback:** (raw cell text + row/column labels) → CostShare. Training pairs mined
