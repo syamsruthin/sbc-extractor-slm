@@ -1,0 +1,51 @@
+// Mirrors backend sbcx/domain/enrich/sections.py and display.py (labels shown in the UI).
+export const SERVICE_LABELS: Record<string, string> = {
+  primary_care_visit: "Primary care visit",
+  specialist_visit: "Specialist visit",
+  preventive_care: "Preventive care / screening",
+  diagnostic_test: "Diagnostic test (x-ray, blood work)",
+  imaging: "Imaging (CT/PET, MRI)",
+  outpatient_facility_fee: "Outpatient surgery facility fee",
+  outpatient_surgeon_fee: "Outpatient surgery physician/surgeon fee",
+  emergency_room: "Emergency room care",
+  emergency_transportation: "Emergency medical transportation",
+  urgent_care: "Urgent care",
+  hospital_facility_fee: "Hospital stay facility fee",
+  hospital_surgeon_fee: "Hospital stay physician/surgeon fee",
+  mental_health_outpatient: "Mental/behavioral health outpatient",
+  mental_health_inpatient: "Mental/behavioral health inpatient",
+  pregnancy_office_visits: "Pregnancy office visits",
+  childbirth_professional: "Childbirth/delivery professional services",
+  childbirth_facility: "Childbirth/delivery facility services",
+  home_health_care: "Home health care",
+  rehabilitation: "Rehabilitation services",
+  habilitation: "Habilitation services",
+  skilled_nursing: "Skilled nursing care",
+  durable_medical_equipment: "Durable medical equipment",
+  hospice: "Hospice services",
+  child_eye_exam: "Children's eye exam",
+  child_glasses: "Children's glasses",
+  child_dental_checkup: "Children's dental check-up",
+};
+
+export type SectionDef = { id: string; title: string; services: string[] };
+
+export const SECTIONS: SectionDef[] = [
+  { id: "overview", title: "Plan overview", services: [] },
+  { id: "deductible_oop", title: "Deductible and out-of-pocket limit", services: [] },
+  { id: "office_visits", title: "Doctor visits", services: ["primary_care_visit", "specialist_visit", "preventive_care"] },
+  { id: "tests", title: "Tests", services: ["diagnostic_test", "imaging"] },
+  { id: "drugs", title: "Prescription drugs", services: [] },
+  { id: "outpatient_surgery", title: "Outpatient surgery", services: ["outpatient_facility_fee", "outpatient_surgeon_fee"] },
+  { id: "emergency", title: "Emergency and urgent care", services: ["emergency_room", "emergency_transportation", "urgent_care"] },
+  { id: "hospital", title: "Hospital stay", services: ["hospital_facility_fee", "hospital_surgeon_fee"] },
+  { id: "mental_health", title: "Mental health and substance use", services: ["mental_health_outpatient", "mental_health_inpatient"] },
+  { id: "pregnancy", title: "Pregnancy", services: ["pregnancy_office_visits", "childbirth_professional", "childbirth_facility"] },
+  {
+    id: "recovery",
+    title: "Recovery and special needs",
+    services: ["home_health_care", "rehabilitation", "habilitation", "skilled_nursing", "durable_medical_equipment", "hospice"],
+  },
+  { id: "children", title: "Children's eye and dental care", services: ["child_eye_exam", "child_glasses", "child_dental_checkup"] },
+  { id: "exclusions", title: "Services not covered", services: [] },
+];

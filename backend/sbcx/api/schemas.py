@@ -3,14 +3,17 @@ Explanation) are returned as-is inside these envelopes."""
 
 from __future__ import annotations
 
-from datetime import datetime
-from typing import Any, Literal
+from datetime import UTC, datetime
+from typing import Annotated, Any, Literal
 
-from pydantic import BaseModel
+from pydantic import AfterValidator, BaseModel
 
 from sbcx.domain.benefits import BenefitsDocument, FieldMeta
 from sbcx.domain.comparison import ComparisonRequest, ComparisonResult, Scenario
 from sbcx.domain.explanation import ExplanationRecord
+
+# SQLite returns naive datetimes; everything is stored in UTC, so label it as such for clients.
+UTCDateTime = Annotated[datetime, AfterValidator(lambda d: d if d.tzinfo else d.replace(tzinfo=UTC))]
 
 DocStatus = Literal["queued", "extracting", "ready", "failed"]
 TaskStatus = Literal["pending", "running", "ready", "skipped", "failed"]
@@ -31,7 +34,7 @@ class DocumentSummary(BaseModel):
     summaries_status: TaskStatus
     warning_count: int = 0
     catalog_plan_id: str | None = None
-    created_at: datetime
+    created_at: UTCDateTime
 
 
 class DocumentDetail(DocumentSummary):
@@ -94,7 +97,7 @@ class PremiumQuotes(BaseModel):
 
 class ComparisonResponse(BaseModel):
     id: str
-    created_at: datetime
+    created_at: UTCDateTime
     request: ComparisonRequest
     result: ComparisonResult
     explanation_status: TaskStatus
@@ -103,7 +106,7 @@ class ComparisonResponse(BaseModel):
 
 class ComparisonListItem(BaseModel):
     id: str
-    created_at: datetime
+    created_at: UTCDateTime
     plan_names: list[str]
 
 

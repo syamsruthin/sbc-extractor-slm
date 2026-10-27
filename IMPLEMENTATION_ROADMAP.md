@@ -87,16 +87,16 @@ Postgres/Redis/job queue, SLM fine-tuning, production deployment.
 | M8 | Cell-level fallback | ⚠️ Done with deviation | gold target 98% not reached; see log |
 | M9 | Persistence | ✅ Done | |
 | M10 | Documents API | ✅ Done | |
-| M11 | Catalog | 🟡 Code done | corpus ingest + Rate PUF load pending |
+| M11 | Catalog | ✅ Done | 1,829/1,829 plans ingested (30 states); 226,950 Rate PUF premium rows |
 | M12 | Section summaries | ✅ Done | live: 39/39 summaries grounded on first try |
 | M13 | Cost engine | ✅ Done | worked example reproduced exactly; hypothesis invariants |
 | M14 | Comparison engine + API | ✅ Done | deterministic result hash |
 | M15 | Explanation | ✅ Done | live: 3/3 explanations grounded, 0 policy violations |
-| M16 | Frontend scaffold | 🟡 In progress | |
-| M17 | My Plans + Plan Detail | ⬜ | |
-| M18 | Catalog screen | ⬜ | |
-| M19 | Compare Builder + Result | ⬜ | |
-| M20 | Integration + E2E | ⬜ | |
+| M16 | Frontend scaffold | ✅ Done | typed client generated from OpenAPI |
+| M17 | My Plans + Plan Detail | ✅ Done | verified in the browser with real SBCs |
+| M18 | Catalog screen | ✅ Done | |
+| M19 | Compare Builder + Result | ✅ Done | live 3-plan comparison with grounded AI explanation |
+| M20 | Integration + E2E | 🟡 In progress | |
 | M21 | Run readiness | ⬜ | |
 
 Legend: ⬜ not started · 🟡 in progress · ✅ done · ⚠️ done with deviation · ⏸ deferred
@@ -336,7 +336,7 @@ Legend: ⬜ not started · 🟡 in progress · ✅ done · ⚠️ done with devi
 | Gold hallucination (parser only) | ≤ 3% | 2.4% |
 | v1.4 reviewed agreement | ≥ 95% | 98.7% (450 docs, 0 errors) |
 | Gold field accuracy (parser + fallback) | ≥ 98% | 96.9% ⚠️ |
-| Docs needing no fallback | ≥ 90% | |
-| Corpus extraction crashes | 0 | |
+| Docs needing no fallback | ≥ 90% | 9 of 10 gold docs (11 cells sent in total) |
+| Corpus extraction crashes | 0 | 0 of 1,829 (98.8% agreement with v1.4 on all docs) |
 | Summary grounding (served) | 100% | 100% (39/39 LLM, first try, live) |
 | Explanation grounding (served) | 100% | 100% (3/3 LLM, first try, live) |
