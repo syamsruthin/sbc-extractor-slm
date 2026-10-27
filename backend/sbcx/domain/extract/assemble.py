@@ -17,8 +17,10 @@ from sbcx.domain.extract import rules
 from sbcx.domain.parse.cells import PRICE
 from sbcx.domain.parse.layout import LayoutDoc
 from sbcx.domain.parse.pipeline import ParseResult
-from sbcx.domain.parse.textnorm import SVK, norm
+from sbcx.domain.parse.textnorm import SV, SVK, norm
 from sbcx.versions import GUIDELINE_VERSION, PARSER_VERSION, SCHEMA_VERSION
+
+SV_RE = {k: re.compile(rx.replace("^", ""), re.I) for k, rx in SV}
 
 LEAVES = ("covered", "copay", "coinsurance_pct", "deductible_applies", "note")
 
@@ -56,6 +58,28 @@ def page_of(text: str | None, page_keys: list[str]) -> int | None:
     return None
 
 
+def row_page(label: str | None, cell: str | None, page_keys: list[str], start: int) -> int | None:
+    """1-based page of a table row: the first page at or after `start` (rows follow template order)
+    where the row's label appears, preferring a page that also has the cell text. Searching for the
+    cell text alone is wrong for generic values like "No charge", which appear on many pages."""
+    lk = _key(norm(label or ""))[:24]
+    ck = _key(norm(cell or ""))[:16]
+    if len(lk) < 4:
+        return None
+    hits = [i for i in range(max(0, start - 1), len(page_keys)) if lk in page_keys[i]]
+    if not hits:
+        return None
+    both = [i for i in hits if ck and ck in page_keys[i]]
+    return (both or hits)[0] + 1
+
+
+def regex_page(pattern: re.Pattern, flat_pages: list[str], start: int) -> int | None:
+    for i in range(max(0, start - 1), len(flat_pages)):
+        if pattern.search(flat_pages[i]):
+            return i + 1
+    return None
+
+
 def deductible_type(md: str) -> DeductibleType:
     t = re.sub(r"\s+", " ", norm(md)).lower()
     if re.search(r"each family member must meet (their|his or her) own individual deductible", t):
@@ -76,12 +100,20 @@ def assemble(layout: LayoutDoc, res: ParseResult, page_texts: list[str] | None =
     src = raw.get("_src", {})
     q = raw["_o"]["_q"]
     keys = [_key(p) for p in (page_texts or [])]
+    flat_pages = [re.sub(r"\s+", " ", norm(p)).lower() for p in (page_texts or [])]
     prov: dict[str, FieldMeta] = {}
     base_pen = PENALTY["table_view"] if res.source == "pdf" else 1.0
 
-    def put(path: str, text: str | None, conf: float, reasons: list[str], trace: list[str] | None = None):
+    def put(
+        path: str,
+        text: str | None,
+        conf: float,
+        reasons: list[str],
+        trace: list[str] | None = None,
+        page: int | None = None,
+    ):
         prov[path] = FieldMeta(
-            page=page_of(text, keys),
+            page=page or page_of(text, keys),
             raw_text=(text or None) and text[:600],
             source=Source.parser,
             confidence=round(max(0.0, min(1.0, conf)), 3),
@@ -100,9 +132,19 @@ def assemble(layout: LayoutDoc, res: ParseResult, page_texts: list[str] | None =
         put(f, raw["_o"].get("_head"), 1.0, [])
 
     limitations: dict[str, str] = {}
+    cursor = 1
+    imaging_page = None
     for k in SVK:
         row = svc_rows.get(k)
         ins, oos, lim = src.get(k, (None, None, None))
+        label = row["cells"][row["j"]] if row and row["j"] < len(row["cells"]) else None
+        pg = row_page(label, ins or oos, keys, cursor) or regex_page(SV_RE[k], flat_pages, cursor)
+        if pg:
+            cursor = pg
+        elif row is not None:
+            pg = cursor  # rows follow template order: the previous row's page is the best estimate
+        if k == "imaging":
+            imaging_page = pg
         if lim:
             limitations[k] = norm(lim)
         reasons_row = []
@@ -126,13 +168,17 @@ def assemble(layout: LayoutDoc, res: ParseResult, page_texts: list[str] | None =
             for r in reasons:
                 conf *= PENALTY[r]
             for leaf in LEAVES:
-                put(f"services.{k}.{net}.{leaf}", text, conf, reasons)
+                put(f"services.{k}.{net}.{leaf}", text, conf, reasons, page=pg)
 
+    dcursor = imaging_page or 1
     for i, t in enumerate(ext.drug_tiers):
         ins, oos, lim = src.get(f"t{i + 1}", (None, None, None))
+        dpg = row_page(t.name, ins, keys, dcursor)
+        if dpg:
+            dcursor = dpg
         for net, text in (("in_network", ins), ("out_of_network", oos)):
             for leaf in LEAVES:
-                put(f"drug_tiers[{i}].retail.{net}.{leaf}", text, base_pen, [])
+                put(f"drug_tiers[{i}].retail.{net}.{leaf}", text, base_pen, [], page=dpg)
         put(f"drug_tiers[{i}].name", t.name, 1.0, [])
         put(f"drug_tiers[{i}].category", t.name, 1.0, [])
 

@@ -3,7 +3,7 @@
 # intentional so diffs against the prototype stay readable; see ruff per-file ignores.
 import re
 
-from sbcx.domain.parse.cells import ded_flag, parse_cost
+from sbcx.domain.parse.cells import ded_flag, later_charge, parse_cost
 from sbcx.domain.parse.textnorm import dejunk, norm
 
 BOIL=re.compile(r"^\s*(none\.?|\*?\s*(may require )?(prior authorization|pre-?authorization|precertification)[^.;]*|you may have to pay for services that aren.t preventive[^.;]*|ask your provider if the services needed are preventive[^.;]*|then check what your plan will pay( for)?|see your contract\*? for details|see below\*?)\s*[.;]?\s*$",re.I)
@@ -89,7 +89,7 @@ def lim_note(lim):
     return ' '.join(keep) or None
 def cost(txt,lim=None,svc=True,noteless=False):
     txt=dejunk(txt); lim=dejunk(lim) if lim else lim
-    if txt and re.search(r'reimburse',txt,re.I) and not re.match(r'^\s*(not covered|no charge)',txt,re.I):
+    if txt and re.search(r'reimburse',txt,re.I) and not re.match(r'^\s*(not covered|no charge)',txt,re.I) and not later_charge(norm(txt)):
         return dict(covered=True,copay=None,coinsurance_pct=None,deductible_applies=None,note=clean_note(txt))
     c,extra=parse_cost(txt or '',labrule=svc)
     if c is None: return None

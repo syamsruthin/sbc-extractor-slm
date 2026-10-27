@@ -16,6 +16,46 @@ PRICE=re.compile(r'(no charge|no cost|no copay(?!ment)|\$\s?[\d,]+(?:\.\d+)?|\d+
 # "Visit 1: $35; Visit 2 and after: No charge" / "Visits 1-3: $10; Visits 4+: $40": the later charge is
 # the structured value (v1.4 convention, applied by hand in audit_tools/fix/zz_later_rule.txt).
 VISITS_THEN=re.compile(r'(?i)^\s*(?:[\w /&]{0,40}:\s*)?visits?\s*1(?:\s*-\s*\d+)?\s*:\s*[^;]*?[;,.]\s*(?=(?:visits?\s*\d+\s*(?:\+|and after|or more|and up|-\s*\d+)?\s*:|after\b|subsequent\b))')
+FIRSTV=re.compile(r'(?i)\b(first|initial|upfront)\b')
+# marker AFTER the later price: "$30 copay for the first 3 visits and 20% coinsurance thereafter", "$40 copay / additional office visit"
+POSTFIX=re.compile(r'(?i)\s*(\bthereafter\b|/\s*additional\b|\bfor (each )?additional\b|\bper additional\b)')
+# marker BEFORE the later price: "..., then $15", "Additional visits: $30", "Subsequent visits, $25"
+PREFIX=re.compile(r'(?i)(\bthen\b|\badditional (office )?visits?\s*:|\bsubsequent (office )?visits?\b,?)')
+def later_charge(t):
+    """(first-visits head, later-charge text) when the cell prices the first/initial/upfront visits
+    differently from later ones; None otherwise. Only the first labeled part of the cell is considered."""
+    f=FIRSTV.search(t)
+    if not f or f.start()>60 or not re.search(r'(?i)visit|\d|one|two|three|four|five',t[f.start():f.start()+40]): return None
+    toks=list(PRICE.finditer(t))
+    if len(toks)<2 or toks[0].start()>f.start()+60: return None
+    for m in POSTFIX.finditer(t):
+        if m.start()<=f.end(): continue
+        prev=[x for x in toks if x.end()<=m.start()+1 and x.start()>f.start()-40]
+        if len(prev)>=2:
+            lp=prev[-1]
+            j=lp.start()
+            k=max(t.rfind(' and ',0,j),t.rfind(';',0,j),t.rfind(',',0,j))
+            if k<toks[0].end(): k=j
+            return t[:k].rstrip(' ,;'), t[lp.start():m.start()]+t[m.end():]
+    for m in PREFIX.finditer(t):
+        if m.start()<=f.end(): continue
+        nxt=[x for x in toks if x.start()>=m.end()]
+        if nxt and any(x.end()<=m.start() for x in toks):
+            return t[:m.start()].rstrip(' ,;'), t[m.end():]
+    return None
+PARTLABEL=re.compile(r'(?:^|[\s.;])[A-Z][\w /&()\-]{1,40}:\s')
+def group_ded_flag(t,toks):
+    """Deductible statement closing the first group of alternatives ("Lab: $0 ... or $75 copay/test;
+    deductible does not apply. X-ray: 40%") or standing alone right after it ("... or $150 copay. Deductible
+    does not apply. All other ..."). Not used when another labeled part comes first (its statement is its own)."""
+    if not toks: return None
+    sents=re.split(r'(?<=\.)\s+',t)
+    first=sents[0]
+    if PARTLABEL.search(first,toks[0].end()): return None
+    m=re.search(r'[;,]\s*([^;,]*\bdeductible\b[^;,]*?)\.?\s*$',first,re.I)
+    if m and not PRICE.search(m.group(1)): return ded_flag(m.group(1))
+    if len(sents)>1 and len(sents[1])<45 and re.search(r'(?i)deductible',sents[1]) and not PRICE.search(sents[1]): return ded_flag(sents[1])
+    return None
 def parse_cost(raw,labrule=True):
     t=norm(raw)
     if not t: return None,''
@@ -34,6 +74,14 @@ def parse_cost(raw,labrule=True):
             if c2['deductible_applies'] is None: c2['deductible_applies']=ded_flag(t[:mf.end()+40]) if ded_flag(t[:mf.end()]) is not None else None
             head=t[:mf.end()].rstrip(' ,;.') if VISITS_THEN.match(t) else t[:mf.end()].rstrip(' ,;then')
             return c2,(head+('; '+ex2 if ex2 else '')).strip()
+    lc=later_charge(t)
+    if lc:
+        # general "first visits $X ... later $Y" wording (audit 2026-10-27): the later charge is structured
+        head,rest=lc
+        c2,ex2=parse_cost(rest)
+        if c2 and c2['covered'] and (c2['copay'] is not None or c2['coinsurance_pct'] is not None):
+            if c2['deductible_applies'] is None: c2['deductible_applies']=ded_flag(head)
+            return c2,(head.rstrip(' ,;.')+('; '+ex2 if ex2 else '')).strip()
     toks=list(PRICE.finditer(t))
     if not toks:
         if re.search(r'not covered',tl): return dict(covered=False,copay=None,coinsurance_pct=None,deductible_applies=None,note=None),''
@@ -80,7 +128,7 @@ def parse_cost(raw,labrule=True):
         elif re.search(r'\band\b',seg) and not re.search(r'[;.]',seg): cut=nxt[0].start()
         elif b>=0: cut=end+b
         else: cut=nxt[0].start()
-        dedspan=pre[:lb.start()] if (lb and lb.start()>end) else pre
+        dedspan=pre[:lb.start()] if (lb and lb.start()>end and not re.match(r'(?i)(deductible|copay|coinsurance|per |visit|then)',lb.group(0).strip())) else pre
         for mb in re.finditer(r'[.;]\s+',seg):
             if re.match(r'\s*[A-Z][\w\- /]{0,30}:',seg[mb.end():]): dedspan=t[:end+mb.start()]; break
     firstpart=t[:cut]; extra=t[cut:].strip(' ;,./')
@@ -90,4 +138,6 @@ def parse_cost(raw,labrule=True):
         tail=t[nxt[-1].end():]
         lab=re.search(r'[A-Z][\w\- /&]{0,40}:\s*$',t[:nxt[-1].start()])
         if re.search(r'(?i)deductible',tail) and not re.search(r'(?i)deductible',t[:nxt[-1].start()]) and not (lab and labrule and not re.match(r'^[^;]{0,25};\s*deductible',tail,re.I)): c['deductible_applies']=ded_flag(tail)
+    if c['deductible_applies'] is None:
+        c['deductible_applies']=group_ded_flag(t,toks)
     return c,extra
