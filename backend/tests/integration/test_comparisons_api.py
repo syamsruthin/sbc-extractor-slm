@@ -67,3 +67,27 @@ def test_meta(client):
     p = client.get("/api/v1/meta/reference-prices").json()
     assert p["prices"]["imaging"] > 0 and p["labels"]["drug:generic"] == "Generic drugs"
     assert "llm" in client.get("/api/v1/meta/usage").json()
+
+
+@needs
+def test_degraded_mode_without_llm(client, monkeypatch):
+    """No API key / LLM off: extraction, summaries (templates) and explanation (template) still work."""
+    from sbcx.config import get_settings
+    from sbcx.infra.llm import reset_llm
+
+    monkeypatch.setenv("SBCX_LLM_MODE", "off")
+    get_settings.cache_clear()
+    reset_llm()
+    try:
+        assert client.get("/api/v1/health").json()["llm_configured"] is False
+        a, b = (upload(client, p) for p in PDFS)
+        doc = client.get(f"/api/v1/documents/{a}").json()
+        assert doc["summaries_status"] == "ready"
+        assert {s["source"] for s in doc["benefits"]["summaries"]} == {"template"}
+        c = client.post("/api/v1/comparisons", json={"document_ids": [a, b]}).json()
+        exp = client.get(f"/api/v1/comparisons/{c['id']}").json()["explanation"]
+        assert exp["source"] == "template" and exp["grounding"]["ok"]
+    finally:
+        monkeypatch.delenv("SBCX_LLM_MODE")
+        get_settings.cache_clear()
+        reset_llm()

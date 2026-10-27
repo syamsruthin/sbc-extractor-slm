@@ -18,26 +18,28 @@ export function ProvenanceButton({ meta, children, pdfUrl }: { meta?: Meta | nul
   const [pos, setPos] = useState<{ top: number; left: number } | null>(null);
   const open = pos !== null;
   const ref = useRef<HTMLDivElement>(null);
+  const btn = useRef<HTMLButtonElement>(null);
+  // fixed position (so table scroll containers don't clip it), kept next to the button on scroll/resize
+  const place = () => {
+    const r = btn.current?.getBoundingClientRect();
+    if (r) setPos({ top: Math.min(r.bottom + 8, window.innerHeight - 300), left: Math.max(8, Math.min(r.left, window.innerWidth - 336)) });
+  };
   useEffect(() => {
     if (!open) return;
     const close = (e: Event) => {
-      if (e instanceof KeyboardEvent ? e.key === "Escape" : e.type === "scroll" || !ref.current?.contains(e.target as Node)) setPos(null);
+      if (e instanceof KeyboardEvent ? e.key === "Escape" : !ref.current?.contains(e.target as Node)) setPos(null);
     };
     document.addEventListener("mousedown", close);
     document.addEventListener("keydown", close);
-    window.addEventListener("scroll", close, true);
+    window.addEventListener("scroll", place, true);
+    window.addEventListener("resize", place);
     return () => {
       document.removeEventListener("mousedown", close);
       document.removeEventListener("keydown", close);
-      window.removeEventListener("scroll", close, true);
+      window.removeEventListener("scroll", place, true);
+      window.removeEventListener("resize", place);
     };
   }, [open]);
-  const toggle = (el: HTMLElement) => {
-    if (open) return setPos(null);
-    const r = el.getBoundingClientRect();
-    // fixed position so table scroll containers don't clip the popover
-    setPos({ top: Math.min(r.bottom + 8, window.innerHeight - 300), left: Math.max(8, Math.min(r.left, window.innerWidth - 336)) });
-  };
 
   if (!meta) return <>{children}</>;
   const low = meta.confidence < 0.75;
@@ -45,7 +47,8 @@ export function ProvenanceButton({ meta, children, pdfUrl }: { meta?: Meta | nul
     <div className="relative inline-block" ref={ref}>
       <button
         type="button"
-        onClick={(e) => toggle(e.currentTarget)}
+        ref={btn}
+        onClick={() => (open ? setPos(null) : place())}
         className={`rounded text-left underline decoration-dotted underline-offset-4 hover:text-brand-700 ${low ? "decoration-amber-500" : "decoration-slate-300"}`}
         aria-haspopup="dialog"
         aria-expanded={open}

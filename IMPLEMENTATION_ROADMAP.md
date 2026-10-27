@@ -96,8 +96,8 @@ Postgres/Redis/job queue, SLM fine-tuning, production deployment.
 | M17 | My Plans + Plan Detail | ✅ Done | verified in the browser with real SBCs |
 | M18 | Catalog screen | ✅ Done | |
 | M19 | Compare Builder + Result | ✅ Done | live 3-plan comparison with grounded AI explanation |
-| M20 | Integration + E2E | 🟡 In progress | |
-| M21 | Run readiness | ⬜ | |
+| M20 | Integration + E2E | ✅ Done | Playwright green with fake LLM and with LLM off; API types check |
+| M21 | Run readiness | ⚠️ Done with deviation | Docker files written but not built (Docker daemon not running here) |
 
 Legend: ⬜ not started · 🟡 in progress · ✅ done · ⚠️ done with deviation · ⏸ deferred
 
@@ -318,6 +318,18 @@ Legend: ⬜ not started · 🟡 in progress · ✅ done · ⚠️ done with devi
 
 ---
 
+## Definition of done: status
+
+| Item | Status |
+|---|---|
+| All milestones implemented or documented as deferred | ✅ M0–M21 done; deviations below; deferred scope listed under Scope |
+| FastAPI backend and React frontend integrated | ✅ Vite proxy in dev, nginx in Docker |
+| Core workflows work end to end | ✅ Upload → extract → summaries → compare (uploads + catalog) → explanation, checked in the browser with live OpenRouter and in Playwright |
+| Automated tests pass | ✅ backend 400 (pytest incl. hypothesis), frontend 13 (vitest), E2E 2 (Playwright) |
+| Existing assets reused | ✅ audit_tools extractor, src/schema.py, eval/score.py, gold + v1.4 labels, OpenRouter pattern, CMS PUF |
+| Setup, configuration and run steps documented | ✅ README "Run the app locally", `backend/.env.example`, `make help` |
+| Runs locally from the docs | ✅ `make setup && make dev`; Docker path not verified (see log) |
+
 ## Deviations and blockers log
 
 | Date | Milestone | Note |
@@ -325,6 +337,8 @@ Legend: ⬜ not started · 🟡 in progress · ✅ done · ⚠️ done with devi
 | 2026-10-27 | M3 | The prototype's caches (`~/audit/…`) no longer existed. Layouts are rebuilt from the PDFs (pymupdf4llm pinned to 1.28.2, the version that produced `data/markdown`; byte-identical output checked). `pdftotext` (poppler) is used when installed, as in the prototype; otherwise pdfplumber/PyMuPDF. |
 | 2026-10-27 | M5 | Issuer brand lookup: the prototype took the majority issuer per family from labels. The port uses `config/issuer_brands.json` (HIOS issuer id → brand, built from the 450 reviewed docs, gold excluded), then the SBC header, then the CMS issuer name. Per-document overrides (`forcepdf.json`) were dropped. |
 | 2026-10-27 | M4/M5 | New rule: "Visit 1: $X; Visit 2 and after: $Y" and "…Subsequent visits, $Y" use the later charge (v1.4 convention, previously fixed by hand in `audit_tools/fix/zz_later_rule.txt`). The gold set follows the older first-part rule for 2 such fields, so gold accuracy moves 97.0% → 96.9%. Kept, because the later charge is the right input for cost estimates. |
+| 2026-10-27 | M21 | `docker-compose.yml` and both Dockerfiles are written but were not built or run: the Docker daemon wasn't running on the dev machine. Local run (`make setup && make dev`) is verified. |
+| 2026-10-27 | M18 | Facet counts are for the whole catalog, not narrowed by the other active filters. |
 | 2026-10-27 | M13 | Two rules made explicit while testing: a "No charge" cell is free even when the SBC doesn't say whether the deductible applies (otherwise the high bound charged preventive care to the deductible); and per-claim trace values keep low/high as simulated (a high-bound claim can be lower than the low-bound one once the out-of-pocket cap is hit). |
 | 2026-10-27 | M8 | Fallback on gold (τ = 0.75): 11 cells sent, fixed 2 fields and broke 3 (net neutral, 96.9%). The 98% gold target isn't reached. The remaining gold errors are mostly convention differences between the gold set (guideline v1.3, row-only deductible flags) and v1.4 labels, plus a few multi-part cells. Fallback stays enabled (cheap; only low-confidence cells) and every override is shown as a warning. |
 

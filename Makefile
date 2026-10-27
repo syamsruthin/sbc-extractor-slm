@@ -37,7 +37,7 @@ frontend-test: ## frontend unit tests
 lint: backend-lint frontend-lint ## all linters and type checks
 
 backend-lint: ## ruff + mypy
-	$(UV) ruff check sbcx tests && $(UV) ruff format --check sbcx tests && $(UV) mypy sbcx
+	cd $(BACKEND) && uv run ruff check sbcx tests && uv run ruff format --check sbcx tests && uv run mypy sbcx
 
 frontend-lint: ## eslint + tsc
 	cd $(FRONTEND) && npm run lint && npm run typecheck
@@ -46,7 +46,7 @@ layout-cache: ## warm the PDF layout cache for the local corpus
 	$(UV) sbcx layout --all
 
 score: ## score the parser on gold and v1.4 reviewed with eval/score.py
-	$(UV) sbcx score --set gold && $(UV) sbcx score --set v14
+	cd $(BACKEND) && uv run sbcx score --set gold && uv run sbcx score --set v14
 
 ingest-catalog: ## extract the local SBC corpus into the plan catalog
 	$(UV) sbcx ingest-catalog
