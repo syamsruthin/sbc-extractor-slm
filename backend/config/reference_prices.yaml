@@ -1,0 +1,38 @@
+# Reference allowed amounts (what the plan pays + what you pay, in-network) per use, in US dollars.
+# ILLUSTRATIVE national estimates for comparing copays with coinsurance; not quotes. Users can
+# override any value per comparison. Replace with a sourced table (e.g. FAIR Health, claims data)
+# and bump `version` when you do.
+version: "2026.1-illustrative"
+source: "Illustrative national estimates (not sourced); override per comparison"
+services:
+  primary_care_visit: 150
+  specialist_visit: 250
+  preventive_care: 250
+  diagnostic_test: 120
+  imaging: 1000
+  outpatient_facility_fee: 3500
+  outpatient_surgeon_fee: 1500
+  emergency_room: 2200
+  emergency_transportation: 1200
+  urgent_care: 200
+  hospital_facility_fee: 12000
+  hospital_surgeon_fee: 3000
+  mental_health_outpatient: 150
+  mental_health_inpatient: 9000
+  pregnancy_office_visits: 200
+  childbirth_professional: 3000
+  childbirth_facility: 9000
+  home_health_care: 180
+  rehabilitation: 150
+  habilitation: 150
+  skilled_nursing: 650
+  durable_medical_equipment: 500
+  hospice: 220
+  child_eye_exam: 100
+  child_glasses: 150
+  child_dental_checkup: 120
+drugs:
+  generic: 30
+  preferred_brand: 300
+  non_preferred_brand: 500
+  specialty: 4000

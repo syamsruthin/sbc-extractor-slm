@@ -1,4 +1,89 @@
-# SBC Extractor — Fine-tuned SLM served with vLLM
+# SBC Plan Compare (v2)
+
+Upload health plan **Summary of Benefits and Coverage (SBC)** PDFs, or pick 2026 marketplace plans,
+and see what each plan really costs you. Python reads the SBC and does all the money math; an LLM
+(via OpenRouter) only writes plain-language summaries and the final explanation, and a validator
+rejects any number it wasn't given.
+
+```
+SBC PDF ─► deterministic parser (template-anchored) ─► BenefitsDocument (+ provenance, confidence)
+              └─ low-confidence cells ─► LLM fallback (grounded)
+BenefitsDocument ─► section summaries (LLM, grounded) ─► comparison + cost engine (no LLM)
+               ─► fact sheet ─► explanation (LLM, numeric grounding, template fallback) ─► React UI
+```
+
+- Design: [docs/design/v2](docs/design/v2/README.md) (PRD, architecture, HLD, LLD, cost model, ADRs)
+- Plan and status: [IMPLEMENTATION_ROADMAP.md](IMPLEMENTATION_ROADMAP.md)
+
+## Run the app locally
+
+Requirements: Python 3.11+ with [uv](https://docs.astral.sh/uv/), Node 20+, and optionally poppler
+(`brew install poppler`) for `pdftotext`, which the parser uses when present.
+
+```bash
+make setup                       # backend (uv sync) + frontend (npm install)
+cp backend/.env.example backend/.env   # optional: add OPENROUTER_API_KEY (or keep it in the repo-root .env)
+make dev                         # API on http://localhost:8000, UI on http://localhost:5173
+```
+
+Open http://localhost:5173, drop SBC PDFs on **My plans**, select two or more, and press **Compare**.
+API docs: http://localhost:8000/docs.
+
+Without an OpenRouter key the app still works: summaries and explanations fall back to templates
+built from the computed numbers (`SBCX_LLM_MODE=off`). `SBCX_LLM_MODE=fake` gives deterministic
+output for tests.
+
+### Marketplace catalog (optional)
+
+Needs the local SBC corpus in `data/raw/sbc_pdfs` and the CMS Plan Attributes PUF in `data/raw/puf/`
+(see `src/collect_sbcs.py`).
+
+```bash
+make ingest-catalog              # extract every local SBC into the catalog (no LLM calls; ~10 min cold, ~2 min with a warm layout cache)
+make load-premiums               # download the CMS 2026 Rate PUF (16 MB) and load premiums
+```
+
+### Tests and checks
+
+```bash
+make test                        # backend pytest (unit, property, integration; fake LLM) + frontend vitest
+make lint                        # ruff, mypy, eslint, tsc
+make e2e                         # Playwright: upload -> compare -> explanation (isolated backend, fake LLM)
+make score                       # parser accuracy on the gold set and the reviewed v1.4 labels (eval/score.py)
+make check-api-types             # frontend types match the backend OpenAPI spec
+```
+
+Tests that need SBC PDFs skip automatically when `data/raw` isn't present.
+
+### Docker
+
+```bash
+docker compose up --build        # UI on http://localhost:8080
+```
+
+### Layout
+
+```
+backend/   FastAPI app (sbcx/): api/ -> services/ -> domain/ (parser, engine, explanation) <- infra/ (db, llm)
+frontend/  React + TypeScript + Vite UI, API types generated from OpenAPI
+config     backend/config/*.yaml: reference prices, scenarios, issuer brands
+docs/      design docs (v2) and the learning notes from the fine-tuning phases
+src/ eval/ training/   data collection, labeling, evaluation and the earlier SLM fine-tuning work
+```
+
+## Results (v2 parser)
+
+| | Field acc. | Hallucination | Latency / doc |
+|---|---|---|---|
+| Teacher LLM (DeepSeek V4 Flash + repair) | 97.6% | 3.9% | ~50 s |
+| Qwen3-4B zero-shot | 74.7% | 36.5% | ~184 s |
+| **v2 deterministic parser** (gold, 10 docs) | **96.9%** | **2.4%** | ~3–8 s cold (PDF layout), < 0.1 s parse |
+| v2 parser vs reviewed v1.4 labels (450 docs) | 98.7% agreement | 1.6% | 0 crashes on 1,829 PDFs |
+
+---
+
+# History: SBC Extractor — Fine-tuned SLM served with vLLM
+
 
 Fine-tune a small language model (3–4B) to extract structured data from
 ACA **Summary of Benefits and Coverage (SBC)** documents, quantize it, and serve

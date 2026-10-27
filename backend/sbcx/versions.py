@@ -1,0 +1,10 @@
+"""Versions stored with every artifact, so results can be traced and recomputed when they change."""
+
+APP_VERSION = "2.0.0"
+SCHEMA_VERSION = "2.0"
+PARSER_VERSION = "2.0.0"
+GUIDELINE_VERSION = "1.4"
+ENGINE_VERSION = "1.0.0"
+SUMMARY_PROMPT_VERSION = "summary.v1"
+EXPLANATION_PROMPT_VERSION = "explanation.v1"
+FALLBACK_PROMPT_VERSION = "fallback.v1"

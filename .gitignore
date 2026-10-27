@@ -34,3 +34,11 @@ training/runs/
 # Upload bundles
 dist/
 data/sft_smoke/*.jsonl
+
+# App (v2)
+backend/var/
+backend/.env
+frontend/node_modules/
+frontend/dist/
+frontend/test-results/
+frontend/playwright-report/
