@@ -77,9 +77,9 @@ Postgres/Redis/job queue, SLM fine-tuning, production deployment.
 | # | Milestone | Status | Notes |
 |---|---|---|---|
 | M0 | Roadmap + design-doc updates | ✅ Done | |
-| M1 | Backend scaffold | 🟡 In progress | |
-| M2 | Domain models | ⬜ | |
-| M3 | Layout layer | ⬜ | |
+| M1 | Backend scaffold | ✅ Done | 6 tests, ruff + mypy clean |
+| M2 | Domain models | ✅ Done | drift test vs src/schema.py |
+| M3 | Layout layer | 🟡 In progress | |
 | M4 | Cell rules | ⬜ | |
 | M5 | Document parser | ⬜ | |
 | M6 | Provenance, validation, confidence | ⬜ | |

@@ -1,0 +1,58 @@
+[project]
+name = "sbcx"
+version = "2.0.0"
+description = "SBC plan comparison: deterministic extraction, cost engine and grounded LLM explanations"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.30",
+    "pydantic>=2.9",
+    "pydantic-settings>=2.5",
+    "python-multipart>=0.0.9",
+    "sqlalchemy>=2.0",
+    "httpx>=0.27",
+    "pdfplumber>=0.11",
+    "pymupdf4llm>=0.0.17",
+    "jinja2>=3.1",
+    "pyyaml>=6.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3",
+    "hypothesis>=6.112",
+    "ruff>=0.6",
+    "mypy>=1.11",
+    "types-PyYAML",
+]
+
+[project.scripts]
+sbcx = "sbcx.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["sbcx"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "live: calls the real OpenRouter API (needs OPENROUTER_API_KEY)",
+    "corpus: runs over the full local PDF corpus (slow)",
+]
+addopts = "-m 'not live and not corpus'"
+
+[tool.ruff]
+line-length = 110
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+ignore = ["E501", "UP042"]  # str+Enum kept to match src/schema.py
+
+[tool.mypy]
+python_version = "3.11"
+ignore_missing_imports = true
+check_untyped_defs = true
