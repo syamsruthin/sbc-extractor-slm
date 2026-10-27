@@ -28,3 +28,15 @@ def client():
 
     with TestClient(create_app()) as c:
         yield c
+
+
+@pytest.fixture(autouse=True)
+def clean_db():
+    """Every test starts with empty tables (one SQLite file per run, reset per test)."""
+    from sbcx.infra.db import Base, get_engine, init_db
+
+    init_db()
+    with get_engine().begin() as conn:
+        for t in reversed(Base.metadata.sorted_tables):
+            conn.execute(t.delete())
+    yield

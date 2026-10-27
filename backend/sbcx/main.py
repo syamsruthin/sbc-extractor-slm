@@ -6,7 +6,7 @@ from contextlib import asynccontextmanager
 from fastapi import APIRouter, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from sbcx.api.routes import documents, health
+from sbcx.api.routes import catalog, comparisons, documents, health
 from sbcx.config import get_settings
 from sbcx.errors import install_error_handlers
 from sbcx.infra.db import init_db
@@ -45,6 +45,8 @@ def create_app() -> FastAPI:
     api = APIRouter(prefix=API_PREFIX)
     api.include_router(health.router)
     api.include_router(documents.router)
+    api.include_router(catalog.router)
+    api.include_router(comparisons.router)
     app.include_router(api)
     return app
 

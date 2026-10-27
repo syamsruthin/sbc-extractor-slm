@@ -40,14 +40,8 @@ class Scenario(BaseModel):
 class Money(BaseModel):
     """A value that may be a range because the SBC leaves an input unknown."""
 
-    low: float
-    high: float
-
-    @model_validator(mode="after")
-    def _ordered(self) -> "Money":
-        if self.low > self.high:
-            self.low, self.high = self.high, self.low
-        return self
+    low: float  # the result under the low-cost assumptions
+    high: float  # under the high-cost assumptions (per claim, high can be below low once the cap is hit)
 
     @classmethod
     def exact(cls, v: float) -> "Money":
@@ -189,6 +183,9 @@ class ComparisonResult(BaseModel):
     scenarios: list[ScenarioResult]
     ranked: list[RankedDiff]
     reference_prices: dict[str, float]
+    coverage_examples: dict[
+        str, dict | None
+    ] = {}  # plan_key -> SBC coverage examples (catalog plans, from the CMS PUF)
     warnings: list[Warning]
     assumptions: list[str]
     result_hash: str = ""

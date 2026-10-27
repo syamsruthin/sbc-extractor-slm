@@ -60,6 +60,9 @@ class CatalogPlanRow(Base):
     )
     deductible_individual: Mapped[float | None] = mapped_column(Float, nullable=True)
     oop_individual: Mapped[float | None] = mapped_column(Float, nullable=True)
+    coverage_examples: Mapped[dict | None] = mapped_column(
+        JSON, nullable=True
+    )  # from the Plan Attributes PUF
     status: Mapped[str] = mapped_column(String(32), default="pending")
 
 

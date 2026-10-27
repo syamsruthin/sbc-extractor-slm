@@ -54,7 +54,7 @@ member_pays(cs, A, D_rem, applies):
     return to_ded + share, counts_toward_oop=True
 ```
 
-`pct = coinsurance_pct / 100`. A copay is never more than the allowed amount.
+`pct = coinsurance_pct / 100`. A copay is never more than the allowed amount. A "No charge" cell (copay 0 and coinsurance 0) is free in both bounds, even when the SBC doesn't say whether the deductible applies.
 
 ## 4. Annual simulation
 

@@ -1,0 +1,41 @@
+# Usage scenarios for annual cost estimates. Events expand to claims in the order listed.
+version: "2026.1"
+event_types:
+  preventive_visit:     {label: "Preventive visit", services: [preventive_care]}
+  primary_care_visit:   {label: "Primary care visit", services: [primary_care_visit]}
+  specialist_visit:     {label: "Specialist visit", services: [specialist_visit]}
+  lab_work:             {label: "Lab work / x-ray", services: [diagnostic_test]}
+  mri:                  {label: "MRI / CT scan", services: [imaging]}
+  urgent_care_visit:    {label: "Urgent care visit", services: [urgent_care]}
+  er_visit:             {label: "Emergency room visit", services: [emergency_room]}
+  ambulance:            {label: "Ambulance ride", services: [emergency_transportation]}
+  outpatient_surgery:   {label: "Outpatient surgery", services: [outpatient_facility_fee, outpatient_surgeon_fee]}
+  hospital_stay:        {label: "Hospital stay", services: [hospital_facility_fee, hospital_surgeon_fee]}
+  therapy_visit:        {label: "Mental health therapy visit", services: [mental_health_outpatient]}
+  pt_visit:             {label: "Physical therapy visit", services: [rehabilitation]}
+  prenatal_visit:       {label: "Prenatal visit", services: [pregnancy_office_visits]}
+  childbirth:           {label: "Childbirth (delivery)", services: [childbirth_facility, childbirth_professional]}
+  generic_drug_fill:    {label: "Generic drug fill (30-day)", drug: generic}
+  brand_drug_fill:      {label: "Preferred brand drug fill (30-day)", drug: preferred_brand}
+  nonpreferred_drug_fill: {label: "Non-preferred brand fill (30-day)", drug: non_preferred_brand}
+  specialty_drug_fill:  {label: "Specialty drug fill (30-day)", drug: specialty}
+presets:
+  - id: low
+    label: "Low use"
+    description: "A checkup, a couple of sick visits and a few generic prescriptions."
+    events: [{event: preventive_visit, count: 1}, {event: primary_care_visit, count: 2}, {event: generic_drug_fill, count: 4}]
+  - id: moderate
+    label: "Moderate use"
+    description: "Regular specialist care, some tests, an MRI and a monthly generic drug."
+    events: [{event: preventive_visit, count: 1}, {event: primary_care_visit, count: 3}, {event: specialist_visit, count: 4},
+             {event: lab_work, count: 2}, {event: mri, count: 1}, {event: generic_drug_fill, count: 12}, {event: urgent_care_visit, count: 1}]
+  - id: high
+    label: "High use"
+    description: "A hospital stay, an ER visit, frequent specialist care and a monthly brand drug."
+    events: [{event: preventive_visit, count: 1}, {event: primary_care_visit, count: 4}, {event: specialist_visit, count: 8},
+             {event: lab_work, count: 4}, {event: mri, count: 2}, {event: er_visit, count: 1}, {event: hospital_stay, count: 1},
+             {event: brand_drug_fill, count: 12}]
+  - id: baby
+    label: "Having a baby"
+    description: "Prenatal care, delivery and a few tests."
+    events: [{event: prenatal_visit, count: 10}, {event: lab_work, count: 3}, {event: childbirth, count: 1}, {event: primary_care_visit, count: 2}]

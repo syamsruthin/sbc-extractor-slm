@@ -155,6 +155,34 @@ def _layout_one(pid: str) -> str | None:
         return f"{pid}: {type(e).__name__}: {e}"[:200]
 
 
+def cmd_ingest_catalog(args: argparse.Namespace) -> None:
+    from sbcx.services.catalog import ingest
+
+    stats = ingest(
+        PDF_DIR, S.data_dir / "raw/puf/plan-attributes-puf.csv", args.workers, args.limit, args.ids or None
+    )
+    print(json.dumps(stats))
+
+
+def cmd_load_premiums(args: argparse.Namespace) -> None:
+    from sbcx.services.catalog import load_premiums
+
+    path = Path(args.file) if args.file else S.var_dir / "rate-puf.zip"
+    if not path.exists():
+        import httpx
+
+        print(f"downloading {args.url} -> {path}", file=sys.stderr)
+        path.parent.mkdir(parents=True, exist_ok=True)
+        tmp = path.with_suffix(".part")
+        with httpx.stream("GET", args.url, timeout=600, follow_redirects=True) as r:
+            r.raise_for_status()
+            with open(tmp, "wb") as f:
+                for chunk in r.iter_bytes(1 << 20):
+                    f.write(chunk)
+        tmp.replace(path)
+    print(f"loaded {load_premiums(path)} premium rows")
+
+
 def cmd_openapi(_: argparse.Namespace) -> None:
     from sbcx.main import create_app
 
@@ -181,6 +209,19 @@ def main(argv: list[str] | None = None) -> None:
     a.add_argument("--fallback", action="store_true", help="apply the LLM cell fallback (OpenRouter)")
     a.add_argument("--workers", type=int, default=workers)
     a.set_defaults(fn=cmd_score)
+
+    a = sub.add_parser("ingest-catalog", help="extract the local SBC corpus into the plan catalog")
+    a.add_argument("ids", nargs="*", help="only these plan ids")
+    a.add_argument("--limit", type=int)
+    a.add_argument("--workers", type=int, default=workers)
+    a.set_defaults(fn=cmd_ingest_catalog)
+
+    from sbcx.services.catalog import RATE_PUF_URL
+
+    a = sub.add_parser("load-premiums", help="download (if needed) and load the CMS Rate PUF")
+    a.add_argument("--file", help="local rate-puf.zip or csv")
+    a.add_argument("--url", default=RATE_PUF_URL)
+    a.set_defaults(fn=cmd_load_premiums)
 
     a = sub.add_parser("openapi", help="print the OpenAPI spec")
     a.set_defaults(fn=cmd_openapi)

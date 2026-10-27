@@ -87,12 +87,12 @@ Postgres/Redis/job queue, SLM fine-tuning, production deployment.
 | M8 | Cell-level fallback | ⚠️ Done with deviation | gold target 98% not reached; see log |
 | M9 | Persistence | ✅ Done | |
 | M10 | Documents API | ✅ Done | |
-| M11 | Catalog | 🟡 In progress | |
-| M12 | Section summaries | 🟡 Code done | live grounding check pending |
-| M13 | Cost engine | ⬜ | |
-| M14 | Comparison engine + API | ⬜ | |
-| M15 | Explanation | ⬜ | |
-| M16 | Frontend scaffold | ⬜ | |
+| M11 | Catalog | 🟡 Code done | corpus ingest + Rate PUF load pending |
+| M12 | Section summaries | ✅ Done | live: 39/39 summaries grounded on first try |
+| M13 | Cost engine | ✅ Done | worked example reproduced exactly; hypothesis invariants |
+| M14 | Comparison engine + API | ✅ Done | deterministic result hash |
+| M15 | Explanation | ✅ Done | live: 3/3 explanations grounded, 0 policy violations |
+| M16 | Frontend scaffold | 🟡 In progress | |
 | M17 | My Plans + Plan Detail | ⬜ | |
 | M18 | Catalog screen | ⬜ | |
 | M19 | Compare Builder + Result | ⬜ | |
@@ -325,6 +325,7 @@ Legend: ⬜ not started · 🟡 in progress · ✅ done · ⚠️ done with devi
 | 2026-10-27 | M3 | The prototype's caches (`~/audit/…`) no longer existed. Layouts are rebuilt from the PDFs (pymupdf4llm pinned to 1.28.2, the version that produced `data/markdown`; byte-identical output checked). `pdftotext` (poppler) is used when installed, as in the prototype; otherwise pdfplumber/PyMuPDF. |
 | 2026-10-27 | M5 | Issuer brand lookup: the prototype took the majority issuer per family from labels. The port uses `config/issuer_brands.json` (HIOS issuer id → brand, built from the 450 reviewed docs, gold excluded), then the SBC header, then the CMS issuer name. Per-document overrides (`forcepdf.json`) were dropped. |
 | 2026-10-27 | M4/M5 | New rule: "Visit 1: $X; Visit 2 and after: $Y" and "…Subsequent visits, $Y" use the later charge (v1.4 convention, previously fixed by hand in `audit_tools/fix/zz_later_rule.txt`). The gold set follows the older first-part rule for 2 such fields, so gold accuracy moves 97.0% → 96.9%. Kept, because the later charge is the right input for cost estimates. |
+| 2026-10-27 | M13 | Two rules made explicit while testing: a "No charge" cell is free even when the SBC doesn't say whether the deductible applies (otherwise the high bound charged preventive care to the deductible); and per-claim trace values keep low/high as simulated (a high-bound claim can be lower than the low-bound one once the out-of-pocket cap is hit). |
 | 2026-10-27 | M8 | Fallback on gold (τ = 0.75): 11 cells sent, fixed 2 fields and broke 3 (net neutral, 96.9%). The 98% gold target isn't reached. The remaining gold errors are mostly convention differences between the gold set (guideline v1.3, row-only deductible flags) and v1.4 labels, plus a few multi-part cells. Fallback stays enabled (cheap; only low-confidence cells) and every override is shown as a warning. |
 
 ## Measurements
@@ -337,5 +338,5 @@ Legend: ⬜ not started · 🟡 in progress · ✅ done · ⚠️ done with devi
 | Gold field accuracy (parser + fallback) | ≥ 98% | 96.9% ⚠️ |
 | Docs needing no fallback | ≥ 90% | |
 | Corpus extraction crashes | 0 | |
-| Summary grounding (served) | 100% | |
-| Explanation grounding (served) | 100% | |
+| Summary grounding (served) | 100% | 100% (39/39 LLM, first try, live) |
+| Explanation grounding (served) | 100% | 100% (3/3 LLM, first try, live) |

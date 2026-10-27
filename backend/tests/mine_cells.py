@@ -31,16 +31,31 @@ def main(n: int = 300) -> None:
             for net, text, noteless in (("in_network", ins, False), ("out_of_network", oos, True)):
                 exp, got = label["services"][key][net], raw["services"][key][net]
                 # "covered as in-network" copies the in-network cell in build(), not in cost()
-                if not text or text in seen or exp is None or got is None or re.search(r"(?i)covered as (an )?in-? ?network", text):
+                if (
+                    not text
+                    or text in seen
+                    or exp is None
+                    or got is None
+                    or re.search(r"(?i)covered as (an )?in-? ?network", text)
+                ):
                     continue
                 if any(exp[k] != got[k] for k in KEYS):
                     continue
                 seen.add(text)
-                cases.append({"id": f"{pid}:{key}:{net}", "text": text, "lim": lim, "noteless": noteless,
-                              "expected": {k: exp[k] for k in KEYS}})
+                cases.append(
+                    {
+                        "id": f"{pid}:{key}:{net}",
+                        "text": text,
+                        "lim": lim,
+                        "noteless": noteless,
+                        "expected": {k: exp[k] for k in KEYS},
+                    }
+                )
     random.shuffle(cases)
     OUT.parent.mkdir(exist_ok=True)
-    OUT.write_text("\n".join(json.dumps(c, ensure_ascii=False) for c in sorted(cases[:n], key=lambda c: c["id"])) + "\n")
+    OUT.write_text(
+        "\n".join(json.dumps(c, ensure_ascii=False) for c in sorted(cases[:n], key=lambda c: c["id"])) + "\n"
+    )
     print(f"{len(cases)} candidate cells, wrote {min(n, len(cases))} to {OUT}")
 
 
