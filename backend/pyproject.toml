@@ -12,7 +12,7 @@ dependencies = [
     "sqlalchemy>=2.0",
     "httpx>=0.27",
     "pdfplumber>=0.11",
-    "pymupdf4llm>=0.0.17",
+    "pymupdf4llm==1.28.2",  # same version that produced data/markdown
     "jinja2>=3.1",
     "pyyaml>=6.0",
 ]
@@ -56,3 +56,16 @@ ignore = ["E501", "UP042"]  # str+Enum kept to match src/schema.py
 python_version = "3.11"
 ignore_missing_imports = true
 check_untyped_defs = true
+
+[[tool.mypy.overrides]]
+# ported rule code from audit_tools/: covered by regression scores, not by type annotations
+module = ["sbcx.domain.parse.textnorm", "sbcx.domain.parse.cells", "sbcx.domain.parse.questions", "sbcx.domain.parse.anchors", "sbcx.domain.parse.costs", "sbcx.domain.parse.build", "sbcx.domain.parse.exclusions"]
+ignore_errors = true
+
+[tool.ruff.lint.per-file-ignores]
+# Rules ported from audit_tools/ keep their dense legacy style so they stay diffable with the prototype.
+"sbcx/domain/parse/{textnorm,cells,questions,anchors,costs,build,exclusions}.py" = ["E701", "E702", "E703", "E731", "E741", "F841", "B007", "B905", "UP031"]
+"sbcx/api/routes/*.py" = ["B008"]  # FastAPI File()/Query() defaults
+
+[tool.ruff.format]
+exclude = ["sbcx/domain/parse/{textnorm,cells,questions,anchors,costs,build,exclusions}.py", "sbcx/domain/sbc.py"]

@@ -39,7 +39,7 @@ def setup_logging(level: str = "INFO") -> None:
         logging.getLogger(noisy).setLevel(logging.WARNING)
 
 
-def log(logger: logging.Logger, msg: str, level: int = logging.INFO, **fields: object) -> None:
+def log(logger: logging.Logger, msg: str, *, level: int = logging.INFO, **fields: object) -> None:
     logger.log(level, msg, extra={"fields": fields})
 
 

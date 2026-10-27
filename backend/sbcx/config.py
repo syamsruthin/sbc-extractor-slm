@@ -45,7 +45,7 @@ class Settings(BaseSettings):
 
     # extraction
     fallback_enabled: bool = True
-    confidence_threshold: float = 0.6
+    confidence_threshold: float = 0.75  # calibrated on v1.4 reviewed (roadmap M6)
     summaries_enabled: bool = True
 
     @property

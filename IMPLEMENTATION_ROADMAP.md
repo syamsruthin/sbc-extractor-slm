@@ -79,16 +79,16 @@ Postgres/Redis/job queue, SLM fine-tuning, production deployment.
 | M0 | Roadmap + design-doc updates | ✅ Done | |
 | M1 | Backend scaffold | ✅ Done | 6 tests, ruff + mypy clean |
 | M2 | Domain models | ✅ Done | drift test vs src/schema.py |
-| M3 | Layout layer | 🟡 In progress | |
-| M4 | Cell rules | ⬜ | |
-| M5 | Document parser | ⬜ | |
-| M6 | Provenance, validation, confidence | ⬜ | |
-| M7 | LLM infrastructure | ⬜ | |
-| M8 | Cell-level fallback | ⬜ | |
-| M9 | Persistence | ⬜ | |
-| M10 | Documents API | ⬜ | |
-| M11 | Catalog | ⬜ | |
-| M12 | Section summaries | ⬜ | |
+| M3 | Layout layer | ✅ Done | markdown repair byte-identical to prototype on 40/40 docs |
+| M4 | Cell rules | ✅ Done | 326 cell tests (300 mined from reviewed v1.4); added visit-sequence later-charge rule |
+| M5 | Document parser | ✅ Done | gold 96.9–97.0% / 2.4% halluc; v1.4 reviewed 98.7% agreement |
+| M6 | Provenance, validation, confidence | ✅ Done | τ = 0.75 from calibration |
+| M7 | LLM infrastructure | ✅ Done | |
+| M8 | Cell-level fallback | ⚠️ Done with deviation | gold target 98% not reached; see log |
+| M9 | Persistence | ✅ Done | |
+| M10 | Documents API | ✅ Done | |
+| M11 | Catalog | 🟡 In progress | |
+| M12 | Section summaries | 🟡 Code done | live grounding check pending |
 | M13 | Cost engine | ⬜ | |
 | M14 | Comparison engine + API | ⬜ | |
 | M15 | Explanation | ⬜ | |
@@ -322,16 +322,19 @@ Legend: ⬜ not started · 🟡 in progress · ✅ done · ⚠️ done with devi
 
 | Date | Milestone | Note |
 |---|---|---|
-| | | |
+| 2026-10-27 | M3 | The prototype's caches (`~/audit/…`) no longer existed. Layouts are rebuilt from the PDFs (pymupdf4llm pinned to 1.28.2, the version that produced `data/markdown`; byte-identical output checked). `pdftotext` (poppler) is used when installed, as in the prototype; otherwise pdfplumber/PyMuPDF. |
+| 2026-10-27 | M5 | Issuer brand lookup: the prototype took the majority issuer per family from labels. The port uses `config/issuer_brands.json` (HIOS issuer id → brand, built from the 450 reviewed docs, gold excluded), then the SBC header, then the CMS issuer name. Per-document overrides (`forcepdf.json`) were dropped. |
+| 2026-10-27 | M4/M5 | New rule: "Visit 1: $X; Visit 2 and after: $Y" and "…Subsequent visits, $Y" use the later charge (v1.4 convention, previously fixed by hand in `audit_tools/fix/zz_later_rule.txt`). The gold set follows the older first-part rule for 2 such fields, so gold accuracy moves 97.0% → 96.9%. Kept, because the later charge is the right input for cost estimates. |
+| 2026-10-27 | M8 | Fallback on gold (τ = 0.75): 11 cells sent, fixed 2 fields and broke 3 (net neutral, 96.9%). The 98% gold target isn't reached. The remaining gold errors are mostly convention differences between the gold set (guideline v1.3, row-only deductible flags) and v1.4 labels, plus a few multi-part cells. Fallback stays enabled (cheap; only low-confidence cells) and every override is shown as a warning. |
 
 ## Measurements
 
 | Metric | Target | Measured |
 |---|---|---|
-| Gold field accuracy (parser only) | ≥ 96% | |
-| Gold hallucination (parser only) | ≤ 3% | |
-| v1.4 reviewed agreement | ≥ 95% | |
-| Gold field accuracy (parser + fallback) | ≥ 98% | |
+| Gold field accuracy (parser only) | ≥ 96% | 96.9% (97.0% before the visit rule) |
+| Gold hallucination (parser only) | ≤ 3% | 2.4% |
+| v1.4 reviewed agreement | ≥ 95% | 98.7% (450 docs, 0 errors) |
+| Gold field accuracy (parser + fallback) | ≥ 98% | 96.9% ⚠️ |
 | Docs needing no fallback | ≥ 90% | |
 | Corpus extraction crashes | 0 | |
 | Summary grounding (served) | 100% | |
