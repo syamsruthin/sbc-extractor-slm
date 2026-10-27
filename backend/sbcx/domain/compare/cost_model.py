@@ -200,8 +200,10 @@ def simulate(
     else:
         modes = [doc.extras.deductible_type != DeductibleType.aggregate]
     runs = {(b, m): _run(plan, claims, tier, network, b, m) for b in ("low", "high") for m in modes}
-    low_key = min((k for k in runs if k[0] == "low"), key=lambda k: runs[k][1])
-    high_key = max((k for k in runs if k[0] == "high"), key=lambda k: runs[k][1])
+    # The cheaper run is the low bound and the dearer one the high bound, whatever assumptions produced
+    # them: applying the deductible earlier can leave less room under the OOP cap for later claims.
+    low_key = min(runs, key=lambda k: runs[k][1])
+    high_key = max(runs, key=lambda k: runs[k][1])
     lo, hi = runs[low_key], runs[high_key]
 
     assumptions: list[str] = []

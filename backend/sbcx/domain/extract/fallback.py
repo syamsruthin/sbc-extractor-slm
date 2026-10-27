@@ -11,7 +11,8 @@ from typing import Any
 from pydantic import BaseModel
 
 from sbcx.domain.benefits import BenefitsDocument, Source, Warning
-from sbcx.domain.sbc import CostShare, normalize
+from sbcx.domain.parse.pipeline import normalize_v14
+from sbcx.domain.sbc import CostShare
 from sbcx.infra.llm.base import LLMClient, LLMError
 
 SYSTEM = """You read one cell of a US health plan Summary of Benefits and Coverage (SBC) cost-sharing table
@@ -141,7 +142,7 @@ def resolve(
                         message=f"{c['service'].capitalize()} ({c['network']}) was re-read by the LLM.",
                     )
                 )
-    normalize(doc.benefits)
+    normalize_v14(doc.benefits)
     doc.fallback_cells = sent
     return sent
 

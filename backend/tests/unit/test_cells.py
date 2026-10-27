@@ -95,3 +95,14 @@ def test_mined_cells(case):
         return
     for k in ("covered", "copay", "coinsurance_pct", "deductible_applies"):
         assert got[k] == exp[k], k
+
+
+def test_zero_coinsurance_keeps_copay_null_through_pipeline_normalization():
+    """Regression: the v1.2-era schema.normalize() turned "0% coinsurance" into copay 0."""
+    from sbcx.domain.parse.pipeline import normalize_v14
+    from tests.unit.test_fallback import doc_with
+
+    d = doc_with("0% coinsurance", 0.9, cs(pct=0.0))
+    normalize_v14(d.benefits)
+    c = d.benefits.services.imaging.in_network
+    assert c.copay is None and c.coinsurance_pct == 0.0

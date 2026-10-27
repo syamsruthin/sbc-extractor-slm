@@ -26,6 +26,17 @@ def plan_name(rest,issuer):
         x=x[m.end():]
     x=re.sub(r'\s+[-–]\s+:\s+',' – ',x)
     return x.strip(' :|-.') or None
+def spans_both(i,oo,ci):
+    """An in-network price printed across both network columns leaves the out-of-network cell blank (the
+    SBC template never leaves a price cell blank; it says "Not covered" or gives a price). Audit 2026-10-27."""
+    return oo is not None and not oo.strip() and bool(i and i.strip()) and bool(ci and ci['covered']) and (ci['copay'] is not None or ci['coinsurance_pct'] is not None)
+def tier_prices_split(price_cells,n):
+    """True when some price cell lists one price per tier name (so the names can be split per tier)."""
+    for c in price_cells:
+        st=[m.start() for m in re.finditer(r'(no charge|not covered|\$\d|\d+(\.\d+)?\s?%|covered as in|not applicable)',c,re.I)]
+        st=[x for idx,x in enumerate(st) if idx==0 or not re.search(r'(then|and|\bor|\+|plus|after|copay|copayment|,|/|per)\s*$',c[:x].rstrip(),re.I)]
+        if len(st)==n or (len(st)==2*n and re.search(r'(?i)mail|retail|90.day',c)): return True
+    return False
 def resolve_issuer(rest,issuer_id=None,issuer_hint=None,brands=None,page1_text=''):
     """Issuer brand. Prototype order: known brand for the HIOS issuer id (from reviewed labels),
     then the SBC header, then the CMS issuer name (catalog hint)."""
@@ -74,6 +85,7 @@ def build(md,excluded=None,issuer_id=None,issuer_hint=None,brands=None,page1_tex
         i,oo,lim=pick(cells,r['j'],r.get('hdr') or hdr,nonihcp_oon=nonihcp_oon)
         src[k]=(i,oo,lim)
         ci=cost(i,lim); co=(cost(oo,lim,noteless=True) if oo is not None else None)
+        if spans_both(i,oo,ci): co=dict(ci,note=None); d.setdefault('_spans',[]).append(k)
         if oo and re.search(r'covered as (an )?in-? ?network',oo,re.I) and ci: co=dict(ci,note=None)
         d['services'][k]=dict(in_network=ci,out_of_network=co)
     drows=[]
@@ -96,6 +108,9 @@ def build(md,excluded=None,issuer_id=None,issuer_hint=None,brands=None,page1_tex
             for i in range(min(len(cells),len(c2))):
                 if c2[i] and i>j: cells[i]=(cells[i]+' '+c2[i]).strip()
         names=split_names(cells[j])
+        if len(names)>1 and not tier_prices_split(cells[j+1:],len(names)):
+            # several tier names sharing one price ("Tier 1 Preferred Generic / Tier 2 Non-Preferred Generic | $10"): one tier
+            names=[cells[j]]
         if len(names)>1:
             n=len(names); parts=[[] for _ in range(n)]
             ok=True
@@ -121,6 +136,7 @@ def build(md,excluded=None,issuer_id=None,issuer_hint=None,brands=None,page1_tex
     for r,cells in drows:
         i,oo,lim=pick(cells,r['j'],r.get('hdr') or hdr,svc=False,nonihcp_oon=nonihcp_oon)
         ci=cost(i,lim,svc=False) ; co=cost(oo,lim,svc=False,noteless=True) if oo is not None else None
+        if spans_both(i,oo,ci): co=dict(ci,note=None)
         if ci is None: continue
         src['t%d'%(len(d['drug_tiers'])+1)]=(i,oo,lim)
         d['drug_tiers'].append(dict(name=r['name'],category=cat(r['name']),retail=dict(in_network=ci,out_of_network=co)))

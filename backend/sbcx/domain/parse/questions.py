@@ -33,13 +33,14 @@ def split_net(s):
 def indfam(s):
     if s is None: return None
     s=norm(s)
+    s=re.sub(r'\$\s?(\d{1,3})\.(\d{3})(?![\d.])',r'$\1,\2',s)  # "$6.000": period used as thousands separator
     am=list(re.finditer(r'\$\s?([\d,]+(?:\.\d+)?)',s))
     if not am: return None
     ind=None; fam=None
     for m in am:
         after=s[m.end():m.end()+22].lower().replace('family individual','individual'); before=s[max(0,m.start()-14):m.start()].lower()
         v=money(m.group(1))
-        isfam=bool(re.match(r'\s*(/|per|for an?|for the|each)?\s*(family|fam\b)(?!\s*:?\s*\$)',after)) or (bool(re.search(r'family\s*:?\s*$',before)) and not re.match(r'\s*(/|per)?\s*(individual|person|member|single)',after))
+        isfam=bool(re.match(r'\s*(/|per|for an?|for the|each)?\s*(family|fam\b|group\b)(?!\s*:?\s*\$)',after)) or (bool(re.search(r'family\s*:?\s*$',before)) and not re.match(r'\s*(/|per)?\s*(individual|person|member|single)',after))
         if isfam:
             if fam is None: fam=v
         else:
@@ -48,8 +49,16 @@ def indfam(s):
     if ind is None: ind=fam; fam=None
     return dict(individual=ind,family=fam)
 def qrow(md,pat):
+    prev=None
     for cells,ln in rows(md):
-        if cells and re.search(pat,cells[0],re.I) and len(cells)>1 and cells[1].strip('| '): return cells[1].strip('| ')
+        if cells and re.search(pat,cells[0],re.I) and len(cells)>1 and cells[1].strip('| '):
+            ans=cells[1].strip('| ')
+            # answer written with a literal pipe: "$6000 per person | $12000 per group"
+            if len(cells)>2 and re.match(r'^\$\s?[\d,]+',cells[2]) and len(cells[2])<60: ans=ans+' / '+cells[2]
+            # answer started in the row above (label cell empty): "For network provider - $6,550 Individual" + "/ $13,100 family..."
+            if prev and not prev[0] and len(prev)>1 and '$' in prev[1] and re.match(r'^\s*(/|and\b|or\b|[a-z])',ans): ans=prev[1]+' '+ans
+            return ans
+        prev=cells
     return None
 def before_list(s):
     if s is None: return []
