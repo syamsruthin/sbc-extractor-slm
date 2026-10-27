@@ -18,7 +18,8 @@ export const schema = z
   })
   .refine((v) => v.scenario_ids.length > 0 || v.custom.length > 0, { message: "Pick at least one scenario or add your own events", path: ["scenario_ids"] });
 
-export type FormValues = z.infer<typeof schema>;
+export type FormValues = z.infer<typeof schema>; // after validation (counts are numbers)
+export type FormInput = z.input<typeof schema>; // what the form fields hold
 
 export function toRequest(v: FormValues): ComparisonRequest {
   const inputs: ComparisonRequest["inputs"] = {};

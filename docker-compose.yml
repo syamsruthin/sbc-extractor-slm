@@ -3,10 +3,10 @@
 services:
   backend:
     build: { context: ., dockerfile: backend/Dockerfile }
-    env_file:
-      - path: .env
-        required: false
     environment:
+      # Read from a .env file next to this compose file when present. (Plain variable substitution
+      # instead of `env_file: required: false`, which needs Compose >= 2.24.)
+      OPENROUTER_API_KEY: ${OPENROUTER_API_KEY:-}
       SBCX_LLM_MODE: ${SBCX_LLM_MODE:-openrouter}
       SBCX_CORS_ORIGINS: '["http://localhost:8080"]'
     volumes:

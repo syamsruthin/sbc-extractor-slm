@@ -8,7 +8,7 @@ import { api } from "@/api/client";
 import { Badge, Button, Card, EmptyState, Field, PageHeader, inputClass } from "@/components/ui";
 import { useCreateComparison, useScenarios } from "@/hooks/api";
 import { useSelection } from "@/hooks/selection";
-import { schema, toRequest, type FormValues } from "@/lib/compareForm";
+import { schema, toRequest, type FormInput, type FormValues } from "@/lib/compareForm";
 
 export function CompareBuilderPage() {
   const { items, remove } = useSelection();
@@ -16,7 +16,7 @@ export function CompareBuilderPage() {
   const create = useCreateComparison();
   const nav = useNavigate();
 
-  const form = useForm<FormValues>({
+  const form = useForm<FormInput, unknown, FormValues>({
     resolver: zodResolver(schema),
     defaultValues: {
       base: items[0]?.documentId ?? "",
