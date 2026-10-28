@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 
 import { schema, toRequest } from "./compareForm";
-import { deductibleNote, describeCost, money, range, signedRange } from "./format";
+import { describeCost, money, range, signedRange } from "./format";
 import { rejectionMessage } from "./upload";
 
 describe("format", () => {
@@ -51,14 +51,5 @@ describe("upload validation", () => {
     const file = new File(["x"], "plan.docx");
     expect(rejectionMessage({ file, errors: [{ code: "file-invalid-type", message: "" }] })).toBe("plan.docx isn't a PDF.");
     expect(rejectionMessage({ file, errors: [{ code: "file-too-large", message: "" }] })).toMatch(/larger than 10 MB/);
-  });
-});
-
-describe("deductible note", () => {
-  const c = { covered: true, copay: 0, coinsurance_pct: 0, deductible_applies: null, note: null };
-  it("says 'not stated' instead of implying no deductible", () => {
-    expect(deductibleNote(c, true)).toBe("deductible not stated");
-    expect(deductibleNote(c, false)).toBeNull();
-    expect(deductibleNote({ ...c, deductible_applies: true }, true)).toBe("after deductible");
   });
 });

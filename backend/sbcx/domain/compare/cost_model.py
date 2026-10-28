@@ -43,14 +43,18 @@ class Pay:
     gap: bool = False
 
 
+HintReason = Literal["", "page1", "hsa", "catastrophic"]
+
+
 @dataclass(frozen=True)
 class DeductibleHints:
-    """Document-level evidence about cells whose own row doesn't say whether the deductible applies,
-    taken from the SBC's page-1 answer to "Are there services covered before you meet your deductible?"."""
+    """Evidence about cells whose own row doesn't say whether the deductible applies: the SBC's page-1
+    answer to "Are there services covered before you meet your deductible?" and plan-type rules."""
 
-    unmarked_apply: bool = False  # "only services listed as 'deductible does not apply'" -> other rows apply
-    before: frozenset[str] = frozenset()  # services the page-1 list names as covered before the deductible
-    reason: str = ""  # why unmarked rows apply: "page1" | "hsa" | "catastrophic"
+    unmarked_apply: bool = False  # unmarked rows apply the deductible
+    before: frozenset[str] = frozenset()  # services covered before the deductible
+    reason: HintReason = ""  # why unmarked rows apply
+    pcp_visits_before: int = 0  # catastrophic plans: this many primary care visits come before the deductible
 
 
 _BEFORE = {
@@ -74,30 +78,48 @@ _HSA = re.compile(r"(?i)\bH\.?\s?S\.?\s?A\b|\bHDHP\b|high[- ]deductible")
 _CATASTROPHIC = re.compile(r"(?i)catastrophic")
 
 
-def deductible_hints(plan: SBCExtraction, metal: str | None = None) -> DeductibleHints:
+def deductible_hints(
+    plan: SBCExtraction, metal: str | None = None, hsa_eligible: bool | None = None
+) -> DeductibleHints:
+    """`metal` and `hsa_eligible` come from the CMS Plan Attributes PUF for catalog plans; uploads have
+    neither, so the plan name is used to recognise catastrophic and HSA plans."""
     items = " | ".join(plan.services_before_deductible).lower()
     unmarked = bool(
         re.search(r"deductible\W{0,3}(does not|doesn.t) apply|listed (below|in the chart)", items)
     )
-    named = {k for k, rx in _BEFORE.items() if re.search(rx, items)}
+    named = frozenset(k for k, rx in _BEFORE.items() if re.search(rx, items))
     label = f"{plan.plan_name or ''} {plan.plan_type or ''}"
-    if (metal or "").lower() == "catastrophic" or _CATASTROPHIC.search(label):
-        return DeductibleHints(True, frozenset(named | {"primary_care_visit"}), "catastrophic")
-    if _HSA.search(label):
-        return DeductibleHints(True, frozenset(named), "hsa")
-    return DeductibleHints(unmarked, frozenset(named), "page1" if unmarked else "")
+    if (metal or "").lower() == "catastrophic" or (metal is None and _CATASTROPHIC.search(label)):
+        return DeductibleHints(True, named, "catastrophic", pcp_visits_before=3)
+    if hsa_eligible or (hsa_eligible is None and _HSA.search(label)):
+        return DeductibleHints(True, named, "hsa")
+    return DeductibleHints(unmarked, named, "page1" if unmarked else "")
+
+
+def _first_visits_rule(cs: CostShare, service_key: str, h: DeductibleHints) -> bool:
+    """Catastrophic plans cover only the first visits to primary care before the deductible (federal rule). A row
+    saying "deductible does not apply" (or nothing) describes those visits; one saying it applies is kept as is."""
+    return (
+        service_key == "primary_care_visit" and h.pcp_visits_before > 0 and cs.deductible_applies is not True
+    )
 
 
 def resolve_applies(
-    cs: CostShare, service_key: str, bound: Bound, hints: DeductibleHints | None = None
+    cs: CostShare,
+    service_key: str,
+    bound: Bound,
+    hints: DeductibleHints | None = None,
+    visit: int | None = None,
 ) -> bool:
     """Whether the deductible applies to a claim. The row's own statement wins; otherwise in-network
     preventive care is free (required by federal law), page-1 evidence decides, and only then is it
     a range (low bound: doesn't apply, high bound: applies). "No charge" alone is not evidence: SBC
     charts show costs after the deductible is met."""
+    h = hints or DeductibleHints()
+    if _first_visits_rule(cs, service_key, h):
+        return visit is not None and visit > h.pcp_visits_before  # visit is 1-based
     if cs.deductible_applies is not None:
         return cs.deductible_applies
-    h = hints or DeductibleHints()
     if service_key == "preventive_care" or service_key in h.before:
         return False
     if h.unmarked_apply:
@@ -111,6 +133,7 @@ DeductibleStatus = Literal[
     "applies_per_sbc",
     "applies_hsa_rules",
     "applies_catastrophic_rules",
+    "first_visits_before",
     "before_per_sbc",
     "not_stated",
     "none",
@@ -124,11 +147,13 @@ def deductible_status(
     "the SBC doesn't say" into "no deductible" (2026-10-28 quality review)."""
     if cs is None or not cs.covered or not has_deductible:
         return "none"
+    h = hints or DeductibleHints()
+    if _first_visits_rule(cs, service_key, h):
+        return "first_visits_before"
     if cs.deductible_applies is True:
         return "applies"
     if cs.deductible_applies is False:
         return "does_not_apply"
-    h = hints or DeductibleHints()
     if service_key == "preventive_care" or service_key in h.before:
         return "before_per_sbc"
     if h.unmarked_apply:
@@ -263,7 +288,7 @@ def _run(
     network: Network,
     bound: Bound,
     embedded: bool,
-    metal: str | None = None,
+    hints: DeductibleHints,
 ) -> tuple[list[float], float, bool, bool]:
     d, o = _amounts(plan, network)
     acc = Accumulators(
@@ -275,10 +300,11 @@ def _run(
         embedded=embedded,
     )
     pays: list[float] = []
-    hints = deductible_hints(plan, metal)
-    for c in claims:
+    for c, visit in zip(claims, _visit_numbers(claims), strict=True):
         cs, _ = cell(plan, c.service_key, network)
-        applies = resolve_applies(cs, c.service_key, bound, hints) if cs is not None and cs.covered else None
+        applies = (
+            resolve_applies(cs, c.service_key, bound, hints, visit) if cs is not None and cs.covered else None
+        )
         p = member_pays(cs, c.allowed, acc.ded_remaining(c.member), bound, applies)
         amt = p.amount
         if p.counts_toward_oop:
@@ -290,6 +316,27 @@ def _run(
     return pays, sum(pays), ded_met, oop_met
 
 
+def _visit_numbers(claims: list[Claim]) -> list[int]:
+    """1-based count of each claim among the same member's claims for the same service."""
+    seen: dict[tuple[int, str], int] = {}
+    out = []
+    for c in claims:
+        k = (c.member, c.service_key)
+        seen[k] = seen.get(k, 0) + 1
+        out.append(seen[k])
+    return out
+
+
+RULE_NOTES = {
+    "hsa": "HSA-eligible plan: by federal rule the deductible applies to everything except preventive care, "
+    "so it is applied wherever the SBC row doesn't say otherwise.",
+    "catastrophic": "Catastrophic plan: by federal rule the deductible applies to everything except preventive "
+    "care and the first 3 primary care visits, so it is applied wherever the SBC row doesn't say otherwise.",
+    "page1": "The SBC says only services marked 'deductible does not apply' are covered before the deductible, "
+    "so the deductible is applied to the other services.",
+}
+
+
 def simulate(
     doc: BenefitsDocument,
     inputs: PlanInputs,
@@ -298,39 +345,28 @@ def simulate(
     prices: ReferencePrices,
     tier: CoverageTier = CoverageTier.individual,
     network: Network = Network.in_network,
-    metal: str | None = None,
+    hints: DeductibleHints | None = None,
 ) -> ScenarioPlanResult:
+    """`hints` defaults to what the document alone shows; pass `deductible_hints(plan, metal, hsa_eligible)`
+    when catalog metadata is known. Plan-specific notes come first in `assumptions`."""
     plan = doc.benefits
+    hints = hints or deductible_hints(plan)
     claims = expand(scenario, cfg, prices)
     if tier == CoverageTier.family and doc.extras.deductible_type == DeductibleType.unknown:
         modes = [True, False]
     else:
         modes = [doc.extras.deductible_type != DeductibleType.aggregate]
-    runs = {(b, m): _run(plan, claims, tier, network, b, m, metal) for b in ("low", "high") for m in modes}
+    runs = {(b, m): _run(plan, claims, tier, network, b, m, hints) for b in ("low", "high") for m in modes}
     # The cheaper run is the low bound and the dearer one the high bound, whatever assumptions produced
     # them: applying the deductible earlier can leave less room under the OOP cap for later claims.
     low_key = min(runs, key=lambda k: runs[k][1])
     high_key = max(runs, key=lambda k: runs[k][1])
     lo, hi = runs[low_key], runs[high_key]
 
-    assumptions: list[str] = []
-    hints = deductible_hints(plan, metal)
-    if hints.unmarked_apply:
-        assumptions.append(
-            {
-                "hsa": "HSA-eligible plan: by federal rule the deductible applies to everything except preventive care, "
-                "so it is applied wherever the SBC row doesn't say otherwise.",
-                "catastrophic": "Catastrophic plan: by federal rule the deductible applies to everything except preventive "
-                "care and 3 primary care visits, so it is applied wherever the SBC row doesn't say otherwise.",
-            }.get(
-                hints.reason,
-                "The SBC says only services marked 'deductible does not apply' are covered before the deductible, "
-                "so the deductible is applied to the other services.",
-            )
-        )
+    assumptions: list[str] = [RULE_NOTES[hints.reason]] if hints.unmarked_apply and hints.reason else []
     trace = []
     seen_notes = set()
-    for i, c in enumerate(claims):
+    for i, (c, visit) in enumerate(zip(claims, _visit_numbers(claims), strict=True)):
         cs, note = cell(plan, c.service_key, network)
         if note and note not in seen_notes:
             seen_notes.add(note)
@@ -340,8 +376,8 @@ def simulate(
             flag = "not covered: full cost, doesn't count toward the out-of-pocket limit"
         elif (
             cs.deductible_applies is None
-            and resolve_applies(cs, c.service_key, "low", hints)
-            != resolve_applies(cs, c.service_key, "high", hints)
+            and resolve_applies(cs, c.service_key, "low", hints, visit)
+            != resolve_applies(cs, c.service_key, "high", hints, visit)
             and (d := _amounts(plan, network)[0])
             and (d.individual or 0) > 0
         ):

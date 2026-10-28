@@ -111,9 +111,45 @@ def test_hsa_and_catastrophic_hints():
         deductible_hints(_named(base, "Wellpoint Essential Catastrophic").benefits).reason == "catastrophic"
     )
     h = deductible_hints(_named(base, "Sanford Individual TRUE $10,600").benefits, metal="Catastrophic")
-    assert h.reason == "catastrophic" and "primary_care_visit" in h.before  # 3 PCP visits come first by rule
+    assert h.reason == "catastrophic" and h.pcp_visits_before == 3
     assert deductible_hints(_named(base, "Core Gold 1500").benefits).reason == ""
     assert deductible_hints(_named(base, "Hsatown Health Gold").benefits).reason == ""  # word boundary
+    # the CMS PUF flag wins over the name, both ways
+    assert deductible_hints(_named(base, "Bronze 7500").benefits, "Bronze", hsa_eligible=True).reason == "hsa"
+    assert (
+        deductible_hints(_named(base, "Bronze HSA 7500").benefits, "Bronze", hsa_eligible=False).reason == ""
+    )
+    # a PUF metal that isn't catastrophic overrides a name that says so
+    assert deductible_hints(_named(base, "Catastrophic-ish Bronze").benefits, "Bronze").reason == ""
+
+
+def test_catastrophic_first_three_pcp_visits_only():
+    from sbcx.domain.compare.cost_model import deductible_hints, deductible_status, simulate
+    from sbcx.domain.comparison import Event, PlanInputs, Scenario
+    from tests.unit.test_cost_model import CFG, PRICES, cs, plan
+
+    p = _named(plan(9000, 9000, {"primary_care_visit": cs(40)}, cs(pct=0), cs(10)), "Essential Catastrophic")
+    pcp = p.benefits.services.primary_care_visit.in_network
+    pcp.deductible_applies = None
+    h = deductible_hints(p.benefits, "Catastrophic")
+    sc = Scenario(id="v", label="v", events=[Event(event="primary_care_visit", count=5)])
+    r = simulate(p, PlanInputs(), sc, CFG, PRICES, hints=h)
+    pays = [t.member_pays.high for t in r.trace]
+    allowed = PRICES.services["primary_care_visit"]
+    assert pays[:3] == [40, 40, 40] and pays[3:] == [
+        allowed,
+        allowed,
+    ]  # visits 4-5 count toward the deductible
+    assert all(t.member_pays.low == t.member_pays.high for t in r.trace)  # no range: the rule decides
+    assert deductible_status(pcp, "primary_care_visit", h, True) == "first_visits_before"
+    assert r.assumptions[0].startswith("Catastrophic plan")
+    # "first 3 visits: $40, deductible does not apply" rows: the limit still applies from visit 4
+    pcp.deductible_applies = False
+    r = simulate(p, PlanInputs(), sc, CFG, PRICES, hints=h)
+    assert [t.member_pays.high for t in r.trace] == [40, 40, 40, allowed, allowed]
+    assert deductible_status(pcp, "primary_care_visit", h, True) == "first_visits_before"
+    pcp.deductible_applies = True  # the row describes later visits: kept
+    assert deductible_status(pcp, "primary_care_visit", h, True) == "applies"
 
 
 def test_hsa_rule_narrows_ranges_and_explains():
@@ -147,3 +183,37 @@ def test_hsa_rule_narrows_ranges_and_explains():
     hsa.benefits.services.imaging.in_network.deductible_applies = False
     r3 = simulate(hsa, PlanInputs(), sc, CFG, PRICES)
     assert r3.trace[0].member_pays.high == 0.2 * PRICES.services["imaging"]
+
+
+def test_comparison_notes_name_their_plan_and_rule_notes_lead():
+    from sbcx.domain.compare.engine import PlanInput, compare
+    from sbcx.domain.comparison import ComparisonRequest, PlanInputs
+    from tests.unit.test_cost_model import CFG, PLAN_A, PLAN_B, PRICES
+
+    a, b = PLAN_A.model_copy(deep=True), PLAN_B.model_copy(deep=True)
+    a.benefits.plan_name = "Silver 5000"
+    req = ComparisonRequest(
+        document_ids=["a", "b"], inputs={"a": PlanInputs(), "b": PlanInputs()}, scenario_ids=["moderate"]
+    )
+    r = compare([PlanInput("a", a, hsa_eligible=True), PlanInput("b", b)], req, CFG, PRICES)
+    assert r.assumptions[0].startswith("Plan A (Silver 5000): HSA-eligible plan")
+    assert not any("Plan B" in x and "HSA" in x for x in r.assumptions)
+    assert factsheet(r)["assumptions"][0] == r.assumptions[0]
+
+
+def test_deductible_notes_follow_plan_rules():
+    from sbcx.domain.compare.cost_model import deductible_hints
+    from sbcx.domain.enrich.sections import SECTION_BY_ID, deductible_notes, section_input
+    from tests.unit.test_cost_model import cs, plan
+
+    p = _named(plan(5000, 7000, {}, cs(pct=20), cs(10)), "Silver 5000")
+    p.benefits.services.imaging.in_network.deductible_applies = None
+    assert deductible_notes(p)["services.imaging.in_network"] == "deductible not stated"
+    hsa = deductible_hints(p.benefits, "Silver", hsa_eligible=True)
+    assert deductible_notes(p, hsa)["services.imaging.in_network"] == "after deductible (HSA plan rules)"
+    img = next(
+        x
+        for x in section_input(p, SECTION_BY_ID["tests"], hsa)["services"]
+        if x["service"] == "Imaging (CT/PET, MRI)" or "maging" in x["service"]
+    )
+    assert img["in_network"].endswith("after deductible (HSA plan rules)")

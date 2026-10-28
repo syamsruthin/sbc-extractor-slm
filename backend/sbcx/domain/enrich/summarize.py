@@ -9,6 +9,7 @@ from concurrent.futures import ThreadPoolExecutor
 from pydantic import BaseModel, Field
 
 from sbcx.domain.benefits import BenefitsDocument, SectionSummary
+from sbcx.domain.compare.cost_model import DeductibleHints
 from sbcx.domain.enrich.sections import SECTIONS, Section, section_input, template_summary
 from sbcx.domain.explain.grounding import check, collect
 from sbcx.infra.llm.base import LLMClient, LLMError
@@ -37,9 +38,13 @@ def _user(sec: Section, facts: dict) -> str:
 
 
 def summarize_section(
-    doc: BenefitsDocument, sec: Section, llm: LLMClient | None, model: str
+    doc: BenefitsDocument,
+    sec: Section,
+    llm: LLMClient | None,
+    model: str,
+    hints: DeductibleHints | None = None,
 ) -> SectionSummary:
-    facts = section_input(doc, sec)
+    facts = section_input(doc, sec, hints)
     allowed = collect(facts)
     if llm is not None:
         user = _user(sec, facts)
@@ -73,7 +78,7 @@ def summarize_section(
                 + f"\n\nYour previous answer used numbers that are not in INPUT: {', '.join(bad)}. "
                 "Rewrite it using only numbers from INPUT."
             )
-    text, hl = template_summary(doc, sec)
+    text, hl = template_summary(doc, sec, hints)
     return SectionSummary(
         section=sec.id,
         title=sec.title,
@@ -85,10 +90,14 @@ def summarize_section(
 
 
 def summarize(
-    doc: BenefitsDocument, llm: LLMClient | None, model: str, workers: int = 6
+    doc: BenefitsDocument,
+    llm: LLMClient | None,
+    model: str,
+    workers: int = 6,
+    hints: DeductibleHints | None = None,
 ) -> list[SectionSummary]:
     with ThreadPoolExecutor(workers) as ex:
-        return list(ex.map(lambda s: summarize_section(doc, s, llm, model), SECTIONS))
+        return list(ex.map(lambda s: summarize_section(doc, s, llm, model, hints), SECTIONS))
 
 
 def fake_summary(system: str, user: str) -> dict:

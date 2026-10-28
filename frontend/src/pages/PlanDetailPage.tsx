@@ -8,14 +8,15 @@ import { ConfidenceBadge, StatusBadge } from "@/components/StatusBadge";
 import { Badge, Button, Card, EmptyState, ErrorState, PageHeader, Skeleton, Spinner } from "@/components/ui";
 import { useDocument, useGenerateSummaries } from "@/hooks/api";
 import { MAX_PLANS, useSelection } from "@/hooks/selection";
-import { deductibleNote, describeCost, money } from "@/lib/format";
+import { describeCost, money } from "@/lib/format";
 import { SECTIONS, SERVICE_LABELS, type SectionDef } from "@/lib/sections";
 
 type Amounts = S["Amounts"] | null | undefined;
 
-function CostCell({ c, path, doc, pdf }: { c: CostShare | null | undefined; path: string; doc: BenefitsDocument; pdf: string }) {
-  const ded = path.includes("out_of_network") ? doc.benefits.deductible.out_of_network : doc.benefits.deductible.in_network;
-  const note = deductibleNote(c, !!ded && ((ded.individual ?? 0) > 0 || (ded.family ?? 0) > 0));
+function CostCell({ c, path, detail, pdf }: { c: CostShare | null | undefined; path: string; detail: DocumentDetail; pdf: string }) {
+  const doc = detail.benefits!;
+  // the backend applies the same deductible rules as comparisons (SBC page 1, HSA and catastrophic plans)
+  const note = detail.deductible_notes?.[path];
   return (
     <div>
       <ProvenanceButton meta={doc.provenance?.[`${path}.copay`]} pdfUrl={pdf}>
@@ -82,8 +83,8 @@ function SectionCard({ def, detail }: { def: SectionDef; detail: DocumentDetail 
                   return (
                     <tr key={k}>
                       <td className="py-2 pr-4 text-slate-700">{SERVICE_LABELS[k]}</td>
-                      <td className="py-2 pr-4"><CostCell c={svc.in_network} path={`services.${k}.in_network`} doc={doc} pdf={pdf} /></td>
-                      <td className="py-2 pr-4"><CostCell c={svc.out_of_network} path={`services.${k}.out_of_network`} doc={doc} pdf={pdf} /></td>
+                      <td className="py-2 pr-4"><CostCell c={svc.in_network} path={`services.${k}.in_network`} detail={detail} pdf={pdf} /></td>
+                      <td className="py-2 pr-4"><CostCell c={svc.out_of_network} path={`services.${k}.out_of_network`} detail={detail} pdf={pdf} /></td>
                       <td className="max-w-xs py-2 text-xs text-slate-500">{doc.extras.limitations?.[k] ?? ""}</td>
                     </tr>
                   );
@@ -131,8 +132,8 @@ function SectionCard({ def, detail }: { def: SectionDef; detail: DocumentDetail 
                     <td className="py-2 pr-4">
                       {t.name} <Badge>{t.category.replace(/_/g, " ")}</Badge>
                     </td>
-                    <td className="py-2 pr-4"><CostCell c={t.retail.in_network} path={`drug_tiers[${i}].retail.in_network`} doc={doc} pdf={pdf} /></td>
-                    <td className="py-2"><CostCell c={t.retail.out_of_network} path={`drug_tiers[${i}].retail.out_of_network`} doc={doc} pdf={pdf} /></td>
+                    <td className="py-2 pr-4"><CostCell c={t.retail.in_network} path={`drug_tiers[${i}].retail.in_network`} detail={detail} pdf={pdf} /></td>
+                    <td className="py-2"><CostCell c={t.retail.out_of_network} path={`drug_tiers[${i}].retail.out_of_network`} detail={detail} pdf={pdf} /></td>
                   </tr>
                 ))}
               </tbody>

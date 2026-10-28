@@ -11,6 +11,7 @@ from sbcx.infra.db import session_scope
 from sbcx.infra.llm import get_llm
 from sbcx.infra.repos import DocumentRepo
 from sbcx.logs import log
+from sbcx.services.catalog import plan_hints
 
 logger = logging.getLogger("sbcx.summaries")
 
@@ -23,8 +24,10 @@ def generate_summaries(doc_id: str) -> None:
             return
         row.summaries_status = "running"
         doc = BenefitsDocument.model_validate(row.benefits)
+        catalog_plan_id = row.catalog_plan_id
     try:
-        summaries = summarize(doc, get_llm(), s.model_summary)
+        hints = plan_hints(doc, catalog_plan_id)
+        summaries = summarize(doc, get_llm(), s.model_summary, hints=hints)
     except Exception:
         logger.exception("summaries failed")
         with session_scope() as sess:
