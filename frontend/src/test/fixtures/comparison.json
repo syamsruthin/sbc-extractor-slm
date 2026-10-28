@@ -19,7 +19,7 @@
   "explain": true
  },
  "result": {
-  "engine_version": "1.0.0",
+  "engine_version": "1.1.0",
   "reference_prices_version": "test",
   "coverage_tier": "individual",
   "network": "in_network",
@@ -102,6 +102,7 @@
       "copay": 25.0,
       "coinsurance_pct": null,
       "deductible_applies": false,
+      "deductible_status": "does_not_apply",
       "est_cost_per_use": 25.0,
       "note": null
      },
@@ -111,6 +112,7 @@
       "copay": null,
       "coinsurance_pct": 20.0,
       "deductible_applies": true,
+      "deductible_status": "applies",
       "est_cost_per_use": 30.0,
       "note": null
      }
@@ -139,6 +141,7 @@
       "copay": 50.0,
       "coinsurance_pct": null,
       "deductible_applies": false,
+      "deductible_status": "does_not_apply",
       "est_cost_per_use": 50.0,
       "note": null
      },
@@ -148,6 +151,7 @@
       "copay": null,
       "coinsurance_pct": 20.0,
       "deductible_applies": true,
+      "deductible_status": "applies",
       "est_cost_per_use": 50.0,
       "note": null
      }
@@ -171,11 +175,12 @@
     "section": "office_visits",
     "cells": {
      "A": {
-      "display": "No charge",
+      "display": "No charge, deductible doesn't apply",
       "covered": true,
       "copay": 0.0,
       "coinsurance_pct": 0.0,
       "deductible_applies": null,
+      "deductible_status": "before_per_sbc",
       "est_cost_per_use": 0.0,
       "note": null
      },
@@ -185,6 +190,7 @@
       "copay": 0.0,
       "coinsurance_pct": 0.0,
       "deductible_applies": false,
+      "deductible_status": "does_not_apply",
       "est_cost_per_use": 0.0,
       "note": null
      }
@@ -206,11 +212,12 @@
     "section": "tests",
     "cells": {
      "A": {
-      "display": "20% coinsurance",
+      "display": "20% coinsurance, deductible not stated",
       "covered": true,
       "copay": null,
       "coinsurance_pct": 20.0,
       "deductible_applies": null,
+      "deductible_status": "not_stated",
       "est_cost_per_use": 24.0,
       "note": null
      },
@@ -220,6 +227,7 @@
       "copay": null,
       "coinsurance_pct": 20.0,
       "deductible_applies": true,
+      "deductible_status": "applies",
       "est_cost_per_use": 24.0,
       "note": null
      }
@@ -241,11 +249,12 @@
     "section": "tests",
     "cells": {
      "A": {
-      "display": "20% coinsurance",
+      "display": "20% coinsurance, deductible not stated",
       "covered": true,
       "copay": null,
       "coinsurance_pct": 20.0,
       "deductible_applies": null,
+      "deductible_status": "not_stated",
       "est_cost_per_use": 200.0,
       "note": null
      },
@@ -255,6 +264,7 @@
       "copay": null,
       "coinsurance_pct": 20.0,
       "deductible_applies": true,
+      "deductible_status": "applies",
       "est_cost_per_use": 200.0,
       "note": null
      }
@@ -276,11 +286,12 @@
     "section": "outpatient_surgery",
     "cells": {
      "A": {
-      "display": "20% coinsurance",
+      "display": "20% coinsurance, deductible not stated",
       "covered": true,
       "copay": null,
       "coinsurance_pct": 20.0,
       "deductible_applies": null,
+      "deductible_status": "not_stated",
       "est_cost_per_use": 20.0,
       "note": null
      },
@@ -290,6 +301,7 @@
       "copay": null,
       "coinsurance_pct": 20.0,
       "deductible_applies": true,
+      "deductible_status": "applies",
       "est_cost_per_use": 20.0,
       "note": null
      }
@@ -311,11 +323,12 @@
     "section": "outpatient_surgery",
     "cells": {
      "A": {
-      "display": "20% coinsurance",
+      "display": "20% coinsurance, deductible not stated",
       "covered": true,
       "copay": null,
       "coinsurance_pct": 20.0,
       "deductible_applies": null,
+      "deductible_status": "not_stated",
       "est_cost_per_use": 20.0,
       "note": null
      },
@@ -325,6 +338,7 @@
       "copay": null,
       "coinsurance_pct": 20.0,
       "deductible_applies": true,
+      "deductible_status": "applies",
       "est_cost_per_use": 20.0,
       "note": null
      }
@@ -346,11 +360,12 @@
     "section": "emergency",
     "cells": {
      "A": {
-      "display": "20% coinsurance",
+      "display": "20% coinsurance, deductible not stated",
       "covered": true,
       "copay": null,
       "coinsurance_pct": 20.0,
       "deductible_applies": null,
+      "deductible_status": "not_stated",
       "est_cost_per_use": 20.0,
       "note": null
      },
@@ -360,6 +375,7 @@
       "copay": null,
       "coinsurance_pct": 20.0,
       "deductible_applies": true,
+      "deductible_status": "applies",
       "est_cost_per_use": 20.0,
       "note": null
      }
@@ -381,11 +397,12 @@
     "section": "emergency",
     "cells": {
      "A": {
-      "display": "20% coinsurance",
+      "display": "20% coinsurance, deductible not stated",
       "covered": true,
       "copay": null,
       "coinsurance_pct": 20.0,
       "deductible_applies": null,
+      "deductible_status": "not_stated",
       "est_cost_per_use": 20.0,
       "note": null
      },
@@ -395,6 +412,7 @@
       "copay": null,
       "coinsurance_pct": 20.0,
       "deductible_applies": true,
+      "deductible_status": "applies",
       "est_cost_per_use": 20.0,
       "note": null
      }
@@ -421,6 +439,7 @@
       "copay": 25.0,
       "coinsurance_pct": null,
       "deductible_applies": false,
+      "deductible_status": "does_not_apply",
       "est_cost_per_use": 25.0,
       "note": null
      },
@@ -430,6 +449,7 @@
       "copay": null,
       "coinsurance_pct": 20.0,
       "deductible_applies": true,
+      "deductible_status": "applies",
       "est_cost_per_use": 40.0,
       "note": null
      }
@@ -453,11 +473,12 @@
     "section": "hospital",
     "cells": {
      "A": {
-      "display": "20% coinsurance",
+      "display": "20% coinsurance, deductible not stated",
       "covered": true,
       "copay": null,
       "coinsurance_pct": 20.0,
       "deductible_applies": null,
+      "deductible_status": "not_stated",
       "est_cost_per_use": 20.0,
       "note": null
      },
@@ -467,6 +488,7 @@
       "copay": null,
       "coinsurance_pct": 20.0,
       "deductible_applies": true,
+      "deductible_status": "applies",
       "est_cost_per_use": 20.0,
       "note": null
      }
@@ -488,11 +510,12 @@
     "section": "hospital",
     "cells": {
      "A": {
-      "display": "20% coinsurance",
+      "display": "20% coinsurance, deductible not stated",
       "covered": true,
       "copay": null,
       "coinsurance_pct": 20.0,
       "deductible_applies": null,
+      "deductible_status": "not_stated",
       "est_cost_per_use": 20.0,
       "note": null
      },
@@ -502,6 +525,7 @@
       "copay": null,
       "coinsurance_pct": 20.0,
       "deductible_applies": true,
+      "deductible_status": "applies",
       "est_cost_per_use": 20.0,
       "note": null
      }
@@ -523,11 +547,12 @@
     "section": "mental_health",
     "cells": {
      "A": {
-      "display": "20% coinsurance",
+      "display": "20% coinsurance, deductible not stated",
       "covered": true,
       "copay": null,
       "coinsurance_pct": 20.0,
       "deductible_applies": null,
+      "deductible_status": "not_stated",
       "est_cost_per_use": 20.0,
       "note": null
      },
@@ -537,6 +562,7 @@
       "copay": null,
       "coinsurance_pct": 20.0,
       "deductible_applies": true,
+      "deductible_status": "applies",
       "est_cost_per_use": 20.0,
       "note": null
      }
@@ -558,11 +584,12 @@
     "section": "mental_health",
     "cells": {
      "A": {
-      "display": "20% coinsurance",
+      "display": "20% coinsurance, deductible not stated",
       "covered": true,
       "copay": null,
       "coinsurance_pct": 20.0,
       "deductible_applies": null,
+      "deductible_status": "not_stated",
       "est_cost_per_use": 20.0,
       "note": null
      },
@@ -572,6 +599,7 @@
       "copay": null,
       "coinsurance_pct": 20.0,
       "deductible_applies": true,
+      "deductible_status": "applies",
       "est_cost_per_use": 20.0,
       "note": null
      }
@@ -593,11 +621,12 @@
     "section": "pregnancy",
     "cells": {
      "A": {
-      "display": "20% coinsurance",
+      "display": "20% coinsurance, deductible not stated",
       "covered": true,
       "copay": null,
       "coinsurance_pct": 20.0,
       "deductible_applies": null,
+      "deductible_status": "not_stated",
       "est_cost_per_use": 20.0,
       "note": null
      },
@@ -607,6 +636,7 @@
       "copay": null,
       "coinsurance_pct": 20.0,
       "deductible_applies": true,
+      "deductible_status": "applies",
       "est_cost_per_use": 20.0,
       "note": null
      }
@@ -628,11 +658,12 @@
     "section": "pregnancy",
     "cells": {
      "A": {
-      "display": "20% coinsurance",
+      "display": "20% coinsurance, deductible not stated",
       "covered": true,
       "copay": null,
       "coinsurance_pct": 20.0,
       "deductible_applies": null,
+      "deductible_status": "not_stated",
       "est_cost_per_use": 20.0,
       "note": null
      },
@@ -642,6 +673,7 @@
       "copay": null,
       "coinsurance_pct": 20.0,
       "deductible_applies": true,
+      "deductible_status": "applies",
       "est_cost_per_use": 20.0,
       "note": null
      }
@@ -663,11 +695,12 @@
     "section": "pregnancy",
     "cells": {
      "A": {
-      "display": "20% coinsurance",
+      "display": "20% coinsurance, deductible not stated",
       "covered": true,
       "copay": null,
       "coinsurance_pct": 20.0,
       "deductible_applies": null,
+      "deductible_status": "not_stated",
       "est_cost_per_use": 20.0,
       "note": null
      },
@@ -677,6 +710,7 @@
       "copay": null,
       "coinsurance_pct": 20.0,
       "deductible_applies": true,
+      "deductible_status": "applies",
       "est_cost_per_use": 20.0,
       "note": null
      }
@@ -698,11 +732,12 @@
     "section": "recovery",
     "cells": {
      "A": {
-      "display": "20% coinsurance",
+      "display": "20% coinsurance, deductible not stated",
       "covered": true,
       "copay": null,
       "coinsurance_pct": 20.0,
       "deductible_applies": null,
+      "deductible_status": "not_stated",
       "est_cost_per_use": 20.0,
       "note": null
      },
@@ -712,6 +747,7 @@
       "copay": null,
       "coinsurance_pct": 20.0,
       "deductible_applies": true,
+      "deductible_status": "applies",
       "est_cost_per_use": 20.0,
       "note": null
      }
@@ -733,11 +769,12 @@
     "section": "recovery",
     "cells": {
      "A": {
-      "display": "20% coinsurance",
+      "display": "20% coinsurance, deductible not stated",
       "covered": true,
       "copay": null,
       "coinsurance_pct": 20.0,
       "deductible_applies": null,
+      "deductible_status": "not_stated",
       "est_cost_per_use": 20.0,
       "note": null
      },
@@ -747,6 +784,7 @@
       "copay": null,
       "coinsurance_pct": 20.0,
       "deductible_applies": true,
+      "deductible_status": "applies",
       "est_cost_per_use": 20.0,
       "note": null
      }
@@ -768,11 +806,12 @@
     "section": "recovery",
     "cells": {
      "A": {
-      "display": "20% coinsurance",
+      "display": "20% coinsurance, deductible not stated",
       "covered": true,
       "copay": null,
       "coinsurance_pct": 20.0,
       "deductible_applies": null,
+      "deductible_status": "not_stated",
       "est_cost_per_use": 20.0,
       "note": null
      },
@@ -782,6 +821,7 @@
       "copay": null,
       "coinsurance_pct": 20.0,
       "deductible_applies": true,
+      "deductible_status": "applies",
       "est_cost_per_use": 20.0,
       "note": null
      }
@@ -803,11 +843,12 @@
     "section": "recovery",
     "cells": {
      "A": {
-      "display": "20% coinsurance",
+      "display": "20% coinsurance, deductible not stated",
       "covered": true,
       "copay": null,
       "coinsurance_pct": 20.0,
       "deductible_applies": null,
+      "deductible_status": "not_stated",
       "est_cost_per_use": 20.0,
       "note": null
      },
@@ -817,6 +858,7 @@
       "copay": null,
       "coinsurance_pct": 20.0,
       "deductible_applies": true,
+      "deductible_status": "applies",
       "est_cost_per_use": 20.0,
       "note": null
      }
@@ -838,11 +880,12 @@
     "section": "recovery",
     "cells": {
      "A": {
-      "display": "20% coinsurance",
+      "display": "20% coinsurance, deductible not stated",
       "covered": true,
       "copay": null,
       "coinsurance_pct": 20.0,
       "deductible_applies": null,
+      "deductible_status": "not_stated",
       "est_cost_per_use": 20.0,
       "note": null
      },
@@ -852,6 +895,7 @@
       "copay": null,
       "coinsurance_pct": 20.0,
       "deductible_applies": true,
+      "deductible_status": "applies",
       "est_cost_per_use": 20.0,
       "note": null
      }
@@ -873,11 +917,12 @@
     "section": "recovery",
     "cells": {
      "A": {
-      "display": "20% coinsurance",
+      "display": "20% coinsurance, deductible not stated",
       "covered": true,
       "copay": null,
       "coinsurance_pct": 20.0,
       "deductible_applies": null,
+      "deductible_status": "not_stated",
       "est_cost_per_use": 20.0,
       "note": null
      },
@@ -887,6 +932,7 @@
       "copay": null,
       "coinsurance_pct": 20.0,
       "deductible_applies": true,
+      "deductible_status": "applies",
       "est_cost_per_use": 20.0,
       "note": null
      }
@@ -908,11 +954,12 @@
     "section": "children",
     "cells": {
      "A": {
-      "display": "20% coinsurance",
+      "display": "20% coinsurance, deductible not stated",
       "covered": true,
       "copay": null,
       "coinsurance_pct": 20.0,
       "deductible_applies": null,
+      "deductible_status": "not_stated",
       "est_cost_per_use": 20.0,
       "note": null
      },
@@ -922,6 +969,7 @@
       "copay": null,
       "coinsurance_pct": 20.0,
       "deductible_applies": true,
+      "deductible_status": "applies",
       "est_cost_per_use": 20.0,
       "note": null
      }
@@ -943,11 +991,12 @@
     "section": "children",
     "cells": {
      "A": {
-      "display": "20% coinsurance",
+      "display": "20% coinsurance, deductible not stated",
       "covered": true,
       "copay": null,
       "coinsurance_pct": 20.0,
       "deductible_applies": null,
+      "deductible_status": "not_stated",
       "est_cost_per_use": 20.0,
       "note": null
      },
@@ -957,6 +1006,7 @@
       "copay": null,
       "coinsurance_pct": 20.0,
       "deductible_applies": true,
+      "deductible_status": "applies",
       "est_cost_per_use": 20.0,
       "note": null
      }
@@ -978,11 +1028,12 @@
     "section": "children",
     "cells": {
      "A": {
-      "display": "20% coinsurance",
+      "display": "20% coinsurance, deductible not stated",
       "covered": true,
       "copay": null,
       "coinsurance_pct": 20.0,
       "deductible_applies": null,
+      "deductible_status": "not_stated",
       "est_cost_per_use": 20.0,
       "note": null
      },
@@ -992,6 +1043,7 @@
       "copay": null,
       "coinsurance_pct": 20.0,
       "deductible_applies": true,
+      "deductible_status": "applies",
       "est_cost_per_use": 20.0,
       "note": null
      }
@@ -1019,6 +1071,7 @@
       "copay": 25.0,
       "coinsurance_pct": null,
       "deductible_applies": false,
+      "deductible_status": "does_not_apply",
       "est_cost_per_use": 25.0,
       "note": null
      },
@@ -1028,6 +1081,7 @@
       "copay": 10.0,
       "coinsurance_pct": null,
       "deductible_applies": true,
+      "deductible_status": "applies",
       "est_cost_per_use": 10.0,
       "note": null
      }
@@ -1055,6 +1109,7 @@
       "copay": 25.0,
       "coinsurance_pct": null,
       "deductible_applies": false,
+      "deductible_status": "does_not_apply",
       "est_cost_per_use": 25.0,
       "note": null
      },
@@ -1064,6 +1119,7 @@
       "copay": 10.0,
       "coinsurance_pct": null,
       "deductible_applies": true,
+      "deductible_status": "applies",
       "est_cost_per_use": 10.0,
       "note": null
      }
@@ -1091,6 +1147,7 @@
       "copay": 25.0,
       "coinsurance_pct": null,
       "deductible_applies": false,
+      "deductible_status": "does_not_apply",
       "est_cost_per_use": 25.0,
       "note": null
      },
@@ -1100,6 +1157,7 @@
       "copay": 10.0,
       "coinsurance_pct": null,
       "deductible_applies": true,
+      "deductible_status": "applies",
       "est_cost_per_use": 10.0,
       "note": null
      }
@@ -1127,6 +1185,7 @@
       "copay": 25.0,
       "coinsurance_pct": null,
       "deductible_applies": false,
+      "deductible_status": "does_not_apply",
       "est_cost_per_use": 25.0,
       "note": null
      },
@@ -1136,6 +1195,7 @@
       "copay": 10.0,
       "coinsurance_pct": null,
       "deductible_applies": true,
+      "deductible_status": "applies",
       "est_cost_per_use": 10.0,
       "note": null
      }
@@ -2018,7 +2078,7 @@
    "Balance billing, separate drug deductibles, visit limits and HSA tax savings aren't included.",
    "Where the SBC doesn't say whether the deductible applies, costs are shown as a range."
   ],
-  "result_hash": "0d2f13928ea1459c"
+  "result_hash": "03fa6407e0e30ea7"
  },
  "explanation_status": "ready",
  "explanation": {
@@ -2052,9 +2112,10 @@
    "ok": true,
    "numbers_checked": 11,
    "violations": [],
-   "policy_violations": []
+   "policy_violations": [],
+   "claim_violations": []
   },
   "model": null,
-  "prompt_version": "explanation.v1"
+  "prompt_version": "explanation.v2"
  }
 }

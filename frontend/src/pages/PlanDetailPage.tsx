@@ -14,7 +14,8 @@ import { SECTIONS, SERVICE_LABELS, type SectionDef } from "@/lib/sections";
 type Amounts = S["Amounts"] | null | undefined;
 
 function CostCell({ c, path, doc, pdf }: { c: CostShare | null | undefined; path: string; doc: BenefitsDocument; pdf: string }) {
-  const note = deductibleNote(c);
+  const ded = path.includes("out_of_network") ? doc.benefits.deductible.out_of_network : doc.benefits.deductible.in_network;
+  const note = deductibleNote(c, !!ded && ((ded.individual ?? 0) > 0 || (ded.family ?? 0) > 0));
   return (
     <div>
       <ProvenanceButton meta={doc.provenance?.[`${path}.copay`]} pdfUrl={pdf}>

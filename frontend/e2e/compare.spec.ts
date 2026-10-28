@@ -41,7 +41,8 @@ test("upload two SBCs, compare them and read the explanation", async ({ page }) 
 
   await expect(page).toHaveURL(/\/comparisons\//);
   await expect(page.getByRole("heading", { name: "Plan comparison" })).toBeVisible();
-  await expect(page.getByText("Numbers verified")).toBeVisible();
+  await expect(page.getByText("Numbers checked")).toBeVisible();
+  await expect(page.getByText("Plan A").first()).toBeVisible();
   await expect(page.getByText("$7,440").first()).toBeVisible(); // 620 x 12
   await expect(page.getByRole("heading", { name: "Side by side" })).toBeVisible();
 });

@@ -442,6 +442,8 @@ export interface components {
             coinsurance_pct?: number | null;
             /** Deductible Applies */
             deductible_applies?: boolean | null;
+            /** Deductible Status */
+            deductible_status?: string | null;
             /** Est Cost Per Use */
             est_cost_per_use?: number | null;
             /** Note */
@@ -826,6 +828,11 @@ export interface components {
              * @default []
              */
             policy_violations: string[];
+            /**
+             * Claim Violations
+             * @default []
+             */
+            claim_violations: string[];
         };
         /** HTTPValidationError */
         HTTPValidationError: {

@@ -6,6 +6,7 @@ Unknown inputs become ranges: each plan is simulated at a low and a high bound, 
 
 from __future__ import annotations
 
+import re
 from dataclasses import dataclass, field
 from typing import Literal
 
@@ -42,14 +43,93 @@ class Pay:
     gap: bool = False
 
 
-def member_pays(cs: CostShare | None, allowed: float, ded_remaining: float, bound: Bound) -> Pay:
+@dataclass(frozen=True)
+class DeductibleHints:
+    """Document-level evidence about cells whose own row doesn't say whether the deductible applies,
+    taken from the SBC's page-1 answer to "Are there services covered before you meet your deductible?"."""
+
+    unmarked_apply: bool = False  # "only services listed as 'deductible does not apply'" -> other rows apply
+    before: frozenset[str] = frozenset()  # services the page-1 list names as covered before the deductible
+
+
+_BEFORE = {
+    "preventive_care": r"preventive",
+    "primary_care_visit": r"primary care|\bpcp\b",
+    "specialist_visit": r"specialist",
+    "urgent_care": r"urgent",
+    "mental_health_outpatient": r"mental|behavioral",
+    "diagnostic_test": r"diagnostic|\blab",
+    "imaging": r"imaging",
+    "drug:generic": r"generic|prescription|\bdrugs?\b",
+    "drug:preferred_brand": r"preferred brand|prescription|\bdrugs?\b",
+    "drug:non_preferred_brand": r"prescription",
+    "drug:specialty": r"prescription",
+}
+
+
+def deductible_hints(plan: SBCExtraction) -> DeductibleHints:
+    items = " | ".join(plan.services_before_deductible).lower()
+    unmarked = bool(
+        re.search(r"deductible\W{0,3}(does not|doesn.t) apply|listed (below|in the chart)", items)
+    )
+    named = {k for k, rx in _BEFORE.items() if re.search(rx, items)}
+    return DeductibleHints(unmarked, frozenset(named))
+
+
+def resolve_applies(
+    cs: CostShare, service_key: str, bound: Bound, hints: DeductibleHints | None = None
+) -> bool:
+    """Whether the deductible applies to a claim. The row's own statement wins; otherwise in-network
+    preventive care is free (required by federal law), page-1 evidence decides, and only then is it
+    a range (low bound: doesn't apply, high bound: applies). "No charge" alone is not evidence: SBC
+    charts show costs after the deductible is met."""
+    if cs.deductible_applies is not None:
+        return cs.deductible_applies
+    h = hints or DeductibleHints()
+    if service_key == "preventive_care" or service_key in h.before:
+        return False
+    if h.unmarked_apply:
+        return True
+    return bound == "high"
+
+
+DeductibleStatus = Literal[
+    "applies", "does_not_apply", "applies_per_sbc", "before_per_sbc", "not_stated", "none"
+]
+
+
+def deductible_status(
+    cs: CostShare | None, service_key: str, hints: DeductibleHints | None, has_deductible: bool
+) -> DeductibleStatus:
+    """What we know about the deductible for one cell, so text shown to users and to the LLM never turns
+    "the SBC doesn't say" into "no deductible" (2026-10-28 quality review)."""
+    if cs is None or not cs.covered or not has_deductible:
+        return "none"
+    if cs.deductible_applies is True:
+        return "applies"
+    if cs.deductible_applies is False:
+        return "does_not_apply"
+    h = hints or DeductibleHints()
+    if service_key == "preventive_care" or service_key in h.before:
+        return "before_per_sbc"
+    if h.unmarked_apply:
+        return "applies_per_sbc"
+    return "not_stated"
+
+
+def has_deductible(plan: SBCExtraction, network: Network = Network.in_network) -> bool:
+    d = getattr(plan.deductible, network.value)
+    return bool(d and ((d.individual or 0) > 0 or (d.family or 0) > 0))
+
+
+def member_pays(
+    cs: CostShare | None, allowed: float, ded_remaining: float, bound: Bound, applies: bool | None = None
+) -> Pay:
     """What the member pays for one claim (06-cost-model §3)."""
     if cs is None or not cs.covered:
         return Pay(allowed, False, 0.0, gap=True)
-    applies = cs.deductible_applies
     if applies is None:
-        # "No charge" states the member pays nothing, so an unstated deductible doesn't apply to it
-        applies = bound == "high" and not (cs.copay == 0 and cs.coinsurance_pct == 0)
+        applies = cs.deductible_applies if cs.deductible_applies is not None else bound == "high"
     to_ded = min(allowed, max(0.0, ded_remaining)) if applies else 0.0
     rest = allowed - to_ded
     share = 0.0
@@ -171,9 +251,11 @@ def _run(
         embedded=embedded,
     )
     pays: list[float] = []
+    hints = deductible_hints(plan)
     for c in claims:
         cs, _ = cell(plan, c.service_key, network)
-        p = member_pays(cs, c.allowed, acc.ded_remaining(c.member), bound)
+        applies = resolve_applies(cs, c.service_key, bound, hints) if cs is not None and cs.covered else None
+        p = member_pays(cs, c.allowed, acc.ded_remaining(c.member), bound, applies)
         amt = p.amount
         if p.counts_toward_oop:
             amt = min(amt, acc.oop_remaining(c.member))
@@ -207,6 +289,12 @@ def simulate(
     lo, hi = runs[low_key], runs[high_key]
 
     assumptions: list[str] = []
+    hints = deductible_hints(plan)
+    if hints.unmarked_apply:
+        assumptions.append(
+            "The SBC says only services marked 'deductible does not apply' are covered before the deductible, "
+            "so the deductible is applied to the other services."
+        )
     trace = []
     seen_notes = set()
     for i, c in enumerate(claims):
@@ -219,7 +307,8 @@ def simulate(
             flag = "not covered: full cost, doesn't count toward the out-of-pocket limit"
         elif (
             cs.deductible_applies is None
-            and not (cs.copay == 0 and cs.coinsurance_pct == 0)
+            and resolve_applies(cs, c.service_key, "low", hints)
+            != resolve_applies(cs, c.service_key, "high", hints)
             and (d := _amounts(plan, network)[0])
             and (d.individual or 0) > 0
         ):

@@ -5,12 +5,22 @@ from __future__ import annotations
 
 import hashlib
 import json
+from collections.abc import Mapping
 from dataclasses import dataclass
 from string import ascii_uppercase
 
 from sbcx.domain.benefits import BenefitsDocument, Warning
 from sbcx.domain.compare.config import ReferencePrices, ScenarioConfig
-from sbcx.domain.compare.cost_model import DRUG_ORDER, drug_tier, member_pays, oop_limit, simulate
+from sbcx.domain.compare.cost_model import (
+    DRUG_ORDER,
+    deductible_hints,
+    deductible_status,
+    drug_tier,
+    has_deductible,
+    member_pays,
+    oop_limit,
+    simulate,
+)
 from sbcx.domain.comparison import (
     AmountsView,
     CellView,
@@ -58,9 +68,10 @@ def est_per_use(cs: CostShare | None, allowed: float) -> float | None:
     return round(member_pays(cs, allowed, 0.0, "low").amount, 2)
 
 
-def view(cs: CostShare | None, allowed: float | None) -> CellView:
+def view(cs: CostShare | None, allowed: float | None, status: str | None = None) -> CellView:
     return CellView(
-        display=describe_cost(cs),
+        display=describe_cost(cs, status=status),
+        deductible_status=status,
         covered=None if cs is None else cs.covered,
         copay=cs.copay if cs else None,
         coinsurance_pct=cs.coinsurance_pct if cs else None,
@@ -93,9 +104,13 @@ def verdict(base: CellView, other: CellView, allowed: float) -> tuple[Verdict, f
 
 
 def _diff(
-    id_: str, cells: dict[str, CostShare | None], base: str, allowed: float
+    id_: str,
+    cells: dict[str, CostShare | None],
+    base: str,
+    allowed: float,
+    statuses: Mapping[str, str] | None = None,
 ) -> tuple[dict, dict, dict, str, list[str]]:
-    views = {k: view(c, allowed) for k, c in cells.items()}
+    views = {k: view(c, allowed, (statuses or {}).get(k)) for k, c in cells.items()}
     verdicts, deltas = {}, {}
     for k in views:
         if k == base:
@@ -199,12 +214,16 @@ def compare(
         worst_case_delta=delta(worst),
     )
 
+    hints = {k: deductible_hints(p.doc.benefits) for k, p in by_key.items()}
+    has_ded = {k: has_deductible(p.doc.benefits, req.network) for k, p in by_key.items()}
+
     # services
     services = []
     for skey, label in SERVICE_LABELS.items():
         allowed = prices.services[skey]
         cells = {k: getattr(getattr(p.doc.benefits.services, skey), net) for k, p in by_key.items()}
-        views, verdicts, deltas, kind, flags = _diff(f"svc.{skey}", cells, base, allowed)
+        st = {k: deductible_status(cells[k], skey, hints[k], has_ded[k]) for k in cells}
+        views, verdicts, deltas, kind, flags = _diff(f"svc.{skey}", cells, base, allowed, st)
         services.append(
             ServiceDiff(
                 id=f"svc.{skey}",
@@ -225,7 +244,8 @@ def compare(
         allowed = prices.drugs[cat]
         tiers = {k: drug_tier(p.doc.benefits.drug_tiers, cat)[0] for k, p in by_key.items()}
         cells = {k: (getattr(t.retail, net) if t else None) for k, t in tiers.items()}
-        views, verdicts, deltas, _, _ = _diff(f"drug.{cat}", cells, base, allowed)
+        st = {k: deductible_status(cells[k], f"drug:{cat}", hints[k], has_ded[k]) for k in cells}
+        views, verdicts, deltas, _, _ = _diff(f"drug.{cat}", cells, base, allowed, st)
         drugs.append(
             DrugTierDiff(
                 id=f"drug.{cat}",

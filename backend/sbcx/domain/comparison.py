@@ -88,6 +88,8 @@ class CellView(BaseModel):
     copay: float | None = None
     coinsurance_pct: float | None = None
     deductible_applies: bool | None = None
+    # applies | does_not_apply | applies_per_sbc | before_per_sbc | not_stated | none
+    deductible_status: str | None = None
     est_cost_per_use: float | None = None
     note: str | None = None
 

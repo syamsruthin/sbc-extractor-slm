@@ -1244,6 +1244,17 @@
             ],
             "title": "Deductible Applies"
           },
+          "deductible_status": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Deductible Status"
+          },
           "est_cost_per_use": {
             "anyOf": [
               {
@@ -2290,6 +2301,14 @@
             },
             "type": "array",
             "title": "Policy Violations",
+            "default": []
+          },
+          "claim_violations": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Claim Violations",
             "default": []
           }
         },

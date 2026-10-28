@@ -52,7 +52,17 @@ def pct(v: float) -> str:
     return f"{v:g}%"
 
 
-def describe_cost(c: CostShare | None, with_deductible: bool = True) -> str:
+DEDUCTIBLE_TEXT = {
+    "applies": ", after deductible",
+    "does_not_apply": ", deductible doesn't apply",
+    "applies_per_sbc": ", after deductible (per the SBC's page 1)",
+    "before_per_sbc": ", deductible doesn't apply",
+    "not_stated": ", deductible not stated",
+    "none": "",
+}
+
+
+def describe_cost(c: CostShare | None, with_deductible: bool = True, status: str | None = None) -> str:
     if c is None:
         return "Not listed"
     if not c.covered:
@@ -66,6 +76,8 @@ def describe_cost(c: CostShare | None, with_deductible: bool = True) -> str:
         if c.coinsurance_pct is not None:
             parts.append(f"{pct(c.coinsurance_pct)} coinsurance")
     text = " then ".join(parts) if parts else "Covered (price not stated)"
+    if with_deductible and status is not None:
+        return text + DEDUCTIBLE_TEXT[status]
     if with_deductible:
         if c.deductible_applies is True:
             text += ", after deductible"

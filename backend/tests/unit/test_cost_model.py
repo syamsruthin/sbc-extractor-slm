@@ -116,8 +116,9 @@ def test_cost_share_formula():
     nc = member_pays(_cs(covered=False), A, 0, "low")
     assert nc.amount == A and not nc.counts_toward_oop and nc.gap
     assert member_pays(_cs(), A, 0, "low").amount == 0 and member_pays(_cs(), A, 0, "high").amount == A
-    # "No charge" with an unstated deductible stays free in both bounds
-    assert member_pays(_cs(copay=0, pct=0), A, 500, "high").amount == 0
+    # "No charge" with an unstated deductible is a range: SBC charts show costs after the deductible
+    assert member_pays(_cs(copay=0, pct=0), A, 500, "low").amount == 0
+    assert member_pays(_cs(copay=0, pct=0), A, 500, "high").amount == 500
 
 
 def _cs(**kw):
@@ -224,3 +225,45 @@ def test_raising_copay_never_lowers_cost(copay, bump, evs):
         PRICES,
     )
     assert hi.out_of_pocket.low >= lo.out_of_pocket.low - 1e-6
+
+
+def test_deductible_evidence_rules():
+    from sbcx.domain.compare.cost_model import DeductibleHints, resolve_applies
+
+    free = _cs(copay=0, pct=0)
+    assert (
+        resolve_applies(free, "preventive_care", "high") is False
+    )  # in-network preventive care is free by law
+    assert resolve_applies(free, "hospital_facility_fee", "low") is False
+    assert resolve_applies(free, "hospital_facility_fee", "high") is True
+    marked = DeductibleHints(unmarked_apply=True)
+    assert (
+        resolve_applies(free, "hospital_facility_fee", "low", marked) is True
+    )  # page-1 statement narrows the range
+    named = DeductibleHints(before=frozenset({"primary_care_visit"}))
+    assert resolve_applies(_cs(copay=25), "primary_care_visit", "high", named) is False
+    assert (
+        resolve_applies(_cs(copay=25, ded=True), "primary_care_visit", "low", named) is True
+    )  # the row wins
+
+
+def test_no_charge_after_deductible_plan():
+    """Oregon-style bronze: deductible = OOP limit, chart cells say "No charge", and page 1 says only services
+    marked 'deductible does not apply' are covered first. Heavy use must reach the OOP limit."""
+    p = plan(9200, 9200, {"preventive_care": cs(0, 0)}, cs(0, 0), cs(0, 0))
+    p.benefits.services_before_deductible = [
+        'Certain preventive care and those services listed below as "deductible does not apply"'
+    ]
+    sc = Scenario(
+        id="h",
+        label="h",
+        events=[Event(event="hospital_stay", count=1), Event(event="preventive_visit", count=1)],
+    )
+    r = simulate(p, PlanInputs(monthly_premium=500), sc, CFG, PRICES)
+    assert (
+        r.out_of_pocket.low == r.out_of_pocket.high == 200.0
+    )  # PRICES: hospital fees 100 + 100 in the test table
+    big = ReferencePrices("t", "t", {k: 10000.0 for k in SVC}, PRICES.drugs)
+    r2 = simulate(p, PlanInputs(monthly_premium=500), sc, CFG, big)
+    assert r2.out_of_pocket.low == r2.out_of_pocket.high == 9200.0 and r2.oop_limit_met
+    assert any("marked 'deductible does not apply'" in a for a in r2.assumptions)

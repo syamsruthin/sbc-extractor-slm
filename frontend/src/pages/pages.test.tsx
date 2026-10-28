@@ -86,7 +86,8 @@ describe("ComparisonPage", () => {
     mockFetch({ "/comparisons/cmp1": data });
     renderAt(<ComparisonPage />, { path: "/comparisons/:id", route: "/comparisons/cmp1" });
     expect(await screen.findByText("What this means for you")).toBeInTheDocument();
-    expect(screen.getByText("Numbers verified")).toBeInTheDocument();
+    expect(screen.getByText("Numbers checked")).toBeInTheDocument();
+    expect(screen.getAllByText("Plan A").length).toBeGreaterThan(0); // cards carry the letters the explanation uses
     expect(screen.getByText(data.explanation!.content.headline)).toBeInTheDocument();
     expect(screen.getAllByText("$6,848 – $7,840").length).toBeGreaterThan(0); // worked example, plan A moderate
     expect(screen.getAllByText("$7,310").length).toBeGreaterThan(0);
