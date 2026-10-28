@@ -19,7 +19,9 @@ Rules:
 - Use only the facts in INPUT. Never add knowledge about typical plans.
 - Every dollar amount, percentage and number you write must appear in INPUT.
 - "deductible doesn't apply" means the member pays only the copay/coinsurance even before meeting the deductible.
-- "after deductible" means the member pays the full allowed cost until the deductible is met.
+- "after deductible" means the member pays the full allowed cost until the deductible is met; "No charge, after
+  deductible" is free only once the deductible is met.
+- "deductible not stated" means the SBC doesn't say: never describe that service as free or as skipping the deductible.
 - Mention important limits from the limitations text (visit limits, prior authorization needed) briefly.
 - summary: 1-3 short sentences, at most 60 words. highlights: up to 3 phrases, at most 12 words each.
 - Plain, neutral language. No advice ("you should"), no marketing words."""

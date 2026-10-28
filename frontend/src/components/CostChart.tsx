@@ -8,7 +8,7 @@ import { money, range } from "@/lib/format";
 /** Annual total per plan per scenario. A range is drawn as a solid bar to the low end plus a lighter
  * segment up to the high end. */
 export function CostChart({ result }: { result: ComparisonResult }) {
-  const names = Object.fromEntries(result.plans.map((p) => [p.plan_key, p.plan_name ?? `Plan ${p.plan_key}`]));
+  const names = Object.fromEntries(result.plans.map((p) => [p.plan_key, `${p.plan_key} · ${p.plan_name ?? `Plan ${p.plan_key}`}`]));
   const data = result.scenarios.map((s) => {
     const row: Record<string, number | string> = { scenario: s.scenario.label };
     for (const [k, r] of Object.entries(s.per_plan)) {

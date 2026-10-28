@@ -24,8 +24,11 @@ export function ExplanationPanel({ data }: { data: ComparisonResponse }) {
         <div className="flex items-center gap-2">
           {e && <Badge tone={SOURCE[e.source].tone}>{SOURCE[e.source].label}</Badge>}
           {e?.grounding.ok && (
-            <Badge tone="green" title={`${e.grounding.numbers_checked} numbers checked against the computed comparison`}>
-              <ShieldCheck className="h-3 w-3" /> Numbers verified
+            <Badge
+              tone="green"
+              title={`All ${e.grounding.numbers_checked} amounts and percentages match the calculation, and every "lowest/highest" claim matches its ranking. Other wording isn't machine-checked.`}
+            >
+              <ShieldCheck className="h-3 w-3" /> Numbers checked
             </Badge>
           )}
           {(st === "ready" || st === "failed") && (

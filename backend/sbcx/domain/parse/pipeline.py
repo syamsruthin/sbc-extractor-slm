@@ -189,6 +189,9 @@ def clean_plan_name(name: str | None) -> str | None:
     x = name.split(" | ")[0]  # header text after a table pipe
     x = re.sub(r"(?i)\s+(multi plan type|plan type)\b.*$", "", x)
     x = re.sub(r"(?i)(\s+subscriber/family dependent)+\s*$", "", x)
+    x = re.sub(
+        r"(?i)\s*:\s*(individual|ndividual|family)\b(\s|and|individual|ndividual|family|:)*$", "", x
+    )  # coverage-tier residue
     x = re.sub(r"^\s*\((?:domiciled|underwritten)[^)]*\)\s*", "", x, flags=re.I)
     x = re.sub(r"^\s*[–—\-:|]+\s*", "", x)
     x = re.sub(r"^(\w+) \1\b", r"\1", x)  # "Wellpoint Wellpoint Essential"

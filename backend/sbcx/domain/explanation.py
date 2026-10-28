@@ -22,6 +22,7 @@ class GroundingReport(BaseModel):
     numbers_checked: int
     violations: list[str] = []
     policy_violations: list[str] = []
+    claim_violations: list[str] = []  # superlatives that contradict the computed rankings
 
 
 class ExplanationRecord(BaseModel):

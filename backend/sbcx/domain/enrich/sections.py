@@ -7,6 +7,7 @@ from typing import Any
 
 from sbcx.domain.benefits import BenefitsDocument
 from sbcx.domain.display import DRUG_LABELS, SERVICE_LABELS, describe_cost, money
+from sbcx.domain.sbc import CostShare
 
 
 @dataclass(frozen=True)
@@ -68,6 +69,18 @@ def _amounts(a) -> dict | None:
     return None if a is None else {"individual": a.individual, "family": a.family}
 
 
+def cell_text(doc: BenefitsDocument, cs: CostShare | None, key: str, network: str = "in_network") -> str:
+    """describe_cost with an explicit deductible status (so "not stated" never reads as "no deductible")."""
+    from sbcx.domain.compare.cost_model import deductible_hints, deductible_status, has_deductible
+    from sbcx.domain.comparison import Network
+
+    net = Network(network)
+    return describe_cost(
+        cs,
+        status=deductible_status(cs, key, deductible_hints(doc.benefits), has_deductible(doc.benefits, net)),
+    )
+
+
 def section_input(doc: BenefitsDocument, sec: Section) -> dict[str, Any]:
     """Compact, human-labeled facts for one section: the only input the summarizer sees."""
     b = doc.benefits
@@ -98,8 +111,10 @@ def section_input(doc: BenefitsDocument, sec: Section) -> dict[str, Any]:
                 {
                     "name": t.name,
                     "category": DRUG_LABELS[t.category.value],
-                    "in_network": describe_cost(t.retail.in_network),
-                    "out_of_network": describe_cost(t.retail.out_of_network),
+                    "in_network": cell_text(doc, t.retail.in_network, f"drug:{t.category.value}"),
+                    "out_of_network": cell_text(
+                        doc, t.retail.out_of_network, f"drug:{t.category.value}", "out_of_network"
+                    ),
                     "note": (t.retail.in_network.note if t.retail.in_network else None),
                 }
                 for t in b.drug_tiers
@@ -114,8 +129,8 @@ def section_input(doc: BenefitsDocument, sec: Section) -> dict[str, Any]:
         out.append(
             {
                 "service": SERVICE_LABELS[k],
-                "in_network": describe_cost(svc.in_network),
-                "out_of_network": describe_cost(svc.out_of_network),
+                "in_network": cell_text(doc, svc.in_network, k),
+                "out_of_network": cell_text(doc, svc.out_of_network, k, "out_of_network"),
                 "note": svc.in_network.note if svc.in_network else None,
                 "limitations": doc.extras.limitations.get(k, "")[:300] or None,
             }
@@ -151,7 +166,8 @@ def template_summary(doc: BenefitsDocument, sec: Section) -> tuple[str, list[str
         if not b.drug_tiers:
             return "No prescription drug tiers were found in this document.", []
         return "; ".join(
-            f"{t.name}: {describe_cost(t.retail.in_network)}" for t in b.drug_tiers[:4]
+            f"{t.name}: {cell_text(doc, t.retail.in_network, f'drug:{t.category.value}')}"
+            for t in b.drug_tiers[:4]
         ) + ".", []
     if sec.id == "exclusions":
         if not b.excluded_services:
@@ -162,5 +178,5 @@ def template_summary(doc: BenefitsDocument, sec: Section) -> tuple[str, list[str
     lines = []
     for k in sec.services:
         svc = getattr(b.services, k)
-        lines.append(f"{SERVICE_LABELS[k]}: {describe_cost(svc.in_network)} in network")
+        lines.append(f"{SERVICE_LABELS[k]}: {cell_text(doc, svc.in_network, k)} in network")
     return "; ".join(lines) + ".", []

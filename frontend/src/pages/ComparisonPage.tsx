@@ -35,6 +35,7 @@ function HeadlineCards({ r }: { r: ComparisonResult }) {
           <div className="mb-3 flex items-start gap-2">
             <span className="mt-1 h-3 w-3 shrink-0 rounded-full" style={{ background: PLAN_COLORS[i] }} />
             <div className="min-w-0">
+              <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Plan {p.plan_key}</p>
               <p className="truncate font-semibold text-slate-900" title={p.plan_name ?? ""}>{p.plan_name ?? `Plan ${p.plan_key}`}</p>
               <p className="truncate text-xs text-slate-500">
                 {p.issuer} {p.plan_type && `· ${p.plan_type}`} {p.metal && `· ${p.metal}`}
@@ -69,7 +70,7 @@ function HeadlineCards({ r }: { r: ComparisonResult }) {
 
 function ScenarioTable({ r }: { r: ComparisonResult }) {
   const [open, setOpen] = useState<string | null>(null);
-  const names = Object.fromEntries(r.plans.map((p) => [p.plan_key, p.plan_name ?? `Plan ${p.plan_key}`]));
+  const names = Object.fromEntries(r.plans.map((p) => [p.plan_key, `${p.plan_key} · ${p.plan_name ?? `Plan ${p.plan_key}`}`]));
   return (
     <div className="overflow-x-auto">
       <table className="w-full text-sm">
@@ -170,7 +171,7 @@ function DiffTable({ r }: { r: ComparisonResult }) {
             <tr>
               <th className="py-2 pr-4 font-medium">Service</th>
               {r.plans.map((p) => (
-                <th key={p.plan_key} className="py-2 pr-4 font-medium">{p.plan_name ?? `Plan ${p.plan_key}`}{p.is_base && " (base)"}</th>
+                <th key={p.plan_key} className="py-2 pr-4 font-medium">{p.plan_key} · {p.plan_name ?? `Plan ${p.plan_key}`}{p.is_base && " (base)"}</th>
               ))}
             </tr>
           </thead>
@@ -229,7 +230,7 @@ function CoverageExamples({ r }: { r: ComparisonResult }) {
         <thead className="text-left text-xs uppercase tracking-wide text-slate-500">
           <tr>
             <th className="py-2 pr-4 font-medium">Example</th>
-            {withEx.map((p) => <th key={p.plan_key} className="py-2 pr-4 text-right font-medium">{p.plan_name}</th>)}
+            {withEx.map((p) => <th key={p.plan_key} className="py-2 pr-4 text-right font-medium">{p.plan_key} · {p.plan_name}</th>)}
           </tr>
         </thead>
         <tbody className="divide-y divide-slate-100">

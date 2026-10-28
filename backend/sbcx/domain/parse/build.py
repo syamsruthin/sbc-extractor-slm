@@ -7,7 +7,8 @@ from sbcx.domain.parse.anchors import extract
 from sbcx.domain.parse.costs import cat, cost, pick, split_names
 from sbcx.domain.parse.textnorm import SVK
 
-
+# header residue that is only coverage-tier words ("Individual and Family ndividual and Family"), audit 2026-10-28
+COVERAGE_ONLY=re.compile(r'(?i)[\s:|]*((individual|ndividual|family|and|only|self|employee|spouse|children|child|&|\+|/|,)[\s:|]*)*')
 def plan_name(rest,issuer):
     x=rest
     if issuer:
@@ -22,7 +23,7 @@ def plan_name(rest,issuer):
     x=x.strip(' .:-')
     m=re.match(r'^([^:]{2,80}?)\s*:\s*(?=\S)',x)
     if m and len(x[m.end():].split())<=2: x=x[:m.start(1)+len(m.group(1))]+' '+x[m.end():]
-    elif m and re.search(r'(?i)health|plan|insurance|inc\b|co-op|company|blue|bcbs|octave|communitycare|harbor|cigna|moda|antidote|sendero|mclaren|providence|regence|bridgespan|premera|imperial|utah',m.group(1)) and not re.search(r'(?i)network\s*[-–]?$',m.group(1)):
+    elif m and not COVERAGE_ONLY.fullmatch(x[m.end():]) and re.search(r'(?i)health|plan|insurance|inc\b|co-op|company|blue|bcbs|octave|communitycare|harbor|cigna|moda|antidote|sendero|mclaren|providence|regence|bridgespan|premera|imperial|utah',m.group(1)) and not re.search(r'(?i)network\s*[-–]?$',m.group(1)):
         x=x[m.end():]
     x=re.sub(r'\s+[-–]\s+:\s+',' – ',x)
     return x.strip(' :|-.') or None
