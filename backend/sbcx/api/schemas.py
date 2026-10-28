@@ -6,7 +6,7 @@ from __future__ import annotations
 from datetime import UTC, datetime
 from typing import Annotated, Any, Literal
 
-from pydantic import AfterValidator, BaseModel
+from pydantic import AfterValidator, BaseModel, Field
 
 from sbcx.domain.benefits import BenefitsDocument, FieldMeta
 from sbcx.domain.comparison import ComparisonRequest, ComparisonResult, Scenario
@@ -39,6 +39,8 @@ class DocumentSummary(BaseModel):
 
 class DocumentDetail(DocumentSummary):
     benefits: BenefitsDocument | None = None
+    # deductible wording per cost cell, using the same rules as comparisons (catalog metal/HSA flag included)
+    deductible_notes: dict[str, str] = Field(default_factory=dict)
 
 
 class DocumentList(BaseModel):

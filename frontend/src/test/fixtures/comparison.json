@@ -19,7 +19,7 @@
   "explain": true
  },
  "result": {
-  "engine_version": "1.1.0",
+  "engine_version": "1.2.0",
   "reference_prices_version": "test",
   "coverage_tier": "individual",
   "network": "in_network",

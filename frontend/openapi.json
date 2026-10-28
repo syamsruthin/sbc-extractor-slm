@@ -1787,6 +1787,13 @@
                 "type": "null"
               }
             ]
+          },
+          "deductible_notes": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Deductible Notes"
           }
         },
         "type": "object",

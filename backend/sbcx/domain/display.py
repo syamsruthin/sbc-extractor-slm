@@ -58,6 +58,7 @@ DEDUCTIBLE_TEXT = {
     "applies_per_sbc": ", after deductible (per the SBC's page 1)",
     "applies_hsa_rules": ", after deductible (HSA plan rules)",
     "applies_catastrophic_rules": ", after deductible (catastrophic plan rules)",
+    "first_visits_before": ", deductible doesn't apply to the first 3 visits (catastrophic plan rules)",
     "before_per_sbc": ", deductible doesn't apply",
     "not_stated": ", deductible not stated",
     "none": "",

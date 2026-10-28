@@ -53,7 +53,20 @@ def session_scope() -> Iterator[Session]:
         session.close()
 
 
+# Columns added after a table first shipped: (table, column, SQL type). create_all() only creates
+# missing tables, so existing local databases get these with ALTER TABLE.
+_ADDED_COLUMNS = [("catalog_plans", "hsa_eligible", "BOOLEAN")]
+
+
 def init_db() -> None:
+    from sqlalchemy import inspect, text
+
     from sbcx.infra import models  # noqa: F401  (registers tables)
 
-    Base.metadata.create_all(get_engine())
+    engine = get_engine()
+    Base.metadata.create_all(engine)
+    insp = inspect(engine)
+    with engine.begin() as conn:
+        for table, column, sqltype in _ADDED_COLUMNS:
+            if table in insp.get_table_names() and column not in {c["name"] for c in insp.get_columns(table)}:
+                conn.execute(text(f"ALTER TABLE {table} ADD COLUMN {column} {sqltype}"))

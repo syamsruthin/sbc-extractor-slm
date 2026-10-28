@@ -13,6 +13,7 @@ from sbcx.domain.benefits import BenefitsDocument, Warning
 from sbcx.domain.compare.config import ReferencePrices, ScenarioConfig
 from sbcx.domain.compare.cost_model import (
     DRUG_ORDER,
+    RULE_NOTES,
     deductible_hints,
     deductible_status,
     drug_tier,
@@ -57,6 +58,7 @@ class PlanInput:
     catalog_plan_id: str | None = None
     metal: str | None = None
     coverage_examples: dict | None = None
+    hsa_eligible: bool | None = None  # CMS PUF flag; None for uploads (the plan name is used instead)
 
 
 def est_per_use(cs: CostShare | None, allowed: float) -> float | None:
@@ -146,6 +148,15 @@ def _service_impacts(results: dict[str, ScenarioResult], base: str) -> dict[str,
     return out
 
 
+def _plan_note(note: str, keys: list[str], by_key: Mapping[str, PlanInput]) -> str:
+    who = [
+        f"{k} ({by_key[k].doc.benefits.plan_name})" if by_key[k].doc.benefits.plan_name else k
+        for k in sorted(keys)
+    ]
+    label = f"Plan {who[0]}" if len(who) == 1 else f"Plans {', '.join(who[:-1])} and {who[-1]}"
+    return f"{label}: {note}"
+
+
 def compare(
     plans: list[PlanInput], req: ComparisonRequest, cfg: ScenarioConfig, base_prices: ReferencePrices
 ) -> ComparisonResult:
@@ -214,7 +225,7 @@ def compare(
         worst_case_delta=delta(worst),
     )
 
-    hints = {k: deductible_hints(p.doc.benefits, p.metal) for k, p in by_key.items()}
+    hints = {k: deductible_hints(p.doc.benefits, p.metal, p.hsa_eligible) for k, p in by_key.items()}
     has_ded = {k: has_deductible(p.doc.benefits, req.network) for k, p in by_key.items()}
 
     # services
@@ -266,10 +277,10 @@ def compare(
     if req.custom_scenario and req.custom_scenario.events:
         scen.append(req.custom_scenario.model_copy(update={"id": "custom"}))
     results: dict[str, ScenarioResult] = {}
-    assumptions = list(ASSUMPTIONS)
+    plan_notes: dict[str, list[str]] = {}  # note -> plan keys it applies to, in first-seen order
     for sc in scen:
         per = {
-            k: simulate(p.doc, inputs[k], sc, cfg, prices, req.coverage_tier, req.network, p.metal)
+            k: simulate(p.doc, inputs[k], sc, cfg, prices, req.coverage_tier, req.network, hints[k])
             for k, p in by_key.items()
         }
         min_high = min(r.total.high for r in per.values())
@@ -286,10 +297,15 @@ def compare(
         results[sc.id] = ScenarioResult(
             scenario=sc, per_plan=per, cheapest=cheapest, delta_vs_base=dvb, ranges_overlap=overlap
         )
-        for r in per.values():
+        for k, r in per.items():
             for a in r.assumptions:
-                if a not in assumptions:
-                    assumptions.append(a)
+                keys = plan_notes.setdefault(a, [])
+                if k not in keys:
+                    keys.append(k)
+    # plan-specific notes first, each naming its plans, then the general ones
+    # (deductible-rule notes lead: they change the most numbers)
+    ordered = sorted(plan_notes.items(), key=lambda kv: kv[0] not in RULE_NOTES.values())
+    assumptions = [_plan_note(a, keys, by_key) for a, keys in ordered] + list(ASSUMPTIONS)
 
     # ranking
     impacts = _service_impacts(results, base)

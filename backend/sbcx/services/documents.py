@@ -9,6 +9,7 @@ from pathlib import Path
 from sbcx.api.schemas import DocumentDetail, DocumentSummary
 from sbcx.config import get_settings
 from sbcx.domain.benefits import BenefitsDocument
+from sbcx.domain.enrich.sections import deductible_notes
 from sbcx.domain.extract.fallback import resolve
 from sbcx.domain.extract.run import extract_pdf
 from sbcx.domain.parse.layout import sha256_bytes
@@ -47,8 +48,11 @@ def to_summary(row: DocumentRow) -> DocumentSummary:
 
 
 def to_detail(row: DocumentRow) -> DocumentDetail:
+    from sbcx.services.catalog import plan_hints
+
     b = BenefitsDocument.model_validate(row.benefits) if row.benefits else None
-    return DocumentDetail(**to_summary(row).model_dump(), benefits=b)
+    notes = deductible_notes(b, plan_hints(b, row.catalog_plan_id)) if b else {}
+    return DocumentDetail(**to_summary(row).model_dump(), benefits=b, deductible_notes=notes)
 
 
 def upload(filename: str, data: bytes) -> tuple[DocumentRow, bool]:

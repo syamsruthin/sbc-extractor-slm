@@ -27,7 +27,7 @@ def _plan_inputs(req: ComparisonRequest) -> list[PlanInput]:
         if row.catalog_plan_id:
             with session_scope() as s:
                 c = CatalogRepo(s).get(row.catalog_plan_id)
-                cat = (c.plan_id, c.metal, c.coverage_examples) if c else None
+                cat = (c.plan_id, c.metal, c.coverage_examples, c.hsa_eligible) if c else None
         out.append(
             PlanInput(
                 document_id=did,
@@ -35,6 +35,7 @@ def _plan_inputs(req: ComparisonRequest) -> list[PlanInput]:
                 catalog_plan_id=cat[0] if cat else None,
                 metal=cat[1] if cat else None,
                 coverage_examples=cat[2] if cat else None,
+                hsa_eligible=cat[3] if cat else None,
             )
         )
     return out

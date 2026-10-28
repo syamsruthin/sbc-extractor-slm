@@ -637,6 +637,10 @@ export interface components {
              */
             created_at: string;
             benefits?: components["schemas"]["BenefitsDocument"] | null;
+            /** Deductible Notes */
+            deductible_notes?: {
+                [key: string]: string;
+            };
         };
         /** DocumentList */
         DocumentList: {

@@ -5,7 +5,7 @@ from __future__ import annotations
 import uuid
 from datetime import UTC, datetime
 
-from sqlalchemy import JSON, DateTime, Float, ForeignKey, Index, Integer, String, Text
+from sqlalchemy import JSON, Boolean, DateTime, Float, ForeignKey, Index, Integer, String, Text
 from sqlalchemy.orm import Mapped, mapped_column
 
 from sbcx.infra.db import Base
@@ -63,6 +63,7 @@ class CatalogPlanRow(Base):
     coverage_examples: Mapped[dict | None] = mapped_column(
         JSON, nullable=True
     )  # from the Plan Attributes PUF
+    hsa_eligible: Mapped[bool | None] = mapped_column(Boolean, nullable=True)  # PUF IsHSAEligible
     status: Mapped[str] = mapped_column(String(32), default="pending")
 
 

@@ -16,6 +16,8 @@ from typing import Any
 
 from sbcx.api.schemas import CatalogFacets, CatalogPage, CatalogPlan, FacetValue, PremiumQuote, PremiumQuotes
 from sbcx.config import get_settings
+from sbcx.domain.benefits import BenefitsDocument
+from sbcx.domain.compare.cost_model import DeductibleHints, deductible_hints
 from sbcx.errors import not_found
 from sbcx.infra.db import init_db, session_scope
 from sbcx.infra.models import DocumentRow, PremiumRow
@@ -60,6 +62,9 @@ def puf_metadata(puf_csv: Path, plan_ids: set[str]) -> dict[str, dict[str, Any]]
                 "plan_type": r["PlanType"],
                 "sbc_url": r.get("URLForSummaryofBenefitsCoverage"),
                 "coverage_examples": examples or None,
+                "hsa_eligible": {"yes": True, "no": False}.get(
+                    (r.get("IsHSAEligible") or "").strip().lower()
+                ),
             }
     return out
 
@@ -102,6 +107,14 @@ def ingest(
             for r in CatalogRepo(sess).search(ready_only=True, limit=10**6)[1]
             if (d := DocumentRepo(sess).get(r.document_id or "")) and d.parser_version == PARSER_VERSION
         }
+    if done:  # current extractions are kept, but PUF metadata (e.g. hsa_eligible) is refreshed
+        with session_scope() as sess:
+            repo = CatalogRepo(sess)
+            for pid in done:
+                row = repo.get(pid)
+                if row is not None and pid in meta:
+                    for k, v in meta[pid].items():
+                        setattr(row, k, v)
     todo = [(pid, str(p), meta.get(pid, {}).get("issuer")) for pid, p in pdfs.items() if pid not in done]
     if limit:
         todo = todo[:limit]
@@ -251,6 +264,17 @@ def get_plan(plan_id: str) -> CatalogPlan:
         if r is None:
             raise not_found("Catalog plan", plan_id)
         return _plan(r)
+
+
+def plan_hints(doc: BenefitsDocument, catalog_plan_id: str | None) -> DeductibleHints:
+    """Deductible hints for a stored document, with the catalog's metal and HSA flag when it is a catalog plan
+    (the same evidence comparisons use)."""
+    metal = hsa = None
+    if catalog_plan_id:
+        with session_scope() as s:
+            if c := CatalogRepo(s).get(catalog_plan_id):
+                metal, hsa = c.metal, c.hsa_eligible
+    return deductible_hints(doc.benefits, metal, hsa)
 
 
 def coverage_examples(plan_id: str) -> dict | None:

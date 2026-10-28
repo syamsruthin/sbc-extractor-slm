@@ -36,13 +36,6 @@ export function describeCost(c: CostShare | null | undefined): string {
   return parts.length ? parts.join(" then ") : "Covered (price not stated)";
 }
 
-export function deductibleNote(c: CostShare | null | undefined, planHasDeductible = false): string | null {
-  if (!c || !c.covered) return null;
-  if (c.deductible_applies === true) return "after deductible";
-  if (c.deductible_applies === false) return "deductible doesn't apply";
-  return planHasDeductible ? "deductible not stated" : null;
-}
-
 export function pct(v: number): string {
   return `${Math.round(v * 100)}%`;
 }

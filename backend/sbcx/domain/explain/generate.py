@@ -248,7 +248,8 @@ def factsheet(
             if w.code
             in ("W_PREMIUM_MISSING", "W_FALLBACK_OVERRIDE", "W_LOW_ANCHOR_COVERAGE", "W_NO_OOP_FOUND")
         ][:6],
-        "assumptions": result.assumptions[:6],
+        # result.assumptions lists deductible-rule notes, then other plan notes, then general ones
+        "assumptions": result.assumptions[:12],
     }
 
 
