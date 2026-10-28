@@ -86,3 +86,64 @@ def test_rankings_ties_and_missing():
 def test_plan_name_kept_when_rest_is_coverage_words():
     rest = ". Harbor Health: Harbor Health S1 : Individual and Family ndividual and Family"
     assert plan_name(rest, "Harbor Health").startswith("Harbor Health S1")
+
+
+def _named(p, name, ptype="HMO"):
+    p.benefits.plan_name = name
+    p.benefits.plan_type = ptype
+    return p
+
+
+def test_hsa_and_catastrophic_hints():
+    from sbcx.domain.compare.cost_model import deductible_hints
+    from tests.unit.test_cost_model import cs, plan
+
+    base = plan(7500, 7500, {}, cs(0, 0), cs(0, 0))
+    for name in (
+        "HSA-E Qualified 7500 Bronze",
+        "BSW Savers Bronze HMO H S A 006",
+        "Bronze 7000 HDHP",
+        "Gold High Deductible",
+    ):
+        h = deductible_hints(_named(base, name).benefits)
+        assert h.unmarked_apply and h.reason == "hsa", name
+    assert (
+        deductible_hints(_named(base, "Wellpoint Essential Catastrophic").benefits).reason == "catastrophic"
+    )
+    h = deductible_hints(_named(base, "Sanford Individual TRUE $10,600").benefits, metal="Catastrophic")
+    assert h.reason == "catastrophic" and "primary_care_visit" in h.before  # 3 PCP visits come first by rule
+    assert deductible_hints(_named(base, "Core Gold 1500").benefits).reason == ""
+    assert deductible_hints(_named(base, "Hsatown Health Gold").benefits).reason == ""  # word boundary
+
+
+def test_hsa_rule_narrows_ranges_and_explains():
+    from sbcx.domain.compare.cost_model import deductible_hints, deductible_status, simulate
+    from sbcx.domain.comparison import Event, PlanInputs, Scenario
+    from sbcx.domain.display import describe_cost
+    from tests.unit.test_cost_model import CFG, PRICES, cs, plan
+
+    sc = Scenario(
+        id="m", label="m", events=[Event(event="mri", count=1), Event(event="preventive_visit", count=1)]
+    )
+    generic = _named(plan(5000, 7000, {"preventive_care": cs(0, 0)}, cs(pct=20), cs(10)), "Silver Plus")
+    hsa = _named(plan(5000, 7000, {"preventive_care": cs(0, 0)}, cs(pct=20), cs(10)), "Silver 5000 HSA")
+    r1 = simulate(generic, PlanInputs(), sc, CFG, PRICES)
+    r2 = simulate(hsa, PlanInputs(), sc, CFG, PRICES)
+    assert r1.out_of_pocket.low < r1.out_of_pocket.high  # unstated deductible -> range
+    assert (
+        r2.out_of_pocket.low == r2.out_of_pocket.high == r1.out_of_pocket.high
+    )  # HSA rule -> deductible applies
+    assert r2.trace[1].member_pays.high == 0  # preventive care stays free
+    assert any("HSA-eligible" in a for a in r2.assumptions)
+    st = deductible_status(
+        hsa.benefits.services.imaging.in_network, "imaging", deductible_hints(hsa.benefits), True
+    )
+    assert st == "applies_hsa_rules"
+    assert (
+        describe_cost(hsa.benefits.services.imaging.in_network, status=st)
+        == "20% coinsurance, after deductible (HSA plan rules)"
+    )
+    # a row that explicitly says otherwise still wins
+    hsa.benefits.services.imaging.in_network.deductible_applies = False
+    r3 = simulate(hsa, PlanInputs(), sc, CFG, PRICES)
+    assert r3.trace[0].member_pays.high == 0.2 * PRICES.services["imaging"]

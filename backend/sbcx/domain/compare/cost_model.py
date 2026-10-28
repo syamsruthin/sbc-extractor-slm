@@ -50,6 +50,7 @@ class DeductibleHints:
 
     unmarked_apply: bool = False  # "only services listed as 'deductible does not apply'" -> other rows apply
     before: frozenset[str] = frozenset()  # services the page-1 list names as covered before the deductible
+    reason: str = ""  # why unmarked rows apply: "page1" | "hsa" | "catastrophic"
 
 
 _BEFORE = {
@@ -67,13 +68,24 @@ _BEFORE = {
 }
 
 
-def deductible_hints(plan: SBCExtraction) -> DeductibleHints:
+# Plan types whose deductible applies to everything except preventive care by federal rule: HSA-eligible
+# high-deductible plans (IRS), and catastrophic plans, which must also cover 3 primary care visits first.
+_HSA = re.compile(r"(?i)\bH\.?\s?S\.?\s?A\b|\bHDHP\b|high[- ]deductible")
+_CATASTROPHIC = re.compile(r"(?i)catastrophic")
+
+
+def deductible_hints(plan: SBCExtraction, metal: str | None = None) -> DeductibleHints:
     items = " | ".join(plan.services_before_deductible).lower()
     unmarked = bool(
         re.search(r"deductible\W{0,3}(does not|doesn.t) apply|listed (below|in the chart)", items)
     )
     named = {k for k, rx in _BEFORE.items() if re.search(rx, items)}
-    return DeductibleHints(unmarked, frozenset(named))
+    label = f"{plan.plan_name or ''} {plan.plan_type or ''}"
+    if (metal or "").lower() == "catastrophic" or _CATASTROPHIC.search(label):
+        return DeductibleHints(True, frozenset(named | {"primary_care_visit"}), "catastrophic")
+    if _HSA.search(label):
+        return DeductibleHints(True, frozenset(named), "hsa")
+    return DeductibleHints(unmarked, frozenset(named), "page1" if unmarked else "")
 
 
 def resolve_applies(
@@ -94,7 +106,14 @@ def resolve_applies(
 
 
 DeductibleStatus = Literal[
-    "applies", "does_not_apply", "applies_per_sbc", "before_per_sbc", "not_stated", "none"
+    "applies",
+    "does_not_apply",
+    "applies_per_sbc",
+    "applies_hsa_rules",
+    "applies_catastrophic_rules",
+    "before_per_sbc",
+    "not_stated",
+    "none",
 ]
 
 
@@ -113,6 +132,10 @@ def deductible_status(
     if service_key == "preventive_care" or service_key in h.before:
         return "before_per_sbc"
     if h.unmarked_apply:
+        if h.reason == "hsa":
+            return "applies_hsa_rules"
+        if h.reason == "catastrophic":
+            return "applies_catastrophic_rules"
         return "applies_per_sbc"
     return "not_stated"
 
@@ -240,6 +263,7 @@ def _run(
     network: Network,
     bound: Bound,
     embedded: bool,
+    metal: str | None = None,
 ) -> tuple[list[float], float, bool, bool]:
     d, o = _amounts(plan, network)
     acc = Accumulators(
@@ -251,7 +275,7 @@ def _run(
         embedded=embedded,
     )
     pays: list[float] = []
-    hints = deductible_hints(plan)
+    hints = deductible_hints(plan, metal)
     for c in claims:
         cs, _ = cell(plan, c.service_key, network)
         applies = resolve_applies(cs, c.service_key, bound, hints) if cs is not None and cs.covered else None
@@ -274,6 +298,7 @@ def simulate(
     prices: ReferencePrices,
     tier: CoverageTier = CoverageTier.individual,
     network: Network = Network.in_network,
+    metal: str | None = None,
 ) -> ScenarioPlanResult:
     plan = doc.benefits
     claims = expand(scenario, cfg, prices)
@@ -281,7 +306,7 @@ def simulate(
         modes = [True, False]
     else:
         modes = [doc.extras.deductible_type != DeductibleType.aggregate]
-    runs = {(b, m): _run(plan, claims, tier, network, b, m) for b in ("low", "high") for m in modes}
+    runs = {(b, m): _run(plan, claims, tier, network, b, m, metal) for b in ("low", "high") for m in modes}
     # The cheaper run is the low bound and the dearer one the high bound, whatever assumptions produced
     # them: applying the deductible earlier can leave less room under the OOP cap for later claims.
     low_key = min(runs, key=lambda k: runs[k][1])
@@ -289,11 +314,19 @@ def simulate(
     lo, hi = runs[low_key], runs[high_key]
 
     assumptions: list[str] = []
-    hints = deductible_hints(plan)
+    hints = deductible_hints(plan, metal)
     if hints.unmarked_apply:
         assumptions.append(
-            "The SBC says only services marked 'deductible does not apply' are covered before the deductible, "
-            "so the deductible is applied to the other services."
+            {
+                "hsa": "HSA-eligible plan: by federal rule the deductible applies to everything except preventive care, "
+                "so it is applied wherever the SBC row doesn't say otherwise.",
+                "catastrophic": "Catastrophic plan: by federal rule the deductible applies to everything except preventive "
+                "care and 3 primary care visits, so it is applied wherever the SBC row doesn't say otherwise.",
+            }.get(
+                hints.reason,
+                "The SBC says only services marked 'deductible does not apply' are covered before the deductible, "
+                "so the deductible is applied to the other services.",
+            )
         )
     trace = []
     seen_notes = set()
