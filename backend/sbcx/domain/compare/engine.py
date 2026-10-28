@@ -214,7 +214,7 @@ def compare(
         worst_case_delta=delta(worst),
     )
 
-    hints = {k: deductible_hints(p.doc.benefits) for k, p in by_key.items()}
+    hints = {k: deductible_hints(p.doc.benefits, p.metal) for k, p in by_key.items()}
     has_ded = {k: has_deductible(p.doc.benefits, req.network) for k, p in by_key.items()}
 
     # services
@@ -269,7 +269,7 @@ def compare(
     assumptions = list(ASSUMPTIONS)
     for sc in scen:
         per = {
-            k: simulate(p.doc, inputs[k], sc, cfg, prices, req.coverage_tier, req.network)
+            k: simulate(p.doc, inputs[k], sc, cfg, prices, req.coverage_tier, req.network, p.metal)
             for k, p in by_key.items()
         }
         min_high = min(r.total.high for r in per.values())

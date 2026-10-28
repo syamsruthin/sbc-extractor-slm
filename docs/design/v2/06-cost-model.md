@@ -54,7 +54,9 @@ member_pays(cs, A, D_rem, applies):
     return to_ded + share, counts_toward_oop=True
 ```
 
-`pct = coinsurance_pct / 100`. A copay is never more than the allowed amount. A "No charge" cell (copay 0 and coinsurance 0) is free in both bounds, even when the SBC doesn't say whether the deductible applies.
+`pct = coinsurance_pct / 100`. A copay is never more than the allowed amount. "No charge" alone says
+nothing about the deductible (SBC charts show costs after the deductible is met), so an unstated
+deductible on a "No charge" cell is resolved like any other cell (§6).
 
 ## 4. Annual simulation
 
@@ -120,6 +122,22 @@ doesn't guess. It computes bounds:
 | `deductible_type = unknown` (family tier) | min(embedded, aggregate) | max(…) | `W_FAMILY_TIER_UNKNOWN` |
 | Missing family amount | individual × 2 | — (flag only) | `W_FAMILY_AMOUNT_MISSING` |
 | OOP limit null in network used | no cap | no cap | `W_NO_OOP_LIMIT` |
+
+Before a `deductible_applies = null` cell becomes a range, evidence is applied in this order (engine 1.1):
+
+1. The row's own statement ("after deductible", "deductible does not apply") always wins.
+2. In-network preventive care is covered before the deductible (federal rule).
+3. Plan-type rules: an **HSA-eligible** plan (name contains "HSA", "H S A", "HDHP", "high deductible") applies the
+   deductible to everything except preventive care; a **catastrophic** plan (catalog metal or name) does too, except
+   preventive care and three primary care visits.
+4. The SBC's page-1 answer: "only services listed as 'deductible does not apply'" means the deductible applies to the
+   unmarked rows; services that answer names (e.g. "primary care, generic drugs") are covered before the deductible.
+5. Otherwise: low bound doesn't apply, high bound applies.
+
+Each cell's status is shown to users and to the explanation LLM ("after deductible (HSA plan rules)", "deductible not
+stated", …), and a matching note is added to the comparison's assumptions. On the 1,829-plan catalog, steps 3–4 raise
+rank agreement with the SBCs' own coverage-example totals (baby 0.75 → 0.82, diabetes 0.64 → 0.70, fracture
+0.61 → 0.71) and remove the range entirely for the 104 HSA/catastrophic plans (median width $2,720 → $0 for having a baby).
 
 When the deductible is 0, `deductible_applies` doesn't matter and no range is produced.
 If two plans' ranges overlap, `cheapest` lists both and the explanation must say "depends".
