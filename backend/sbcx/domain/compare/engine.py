@@ -14,12 +14,14 @@ from sbcx.domain.compare.config import ReferencePrices, ScenarioConfig
 from sbcx.domain.compare.cost_model import (
     DRUG_ORDER,
     RULE_NOTES,
+    DeductibleHints,
     deductible_hints,
     deductible_status,
     drug_tier,
     has_deductible,
     member_pays,
     oop_limit,
+    resolve_applies,
     simulate,
 )
 from sbcx.domain.comparison import (
@@ -30,6 +32,7 @@ from sbcx.domain.comparison import (
     DrugTierDiff,
     Headline,
     Money,
+    OverallVerdict,
     PlanInputs,
     PlanRef,
     RankedDiff,
@@ -40,7 +43,7 @@ from sbcx.domain.comparison import (
 )
 from sbcx.domain.display import DRUG_LABELS, SERVICE_LABELS, describe_cost
 from sbcx.domain.enrich.sections import SERVICE_SECTION
-from sbcx.domain.sbc import CostShare
+from sbcx.domain.sbc import CostShare, SBCExtraction
 from sbcx.versions import ENGINE_VERSION
 
 ASSUMPTIONS = [
@@ -70,7 +73,32 @@ def est_per_use(cs: CostShare | None, allowed: float) -> float | None:
     return round(member_pays(cs, allowed, 0.0, "low").amount, 2)
 
 
-def view(cs: CostShare | None, allowed: float | None, status: str | None = None) -> CellView:
+def est_before_deductible(
+    cs: CostShare | None, key: str, allowed: float, hints: DeductibleHints | None, deductible: float
+) -> Money | None:
+    """Member cost for one use (the first visit) before the deductible is met: a range when the SBC
+    doesn't say whether the deductible applies. A service the plan doesn't cover costs the full price, as in
+    est_per_use."""
+    if cs is None:
+        return None
+    if not cs.covered:
+        return Money(low=round(allowed, 2), high=round(allowed, 2))
+    if cs.copay is None and cs.coinsurance_pct is None:
+        return None
+    pay = {
+        b: member_pays(cs, allowed, deductible, b, resolve_applies(cs, key, b, hints, visit=1)).amount
+        for b in ("low", "high")
+    }
+    lo, hi = sorted((round(pay["low"], 2), round(pay["high"], 2)))
+    return Money(low=lo, high=hi)
+
+
+def view(
+    cs: CostShare | None,
+    allowed: float | None,
+    status: str | None = None,
+    before: Money | None = None,
+) -> CellView:
     return CellView(
         display=describe_cost(cs, status=status),
         deductible_status=status,
@@ -79,6 +107,7 @@ def view(cs: CostShare | None, allowed: float | None, status: str | None = None)
         coinsurance_pct=cs.coinsurance_pct if cs else None,
         deductible_applies=cs.deductible_applies if cs else None,
         est_cost_per_use=est_per_use(cs, allowed) if allowed is not None else None,
+        est_cost_before_deductible=before,
         note=cs.note if cs else None,
     )
 
@@ -105,19 +134,61 @@ def verdict(base: CellView, other: CellView, allowed: float) -> tuple[Verdict, f
     return (Verdict.better if delta < 0 else Verdict.worse), delta
 
 
+def _individual_deductible(plan: SBCExtraction, network: str) -> float:
+    """One use before the deductible is one member's claim, so the individual deductible applies."""
+    d = getattr(plan.deductible, network)
+    return float(d.individual or 0.0) if d else 0.0
+
+
+def range_verdict(base: Money | None, other: Money | None, allowed: float) -> Verdict:
+    """Verdict for two cost ranges: better/worse only when the ranges don't overlap (beyond the tolerance)."""
+    if base is None or other is None:
+        return Verdict.not_comparable
+    tol = max(1.0, 0.02 * allowed)
+    if other.high + tol < base.low:
+        return Verdict.better
+    if other.low > base.high + tol:
+        return Verdict.worse
+    if abs(other.low - base.low) <= tol and abs(other.high - base.high) <= tol:
+        return Verdict.same
+    return Verdict.not_comparable
+
+
+def overall_verdict(after: Verdict, before: Verdict) -> OverallVerdict:
+    """Combine the after- and before-deductible verdicts (docs/design/v2.1/02-solution-design.md §2.2)."""
+    if after == before:
+        return OverallVerdict(after.value)
+    if {after, before} <= {Verdict.better, Verdict.same}:
+        return OverallVerdict.better
+    if {after, before} <= {Verdict.worse, Verdict.same}:
+        return OverallVerdict.worse
+    return OverallVerdict.depends_on_deductible
+
+
 def _diff(
     id_: str,
     cells: dict[str, CostShare | None],
     base: str,
     allowed: float,
     statuses: Mapping[str, str] | None = None,
-) -> tuple[dict, dict, dict, str, list[str]]:
-    views = {k: view(c, allowed, (statuses or {}).get(k)) for k, c in cells.items()}
-    verdicts, deltas = {}, {}
+    befores: Mapping[str, Money | None] | None = None,
+) -> tuple[dict, dict, dict, str, list[str], dict, dict]:
+    views = {k: view(c, allowed, (statuses or {}).get(k), (befores or {}).get(k)) for k, c in cells.items()}
+    verdicts, deltas, before_v, overall = {}, {}, {}, {}
     for k in views:
         if k == base:
             continue
         verdicts[k], deltas[k] = verdict(views[base], views[k], allowed)
+        b, o = views[base].est_cost_before_deductible, views[k].est_cost_before_deductible
+        before_v[k] = range_verdict(b, o, allowed)
+        overall[k] = (
+            OverallVerdict.not_comparable
+            if b is None
+            or o is None
+            or views[base].est_cost_per_use is None
+            or views[k].est_cost_per_use is None
+            else overall_verdict(verdicts[k], before_v[k])
+        )
     kinds = {_kind(c) for c in cells.values()}
     kind = "none" if None in kinds else ("exact" if len(kinds - {"free", "nc"}) <= 1 else "estimated")
     flags = []
@@ -125,7 +196,7 @@ def _diff(
         flags.append("coverage_gap")
     if {True, False} <= {v.deductible_applies for v in views.values()}:
         flags.append("deductible_difference")
-    return views, verdicts, deltas, kind, flags
+    return views, verdicts, deltas, kind, flags, before_v, overall
 
 
 def _service_impacts(results: dict[str, ScenarioResult], base: str) -> dict[str, float]:
@@ -227,6 +298,9 @@ def compare(
 
     hints = {k: deductible_hints(p.doc.benefits, p.metal, p.hsa_eligible) for k, p in by_key.items()}
     has_ded = {k: has_deductible(p.doc.benefits, req.network) for k, p in by_key.items()}
+    ded_amt = {
+        k: _individual_deductible(p.doc.benefits, net) if has_ded[k] else 0.0 for k, p in by_key.items()
+    }
 
     # services
     services = []
@@ -234,7 +308,10 @@ def compare(
         allowed = prices.services[skey]
         cells = {k: getattr(getattr(p.doc.benefits.services, skey), net) for k, p in by_key.items()}
         st = {k: deductible_status(cells[k], skey, hints[k], has_ded[k]) for k in cells}
-        views, verdicts, deltas, kind, flags = _diff(f"svc.{skey}", cells, base, allowed, st)
+        bd = {k: est_before_deductible(cells[k], skey, allowed, hints[k], ded_amt[k]) for k in cells}
+        views, verdicts, deltas, kind, flags, before_v, overall = _diff(
+            f"svc.{skey}", cells, base, allowed, st, bd
+        )
         services.append(
             ServiceDiff(
                 id=f"svc.{skey}",
@@ -247,6 +324,8 @@ def compare(
                 comparison_kind=kind,  # type: ignore[arg-type]
                 reference_price=allowed,
                 flags=flags,
+                verdicts_before_deductible=before_v,
+                overall_verdicts=overall,
             )
         )
 
@@ -256,7 +335,8 @@ def compare(
         tiers = {k: drug_tier(p.doc.benefits.drug_tiers, cat)[0] for k, p in by_key.items()}
         cells = {k: (getattr(t.retail, net) if t else None) for k, t in tiers.items()}
         st = {k: deductible_status(cells[k], f"drug:{cat}", hints[k], has_ded[k]) for k in cells}
-        views, verdicts, deltas, _, _ = _diff(f"drug.{cat}", cells, base, allowed, st)
+        bd = {k: est_before_deductible(cells[k], f"drug:{cat}", allowed, hints[k], ded_amt[k]) for k in cells}
+        views, verdicts, deltas, _, _, before_v, overall = _diff(f"drug.{cat}", cells, base, allowed, st, bd)
         drugs.append(
             DrugTierDiff(
                 id=f"drug.{cat}",
@@ -267,6 +347,8 @@ def compare(
                 verdicts=verdicts,
                 delta_per_use=deltas,
                 reference_price=allowed,
+                verdicts_before_deductible=before_v,
+                overall_verdicts=overall,
             )
         )
 

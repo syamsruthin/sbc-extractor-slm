@@ -13,12 +13,28 @@ import { money, range, signedMoney, signedRange } from "@/lib/format";
 import { SECTIONS } from "@/lib/sections";
 
 type Verdict = S["Verdict"];
-const VERDICT: Record<Verdict, { label: string; cls: string }> = {
+type Overall = S["OverallVerdict"];
+const VERDICT: Record<Overall, { label: string; cls: string }> = {
   better: { label: "lower cost", cls: "bg-emerald-50 text-emerald-700" },
   worse: { label: "higher cost", cls: "bg-red-50 text-red-700" },
   same: { label: "about the same", cls: "bg-slate-100 text-slate-600" },
   not_comparable: { label: "not comparable", cls: "bg-slate-50 text-slate-400" },
+  depends_on_deductible: { label: "depends on deductible", cls: "bg-amber-50 text-amber-800" },
 };
+
+type Diff = { cells: Record<string, S["CellView"] | null | undefined>; verdicts: Record<string, Verdict>; overall_verdicts?: Record<string, Overall> };
+
+/** Engine 1.3.0+ combines the before- and after-deductible verdicts; older stored results only have `verdicts`. */
+function verdictFor(d: Diff, plan: string): Overall | undefined {
+  const overall = d.overall_verdicts ?? {};
+  return Object.keys(overall).length ? overall[plan] : d.verdicts[plan];
+}
+
+function verdictTitle(d: Diff, base: string, plan: string): string | undefined {
+  const b = d.cells[base], o = d.cells[plan];
+  if (!b?.est_cost_before_deductible || !o?.est_cost_before_deductible) return undefined;
+  return `Before the deductible: ${base} ${range(b.est_cost_before_deductible)} vs ${plan} ${range(o.est_cost_before_deductible)}. After: ${base} ${money(b.est_cost_per_use)} vs ${plan} ${money(o.est_cost_per_use)}.`;
+}
 
 function Delta({ v, invert = false }: { v: number | null | undefined; invert?: boolean }) {
   if (v === null || v === undefined || v === 0) return null;
@@ -78,7 +94,9 @@ function ScenarioTable({ r }: { r: ComparisonResult }) {
           <tr>
             <th className="py-2 pr-4 font-medium">Scenario</th>
             {r.plans.map((p) => (
-              <th key={p.plan_key} className="py-2 pr-4 text-right font-medium">{names[p.plan_key]}</th>
+              <th key={p.plan_key} className="py-2 pr-4 text-right font-medium">
+                <span className="ml-auto block max-w-[14rem] truncate" title={names[p.plan_key]}>{names[p.plan_key]}</span>
+              </th>
             ))}
           </tr>
         </thead>
@@ -144,21 +162,41 @@ function DiffTable({ r }: { r: ComparisonResult }) {
   const [onlyDiff, setOnlyDiff] = useState(true);
   const base = r.plans.find((p) => p.is_base)!.plan_key;
   const rows = useMemo(() => {
-    const isDiff = (d: S["ServiceDiff"]) => d.flags.length > 0 || Object.values(d.verdicts).some((v) => v !== "same");
+    const isDiff = (d: S["ServiceDiff"]) => d.flags.length > 0 || r.plans.some((p) => p.plan_key !== base && verdictFor(d, p.plan_key) !== "same");
     return SECTIONS.filter((s) => s.services.length).map((sec) => ({
       sec,
       items: r.services.filter((d) => d.section === sec.id && (!onlyDiff || isDiff(d))),
     }));
-  }, [r, onlyDiff]);
-  const drugs = r.drug_tiers.filter((d) => !onlyDiff || Object.values(d.verdicts).some((v) => v !== "same"));
+  }, [r, onlyDiff, base]);
+  const drugs = r.drug_tiers.filter((d) => !onlyDiff || r.plans.some((p) => p.plan_key !== base && verdictFor(d, p.plan_key) !== "same"));
+  const twoFigures = [...r.services, ...r.drug_tiers].some((d) => Object.values(d.cells).some((c) => c?.est_cost_before_deductible));
 
-  const cell = (c: S["CellView"] | null | undefined, verdict?: Verdict) => (
-    <td className="py-2 pr-4 align-top">
-      <div className={clsx(c?.covered === false ? "text-slate-400" : "text-slate-900")}>{c?.display ?? "Not listed"}</div>
-      {c?.est_cost_per_use !== null && c?.est_cost_per_use !== undefined && <div className="text-xs text-slate-500">≈ {money(c.est_cost_per_use)} per use</div>}
-      {verdict && <span className={clsx("mt-1 inline-block rounded-full px-2 py-0.5 text-[11px] font-medium", VERDICT[verdict].cls)}>{VERDICT[verdict].label}</span>}
-    </td>
-  );
+  const cell = (d: Diff, plan: string) => {
+    const c = d.cells[plan];
+    const verdict = plan === base ? undefined : verdictFor(d, plan);
+    const after = c?.est_cost_per_use;
+    return (
+      <td className="py-2 pr-4 align-top">
+        <div className={clsx(c?.covered === false ? "text-slate-400" : "text-slate-900")}>{c?.display ?? "Not listed"}</div>
+        {c?.est_cost_before_deductible ? (
+          <div className="text-xs text-slate-500">
+            <div>Before deductible ≈ {range(c.est_cost_before_deductible)}</div>
+            {after !== null && after !== undefined && <div>After deductible ≈ {money(after)}</div>}
+          </div>
+        ) : (
+          after !== null && after !== undefined && <div className="text-xs text-slate-500">≈ {money(after)} per use</div>
+        )}
+        {verdict && (
+          <span
+            className={clsx("mt-1 inline-block rounded-full px-2 py-0.5 text-[11px] font-medium", VERDICT[verdict].cls)}
+            title={verdict === "depends_on_deductible" ? verdictTitle(d, base, plan) : undefined}
+          >
+            {VERDICT[verdict].label}
+          </span>
+        )}
+      </td>
+    );
+  };
 
   return (
     <div>
@@ -171,7 +209,9 @@ function DiffTable({ r }: { r: ComparisonResult }) {
             <tr>
               <th className="py-2 pr-4 font-medium">Service</th>
               {r.plans.map((p) => (
-                <th key={p.plan_key} className="py-2 pr-4 font-medium">{p.plan_key} · {p.plan_name ?? `Plan ${p.plan_key}`}{p.is_base && " (base)"}</th>
+                <th key={p.plan_key} className="py-2 pr-4 font-medium">
+                  <span className="block max-w-[14rem] truncate" title={p.plan_name ?? undefined}>{p.plan_key} · {p.plan_name ?? `Plan ${p.plan_key}`}{p.is_base && " (base)"}</span>
+                </th>
               ))}
             </tr>
           </thead>
@@ -190,7 +230,7 @@ function DiffTable({ r }: { r: ComparisonResult }) {
                         </div>
                       </td>
                       {r.plans.map((p) => (
-                        <Fragment key={p.plan_key}>{cell(d.cells[p.plan_key], p.plan_key === base ? undefined : d.verdicts[p.plan_key])}</Fragment>
+                        <Fragment key={p.plan_key}>{cell(d, p.plan_key)}</Fragment>
                       ))}
                     </tr>
                   ))}
@@ -204,7 +244,7 @@ function DiffTable({ r }: { r: ComparisonResult }) {
                   <tr key={d.id} className="border-t border-slate-100">
                     <td className="py-2 pr-4 align-top text-slate-700">{d.label}</td>
                     {r.plans.map((p) => (
-                      <Fragment key={p.plan_key}>{cell(d.cells[p.plan_key], p.plan_key === base ? undefined : d.verdicts[p.plan_key])}</Fragment>
+                      <Fragment key={p.plan_key}>{cell(d, p.plan_key)}</Fragment>
                     ))}
                   </tr>
                 ))}
@@ -213,7 +253,11 @@ function DiffTable({ r }: { r: ComparisonResult }) {
           </tbody>
         </table>
       </div>
-      <p className="mt-3 text-xs text-slate-500">"Per use" assumes the deductible is already met and uses reference prices; it's for comparing copays with coinsurance.</p>
+      <p className="mt-3 text-xs text-slate-500">
+        {twoFigures
+          ? "Before deductible: what one use costs if you haven't met the deductible yet. After deductible: what it costs once you have. Both use reference prices."
+          : "\"Per use\" assumes the deductible is already met and uses reference prices; it's for comparing copays with coinsurance."}
+      </p>
     </div>
   );
 }
@@ -230,7 +274,11 @@ function CoverageExamples({ r }: { r: ComparisonResult }) {
         <thead className="text-left text-xs uppercase tracking-wide text-slate-500">
           <tr>
             <th className="py-2 pr-4 font-medium">Example</th>
-            {withEx.map((p) => <th key={p.plan_key} className="py-2 pr-4 text-right font-medium">{p.plan_key} · {p.plan_name}</th>)}
+            {withEx.map((p) => (
+              <th key={p.plan_key} className="py-2 pr-4 text-right font-medium">
+                <span className="ml-auto block max-w-[14rem] truncate" title={p.plan_name ?? undefined}>{p.plan_key} · {p.plan_name}</span>
+              </th>
+            ))}
           </tr>
         </thead>
         <tbody className="divide-y divide-slate-100">
@@ -257,9 +305,13 @@ export function ComparisonPage() {
   if (!data) return null;
   const r = data.result;
   const gaps = r.services.filter((s) => r.coverage_gaps.includes(s.id));
+  const profile = data.request.profile;
+  const profileAges = profile?.ages ?? [];
+  const custom = Object.entries(data.request.reference_price_overrides ?? {});
+  const priceLabel = (k: string) => k.replace(/^drug:/, "").replace(/_/g, " ");
   return (
     <div className="space-y-6">
-      <Link to="/compare" className="inline-flex items-center gap-1 text-sm text-slate-500 hover:text-slate-800">
+      <Link to={`/compare?from=${data.id}`} className="inline-flex items-center gap-1 text-sm text-slate-500 hover:text-slate-800">
         <ArrowLeft className="h-4 w-4" /> Change inputs
       </Link>
       <PageHeader
@@ -295,6 +347,17 @@ export function ComparisonPage() {
       <Card className="p-5 text-sm text-slate-600">
         <h2 className="mb-2 flex items-center gap-2 font-semibold text-slate-900"><Info className="h-4 w-4" /> Assumptions and notes</h2>
         <ul className="list-disc space-y-1 pl-5">
+          {profile && profileAges.length > 0 && (
+            <li>
+              Catalog premiums: CMS 2026 rates for age{profileAges.length > 1 ? "s" : ""} {profileAges.join(", ")}, {Object.entries(profile.rating_areas).map(([s, a]) => `${a} (${s})`).join(", ")}, before subsidy, unless typed in.
+            </li>
+          )}
+          {custom.length > 0 && (
+            <li>
+              {custom.length} custom price{custom.length > 1 ? "s" : ""}:{" "}
+              {custom.map(([k, v]) => `${priceLabel(k)} ${money(v)}`).join("; ")} (instead of the reference prices)
+            </li>
+          )}
           {r.assumptions.map((a, i) => <li key={i}>{a}</li>)}
           {r.warnings.slice(0, 8).map((w, i) => <li key={`w${i}`} className="text-amber-800">{w.message}</li>)}
         </ul>

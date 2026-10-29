@@ -330,6 +330,19 @@ Legend: ⬜ not started · 🟡 in progress · ✅ done · ⚠️ done with devi
 | Setup, configuration and run steps documented | ✅ README "Run the app locally", `backend/.env.example`, `make help` |
 | Runs locally from the docs | ✅ `make setup && make dev` from a fresh clone; `docker compose up --build` verified |
 
+## v2.1: trustworthy results, personal inputs, natural-language usage
+
+Plan: [docs/design/v2.1](docs/design/v2.1/README.md) · tracker: [08-backlog.md](docs/design/v2.1/08-backlog.md)
+
+| # | Milestone | Status | Notes |
+|---|---|---|---|
+| M0 | Baseline + fixtures | ✅ Done | sentence labeling (B-03) waits on a person |
+| M1 | Result accuracy | ✅ Done | engine 1.3.0, explanation.v3, claim checks C1–C5; live 10/10 first try |
+| M2 | Personal cost inputs | ✅ Done | rating areas, household quote, profile, per-member events, prices panel, restore |
+| M3 | Privacy + history | ✅ Done | delete, Saved page, retention, sensitive LLM calls |
+| M4 | Natural-language usage | ⚠️ Done with deviation | built and evaluated on a Claude-drafted set; off by default until a human-reviewed set passes |
+| M5 | Cost-ranked catalog | ⏸ Deferred | D7 |
+
 ## Deviations and blockers log
 
 | Date | Milestone | Note |

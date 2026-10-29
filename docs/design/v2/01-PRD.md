@@ -138,7 +138,7 @@ The principle: **code does the reading and the math; LLMs only write prose about
 | Cost | ≤ $0.01 LLM cost per comparison of 3 plans (summaries cached per document). |
 | Determinism | Parser and cost engine are pure functions of input + version. |
 | Traceability | Every field stores page number and raw cell text. |
-| Privacy | SBCs are plan documents, not personal data. Usage profiles can reveal health information, so they are kept per session by default and persisted only with consent. No profile data in logs or LLM-provider training. |
+| Privacy | SBCs are plan documents, not personal data. Usage profiles can reveal health information. Since v2.1 (decision D4) comparisons, with their premiums, ages and usage, are kept on the local machine until the user deletes them on the Saved page, with an optional retention period (`SBCX_COMPARISON_RETENTION_DAYS`); the builder says so. No profile data in logs. Free-text usage descriptions are sent to the LLM only on request, never cached or stored, and only to providers that don't collect data (D5, D9). |
 | Availability | Extraction and comparison work with the LLM provider down (degraded: no summaries, template explanation). |
 | Observability | Per-stage latency, fallback rate, grounding failure rate, LLM tokens/cost, per-insurer extraction quality. |
 

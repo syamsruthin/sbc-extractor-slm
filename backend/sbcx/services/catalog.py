@@ -14,7 +14,18 @@ from concurrent.futures import ProcessPoolExecutor
 from pathlib import Path
 from typing import Any
 
-from sbcx.api.schemas import CatalogFacets, CatalogPage, CatalogPlan, FacetValue, PremiumQuote, PremiumQuotes
+from sbcx.api.schemas import (
+    CatalogFacets,
+    CatalogPage,
+    CatalogPlan,
+    FacetValue,
+    HouseholdMember,
+    HouseholdQuote,
+    PremiumQuote,
+    PremiumQuotes,
+    RatingArea,
+    RatingAreas,
+)
 from sbcx.config import get_settings
 from sbcx.domain.benefits import BenefitsDocument
 from sbcx.domain.compare.cost_model import DeductibleHints, deductible_hints
@@ -305,3 +316,52 @@ def premiums(plan_id: str, age: str = "40", rating_area: str | None = None) -> P
                 for r in rows
             ]
         )
+
+
+def age_band(age: int) -> str:
+    """CMS Rate PUF age band for an age."""
+    if age < 15:
+        return "0-14"
+    if age >= 64:
+        return "64 and over"
+    return str(age)
+
+
+def counted_members(ages: list[int]) -> list[bool]:
+    """Which members a family premium counts: everyone 21 and over, and at most the 3 oldest children under 21
+    (CMS family rating rule, 45 CFR 147.102(c)(4); v2.1 decision D2)."""
+    children = sorted((i for i, a in enumerate(ages) if a < 21), key=lambda i: -ages[i])
+    skip = set(children[3:])
+    return [i not in skip for i in range(len(ages))]
+
+
+def rating_areas(state: str) -> RatingAreas:
+    st = state.upper()
+    with session_scope() as sess:
+        rows = PremiumRepo(sess).rating_areas(st)
+
+    def num(name: str) -> tuple[int, str]:
+        m = re.search(r"(\d+)\s*$", name)
+        return (int(m.group(1)) if m else 10**6, name)
+
+    return RatingAreas(
+        state=st,
+        items=[RatingArea(rating_area=a, plans_priced=n) for a, n in sorted(rows, key=lambda r: num(r[0]))],
+    )
+
+
+def household_quote(plan_id: str, rating_area: str, ages: list[int]) -> HouseholdQuote:
+    get_plan(plan_id)
+    bands = [age_band(a) for a in ages]
+    counted = counted_members(ages)
+    with session_scope() as sess:
+        rates = PremiumRepo(sess).rates(plan_id[:14], rating_area, sorted(set(bands)))
+    members = [
+        HouseholdMember(age=a, band=b, monthly_premium=rates.get(b), counted=c)
+        for a, b, c in zip(ages, bands, counted, strict=True)
+    ]
+    missing = [m.age for m in members if m.counted and m.monthly_premium is None]
+    total = None if missing else round(sum(m.monthly_premium or 0.0 for m in members if m.counted), 2)
+    return HouseholdQuote(
+        plan_id=plan_id, rating_area=rating_area, members=members, monthly_total=total, missing_ages=missing
+    )

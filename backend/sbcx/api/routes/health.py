@@ -15,6 +15,7 @@ class Health(BaseModel):
     engine_version: str
     llm_mode: str
     llm_configured: bool
+    intake_available: bool = False  # "Describe your year" is enabled and an LLM is configured
     db: bool
 
 
@@ -36,5 +37,6 @@ def health() -> Health:
         engine_version=ENGINE_VERSION,
         llm_mode=s.llm_mode,
         llm_configured=s.llm_available,
+        intake_available=s.intake_enabled and s.llm_available,
         db=db_ok,
     )

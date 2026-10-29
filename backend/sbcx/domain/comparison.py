@@ -55,6 +55,16 @@ class Verdict(str, Enum):
     not_comparable = "not_comparable"
 
 
+class OverallVerdict(str, Enum):
+    """Per-use verdict that accounts for the deductible: before and after it is met (v2.1 D1)."""
+
+    better = "better"
+    worse = "worse"
+    same = "same"
+    depends_on_deductible = "depends_on_deductible"
+    not_comparable = "not_comparable"
+
+
 class PlanRef(BaseModel):
     plan_key: str  # "A", "B", ... stable within one comparison
     document_id: str
@@ -91,7 +101,8 @@ class CellView(BaseModel):
     # applies | does_not_apply | applies_per_sbc | applies_hsa_rules | applies_catastrophic_rules |
     # before_per_sbc | not_stated | none
     deductible_status: str | None = None
-    est_cost_per_use: float | None = None
+    est_cost_per_use: float | None = None  # once the deductible is met
+    est_cost_before_deductible: Money | None = None  # one use before the deductible is met (engine 1.3.0)
     note: str | None = None
 
 
@@ -101,8 +112,10 @@ class ServiceDiff(BaseModel):
     label: str
     section: str
     cells: dict[str, CellView]
-    verdicts: dict[str, Verdict]  # non-base plan_key -> verdict vs base
+    verdicts: dict[str, Verdict]  # non-base plan_key -> verdict vs base, after the deductible
     delta_per_use: dict[str, float | None]  # plan - base, estimated per use
+    verdicts_before_deductible: dict[str, Verdict] = {}
+    overall_verdicts: dict[str, OverallVerdict] = {}
     comparison_kind: Literal["exact", "estimated", "none"]
     reference_price: float | None
     flags: list[str] = []
@@ -117,6 +130,8 @@ class DrugTierDiff(BaseModel):
     verdicts: dict[str, Verdict]
     delta_per_use: dict[str, float | None]
     reference_price: float | None
+    verdicts_before_deductible: dict[str, Verdict] = {}
+    overall_verdicts: dict[str, OverallVerdict] = {}
 
 
 class LineItem(BaseModel):
@@ -153,6 +168,22 @@ class RankedDiff(BaseModel):
     severity: Literal["high", "medium", "low"]
 
 
+class ComparisonProfile(BaseModel):
+    """The details premiums were looked up with, kept so the builder can be restored and the result can say where
+    premiums came from. The engine doesn't use it."""
+
+    ages: list[int] = Field(default_factory=list, max_length=10)
+    rating_areas: dict[str, str] = {}  # state -> CMS rating area, e.g. {"TX": "Rating Area 3"}
+
+    @model_validator(mode="after")
+    def _check(self) -> "ComparisonProfile":
+        if any(a < 0 or a > 120 for a in self.ages):
+            raise ValueError("ages must be between 0 and 120")
+        if any(len(s) != 2 or len(a) > 32 for s, a in self.rating_areas.items()):
+            raise ValueError("rating_areas maps a 2-letter state to a rating area name")
+        return self
+
+
 class ComparisonRequest(BaseModel):
     document_ids: list[str] = Field(min_length=2, max_length=5)
     base_document_id: str | None = None  # defaults to the first document
@@ -163,6 +194,7 @@ class ComparisonRequest(BaseModel):
     custom_scenario: Scenario | None = None
     reference_price_overrides: dict[str, float] = {}
     explain: bool = True
+    profile: ComparisonProfile | None = None
 
     @model_validator(mode="after")
     def _check(self) -> "ComparisonRequest":
@@ -170,6 +202,8 @@ class ComparisonRequest(BaseModel):
             raise ValueError("document_ids must be unique")
         if self.base_document_id and self.base_document_id not in self.document_ids:
             raise ValueError("base_document_id must be one of document_ids")
+        if any(v < 0 or v > 1_000_000 for v in self.reference_price_overrides.values()):
+            raise ValueError("reference prices must be between 0 and 1,000,000")
         return self
 
 

@@ -28,8 +28,11 @@ class FakeLLMClient:
         model: str,
         temperature: float = 0.0,
         max_tokens: int = 2000,
+        sensitive: bool = False,
     ) -> LLMResult:
-        self.calls.append({"task": task, "system": system, "user": user, "model": model})
+        self.calls.append(
+            {"task": task, "system": system, "user": user, "model": model, "sensitive": sensitive}
+        )
         r = self.responders.get(task)
         if r is None:
             raise LLMError(f"fake LLM has no responder for task {task!r}")

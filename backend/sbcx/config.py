@@ -40,8 +40,15 @@ class Settings(BaseSettings):
     model_fallback: str = "deepseek/deepseek-v4-flash"
     model_summary: str = "deepseek/deepseek-v4-flash"
     model_explanation: str = "deepseek/deepseek-v4-flash"
+    model_intake: str = "deepseek/deepseek-v4-flash"
+    intake_enabled: bool = (
+        False  # "Describe your year"; turned on once the intake eval meets its targets (v2.1 T4.6)
+    )
     llm_timeout_s: float = 90.0
     llm_budget_usd: float = 2.0  # per process; calls stop once spent
+
+    # privacy: delete saved comparisons (premiums, ages, usage) older than this many days; unset keeps them
+    comparison_retention_days: int | None = Field(default=None, ge=1)
 
     # extraction
     fallback_enabled: bool = True

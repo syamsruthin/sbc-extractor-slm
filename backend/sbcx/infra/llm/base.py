@@ -36,7 +36,11 @@ class LLMClient(Protocol):
         model: str,
         temperature: float = 0.0,
         max_tokens: int = 2000,
-    ) -> LLMResult: ...
+        sensitive: bool = False,
+    ) -> LLMResult:
+        """sensitive=True: the prompt holds personal (health) text, so the response is never cached and the
+        provider is asked not to store or train on it."""
+        ...
 
 
 def strict_schema(schema: Any) -> Any:

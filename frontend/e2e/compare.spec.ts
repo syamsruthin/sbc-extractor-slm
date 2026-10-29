@@ -45,6 +45,42 @@ test("upload two SBCs, compare them and read the explanation", async ({ page }) 
   await expect(page.getByText("Plan A").first()).toBeVisible();
   await expect(page.getByText("$7,440").first()).toBeVisible(); // 620 x 12
   await expect(page.getByRole("heading", { name: "Side by side" })).toBeVisible();
+
+  // change inputs: every value comes back, and re-running unchanged gives the same result
+  const hash = (await page.getByText(/· result [0-9a-f]{16}/).textContent())!.match(/result ([0-9a-f]{16})/)![1];
+  const firstUrl = page.url();
+  await page.getByRole("link", { name: "Change inputs" }).click();
+  await expect(page.getByLabel("Monthly premium for Core Gold 1500")).toHaveValue("620");
+  await expect(page.getByLabel("Monthly premium for Blue Cross Premier PPO Gold")).toHaveValue("585");
+  await page.getByRole("button", { name: "Compare 2 plans" }).first().click();
+  await expect(page).not.toHaveURL(firstUrl);
+  await expect(page.getByText(`result ${hash}`)).toBeVisible();
+
+  // describe your year (fake LLM): events are added for review, then used in the comparison.
+  // With the LLM off (E2E_LLM_MODE=off) the feature is hidden.
+  const health = await (await page.request.get("http://127.0.0.1:8001/api/v1/health")).json();
+  await page.getByRole("link", { name: "Change inputs" }).click();
+  await expect(page.getByLabel("Monthly premium for Core Gold 1500")).toHaveValue("620");
+  if (health.intake_available) {
+    await page.getByLabel("Describe your expected care").fill("I expect 3 specialist visits and I'm having a baby. Dental cleanings too.");
+    await page.getByRole("checkbox", { name: /sent to an AI service/ }).check();
+    await page.getByRole("button", { name: "Interpret" }).click();
+    await expect(page.getByText("from your description")).toHaveCount(2);
+    await expect(page.getByText(/Dental cleanings.*adult dental/)).toBeVisible();
+    await page.getByRole("button", { name: "Compare 2 plans" }).first().click();
+    await expect(page.getByRole("cell", { name: /Your usage/ })).toBeVisible();
+  } else {
+    await expect(page.getByText(/Describe your year/)).toHaveCount(0);
+    await page.getByRole("button", { name: "Compare 2 plans" }).first().click();
+    await expect(page).toHaveURL(/\/comparisons\//);
+  }
+
+  // saved comparisons: listed and deletable
+  await page.getByRole("link", { name: "Saved" }).click();
+  await expect(page.getByRole("list", { name: "Saved comparisons" }).getByRole("listitem")).toHaveCount(3);
+  await page.getByRole("button", { name: "Delete all" }).click();
+  await page.getByRole("button", { name: "Delete all" }).last().click();
+  await expect(page.getByText("No saved comparisons")).toBeVisible();
 });
 
 test("catalog shows how to load it when empty", async ({ page }) => {

@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import { Component, type ErrorInfo, type ReactNode } from "react";
-import { BarChart3, FileStack, Library, Scale, X } from "lucide-react";
+import { BarChart3, FileStack, History, Library, Scale, X } from "lucide-react";
 import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
 
 import { Badge, Button } from "@/components/ui";
@@ -11,6 +11,7 @@ const NAV = [
   { to: "/", label: "My plans", icon: FileStack, end: true },
   { to: "/catalog", label: "Marketplace catalog", icon: Library, end: false },
   { to: "/compare", label: "Compare", icon: Scale, end: false },
+  { to: "/comparisons", label: "Saved", icon: History, end: true },
 ];
 
 function HealthBadge() {

@@ -65,6 +65,7 @@ class OpenRouterClient:
         model: str,
         temperature: float = 0.0,
         max_tokens: int = 2000,
+        sensitive: bool = False,
     ) -> LLMResult:
         response_format = {
             "type": "json_schema",
@@ -74,6 +75,9 @@ class OpenRouterClient:
                 "schema": strict_schema(schema.model_json_schema()),
             },
         }
+        provider: dict[str, Any] = {"require_parameters": True}  # only providers that enforce the schema
+        if sensitive:
+            provider["data_collection"] = "deny"  # only providers that don't store or train on prompts
         payload = {
             "model": model,
             "messages": [{"role": "system", "content": system}, {"role": "user", "content": user}],
@@ -81,11 +85,12 @@ class OpenRouterClient:
             "temperature": temperature,
             "max_tokens": max_tokens,
             "reasoning": {"enabled": False},  # thinking tokens are billed as output
-            "provider": {"require_parameters": True},  # only providers that enforce the schema
+            "provider": provider,
             "usage": {"include": True},
         }
+        cache = None if sensitive else self.cache  # personal text never lands in the response cache
         key = ResponseCache.key(payload)
-        if self.cache and (hit := self.cache.get(key)) is not None:
+        if cache and (hit := cache.get(key)) is not None:
             return LLMResult(data=hit["data"], model=hit.get("model", model), cached=True)
         if self.budget.exhausted:
             raise LLMError(f"LLM budget of ${self.budget.cap:.2f} exhausted")
@@ -118,8 +123,8 @@ class OpenRouterClient:
                     cost_usd=cost,
                     latency_ms=int((time.perf_counter() - t0) * 1000),
                 )
-                if self.cache:
-                    self.cache.put(key, {"data": data, "model": result.model})
+                if cache:
+                    cache.put(key, {"data": data, "model": result.model})
                 self._log(task, result, "ok")
                 return result
             except LLMError as e:

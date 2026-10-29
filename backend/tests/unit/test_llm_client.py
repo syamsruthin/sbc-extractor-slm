@@ -109,3 +109,23 @@ def test_fake_script():
     assert call(f).data["summary"] == "a"
     with pytest.raises(LLMError):
         call(f)
+
+
+def test_sensitive_calls_skip_the_cache_and_deny_data_collection(tmp_path):
+    """v2.1 T3.4: personal text (usage descriptions) is never cached and only goes to providers that don't
+    collect data."""
+    bodies = []
+
+    def h(req):
+        bodies.append(json.loads(req.content))
+        return httpx.Response(200, json=ok_body({"summary": "x"}))
+
+    c = client(h, tmp_path)
+    for _ in range(2):
+        r = c.complete_json(task="t", system="s", user="my health", schema=Out, model="m", sensitive=True)
+        assert not r.cached
+    assert len(bodies) == 2  # no cache hit
+    assert bodies[0]["provider"] == {"require_parameters": True, "data_collection": "deny"}
+    assert ResponseCache(tmp_path / "c.sqlite").get(ResponseCache.key(bodies[0])) is None
+    call(c)
+    assert "data_collection" not in bodies[-1]["provider"]  # other tasks unchanged (D9)

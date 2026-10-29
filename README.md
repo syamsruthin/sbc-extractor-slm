@@ -33,6 +33,10 @@ Without an OpenRouter key the app still works: summaries and explanations fall b
 built from the computed numbers (`SBCX_LLM_MODE=off`). `SBCX_LLM_MODE=fake` gives deterministic
 output for tests.
 
+Optional: `SBCX_INTAKE_ENABLED=true` turns on "Describe your year" in the comparison builder (needs an
+OpenRouter key; the description is never cached or stored). Saved comparisons can be deleted on the
+**Saved** page, or purged by age with `SBCX_COMPARISON_RETENTION_DAYS` / `uv run sbcx purge-comparisons --days N`.
+
 ### Marketplace catalog (optional)
 
 Needs the local SBC corpus in `data/raw/sbc_pdfs` and the CMS Plan Attributes PUF in `data/raw/puf/`
@@ -50,6 +54,9 @@ make test                        # backend pytest (unit, property, integration; 
 make lint                        # ruff, mypy, eslint, tsc
 make e2e                         # Playwright: upload -> compare -> explanation (isolated backend, fake LLM)
 make score                       # parser accuracy on the gold set and the reviewed v1.4 labels (eval/score.py)
+# live LLM checks (spend a few cents of OpenRouter credit), run from backend/:
+#   uv run python ../eval/explanations/check.py        claim checks over stored explanations
+#   uv run python ../eval/intake/run.py                usage intake evaluation
 make check-api-types             # frontend types match the backend OpenAPI spec
 ```
 

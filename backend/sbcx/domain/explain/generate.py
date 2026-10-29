@@ -10,6 +10,7 @@ from typing import Any
 
 from sbcx.domain.comparison import ComparisonResult, Money
 from sbcx.domain.display import money
+from sbcx.domain.explain.claims import EXEMPT, covers_before_deductible, deductible_claims
 from sbcx.domain.explain.grounding import check, collect
 from sbcx.domain.explanation import Explanation, ExplanationRecord, GroundingReport, ScenarioText
 from sbcx.infra.llm.base import LLMClient, LLMError
@@ -30,9 +31,16 @@ Rules:
 - For any "lowest/highest/cheapest" statement about premiums, deductibles, out-of-pocket limits, the no-care
   (best) case or the worst case, use FACTS.rankings; for scenario totals use scenarios[].lowest_cost. Don't infer
   rankings yourself.
-- "deductible not stated" means the SBC doesn't say: never call that service free or say it skips the deductible.
+- "deductible not stated" means the SBC doesn't say: never call that service free, say it skips the deductible, or
+  say the deductible applies to it ("not covered before the deductible"). Say the SBC doesn't state it.
   "No charge, after deductible" is free only once the deductible is met.
-- Mention coverage gaps (a service one plan doesn't cover) in watch_out.
+- Mention coverage gaps in watch_out, naming exactly the plans in coverage_gaps[].not_covered_by.
+- Each top difference has a cost per use before the deductible is met and after it is met. When
+  overall_verdict is "depends_on_deductible", say the answer depends on whether the deductible has been met;
+  don't call either plan cheaper for that service.
+- Don't say a plan makes you pay full cost until the deductible is met unless that plan's
+  deductible_applies_to_everything_else is true; otherwise name what plans[].covered_before_deductible lists.
+- Say a plan covers or doesn't cover a service only when its cost_sharing says so ("Not covered" means not covered).
 - Neutral and factual. Never tell the reader which plan to choose ("you should", "we recommend", "best plan for you").
   Never promise savings ("you will save").
 - headline: one sentence, at most 25 words. key_points: 3-5 short sentences. scenarios: one short paragraph per
@@ -153,6 +161,34 @@ def claim_check(e: Explanation, facts: dict) -> list[str]:
     return bad
 
 
+def covered_before_deductible(result: ComparisonResult) -> dict[str, list[str]]:
+    """Per plan: labels of the services and drug tiers covered before the deductible (fact sheet v3)."""
+    out: dict[str, list[str]] = {p.plan_key: [] for p in result.plans}
+    rows = [(d.label, d.cells) for d in result.services] + [(d.label, d.cells) for d in result.drug_tiers]
+    for label, cells in rows:
+        for k, c in cells.items():
+            if not c or not c.covered or c.deductible_status not in EXEMPT:
+                continue
+            first = c.deductible_status == "first_visits_before"
+            out[k].append(f"{label} (first 3 visits)" if first else label)
+    return out
+
+
+def applies_to_everything_else(result: ComparisonResult, plan: str) -> bool:
+    """True only when the SBC (or a federal rule) puts every non-preventive service behind the deductible: no
+    service is covered before it and none leaves it unstated."""
+    statuses = [c.deductible_status for d in result.services for k, c in d.cells.items() if k == plan and c]
+    statuses += [
+        c.deductible_status for d in result.drug_tiers for k, c in d.cells.items() if k == plan and c
+    ]
+    return (
+        bool(statuses)
+        and "not_stated" not in statuses
+        and any(s and s.startswith("applies") for s in statuses)
+        and not covers_before_deductible(result, plan)
+    )
+
+
 def factsheet(
     result: ComparisonResult, summaries: dict[str, dict[str, str]] | None = None, top_k: int = 8
 ) -> dict[str, Any]:
@@ -171,11 +207,15 @@ def factsheet(
                 "per_plan": {
                     k: {
                         "cost_sharing": (c.display if c else "not listed"),
-                        "estimated_cost_per_use": (c.est_cost_per_use if c else None),
+                        "cost_per_use_after_deductible": (c.est_cost_per_use if c else None),
+                        "cost_per_use_before_deductible": (
+                            _m(c.est_cost_before_deductible) if c and c.est_cost_before_deductible else None
+                        ),
                     }
                     for k, c in d.cells.items()
                 },
                 "difference_per_use_vs_base": d.delta_per_use,
+                "overall_verdict": {k: v.value for k, v in d.overall_verdicts.items()},
                 "reference_price": d.reference_price,
             }
         )
@@ -212,6 +252,7 @@ def factsheet(
         "best_case_no_care": h.best_case,
         "worst_case_max_out_of_pocket": h.worst_case,
     }
+    before = covered_before_deductible(result)
     return {
         "plans": [
             {
@@ -221,6 +262,8 @@ def factsheet(
                 "type": p.plan_type,
                 "metal": p.metal,
                 "is_base": p.is_base,
+                "covered_before_deductible": before[p.plan_key],
+                "deductible_applies_to_everything_else": applies_to_everything_else(result, p.plan_key),
             }
             for p in result.plans
         ],
@@ -240,7 +283,15 @@ def factsheet(
         "rankings": rankings(metrics, names),
         "scenarios": scen,
         "top_differences": top,
-        "coverage_gaps": [diffs[g].label for g in result.coverage_gaps][:6],
+        # which plans don't cover each gap: without it the model guessed and named the wrong plan (live check v2.1)
+        "coverage_gaps": [
+            {
+                "item": diffs[g].label,
+                "not_covered_by": [names[k] for k, c in diffs[g].cells.items() if c and c.covered is False],
+                "covered_by": [names[k] for k, c in diffs[g].cells.items() if c and c.covered],
+            }
+            for g in result.coverage_gaps
+        ][:6],
         "section_summaries": summaries or {},
         "warnings": [
             w.message
@@ -253,11 +304,11 @@ def factsheet(
     }
 
 
-def _validate(e: Explanation, facts: dict) -> GroundingReport:
+def _validate(e: Explanation, facts: dict, result: ComparisonResult | None = None) -> GroundingReport:
     texts = [e.headline, *e.key_points, *(s.text for s in e.scenarios), *e.watch_out, *e.assumptions]
     n, bad = check(texts, collect(facts))
     policy = sorted({m.group(0) for t in texts for m in BANNED.finditer(t)})
-    claims = claim_check(e, facts)
+    claims = claim_check(e, facts) + (deductible_claims(e, result, facts) if result is not None else [])
     return GroundingReport(
         ok=not bad and not policy and not claims,
         numbers_checked=n,
@@ -308,7 +359,18 @@ def template_explanation(facts: dict) -> Explanation:
         if facts["top_differences"]
         else f"Here is how the plans compare with {base}."
     )
-    watch = [f"Not covered by every plan: {g}." for g in facts["coverage_gaps"][:3]] + facts["warnings"][:2]
+    watch = [
+        f"{g['item']} is not covered by {' or '.join(g['not_covered_by'])}."
+        for g in facts["coverage_gaps"][:3]
+    ]
+    for p in facts["plans"]:
+        if p.get("deductible_applies_to_everything_else"):
+            items = " and ".join(p["covered_before_deductible"]) or "nothing listed"
+            watch.append(f"{p['name']}: the deductible applies to everything except {items}.")
+        elif p.get("covered_before_deductible"):
+            items = ", ".join(p["covered_before_deductible"][:4])
+            watch.append(f"{p['name']} covers these before the deductible: {items}.")
+    watch += facts["warnings"][:2]
     _ = lowest
     return Explanation(
         headline=headline,
@@ -344,7 +406,7 @@ def explain(
                 break
             e = Explanation.model_validate(r.data)
             e.disclaimer = DISCLAIMER
-            rep = _validate(e, facts)
+            rep = _validate(e, facts, result)
             if rep.ok:
                 return ExplanationRecord(
                     content=e,
@@ -358,15 +420,18 @@ def explain(
                 problems.append(f"advice/guarantee wording not allowed: {', '.join(rep.policy_violations)}")
             if rep.claim_violations:
                 problems.append(
-                    "claims that contradict FACTS.rankings or scenarios[].lowest_cost: "
-                    + "; ".join(rep.claim_violations)
+                    "claims that contradict FACTS (rankings, scenarios[].lowest_cost, plans[].covered_before_deductible "
+                    "or a service's cost_sharing): " + "; ".join(rep.claim_violations)
                 )
             prompt = (
                 user + "\n\nYour previous answer broke the rules (" + "; ".join(problems) + "). Rewrite it."
             )
     e = template_explanation(facts)
     return ExplanationRecord(
-        content=e, source="template", grounding=_validate(e, facts), prompt_version=EXPLANATION_PROMPT_VERSION
+        content=e,
+        source="template",
+        grounding=_validate(e, facts, result),
+        prompt_version=EXPLANATION_PROMPT_VERSION,
     )
 
 

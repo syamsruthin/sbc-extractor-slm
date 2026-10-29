@@ -3,9 +3,10 @@
 from __future__ import annotations
 
 from collections.abc import Sequence
+from datetime import datetime
 from typing import Any
 
-from sqlalchemy import func, or_, select
+from sqlalchemy import delete, func, or_, select
 from sqlalchemy.orm import Session
 
 from sbcx.infra.db import session_scope
@@ -128,6 +129,25 @@ class PremiumRepo:
     def count(self) -> int:
         return self.s.scalar(select(func.count()).select_from(PremiumRow)) or 0
 
+    def rating_areas(self, state: str) -> list[tuple[str, int]]:
+        """(rating area, number of plans priced there) for one state."""
+        rows = self.s.execute(
+            select(PremiumRow.rating_area, func.count(func.distinct(PremiumRow.plan_key)))
+            .where(PremiumRow.state == state)
+            .group_by(PremiumRow.rating_area)
+        ).all()
+        return [(a, int(n)) for a, n in rows]
+
+    def rates(self, plan_key: str, rating_area: str, bands: list[str]) -> dict[str, float]:
+        rows = self.s.scalars(
+            select(PremiumRow).where(
+                PremiumRow.plan_key == plan_key,
+                PremiumRow.rating_area == rating_area,
+                PremiumRow.age.in_(bands),
+            )
+        ).all()
+        return {r.age: r.monthly_premium for r in rows}
+
 
 class ComparisonRepo:
     def __init__(self, s: Session):
@@ -145,6 +165,22 @@ class ComparisonRepo:
         return self.s.scalars(
             select(ComparisonRow).order_by(ComparisonRow.created_at.desc()).limit(limit)
         ).all()
+
+    def delete(self, cid: str) -> bool:
+        row = self.s.get(ComparisonRow, cid)
+        if row is None:
+            return False
+        self.s.delete(row)
+        return True
+
+    def delete_all(self) -> int:
+        return self.s.execute(delete(ComparisonRow)).rowcount or 0  # type: ignore[attr-defined]
+
+    def delete_older_than(self, cutoff: datetime) -> int:
+        return (
+            self.s.execute(delete(ComparisonRow).where(ComparisonRow.created_at < cutoff)).rowcount  # type: ignore[attr-defined]
+            or 0
+        )
 
 
 def record_llm_call(rec: dict[str, Any]) -> None:

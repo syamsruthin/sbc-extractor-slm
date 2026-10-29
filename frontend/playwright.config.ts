@@ -19,7 +19,7 @@ export default defineConfig({
     {
       command: "uv --directory ../backend run uvicorn sbcx.main:app --port 8001",
       url: "http://127.0.0.1:8001/api/v1/health",
-      env: { SBCX_VAR_DIR: varDir, SBCX_LLM_MODE: process.env.E2E_LLM_MODE ?? "fake", SBCX_LOG_LEVEL: "WARNING" },
+      env: { SBCX_VAR_DIR: varDir, SBCX_LLM_MODE: process.env.E2E_LLM_MODE ?? "fake", SBCX_LOG_LEVEL: "WARNING", SBCX_INTAKE_ENABLED: "true" },
       reuseExistingServer: false,
       timeout: 120_000,
     },

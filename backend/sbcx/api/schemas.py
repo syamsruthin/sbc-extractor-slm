@@ -97,6 +97,31 @@ class PremiumQuotes(BaseModel):
     items: list[PremiumQuote]
 
 
+class RatingArea(BaseModel):
+    rating_area: str
+    plans_priced: int
+
+
+class RatingAreas(BaseModel):
+    state: str
+    items: list[RatingArea]
+
+
+class HouseholdMember(BaseModel):
+    age: int
+    band: str  # Rate PUF age band: "0-14", "15" ... "63", "64 and over"
+    monthly_premium: float | None  # None when the rate table has no row for this band
+    counted: bool  # False for children beyond the 3 oldest under 21
+
+
+class HouseholdQuote(BaseModel):
+    plan_id: str
+    rating_area: str
+    members: list[HouseholdMember]
+    monthly_total: float | None  # None when any counted member's rate is missing
+    missing_ages: list[int]
+
+
 class ComparisonResponse(BaseModel):
     id: str
     created_at: UTCDateTime
@@ -110,6 +135,7 @@ class ComparisonListItem(BaseModel):
     id: str
     created_at: UTCDateTime
     plan_names: list[str]
+    scenario_labels: list[str] = []
 
 
 class ScenarioCatalog(BaseModel):
@@ -122,6 +148,31 @@ class ReferencePrices(BaseModel):
     source: str
     prices: dict[str, float]
     labels: dict[str, str]
+
+
+class InterpretUsageRequest(BaseModel):
+    text: str = Field(min_length=1, max_length=1000)
+    coverage_tier: Literal["individual", "family"] = "individual"
+    members: list[Annotated[str, Field(max_length=40)]] = Field(default_factory=list, max_length=10)
+
+
+class InterpretedEvent(BaseModel):
+    event: str
+    count: int
+    member: int
+    quote: str  # the user's own words this event comes from
+    basis: str
+
+
+class UnmodeledItem(BaseModel):
+    quote: str
+    reason: str
+
+
+class InterpretUsageResponse(BaseModel):
+    events: list[InterpretedEvent]
+    unmodeled: list[UnmodeledItem]
+    model: str | None = None
 
 
 class UsageStats(BaseModel):

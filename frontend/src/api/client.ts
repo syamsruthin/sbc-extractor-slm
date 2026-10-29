@@ -17,6 +17,10 @@ export type Health = S["Health"];
 export type Money = S["Money"];
 export type CostShare = S["CostShare"];
 export type PremiumQuotes = S["PremiumQuotes"];
+export type RatingAreas = S["RatingAreas"];
+export type HouseholdQuote = S["HouseholdQuote"];
+export type InterpretUsageRequest = S["InterpretUsageRequest"];
+export type InterpretUsageResponse = S["InterpretUsageResponse"];
 
 /** Error envelope from the API: {"error": {code, message, details}}. */
 export class ApiError extends Error {
@@ -79,10 +83,16 @@ export const api = {
     request<CatalogPage>(`/catalog/plans${qs(p)}`),
   facets: () => request<CatalogFacets>("/catalog/facets"),
   premiums: (planId: string, age: string) => request<PremiumQuotes>(`/catalog/plans/${planId}/premiums${qs({ age })}`),
+  ratingAreas: (state: string) => request<RatingAreas>(`/catalog/rating-areas${qs({ state })}`),
+  premiumQuote: (planId: string, ratingArea: string, ages: number[]) =>
+    request<HouseholdQuote>(`/catalog/plans/${planId}/premium-quote${qs({ rating_area: ratingArea, ages: ages.join(",") })}`),
   scenarios: () => request<ScenarioCatalog>("/meta/scenarios"),
   referencePrices: () => request<ReferencePrices>("/meta/reference-prices"),
   createComparison: (req: ComparisonRequest) => request<ComparisonResponse>("/comparisons", json("POST", req)),
   getComparison: (id: string) => request<ComparisonResponse>(`/comparisons/${id}`),
   listComparisons: () => request<S["ComparisonListItem"][]>("/comparisons"),
+  deleteComparison: (id: string) => request<void>(`/comparisons/${id}`, { method: "DELETE" }),
+  deleteAllComparisons: () => request<void>("/comparisons", { method: "DELETE" }),
+  interpretUsage: (req: InterpretUsageRequest) => request<InterpretUsageResponse>("/usage/interpret", json("POST", req)),
   regenerateExplanation: (id: string) => request<ComparisonResponse>(`/comparisons/${id}/explanation`, { method: "POST" }),
 };
