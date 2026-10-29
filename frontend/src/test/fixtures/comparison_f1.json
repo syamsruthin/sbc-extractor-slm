@@ -1,0 +1,3387 @@
+{
+ "id": "cmpf1",
+ "created_at": "2026-10-27T00:00:00Z",
+ "request": {
+  "document_ids": [
+   "6af4d066b9e041b5a44e26b3a79f1c6e",
+   "0226157ce82e4f5b8b3bf118a6e70bcf"
+  ],
+  "base_document_id": null,
+  "inputs": {
+   "6af4d066b9e041b5a44e26b3a79f1c6e": {
+    "monthly_premium": 320.0,
+    "employer_hsa_hra_annual": 0.0
+   },
+   "0226157ce82e4f5b8b3bf118a6e70bcf": {
+    "monthly_premium": 290.0,
+    "employer_hsa_hra_annual": 0.0
+   }
+  },
+  "coverage_tier": "individual",
+  "network": "in_network",
+  "scenario_ids": [
+   "low",
+   "moderate",
+   "high"
+  ],
+  "custom_scenario": null,
+  "reference_price_overrides": {},
+  "explain": true
+ },
+ "result": {
+  "engine_version": "1.3.0",
+  "reference_prices_version": "2026.1-illustrative",
+  "coverage_tier": "individual",
+  "network": "in_network",
+  "plans": [
+   {
+    "plan_key": "A",
+    "document_id": "6af4d066b9e041b5a44e26b3a79f1c6e",
+    "catalog_plan_id": "17933TX0010006-00",
+    "plan_name": "Moda Select Texas Bronze 8700 ($0 Virtual Urgent Care through CirrusMD)",
+    "issuer": "Moda Health Plan, Inc.",
+    "plan_type": "EPO",
+    "metal": "Expanded Bronze",
+    "is_base": true
+   },
+   {
+    "plan_key": "B",
+    "document_id": "0226157ce82e4f5b8b3bf118a6e70bcf",
+    "catalog_plan_id": "32753MO0990015-01",
+    "plan_name": "Anthem Catastrophic Pathway Essentials X (+ Incentives)",
+    "issuer": "Anthem BlueCross and BlueShield",
+    "plan_type": "EPO",
+    "metal": "Catastrophic",
+    "is_base": false
+   }
+  ],
+  "headline": {
+   "annual_premium": {
+    "A": 3840.0,
+    "B": 3480.0
+   },
+   "employer_contribution": {
+    "A": 0.0,
+    "B": 0.0
+   },
+   "deductible": {
+    "A": {
+     "individual": 8700.0,
+     "family": 17400.0
+    },
+    "B": {
+     "individual": 10600.0,
+     "family": 21200.0
+    }
+   },
+   "oop_limit": {
+    "A": {
+     "individual": 8700.0,
+     "family": 17400.0
+    },
+    "B": {
+     "individual": 10600.0,
+     "family": 21200.0
+    }
+   },
+   "best_case": {
+    "A": 3840.0,
+    "B": 3480.0
+   },
+   "worst_case": {
+    "A": 12540.0,
+    "B": 14080.0
+   },
+   "best_case_delta": {
+    "B": -360.0
+   },
+   "worst_case_delta": {
+    "B": 1540.0
+   }
+  },
+  "services": [
+   {
+    "id": "svc.primary_care_visit",
+    "service_key": "primary_care_visit",
+    "label": "Primary care visit",
+    "section": "office_visits",
+    "cells": {
+     "A": {
+      "display": "$85 copay, deductible doesn't apply",
+      "covered": true,
+      "copay": 85.0,
+      "coinsurance_pct": null,
+      "deductible_applies": false,
+      "deductible_status": "does_not_apply",
+      "est_cost_per_use": 85.0,
+      "est_cost_before_deductible": {
+       "low": 85.0,
+       "high": 85.0
+      },
+      "note": "$75 copay/virtual care visit, No charge/CirrusMD virtual visit; deductible does not apply."
+     },
+     "B": {
+      "display": "0% coinsurance, deductible doesn't apply to the first 3 visits (catastrophic plan rules)",
+      "covered": true,
+      "copay": null,
+      "coinsurance_pct": 0.0,
+      "deductible_applies": false,
+      "deductible_status": "first_visits_before",
+      "est_cost_per_use": 0.0,
+      "est_cost_before_deductible": {
+       "low": 0.0,
+       "high": 0.0
+      },
+      "note": "$40/visit for the first 3 visits; deductible does not apply. All office visit copayments count towards the same 3 visit limit."
+     }
+    },
+    "verdicts": {
+     "B": "better"
+    },
+    "delta_per_use": {
+     "B": -85.0
+    },
+    "verdicts_before_deductible": {
+     "B": "better"
+    },
+    "overall_verdicts": {
+     "B": "better"
+    },
+    "comparison_kind": "estimated",
+    "reference_price": 150.0,
+    "flags": []
+   },
+   {
+    "id": "svc.specialist_visit",
+    "service_key": "specialist_visit",
+    "label": "Specialist visit",
+    "section": "office_visits",
+    "cells": {
+     "A": {
+      "display": "$120 copay, deductible doesn't apply",
+      "covered": true,
+      "copay": 120.0,
+      "coinsurance_pct": null,
+      "deductible_applies": false,
+      "deductible_status": "does_not_apply",
+      "est_cost_per_use": 120.0,
+      "est_cost_before_deductible": {
+       "low": 120.0,
+       "high": 120.0
+      },
+      "note": "$75 copay/virtual care visit, No charge/CirrusMD virtual visit; $10 copay/adult eye exam, $45 copay/hearing exam visit; deductible does not apply."
+     },
+     "B": {
+      "display": "0% coinsurance, after deductible (catastrophic plan rules)",
+      "covered": true,
+      "copay": null,
+      "coinsurance_pct": 0.0,
+      "deductible_applies": null,
+      "deductible_status": "applies_catastrophic_rules",
+      "est_cost_per_use": 0.0,
+      "est_cost_before_deductible": {
+       "low": 250.0,
+       "high": 250.0
+      },
+      "note": "Virtual visits (Telehealth) benefits available."
+     }
+    },
+    "verdicts": {
+     "B": "better"
+    },
+    "delta_per_use": {
+     "B": -120.0
+    },
+    "verdicts_before_deductible": {
+     "B": "worse"
+    },
+    "overall_verdicts": {
+     "B": "depends_on_deductible"
+    },
+    "comparison_kind": "estimated",
+    "reference_price": 250.0,
+    "flags": []
+   },
+   {
+    "id": "svc.preventive_care",
+    "service_key": "preventive_care",
+    "label": "Preventive care / screening",
+    "section": "office_visits",
+    "cells": {
+     "A": {
+      "display": "No charge, deductible doesn't apply",
+      "covered": true,
+      "copay": 0.0,
+      "coinsurance_pct": 0.0,
+      "deductible_applies": null,
+      "deductible_status": "before_per_sbc",
+      "est_cost_per_use": 0.0,
+      "est_cost_before_deductible": {
+       "low": 0.0,
+       "high": 0.0
+      },
+      "note": "$85copay/visit,deductibledoes not apply or 0% coinsurance for remaining services."
+     },
+     "B": {
+      "display": "No charge, deductible doesn't apply",
+      "covered": true,
+      "copay": 0.0,
+      "coinsurance_pct": 0.0,
+      "deductible_applies": null,
+      "deductible_status": "before_per_sbc",
+      "est_cost_per_use": 0.0,
+      "est_cost_before_deductible": {
+       "low": 0.0,
+       "high": 0.0
+      },
+      "note": null
+     }
+    },
+    "verdicts": {
+     "B": "same"
+    },
+    "delta_per_use": {
+     "B": 0.0
+    },
+    "verdicts_before_deductible": {
+     "B": "same"
+    },
+    "overall_verdicts": {
+     "B": "same"
+    },
+    "comparison_kind": "exact",
+    "reference_price": 250.0,
+    "flags": []
+   },
+   {
+    "id": "svc.diagnostic_test",
+    "service_key": "diagnostic_test",
+    "label": "Diagnostic test (x-ray, blood work)",
+    "section": "tests",
+    "cells": {
+     "A": {
+      "display": "0% coinsurance, after deductible (HSA plan rules)",
+      "covered": true,
+      "copay": null,
+      "coinsurance_pct": 0.0,
+      "deductible_applies": null,
+      "deductible_status": "applies_hsa_rules",
+      "est_cost_per_use": 0.0,
+      "est_cost_before_deductible": {
+       "low": 120.0,
+       "high": 120.0
+      },
+      "note": null
+     },
+     "B": {
+      "display": "0% coinsurance, after deductible (catastrophic plan rules)",
+      "covered": true,
+      "copay": null,
+      "coinsurance_pct": 0.0,
+      "deductible_applies": null,
+      "deductible_status": "applies_catastrophic_rules",
+      "est_cost_per_use": 0.0,
+      "est_cost_before_deductible": {
+       "low": 120.0,
+       "high": 120.0
+      },
+      "note": null
+     }
+    },
+    "verdicts": {
+     "B": "same"
+    },
+    "delta_per_use": {
+     "B": 0.0
+    },
+    "verdicts_before_deductible": {
+     "B": "same"
+    },
+    "overall_verdicts": {
+     "B": "same"
+    },
+    "comparison_kind": "exact",
+    "reference_price": 120.0,
+    "flags": []
+   },
+   {
+    "id": "svc.imaging",
+    "service_key": "imaging",
+    "label": "Imaging (CT/PET, MRI)",
+    "section": "tests",
+    "cells": {
+     "A": {
+      "display": "0% coinsurance, after deductible (HSA plan rules)",
+      "covered": true,
+      "copay": null,
+      "coinsurance_pct": 0.0,
+      "deductible_applies": null,
+      "deductible_status": "applies_hsa_rules",
+      "est_cost_per_use": 0.0,
+      "est_cost_before_deductible": {
+       "low": 1000.0,
+       "high": 1000.0
+      },
+      "note": null
+     },
+     "B": {
+      "display": "0% coinsurance, after deductible (catastrophic plan rules)",
+      "covered": true,
+      "copay": null,
+      "coinsurance_pct": 0.0,
+      "deductible_applies": null,
+      "deductible_status": "applies_catastrophic_rules",
+      "est_cost_per_use": 0.0,
+      "est_cost_before_deductible": {
+       "low": 1000.0,
+       "high": 1000.0
+      },
+      "note": null
+     }
+    },
+    "verdicts": {
+     "B": "same"
+    },
+    "delta_per_use": {
+     "B": 0.0
+    },
+    "verdicts_before_deductible": {
+     "B": "same"
+    },
+    "overall_verdicts": {
+     "B": "same"
+    },
+    "comparison_kind": "exact",
+    "reference_price": 1000.0,
+    "flags": []
+   },
+   {
+    "id": "svc.outpatient_facility_fee",
+    "service_key": "outpatient_facility_fee",
+    "label": "Outpatient surgery facility fee",
+    "section": "outpatient_surgery",
+    "cells": {
+     "A": {
+      "display": "0% coinsurance, after deductible (HSA plan rules)",
+      "covered": true,
+      "copay": null,
+      "coinsurance_pct": 0.0,
+      "deductible_applies": null,
+      "deductible_status": "applies_hsa_rules",
+      "est_cost_per_use": 0.0,
+      "est_cost_before_deductible": {
+       "low": 3500.0,
+       "high": 3500.0
+      },
+      "note": null
+     },
+     "B": {
+      "display": "0% coinsurance, after deductible (catastrophic plan rules)",
+      "covered": true,
+      "copay": null,
+      "coinsurance_pct": 0.0,
+      "deductible_applies": null,
+      "deductible_status": "applies_catastrophic_rules",
+      "est_cost_per_use": 0.0,
+      "est_cost_before_deductible": {
+       "low": 3500.0,
+       "high": 3500.0
+      },
+      "note": null
+     }
+    },
+    "verdicts": {
+     "B": "same"
+    },
+    "delta_per_use": {
+     "B": 0.0
+    },
+    "verdicts_before_deductible": {
+     "B": "same"
+    },
+    "overall_verdicts": {
+     "B": "same"
+    },
+    "comparison_kind": "exact",
+    "reference_price": 3500.0,
+    "flags": []
+   },
+   {
+    "id": "svc.outpatient_surgeon_fee",
+    "service_key": "outpatient_surgeon_fee",
+    "label": "Outpatient surgery physician/surgeon fee",
+    "section": "outpatient_surgery",
+    "cells": {
+     "A": {
+      "display": "0% coinsurance, after deductible (HSA plan rules)",
+      "covered": true,
+      "copay": null,
+      "coinsurance_pct": 0.0,
+      "deductible_applies": null,
+      "deductible_status": "applies_hsa_rules",
+      "est_cost_per_use": 0.0,
+      "est_cost_before_deductible": {
+       "low": 1500.0,
+       "high": 1500.0
+      },
+      "note": null
+     },
+     "B": {
+      "display": "0% coinsurance, after deductible (catastrophic plan rules)",
+      "covered": true,
+      "copay": null,
+      "coinsurance_pct": 0.0,
+      "deductible_applies": null,
+      "deductible_status": "applies_catastrophic_rules",
+      "est_cost_per_use": 0.0,
+      "est_cost_before_deductible": {
+       "low": 1500.0,
+       "high": 1500.0
+      },
+      "note": null
+     }
+    },
+    "verdicts": {
+     "B": "same"
+    },
+    "delta_per_use": {
+     "B": 0.0
+    },
+    "verdicts_before_deductible": {
+     "B": "same"
+    },
+    "overall_verdicts": {
+     "B": "same"
+    },
+    "comparison_kind": "exact",
+    "reference_price": 1500.0,
+    "flags": []
+   },
+   {
+    "id": "svc.emergency_room",
+    "service_key": "emergency_room",
+    "label": "Emergency room care",
+    "section": "emergency",
+    "cells": {
+     "A": {
+      "display": "0% coinsurance, after deductible (HSA plan rules)",
+      "covered": true,
+      "copay": null,
+      "coinsurance_pct": 0.0,
+      "deductible_applies": null,
+      "deductible_status": "applies_hsa_rules",
+      "est_cost_per_use": 0.0,
+      "est_cost_before_deductible": {
+       "low": 2200.0,
+       "high": 2200.0
+      },
+      "note": null
+     },
+     "B": {
+      "display": "0% coinsurance, after deductible (catastrophic plan rules)",
+      "covered": true,
+      "copay": null,
+      "coinsurance_pct": 0.0,
+      "deductible_applies": null,
+      "deductible_status": "applies_catastrophic_rules",
+      "est_cost_per_use": 0.0,
+      "est_cost_before_deductible": {
+       "low": 2200.0,
+       "high": 2200.0
+      },
+      "note": null
+     }
+    },
+    "verdicts": {
+     "B": "same"
+    },
+    "delta_per_use": {
+     "B": 0.0
+    },
+    "verdicts_before_deductible": {
+     "B": "same"
+    },
+    "overall_verdicts": {
+     "B": "same"
+    },
+    "comparison_kind": "exact",
+    "reference_price": 2200.0,
+    "flags": []
+   },
+   {
+    "id": "svc.emergency_transportation",
+    "service_key": "emergency_transportation",
+    "label": "Emergency medical transportation",
+    "section": "emergency",
+    "cells": {
+     "A": {
+      "display": "0% coinsurance, after deductible (HSA plan rules)",
+      "covered": true,
+      "copay": null,
+      "coinsurance_pct": 0.0,
+      "deductible_applies": null,
+      "deductible_status": "applies_hsa_rules",
+      "est_cost_per_use": 0.0,
+      "est_cost_before_deductible": {
+       "low": 1200.0,
+       "high": 1200.0
+      },
+      "note": null
+     },
+     "B": {
+      "display": "0% coinsurance, after deductible (catastrophic plan rules)",
+      "covered": true,
+      "copay": null,
+      "coinsurance_pct": 0.0,
+      "deductible_applies": null,
+      "deductible_status": "applies_catastrophic_rules",
+      "est_cost_per_use": 0.0,
+      "est_cost_before_deductible": {
+       "low": 1200.0,
+       "high": 1200.0
+      },
+      "note": "Non-emergency Out-of-Network Ambulance Services are limited to $50,000 per trip, does not apply to air ambulance."
+     }
+    },
+    "verdicts": {
+     "B": "same"
+    },
+    "delta_per_use": {
+     "B": 0.0
+    },
+    "verdicts_before_deductible": {
+     "B": "same"
+    },
+    "overall_verdicts": {
+     "B": "same"
+    },
+    "comparison_kind": "exact",
+    "reference_price": 1200.0,
+    "flags": []
+   },
+   {
+    "id": "svc.urgent_care",
+    "service_key": "urgent_care",
+    "label": "Urgent care",
+    "section": "emergency",
+    "cells": {
+     "A": {
+      "display": "$120 copay, deductible doesn't apply",
+      "covered": true,
+      "copay": 120.0,
+      "coinsurance_pct": null,
+      "deductible_applies": false,
+      "deductible_status": "does_not_apply",
+      "est_cost_per_use": 120.0,
+      "est_cost_before_deductible": {
+       "low": 120.0,
+       "high": 120.0
+      },
+      "note": "$75 copay/virtual care visit, No charge/CirrusMD virtual visit; deductible does not apply."
+     },
+     "B": {
+      "display": "0% coinsurance, after deductible (catastrophic plan rules)",
+      "covered": true,
+      "copay": null,
+      "coinsurance_pct": 0.0,
+      "deductible_applies": null,
+      "deductible_status": "applies_catastrophic_rules",
+      "est_cost_per_use": 0.0,
+      "est_cost_before_deductible": {
+       "low": 200.0,
+       "high": 200.0
+      },
+      "note": "150 days/benefit period for Inpatient physical medicine,"
+     }
+    },
+    "verdicts": {
+     "B": "better"
+    },
+    "delta_per_use": {
+     "B": -120.0
+    },
+    "verdicts_before_deductible": {
+     "B": "worse"
+    },
+    "overall_verdicts": {
+     "B": "depends_on_deductible"
+    },
+    "comparison_kind": "estimated",
+    "reference_price": 200.0,
+    "flags": []
+   },
+   {
+    "id": "svc.hospital_facility_fee",
+    "service_key": "hospital_facility_fee",
+    "label": "Hospital stay facility fee",
+    "section": "hospital",
+    "cells": {
+     "A": {
+      "display": "0% coinsurance, after deductible (HSA plan rules)",
+      "covered": true,
+      "copay": null,
+      "coinsurance_pct": 0.0,
+      "deductible_applies": null,
+      "deductible_status": "applies_hsa_rules",
+      "est_cost_per_use": 0.0,
+      "est_cost_before_deductible": {
+       "low": 8700.0,
+       "high": 8700.0
+      },
+      "note": null
+     },
+     "B": {
+      "display": "0% coinsurance, after deductible (catastrophic plan rules)",
+      "covered": true,
+      "copay": null,
+      "coinsurance_pct": 0.0,
+      "deductible_applies": null,
+      "deductible_status": "applies_catastrophic_rules",
+      "est_cost_per_use": 0.0,
+      "est_cost_before_deductible": {
+       "low": 10600.0,
+       "high": 10600.0
+      },
+      "note": null
+     }
+    },
+    "verdicts": {
+     "B": "same"
+    },
+    "delta_per_use": {
+     "B": 0.0
+    },
+    "verdicts_before_deductible": {
+     "B": "worse"
+    },
+    "overall_verdicts": {
+     "B": "worse"
+    },
+    "comparison_kind": "exact",
+    "reference_price": 12000.0,
+    "flags": []
+   },
+   {
+    "id": "svc.hospital_surgeon_fee",
+    "service_key": "hospital_surgeon_fee",
+    "label": "Hospital stay physician/surgeon fee",
+    "section": "hospital",
+    "cells": {
+     "A": {
+      "display": "0% coinsurance, after deductible (HSA plan rules)",
+      "covered": true,
+      "copay": null,
+      "coinsurance_pct": 0.0,
+      "deductible_applies": null,
+      "deductible_status": "applies_hsa_rules",
+      "est_cost_per_use": 0.0,
+      "est_cost_before_deductible": {
+       "low": 3000.0,
+       "high": 3000.0
+      },
+      "note": null
+     },
+     "B": {
+      "display": "0% coinsurance, after deductible (catastrophic plan rules)",
+      "covered": true,
+      "copay": null,
+      "coinsurance_pct": 0.0,
+      "deductible_applies": null,
+      "deductible_status": "applies_catastrophic_rules",
+      "est_cost_per_use": 0.0,
+      "est_cost_before_deductible": {
+       "low": 3000.0,
+       "high": 3000.0
+      },
+      "note": "Office Visit"
+     }
+    },
+    "verdicts": {
+     "B": "same"
+    },
+    "delta_per_use": {
+     "B": 0.0
+    },
+    "verdicts_before_deductible": {
+     "B": "same"
+    },
+    "overall_verdicts": {
+     "B": "same"
+    },
+    "comparison_kind": "exact",
+    "reference_price": 3000.0,
+    "flags": []
+   },
+   {
+    "id": "svc.mental_health_outpatient",
+    "service_key": "mental_health_outpatient",
+    "label": "Mental/behavioral health outpatient",
+    "section": "mental_health",
+    "cells": {
+     "A": {
+      "display": "$85 copay, deductible doesn't apply",
+      "covered": true,
+      "copay": 85.0,
+      "coinsurance_pct": null,
+      "deductible_applies": false,
+      "deductible_status": "does_not_apply",
+      "est_cost_per_use": 85.0,
+      "est_cost_before_deductible": {
+       "low": 85.0,
+       "high": 85.0
+      },
+      "note": "$75 copay/virtual care visit, No charge/CirrusMD virtual visit; deductible does not apply. 0% coinsurance for other outpatient services."
+     },
+     "B": {
+      "display": "0% coinsurance, after deductible (catastrophic plan rules)",
+      "covered": true,
+      "copay": null,
+      "coinsurance_pct": 0.0,
+      "deductible_applies": null,
+      "deductible_status": "applies_catastrophic_rules",
+      "est_cost_per_use": 0.0,
+      "est_cost_before_deductible": {
+       "low": 150.0,
+       "high": 150.0
+      },
+      "note": "Other Outpatient 0% coinsurance. Includes 2 Out-of-Network office visits. Virtual visits (Telehealth) benefits available."
+     }
+    },
+    "verdicts": {
+     "B": "better"
+    },
+    "delta_per_use": {
+     "B": -85.0
+    },
+    "verdicts_before_deductible": {
+     "B": "worse"
+    },
+    "overall_verdicts": {
+     "B": "depends_on_deductible"
+    },
+    "comparison_kind": "estimated",
+    "reference_price": 150.0,
+    "flags": []
+   },
+   {
+    "id": "svc.mental_health_inpatient",
+    "service_key": "mental_health_inpatient",
+    "label": "Mental/behavioral health inpatient",
+    "section": "mental_health",
+    "cells": {
+     "A": {
+      "display": "0% coinsurance, after deductible (HSA plan rules)",
+      "covered": true,
+      "copay": null,
+      "coinsurance_pct": 0.0,
+      "deductible_applies": null,
+      "deductible_status": "applies_hsa_rules",
+      "est_cost_per_use": 0.0,
+      "est_cost_before_deductible": {
+       "low": 8700.0,
+       "high": 8700.0
+      },
+      "note": null
+     },
+     "B": {
+      "display": "0% coinsurance, after deductible (catastrophic plan rules)",
+      "covered": true,
+      "copay": null,
+      "coinsurance_pct": 0.0,
+      "deductible_applies": null,
+      "deductible_status": "applies_catastrophic_rules",
+      "est_cost_per_use": 0.0,
+      "est_cost_before_deductible": {
+       "low": 9000.0,
+       "high": 9000.0
+      },
+      "note": null
+     }
+    },
+    "verdicts": {
+     "B": "same"
+    },
+    "delta_per_use": {
+     "B": 0.0
+    },
+    "verdicts_before_deductible": {
+     "B": "worse"
+    },
+    "overall_verdicts": {
+     "B": "worse"
+    },
+    "comparison_kind": "exact",
+    "reference_price": 9000.0,
+    "flags": []
+   },
+   {
+    "id": "svc.pregnancy_office_visits",
+    "service_key": "pregnancy_office_visits",
+    "label": "Pregnancy office visits",
+    "section": "pregnancy",
+    "cells": {
+     "A": {
+      "display": "0% coinsurance, after deductible (HSA plan rules)",
+      "covered": true,
+      "copay": null,
+      "coinsurance_pct": 0.0,
+      "deductible_applies": null,
+      "deductible_status": "applies_hsa_rules",
+      "est_cost_per_use": 0.0,
+      "est_cost_before_deductible": {
+       "low": 200.0,
+       "high": 200.0
+      },
+      "note": null
+     },
+     "B": {
+      "display": "0% coinsurance, after deductible (catastrophic plan rules)",
+      "covered": true,
+      "copay": null,
+      "coinsurance_pct": 0.0,
+      "deductible_applies": null,
+      "deductible_status": "applies_catastrophic_rules",
+      "est_cost_per_use": 0.0,
+      "est_cost_before_deductible": {
+       "low": 200.0,
+       "high": 200.0
+      },
+      "note": null
+     }
+    },
+    "verdicts": {
+     "B": "same"
+    },
+    "delta_per_use": {
+     "B": 0.0
+    },
+    "verdicts_before_deductible": {
+     "B": "same"
+    },
+    "overall_verdicts": {
+     "B": "same"
+    },
+    "comparison_kind": "exact",
+    "reference_price": 200.0,
+    "flags": []
+   },
+   {
+    "id": "svc.childbirth_professional",
+    "service_key": "childbirth_professional",
+    "label": "Childbirth/delivery professional services",
+    "section": "pregnancy",
+    "cells": {
+     "A": {
+      "display": "0% coinsurance, after deductible (HSA plan rules)",
+      "covered": true,
+      "copay": null,
+      "coinsurance_pct": 0.0,
+      "deductible_applies": null,
+      "deductible_status": "applies_hsa_rules",
+      "est_cost_per_use": 0.0,
+      "est_cost_before_deductible": {
+       "low": 3000.0,
+       "high": 3000.0
+      },
+      "note": null
+     },
+     "B": {
+      "display": "0% coinsurance, after deductible (catastrophic plan rules)",
+      "covered": true,
+      "copay": null,
+      "coinsurance_pct": 0.0,
+      "deductible_applies": null,
+      "deductible_status": "applies_catastrophic_rules",
+      "est_cost_per_use": 0.0,
+      "est_cost_before_deductible": {
+       "low": 3000.0,
+       "high": 3000.0
+      },
+      "note": null
+     }
+    },
+    "verdicts": {
+     "B": "same"
+    },
+    "delta_per_use": {
+     "B": 0.0
+    },
+    "verdicts_before_deductible": {
+     "B": "same"
+    },
+    "overall_verdicts": {
+     "B": "same"
+    },
+    "comparison_kind": "exact",
+    "reference_price": 3000.0,
+    "flags": []
+   },
+   {
+    "id": "svc.childbirth_facility",
+    "service_key": "childbirth_facility",
+    "label": "Childbirth/delivery facility services",
+    "section": "pregnancy",
+    "cells": {
+     "A": {
+      "display": "0% coinsurance, after deductible (HSA plan rules)",
+      "covered": true,
+      "copay": null,
+      "coinsurance_pct": 0.0,
+      "deductible_applies": null,
+      "deductible_status": "applies_hsa_rules",
+      "est_cost_per_use": 0.0,
+      "est_cost_before_deductible": {
+       "low": 8700.0,
+       "high": 8700.0
+      },
+      "note": null
+     },
+     "B": {
+      "display": "0% coinsurance, after deductible (catastrophic plan rules)",
+      "covered": true,
+      "copay": null,
+      "coinsurance_pct": 0.0,
+      "deductible_applies": null,
+      "deductible_status": "applies_catastrophic_rules",
+      "est_cost_per_use": 0.0,
+      "est_cost_before_deductible": {
+       "low": 9000.0,
+       "high": 9000.0
+      },
+      "note": null
+     }
+    },
+    "verdicts": {
+     "B": "same"
+    },
+    "delta_per_use": {
+     "B": 0.0
+    },
+    "verdicts_before_deductible": {
+     "B": "worse"
+    },
+    "overall_verdicts": {
+     "B": "worse"
+    },
+    "comparison_kind": "exact",
+    "reference_price": 9000.0,
+    "flags": []
+   },
+   {
+    "id": "svc.home_health_care",
+    "service_key": "home_health_care",
+    "label": "Home health care",
+    "section": "recovery",
+    "cells": {
+     "A": {
+      "display": "0% coinsurance, after deductible (HSA plan rules)",
+      "covered": true,
+      "copay": null,
+      "coinsurance_pct": 0.0,
+      "deductible_applies": null,
+      "deductible_status": "applies_hsa_rules",
+      "est_cost_per_use": 0.0,
+      "est_cost_before_deductible": {
+       "low": 180.0,
+       "high": 180.0
+      },
+      "note": "Calendar year maximum of 60 visits"
+     },
+     "B": {
+      "display": "0% coinsurance, after deductible (catastrophic plan rules)",
+      "covered": true,
+      "copay": null,
+      "coinsurance_pct": 0.0,
+      "deductible_applies": null,
+      "deductible_status": "applies_catastrophic_rules",
+      "est_cost_per_use": 0.0,
+      "est_cost_before_deductible": {
+       "low": 180.0,
+       "high": 180.0
+      },
+      "note": "100 visits/benefit period for Network Providers."
+     }
+    },
+    "verdicts": {
+     "B": "same"
+    },
+    "delta_per_use": {
+     "B": 0.0
+    },
+    "verdicts_before_deductible": {
+     "B": "same"
+    },
+    "overall_verdicts": {
+     "B": "same"
+    },
+    "comparison_kind": "exact",
+    "reference_price": 180.0,
+    "flags": []
+   },
+   {
+    "id": "svc.rehabilitation",
+    "service_key": "rehabilitation",
+    "label": "Rehabilitation services",
+    "section": "recovery",
+    "cells": {
+     "A": {
+      "display": "$120 copay, deductible doesn't apply",
+      "covered": true,
+      "copay": 120.0,
+      "coinsurance_pct": null,
+      "deductible_applies": false,
+      "deductible_status": "does_not_apply",
+      "est_cost_per_use": 120.0,
+      "est_cost_before_deductible": {
+       "low": 120.0,
+       "high": 120.0
+      },
+      "note": "0% coinsurance for inpatient. Calendar year maximum of 35 outpatient sessions. Limits apply separately to rehabilitation and habilitation."
+     },
+     "B": {
+      "display": "0% coinsurance, after deductible (catastrophic plan rules)",
+      "covered": true,
+      "copay": null,
+      "coinsurance_pct": 0.0,
+      "deductible_applies": null,
+      "deductible_status": "applies_catastrophic_rules",
+      "est_cost_per_use": 0.0,
+      "est_cost_before_deductible": {
+       "low": 150.0,
+       "high": 150.0
+      },
+      "note": "Physical and Occupational Therapy office visit services will not exceed the Primary Care cost share."
+     }
+    },
+    "verdicts": {
+     "B": "better"
+    },
+    "delta_per_use": {
+     "B": -120.0
+    },
+    "verdicts_before_deductible": {
+     "B": "worse"
+    },
+    "overall_verdicts": {
+     "B": "depends_on_deductible"
+    },
+    "comparison_kind": "estimated",
+    "reference_price": 150.0,
+    "flags": []
+   },
+   {
+    "id": "svc.habilitation",
+    "service_key": "habilitation",
+    "label": "Habilitation services",
+    "section": "recovery",
+    "cells": {
+     "A": {
+      "display": "$120 copay, deductible doesn't apply",
+      "covered": true,
+      "copay": 120.0,
+      "coinsurance_pct": null,
+      "deductible_applies": false,
+      "deductible_status": "does_not_apply",
+      "est_cost_per_use": 120.0,
+      "est_cost_before_deductible": {
+       "low": 120.0,
+       "high": 120.0
+      },
+      "note": "0% coinsurance for inpatient."
+     },
+     "B": {
+      "display": "0% coinsurance, after deductible (catastrophic plan rules)",
+      "covered": true,
+      "copay": null,
+      "coinsurance_pct": 0.0,
+      "deductible_applies": null,
+      "deductible_status": "applies_catastrophic_rules",
+      "est_cost_per_use": 0.0,
+      "est_cost_before_deductible": {
+       "low": 150.0,
+       "high": 150.0
+      },
+      "note": null
+     }
+    },
+    "verdicts": {
+     "B": "better"
+    },
+    "delta_per_use": {
+     "B": -120.0
+    },
+    "verdicts_before_deductible": {
+     "B": "worse"
+    },
+    "overall_verdicts": {
+     "B": "depends_on_deductible"
+    },
+    "comparison_kind": "estimated",
+    "reference_price": 150.0,
+    "flags": []
+   },
+   {
+    "id": "svc.skilled_nursing",
+    "service_key": "skilled_nursing",
+    "label": "Skilled nursing care",
+    "section": "recovery",
+    "cells": {
+     "A": {
+      "display": "0% coinsurance, after deductible (HSA plan rules)",
+      "covered": true,
+      "copay": null,
+      "coinsurance_pct": 0.0,
+      "deductible_applies": null,
+      "deductible_status": "applies_hsa_rules",
+      "est_cost_per_use": 0.0,
+      "est_cost_before_deductible": {
+       "low": 650.0,
+       "high": 650.0
+      },
+      "note": "Calendar year maximum of 25 days"
+     },
+     "B": {
+      "display": "0% coinsurance, after deductible (catastrophic plan rules)",
+      "covered": true,
+      "copay": null,
+      "coinsurance_pct": 0.0,
+      "deductible_applies": null,
+      "deductible_status": "applies_catastrophic_rules",
+      "est_cost_per_use": 0.0,
+      "est_cost_before_deductible": {
+       "low": 650.0,
+       "high": 650.0
+      },
+      "note": null
+     }
+    },
+    "verdicts": {
+     "B": "same"
+    },
+    "delta_per_use": {
+     "B": 0.0
+    },
+    "verdicts_before_deductible": {
+     "B": "same"
+    },
+    "overall_verdicts": {
+     "B": "same"
+    },
+    "comparison_kind": "exact",
+    "reference_price": 650.0,
+    "flags": []
+   },
+   {
+    "id": "svc.durable_medical_equipment",
+    "service_key": "durable_medical_equipment",
+    "label": "Durable medical equipment",
+    "section": "recovery",
+    "cells": {
+     "A": {
+      "display": "0% coinsurance, after deductible (HSA plan rules)",
+      "covered": true,
+      "copay": null,
+      "coinsurance_pct": 0.0,
+      "deductible_applies": null,
+      "deductible_status": "applies_hsa_rules",
+      "est_cost_per_use": 0.0,
+      "est_cost_before_deductible": {
+       "low": 500.0,
+       "high": 500.0
+      },
+      "note": "Frequency limits apply to some durable medical equipment (DME)."
+     },
+     "B": {
+      "display": "0% coinsurance, after deductible (catastrophic plan rules)",
+      "covered": true,
+      "copay": null,
+      "coinsurance_pct": 0.0,
+      "deductible_applies": null,
+      "deductible_status": "applies_catastrophic_rules",
+      "est_cost_per_use": 0.0,
+      "est_cost_before_deductible": {
+       "low": 500.0,
+       "high": 500.0
+      },
+      "note": null
+     }
+    },
+    "verdicts": {
+     "B": "same"
+    },
+    "delta_per_use": {
+     "B": 0.0
+    },
+    "verdicts_before_deductible": {
+     "B": "same"
+    },
+    "overall_verdicts": {
+     "B": "same"
+    },
+    "comparison_kind": "exact",
+    "reference_price": 500.0,
+    "flags": []
+   },
+   {
+    "id": "svc.hospice",
+    "service_key": "hospice",
+    "label": "Hospice services",
+    "section": "recovery",
+    "cells": {
+     "A": {
+      "display": "0% coinsurance, after deductible (HSA plan rules)",
+      "covered": true,
+      "copay": null,
+      "coinsurance_pct": 0.0,
+      "deductible_applies": null,
+      "deductible_status": "applies_hsa_rules",
+      "est_cost_per_use": 0.0,
+      "est_cost_before_deductible": {
+       "low": 220.0,
+       "high": 220.0
+      },
+      "note": null
+     },
+     "B": {
+      "display": "0% coinsurance, after deductible (catastrophic plan rules)",
+      "covered": true,
+      "copay": null,
+      "coinsurance_pct": 0.0,
+      "deductible_applies": null,
+      "deductible_status": "applies_catastrophic_rules",
+      "est_cost_per_use": 0.0,
+      "est_cost_before_deductible": {
+       "low": 220.0,
+       "high": 220.0
+      },
+      "note": null
+     }
+    },
+    "verdicts": {
+     "B": "same"
+    },
+    "delta_per_use": {
+     "B": 0.0
+    },
+    "verdicts_before_deductible": {
+     "B": "same"
+    },
+    "overall_verdicts": {
+     "B": "same"
+    },
+    "comparison_kind": "exact",
+    "reference_price": 220.0,
+    "flags": []
+   },
+   {
+    "id": "svc.child_eye_exam",
+    "service_key": "child_eye_exam",
+    "label": "Children's eye exam",
+    "section": "children",
+    "cells": {
+     "A": {
+      "display": "No charge, after deductible (HSA plan rules)",
+      "covered": true,
+      "copay": 0.0,
+      "coinsurance_pct": 0.0,
+      "deductible_applies": null,
+      "deductible_status": "applies_hsa_rules",
+      "est_cost_per_use": 0.0,
+      "est_cost_before_deductible": {
+       "low": 100.0,
+       "high": 100.0
+      },
+      "note": "Limited to one eye exam per calendar year for children under age 19."
+     },
+     "B": {
+      "display": "No charge, after deductible (catastrophic plan rules)",
+      "covered": true,
+      "copay": 0.0,
+      "coinsurance_pct": 0.0,
+      "deductible_applies": null,
+      "deductible_status": "applies_catastrophic_rules",
+      "est_cost_per_use": 0.0,
+      "est_cost_before_deductible": {
+       "low": 100.0,
+       "high": 100.0
+      },
+      "note": null
+     }
+    },
+    "verdicts": {
+     "B": "same"
+    },
+    "delta_per_use": {
+     "B": 0.0
+    },
+    "verdicts_before_deductible": {
+     "B": "same"
+    },
+    "overall_verdicts": {
+     "B": "same"
+    },
+    "comparison_kind": "exact",
+    "reference_price": 100.0,
+    "flags": []
+   },
+   {
+    "id": "svc.child_glasses",
+    "service_key": "child_glasses",
+    "label": "Children's glasses",
+    "section": "children",
+    "cells": {
+     "A": {
+      "display": "No charge, after deductible (HSA plan rules)",
+      "covered": true,
+      "copay": 0.0,
+      "coinsurance_pct": 0.0,
+      "deductible_applies": null,
+      "deductible_status": "applies_hsa_rules",
+      "est_cost_per_use": 0.0,
+      "est_cost_before_deductible": {
+       "low": 150.0,
+       "high": 150.0
+      },
+      "note": "Coverage limited to one pair of glasses per calendar year for children under age 19."
+     },
+     "B": {
+      "display": "No charge, after deductible (catastrophic plan rules)",
+      "covered": true,
+      "copay": 0.0,
+      "coinsurance_pct": 0.0,
+      "deductible_applies": null,
+      "deductible_status": "applies_catastrophic_rules",
+      "est_cost_per_use": 0.0,
+      "est_cost_before_deductible": {
+       "low": 150.0,
+       "high": 150.0
+      },
+      "note": null
+     }
+    },
+    "verdicts": {
+     "B": "same"
+    },
+    "delta_per_use": {
+     "B": 0.0
+    },
+    "verdicts_before_deductible": {
+     "B": "same"
+    },
+    "overall_verdicts": {
+     "B": "same"
+    },
+    "comparison_kind": "exact",
+    "reference_price": 150.0,
+    "flags": []
+   },
+   {
+    "id": "svc.child_dental_checkup",
+    "service_key": "child_dental_checkup",
+    "label": "Children's dental check-up",
+    "section": "children",
+    "cells": {
+     "A": {
+      "display": "Not covered",
+      "covered": false,
+      "copay": null,
+      "coinsurance_pct": null,
+      "deductible_applies": null,
+      "deductible_status": "none",
+      "est_cost_per_use": 120.0,
+      "est_cost_before_deductible": {
+       "low": 120.0,
+       "high": 120.0
+      },
+      "note": null
+     },
+     "B": {
+      "display": "0% coinsurance, after deductible (catastrophic plan rules)",
+      "covered": true,
+      "copay": null,
+      "coinsurance_pct": 0.0,
+      "deductible_applies": null,
+      "deductible_status": "applies_catastrophic_rules",
+      "est_cost_per_use": 0.0,
+      "est_cost_before_deductible": {
+       "low": 120.0,
+       "high": 120.0
+      },
+      "note": null
+     }
+    },
+    "verdicts": {
+     "B": "better"
+    },
+    "delta_per_use": {
+     "B": -120.0
+    },
+    "verdicts_before_deductible": {
+     "B": "same"
+    },
+    "overall_verdicts": {
+     "B": "better"
+    },
+    "comparison_kind": "exact",
+    "reference_price": 120.0,
+    "flags": [
+     "coverage_gap"
+    ]
+   }
+  ],
+  "drug_tiers": [
+   {
+    "id": "drug.generic",
+    "category": "generic",
+    "label": "Generic drugs",
+    "cells": {
+     "A": {
+      "display": "$25 copay, deductible doesn't apply",
+      "covered": true,
+      "copay": 25.0,
+      "coinsurance_pct": null,
+      "deductible_applies": false,
+      "deductible_status": "does_not_apply",
+      "est_cost_per_use": 25.0,
+      "est_cost_before_deductible": {
+       "low": 25.0,
+       "high": 25.0
+      },
+      "note": null
+     },
+     "B": {
+      "display": "0% coinsurance, after deductible (catastrophic plan rules)",
+      "covered": true,
+      "copay": null,
+      "coinsurance_pct": 0.0,
+      "deductible_applies": null,
+      "deductible_status": "applies_catastrophic_rules",
+      "est_cost_per_use": 0.0,
+      "est_cost_before_deductible": {
+       "low": 30.0,
+       "high": 30.0
+      },
+      "note": null
+     }
+    },
+    "tier_names": {
+     "A": "Generic drugs (Select tier)",
+     "B": "Generic drugs (Tier 1)"
+    },
+    "verdicts": {
+     "B": "better"
+    },
+    "delta_per_use": {
+     "B": -25.0
+    },
+    "reference_price": 30.0,
+    "verdicts_before_deductible": {
+     "B": "worse"
+    },
+    "overall_verdicts": {
+     "B": "depends_on_deductible"
+    }
+   },
+   {
+    "id": "drug.preferred_brand",
+    "category": "preferred_brand",
+    "label": "Preferred brand drugs",
+    "cells": {
+     "A": {
+      "display": "40% coinsurance, deductible doesn't apply",
+      "covered": true,
+      "copay": null,
+      "coinsurance_pct": 40.0,
+      "deductible_applies": null,
+      "deductible_status": "before_per_sbc",
+      "est_cost_per_use": 120.0,
+      "est_cost_before_deductible": {
+       "low": 120.0,
+       "high": 120.0
+      },
+      "note": null
+     },
+     "B": {
+      "display": "0% coinsurance, after deductible (catastrophic plan rules)",
+      "covered": true,
+      "copay": null,
+      "coinsurance_pct": 0.0,
+      "deductible_applies": null,
+      "deductible_status": "applies_catastrophic_rules",
+      "est_cost_per_use": 0.0,
+      "est_cost_before_deductible": {
+       "low": 300.0,
+       "high": 300.0
+      },
+      "note": "0%inrn."
+     }
+    },
+    "tier_names": {
+     "A": "Preferred brand drug tier",
+     "B": "Preferred brand drugs (Tier 2)"
+    },
+    "verdicts": {
+     "B": "better"
+    },
+    "delta_per_use": {
+     "B": -120.0
+    },
+    "reference_price": 300.0,
+    "verdicts_before_deductible": {
+     "B": "worse"
+    },
+    "overall_verdicts": {
+     "B": "depends_on_deductible"
+    }
+   },
+   {
+    "id": "drug.non_preferred_brand",
+    "category": "non_preferred_brand",
+    "label": "Non-preferred brand drugs",
+    "cells": {
+     "A": {
+      "display": "50% coinsurance, deductible doesn't apply",
+      "covered": true,
+      "copay": null,
+      "coinsurance_pct": 50.0,
+      "deductible_applies": null,
+      "deductible_status": "before_per_sbc",
+      "est_cost_per_use": 250.0,
+      "est_cost_before_deductible": {
+       "low": 250.0,
+       "high": 250.0
+      },
+      "note": null
+     },
+     "B": {
+      "display": "0% coinsurance, after deductible (catastrophic plan rules)",
+      "covered": true,
+      "copay": null,
+      "coinsurance_pct": 0.0,
+      "deductible_applies": null,
+      "deductible_status": "applies_catastrophic_rules",
+      "est_cost_per_use": 0.0,
+      "est_cost_before_deductible": {
+       "low": 500.0,
+       "high": 500.0
+      },
+      "note": null
+     }
+    },
+    "tier_names": {
+     "A": "Non-preferred brand drug tier",
+     "B": "Specialty drugs (Tier 4)"
+    },
+    "verdicts": {
+     "B": "better"
+    },
+    "delta_per_use": {
+     "B": -250.0
+    },
+    "reference_price": 500.0,
+    "verdicts_before_deductible": {
+     "B": "worse"
+    },
+    "overall_verdicts": {
+     "B": "depends_on_deductible"
+    }
+   },
+   {
+    "id": "drug.specialty",
+    "category": "specialty",
+    "label": "Specialty drugs",
+    "cells": {
+     "A": {
+      "display": "40% coinsurance, deductible doesn't apply",
+      "covered": true,
+      "copay": null,
+      "coinsurance_pct": 40.0,
+      "deductible_applies": null,
+      "deductible_status": "before_per_sbc",
+      "est_cost_per_use": 1600.0,
+      "est_cost_before_deductible": {
+       "low": 1600.0,
+       "high": 1600.0
+      },
+      "note": "50% coinsurance for non-preferred."
+     },
+     "B": {
+      "display": "0% coinsurance, after deductible (catastrophic plan rules)",
+      "covered": true,
+      "copay": null,
+      "coinsurance_pct": 0.0,
+      "deductible_applies": null,
+      "deductible_status": "applies_catastrophic_rules",
+      "est_cost_per_use": 0.0,
+      "est_cost_before_deductible": {
+       "low": 4000.0,
+       "high": 4000.0
+      },
+      "note": null
+     }
+    },
+    "tier_names": {
+     "A": "Specialty drug tier",
+     "B": "Specialty drugs (Tier 4)"
+    },
+    "verdicts": {
+     "B": "better"
+    },
+    "delta_per_use": {
+     "B": -1600.0
+    },
+    "reference_price": 4000.0,
+    "verdicts_before_deductible": {
+     "B": "worse"
+    },
+    "overall_verdicts": {
+     "B": "depends_on_deductible"
+    }
+   }
+  ],
+  "coverage_gaps": [
+   "svc.child_dental_checkup"
+  ],
+  "scenarios": [
+   {
+    "scenario": {
+     "id": "low",
+     "label": "Low use",
+     "description": "A checkup, a couple of sick visits and a few generic prescriptions.",
+     "events": [
+      {
+       "event": "preventive_visit",
+       "count": 1,
+       "member": 0
+      },
+      {
+       "event": "primary_care_visit",
+       "count": 2,
+       "member": 0
+      },
+      {
+       "event": "generic_drug_fill",
+       "count": 4,
+       "member": 0
+      }
+     ]
+    },
+    "per_plan": {
+     "A": {
+      "annual_premium": 3840.0,
+      "contribution": 0.0,
+      "out_of_pocket": {
+       "low": 270.0,
+       "high": 270.0
+      },
+      "total": {
+       "low": 4110.0,
+       "high": 4110.0
+      },
+      "deductible_met": false,
+      "oop_limit_met": false,
+      "trace": [
+       {
+        "event": "preventive_visit",
+        "service_key": "preventive_care",
+        "allowed": 250.0,
+        "member_pays": {
+         "low": 0.0,
+         "high": 0.0
+        },
+        "note": ""
+       },
+       {
+        "event": "primary_care_visit",
+        "service_key": "primary_care_visit",
+        "allowed": 150.0,
+        "member_pays": {
+         "low": 85.0,
+         "high": 85.0
+        },
+        "note": ""
+       },
+       {
+        "event": "primary_care_visit",
+        "service_key": "primary_care_visit",
+        "allowed": 150.0,
+        "member_pays": {
+         "low": 85.0,
+         "high": 85.0
+        },
+        "note": ""
+       },
+       {
+        "event": "generic_drug_fill",
+        "service_key": "drug:generic",
+        "allowed": 30.0,
+        "member_pays": {
+         "low": 25.0,
+         "high": 25.0
+        },
+        "note": ""
+       },
+       {
+        "event": "generic_drug_fill",
+        "service_key": "drug:generic",
+        "allowed": 30.0,
+        "member_pays": {
+         "low": 25.0,
+         "high": 25.0
+        },
+        "note": ""
+       },
+       {
+        "event": "generic_drug_fill",
+        "service_key": "drug:generic",
+        "allowed": 30.0,
+        "member_pays": {
+         "low": 25.0,
+         "high": 25.0
+        },
+        "note": ""
+       },
+       {
+        "event": "generic_drug_fill",
+        "service_key": "drug:generic",
+        "allowed": 30.0,
+        "member_pays": {
+         "low": 25.0,
+         "high": 25.0
+        },
+        "note": ""
+       }
+      ],
+      "assumptions": [
+       "HSA-eligible plan: by federal rule the deductible applies to everything except preventive care, so it is applied wherever the SBC row doesn't say otherwise."
+      ]
+     },
+     "B": {
+      "annual_premium": 3480.0,
+      "contribution": 0.0,
+      "out_of_pocket": {
+       "low": 120.0,
+       "high": 120.0
+      },
+      "total": {
+       "low": 3600.0,
+       "high": 3600.0
+      },
+      "deductible_met": false,
+      "oop_limit_met": false,
+      "trace": [
+       {
+        "event": "preventive_visit",
+        "service_key": "preventive_care",
+        "allowed": 250.0,
+        "member_pays": {
+         "low": 0.0,
+         "high": 0.0
+        },
+        "note": ""
+       },
+       {
+        "event": "primary_care_visit",
+        "service_key": "primary_care_visit",
+        "allowed": 150.0,
+        "member_pays": {
+         "low": 0.0,
+         "high": 0.0
+        },
+        "note": ""
+       },
+       {
+        "event": "primary_care_visit",
+        "service_key": "primary_care_visit",
+        "allowed": 150.0,
+        "member_pays": {
+         "low": 0.0,
+         "high": 0.0
+        },
+        "note": ""
+       },
+       {
+        "event": "generic_drug_fill",
+        "service_key": "drug:generic",
+        "allowed": 30.0,
+        "member_pays": {
+         "low": 30.0,
+         "high": 30.0
+        },
+        "note": ""
+       },
+       {
+        "event": "generic_drug_fill",
+        "service_key": "drug:generic",
+        "allowed": 30.0,
+        "member_pays": {
+         "low": 30.0,
+         "high": 30.0
+        },
+        "note": ""
+       },
+       {
+        "event": "generic_drug_fill",
+        "service_key": "drug:generic",
+        "allowed": 30.0,
+        "member_pays": {
+         "low": 30.0,
+         "high": 30.0
+        },
+        "note": ""
+       },
+       {
+        "event": "generic_drug_fill",
+        "service_key": "drug:generic",
+        "allowed": 30.0,
+        "member_pays": {
+         "low": 30.0,
+         "high": 30.0
+        },
+        "note": ""
+       }
+      ],
+      "assumptions": [
+       "Catastrophic plan: by federal rule the deductible applies to everything except preventive care and the first 3 primary care visits, so it is applied wherever the SBC row doesn't say otherwise."
+      ]
+     }
+    },
+    "cheapest": [
+     "B"
+    ],
+    "delta_vs_base": {
+     "B": {
+      "low": -510.0,
+      "high": -510.0
+     }
+    },
+    "ranges_overlap": false
+   },
+   {
+    "scenario": {
+     "id": "moderate",
+     "label": "Moderate use",
+     "description": "Regular specialist care, some tests, an MRI and a monthly generic drug.",
+     "events": [
+      {
+       "event": "preventive_visit",
+       "count": 1,
+       "member": 0
+      },
+      {
+       "event": "primary_care_visit",
+       "count": 3,
+       "member": 0
+      },
+      {
+       "event": "specialist_visit",
+       "count": 4,
+       "member": 0
+      },
+      {
+       "event": "lab_work",
+       "count": 2,
+       "member": 0
+      },
+      {
+       "event": "mri",
+       "count": 1,
+       "member": 0
+      },
+      {
+       "event": "generic_drug_fill",
+       "count": 12,
+       "member": 0
+      },
+      {
+       "event": "urgent_care_visit",
+       "count": 1,
+       "member": 0
+      }
+     ]
+    },
+    "per_plan": {
+     "A": {
+      "annual_premium": 3840.0,
+      "contribution": 0.0,
+      "out_of_pocket": {
+       "low": 2395.0,
+       "high": 2395.0
+      },
+      "total": {
+       "low": 6235.0,
+       "high": 6235.0
+      },
+      "deductible_met": false,
+      "oop_limit_met": false,
+      "trace": [
+       {
+        "event": "preventive_visit",
+        "service_key": "preventive_care",
+        "allowed": 250.0,
+        "member_pays": {
+         "low": 0.0,
+         "high": 0.0
+        },
+        "note": ""
+       },
+       {
+        "event": "primary_care_visit",
+        "service_key": "primary_care_visit",
+        "allowed": 150.0,
+        "member_pays": {
+         "low": 85.0,
+         "high": 85.0
+        },
+        "note": ""
+       },
+       {
+        "event": "primary_care_visit",
+        "service_key": "primary_care_visit",
+        "allowed": 150.0,
+        "member_pays": {
+         "low": 85.0,
+         "high": 85.0
+        },
+        "note": ""
+       },
+       {
+        "event": "primary_care_visit",
+        "service_key": "primary_care_visit",
+        "allowed": 150.0,
+        "member_pays": {
+         "low": 85.0,
+         "high": 85.0
+        },
+        "note": ""
+       },
+       {
+        "event": "specialist_visit",
+        "service_key": "specialist_visit",
+        "allowed": 250.0,
+        "member_pays": {
+         "low": 120.0,
+         "high": 120.0
+        },
+        "note": ""
+       },
+       {
+        "event": "specialist_visit",
+        "service_key": "specialist_visit",
+        "allowed": 250.0,
+        "member_pays": {
+         "low": 120.0,
+         "high": 120.0
+        },
+        "note": ""
+       },
+       {
+        "event": "specialist_visit",
+        "service_key": "specialist_visit",
+        "allowed": 250.0,
+        "member_pays": {
+         "low": 120.0,
+         "high": 120.0
+        },
+        "note": ""
+       },
+       {
+        "event": "specialist_visit",
+        "service_key": "specialist_visit",
+        "allowed": 250.0,
+        "member_pays": {
+         "low": 120.0,
+         "high": 120.0
+        },
+        "note": ""
+       },
+       {
+        "event": "lab_work",
+        "service_key": "diagnostic_test",
+        "allowed": 120.0,
+        "member_pays": {
+         "low": 120.0,
+         "high": 120.0
+        },
+        "note": ""
+       },
+       {
+        "event": "lab_work",
+        "service_key": "diagnostic_test",
+        "allowed": 120.0,
+        "member_pays": {
+         "low": 120.0,
+         "high": 120.0
+        },
+        "note": ""
+       },
+       {
+        "event": "mri",
+        "service_key": "imaging",
+        "allowed": 1000.0,
+        "member_pays": {
+         "low": 1000.0,
+         "high": 1000.0
+        },
+        "note": ""
+       },
+       {
+        "event": "generic_drug_fill",
+        "service_key": "drug:generic",
+        "allowed": 30.0,
+        "member_pays": {
+         "low": 25.0,
+         "high": 25.0
+        },
+        "note": ""
+       },
+       {
+        "event": "generic_drug_fill",
+        "service_key": "drug:generic",
+        "allowed": 30.0,
+        "member_pays": {
+         "low": 25.0,
+         "high": 25.0
+        },
+        "note": ""
+       },
+       {
+        "event": "generic_drug_fill",
+        "service_key": "drug:generic",
+        "allowed": 30.0,
+        "member_pays": {
+         "low": 25.0,
+         "high": 25.0
+        },
+        "note": ""
+       },
+       {
+        "event": "generic_drug_fill",
+        "service_key": "drug:generic",
+        "allowed": 30.0,
+        "member_pays": {
+         "low": 25.0,
+         "high": 25.0
+        },
+        "note": ""
+       },
+       {
+        "event": "generic_drug_fill",
+        "service_key": "drug:generic",
+        "allowed": 30.0,
+        "member_pays": {
+         "low": 25.0,
+         "high": 25.0
+        },
+        "note": ""
+       },
+       {
+        "event": "generic_drug_fill",
+        "service_key": "drug:generic",
+        "allowed": 30.0,
+        "member_pays": {
+         "low": 25.0,
+         "high": 25.0
+        },
+        "note": ""
+       },
+       {
+        "event": "generic_drug_fill",
+        "service_key": "drug:generic",
+        "allowed": 30.0,
+        "member_pays": {
+         "low": 25.0,
+         "high": 25.0
+        },
+        "note": ""
+       },
+       {
+        "event": "generic_drug_fill",
+        "service_key": "drug:generic",
+        "allowed": 30.0,
+        "member_pays": {
+         "low": 25.0,
+         "high": 25.0
+        },
+        "note": ""
+       },
+       {
+        "event": "generic_drug_fill",
+        "service_key": "drug:generic",
+        "allowed": 30.0,
+        "member_pays": {
+         "low": 25.0,
+         "high": 25.0
+        },
+        "note": ""
+       },
+       {
+        "event": "generic_drug_fill",
+        "service_key": "drug:generic",
+        "allowed": 30.0,
+        "member_pays": {
+         "low": 25.0,
+         "high": 25.0
+        },
+        "note": ""
+       },
+       {
+        "event": "generic_drug_fill",
+        "service_key": "drug:generic",
+        "allowed": 30.0,
+        "member_pays": {
+         "low": 25.0,
+         "high": 25.0
+        },
+        "note": ""
+       },
+       {
+        "event": "generic_drug_fill",
+        "service_key": "drug:generic",
+        "allowed": 30.0,
+        "member_pays": {
+         "low": 25.0,
+         "high": 25.0
+        },
+        "note": ""
+       },
+       {
+        "event": "urgent_care_visit",
+        "service_key": "urgent_care",
+        "allowed": 200.0,
+        "member_pays": {
+         "low": 120.0,
+         "high": 120.0
+        },
+        "note": ""
+       }
+      ],
+      "assumptions": [
+       "HSA-eligible plan: by federal rule the deductible applies to everything except preventive care, so it is applied wherever the SBC row doesn't say otherwise."
+      ]
+     },
+     "B": {
+      "annual_premium": 3480.0,
+      "contribution": 0.0,
+      "out_of_pocket": {
+       "low": 2800.0,
+       "high": 2800.0
+      },
+      "total": {
+       "low": 6280.0,
+       "high": 6280.0
+      },
+      "deductible_met": false,
+      "oop_limit_met": false,
+      "trace": [
+       {
+        "event": "preventive_visit",
+        "service_key": "preventive_care",
+        "allowed": 250.0,
+        "member_pays": {
+         "low": 0.0,
+         "high": 0.0
+        },
+        "note": ""
+       },
+       {
+        "event": "primary_care_visit",
+        "service_key": "primary_care_visit",
+        "allowed": 150.0,
+        "member_pays": {
+         "low": 0.0,
+         "high": 0.0
+        },
+        "note": ""
+       },
+       {
+        "event": "primary_care_visit",
+        "service_key": "primary_care_visit",
+        "allowed": 150.0,
+        "member_pays": {
+         "low": 0.0,
+         "high": 0.0
+        },
+        "note": ""
+       },
+       {
+        "event": "primary_care_visit",
+        "service_key": "primary_care_visit",
+        "allowed": 150.0,
+        "member_pays": {
+         "low": 0.0,
+         "high": 0.0
+        },
+        "note": ""
+       },
+       {
+        "event": "specialist_visit",
+        "service_key": "specialist_visit",
+        "allowed": 250.0,
+        "member_pays": {
+         "low": 250.0,
+         "high": 250.0
+        },
+        "note": ""
+       },
+       {
+        "event": "specialist_visit",
+        "service_key": "specialist_visit",
+        "allowed": 250.0,
+        "member_pays": {
+         "low": 250.0,
+         "high": 250.0
+        },
+        "note": ""
+       },
+       {
+        "event": "specialist_visit",
+        "service_key": "specialist_visit",
+        "allowed": 250.0,
+        "member_pays": {
+         "low": 250.0,
+         "high": 250.0
+        },
+        "note": ""
+       },
+       {
+        "event": "specialist_visit",
+        "service_key": "specialist_visit",
+        "allowed": 250.0,
+        "member_pays": {
+         "low": 250.0,
+         "high": 250.0
+        },
+        "note": ""
+       },
+       {
+        "event": "lab_work",
+        "service_key": "diagnostic_test",
+        "allowed": 120.0,
+        "member_pays": {
+         "low": 120.0,
+         "high": 120.0
+        },
+        "note": ""
+       },
+       {
+        "event": "lab_work",
+        "service_key": "diagnostic_test",
+        "allowed": 120.0,
+        "member_pays": {
+         "low": 120.0,
+         "high": 120.0
+        },
+        "note": ""
+       },
+       {
+        "event": "mri",
+        "service_key": "imaging",
+        "allowed": 1000.0,
+        "member_pays": {
+         "low": 1000.0,
+         "high": 1000.0
+        },
+        "note": ""
+       },
+       {
+        "event": "generic_drug_fill",
+        "service_key": "drug:generic",
+        "allowed": 30.0,
+        "member_pays": {
+         "low": 30.0,
+         "high": 30.0
+        },
+        "note": ""
+       },
+       {
+        "event": "generic_drug_fill",
+        "service_key": "drug:generic",
+        "allowed": 30.0,
+        "member_pays": {
+         "low": 30.0,
+         "high": 30.0
+        },
+        "note": ""
+       },
+       {
+        "event": "generic_drug_fill",
+        "service_key": "drug:generic",
+        "allowed": 30.0,
+        "member_pays": {
+         "low": 30.0,
+         "high": 30.0
+        },
+        "note": ""
+       },
+       {
+        "event": "generic_drug_fill",
+        "service_key": "drug:generic",
+        "allowed": 30.0,
+        "member_pays": {
+         "low": 30.0,
+         "high": 30.0
+        },
+        "note": ""
+       },
+       {
+        "event": "generic_drug_fill",
+        "service_key": "drug:generic",
+        "allowed": 30.0,
+        "member_pays": {
+         "low": 30.0,
+         "high": 30.0
+        },
+        "note": ""
+       },
+       {
+        "event": "generic_drug_fill",
+        "service_key": "drug:generic",
+        "allowed": 30.0,
+        "member_pays": {
+         "low": 30.0,
+         "high": 30.0
+        },
+        "note": ""
+       },
+       {
+        "event": "generic_drug_fill",
+        "service_key": "drug:generic",
+        "allowed": 30.0,
+        "member_pays": {
+         "low": 30.0,
+         "high": 30.0
+        },
+        "note": ""
+       },
+       {
+        "event": "generic_drug_fill",
+        "service_key": "drug:generic",
+        "allowed": 30.0,
+        "member_pays": {
+         "low": 30.0,
+         "high": 30.0
+        },
+        "note": ""
+       },
+       {
+        "event": "generic_drug_fill",
+        "service_key": "drug:generic",
+        "allowed": 30.0,
+        "member_pays": {
+         "low": 30.0,
+         "high": 30.0
+        },
+        "note": ""
+       },
+       {
+        "event": "generic_drug_fill",
+        "service_key": "drug:generic",
+        "allowed": 30.0,
+        "member_pays": {
+         "low": 30.0,
+         "high": 30.0
+        },
+        "note": ""
+       },
+       {
+        "event": "generic_drug_fill",
+        "service_key": "drug:generic",
+        "allowed": 30.0,
+        "member_pays": {
+         "low": 30.0,
+         "high": 30.0
+        },
+        "note": ""
+       },
+       {
+        "event": "generic_drug_fill",
+        "service_key": "drug:generic",
+        "allowed": 30.0,
+        "member_pays": {
+         "low": 30.0,
+         "high": 30.0
+        },
+        "note": ""
+       },
+       {
+        "event": "urgent_care_visit",
+        "service_key": "urgent_care",
+        "allowed": 200.0,
+        "member_pays": {
+         "low": 200.0,
+         "high": 200.0
+        },
+        "note": ""
+       }
+      ],
+      "assumptions": [
+       "Catastrophic plan: by federal rule the deductible applies to everything except preventive care and the first 3 primary care visits, so it is applied wherever the SBC row doesn't say otherwise."
+      ]
+     }
+    },
+    "cheapest": [
+     "A"
+    ],
+    "delta_vs_base": {
+     "B": {
+      "low": 45.0,
+      "high": 45.0
+     }
+    },
+    "ranges_overlap": false
+   },
+   {
+    "scenario": {
+     "id": "high",
+     "label": "High use",
+     "description": "A hospital stay, an ER visit, frequent specialist care and a monthly brand drug.",
+     "events": [
+      {
+       "event": "preventive_visit",
+       "count": 1,
+       "member": 0
+      },
+      {
+       "event": "primary_care_visit",
+       "count": 4,
+       "member": 0
+      },
+      {
+       "event": "specialist_visit",
+       "count": 8,
+       "member": 0
+      },
+      {
+       "event": "lab_work",
+       "count": 4,
+       "member": 0
+      },
+      {
+       "event": "mri",
+       "count": 2,
+       "member": 0
+      },
+      {
+       "event": "er_visit",
+       "count": 1,
+       "member": 0
+      },
+      {
+       "event": "hospital_stay",
+       "count": 1,
+       "member": 0
+      },
+      {
+       "event": "brand_drug_fill",
+       "count": 12,
+       "member": 0
+      }
+     ]
+    },
+    "per_plan": {
+     "A": {
+      "annual_premium": 3840.0,
+      "contribution": 0.0,
+      "out_of_pocket": {
+       "low": 8700.0,
+       "high": 8700.0
+      },
+      "total": {
+       "low": 12540.0,
+       "high": 12540.0
+      },
+      "deductible_met": true,
+      "oop_limit_met": true,
+      "trace": [
+       {
+        "event": "preventive_visit",
+        "service_key": "preventive_care",
+        "allowed": 250.0,
+        "member_pays": {
+         "low": 0.0,
+         "high": 0.0
+        },
+        "note": ""
+       },
+       {
+        "event": "primary_care_visit",
+        "service_key": "primary_care_visit",
+        "allowed": 150.0,
+        "member_pays": {
+         "low": 85.0,
+         "high": 85.0
+        },
+        "note": ""
+       },
+       {
+        "event": "primary_care_visit",
+        "service_key": "primary_care_visit",
+        "allowed": 150.0,
+        "member_pays": {
+         "low": 85.0,
+         "high": 85.0
+        },
+        "note": ""
+       },
+       {
+        "event": "primary_care_visit",
+        "service_key": "primary_care_visit",
+        "allowed": 150.0,
+        "member_pays": {
+         "low": 85.0,
+         "high": 85.0
+        },
+        "note": ""
+       },
+       {
+        "event": "primary_care_visit",
+        "service_key": "primary_care_visit",
+        "allowed": 150.0,
+        "member_pays": {
+         "low": 85.0,
+         "high": 85.0
+        },
+        "note": ""
+       },
+       {
+        "event": "specialist_visit",
+        "service_key": "specialist_visit",
+        "allowed": 250.0,
+        "member_pays": {
+         "low": 120.0,
+         "high": 120.0
+        },
+        "note": ""
+       },
+       {
+        "event": "specialist_visit",
+        "service_key": "specialist_visit",
+        "allowed": 250.0,
+        "member_pays": {
+         "low": 120.0,
+         "high": 120.0
+        },
+        "note": ""
+       },
+       {
+        "event": "specialist_visit",
+        "service_key": "specialist_visit",
+        "allowed": 250.0,
+        "member_pays": {
+         "low": 120.0,
+         "high": 120.0
+        },
+        "note": ""
+       },
+       {
+        "event": "specialist_visit",
+        "service_key": "specialist_visit",
+        "allowed": 250.0,
+        "member_pays": {
+         "low": 120.0,
+         "high": 120.0
+        },
+        "note": ""
+       },
+       {
+        "event": "specialist_visit",
+        "service_key": "specialist_visit",
+        "allowed": 250.0,
+        "member_pays": {
+         "low": 120.0,
+         "high": 120.0
+        },
+        "note": ""
+       },
+       {
+        "event": "specialist_visit",
+        "service_key": "specialist_visit",
+        "allowed": 250.0,
+        "member_pays": {
+         "low": 120.0,
+         "high": 120.0
+        },
+        "note": ""
+       },
+       {
+        "event": "specialist_visit",
+        "service_key": "specialist_visit",
+        "allowed": 250.0,
+        "member_pays": {
+         "low": 120.0,
+         "high": 120.0
+        },
+        "note": ""
+       },
+       {
+        "event": "specialist_visit",
+        "service_key": "specialist_visit",
+        "allowed": 250.0,
+        "member_pays": {
+         "low": 120.0,
+         "high": 120.0
+        },
+        "note": ""
+       },
+       {
+        "event": "lab_work",
+        "service_key": "diagnostic_test",
+        "allowed": 120.0,
+        "member_pays": {
+         "low": 120.0,
+         "high": 120.0
+        },
+        "note": ""
+       },
+       {
+        "event": "lab_work",
+        "service_key": "diagnostic_test",
+        "allowed": 120.0,
+        "member_pays": {
+         "low": 120.0,
+         "high": 120.0
+        },
+        "note": ""
+       },
+       {
+        "event": "lab_work",
+        "service_key": "diagnostic_test",
+        "allowed": 120.0,
+        "member_pays": {
+         "low": 120.0,
+         "high": 120.0
+        },
+        "note": ""
+       },
+       {
+        "event": "lab_work",
+        "service_key": "diagnostic_test",
+        "allowed": 120.0,
+        "member_pays": {
+         "low": 120.0,
+         "high": 120.0
+        },
+        "note": ""
+       },
+       {
+        "event": "mri",
+        "service_key": "imaging",
+        "allowed": 1000.0,
+        "member_pays": {
+         "low": 1000.0,
+         "high": 1000.0
+        },
+        "note": ""
+       },
+       {
+        "event": "mri",
+        "service_key": "imaging",
+        "allowed": 1000.0,
+        "member_pays": {
+         "low": 1000.0,
+         "high": 1000.0
+        },
+        "note": ""
+       },
+       {
+        "event": "er_visit",
+        "service_key": "emergency_room",
+        "allowed": 2200.0,
+        "member_pays": {
+         "low": 2200.0,
+         "high": 2200.0
+        },
+        "note": ""
+       },
+       {
+        "event": "hospital_stay",
+        "service_key": "hospital_facility_fee",
+        "allowed": 12000.0,
+        "member_pays": {
+         "low": 2720.0,
+         "high": 2720.0
+        },
+        "note": ""
+       },
+       {
+        "event": "hospital_stay",
+        "service_key": "hospital_surgeon_fee",
+        "allowed": 3000.0,
+        "member_pays": {
+         "low": 0.0,
+         "high": 0.0
+        },
+        "note": ""
+       },
+       {
+        "event": "brand_drug_fill",
+        "service_key": "drug:preferred_brand",
+        "allowed": 300.0,
+        "member_pays": {
+         "low": 0.0,
+         "high": 0.0
+        },
+        "note": ""
+       },
+       {
+        "event": "brand_drug_fill",
+        "service_key": "drug:preferred_brand",
+        "allowed": 300.0,
+        "member_pays": {
+         "low": 0.0,
+         "high": 0.0
+        },
+        "note": ""
+       },
+       {
+        "event": "brand_drug_fill",
+        "service_key": "drug:preferred_brand",
+        "allowed": 300.0,
+        "member_pays": {
+         "low": 0.0,
+         "high": 0.0
+        },
+        "note": ""
+       },
+       {
+        "event": "brand_drug_fill",
+        "service_key": "drug:preferred_brand",
+        "allowed": 300.0,
+        "member_pays": {
+         "low": 0.0,
+         "high": 0.0
+        },
+        "note": ""
+       },
+       {
+        "event": "brand_drug_fill",
+        "service_key": "drug:preferred_brand",
+        "allowed": 300.0,
+        "member_pays": {
+         "low": 0.0,
+         "high": 0.0
+        },
+        "note": ""
+       },
+       {
+        "event": "brand_drug_fill",
+        "service_key": "drug:preferred_brand",
+        "allowed": 300.0,
+        "member_pays": {
+         "low": 0.0,
+         "high": 0.0
+        },
+        "note": ""
+       },
+       {
+        "event": "brand_drug_fill",
+        "service_key": "drug:preferred_brand",
+        "allowed": 300.0,
+        "member_pays": {
+         "low": 0.0,
+         "high": 0.0
+        },
+        "note": ""
+       },
+       {
+        "event": "brand_drug_fill",
+        "service_key": "drug:preferred_brand",
+        "allowed": 300.0,
+        "member_pays": {
+         "low": 0.0,
+         "high": 0.0
+        },
+        "note": ""
+       },
+       {
+        "event": "brand_drug_fill",
+        "service_key": "drug:preferred_brand",
+        "allowed": 300.0,
+        "member_pays": {
+         "low": 0.0,
+         "high": 0.0
+        },
+        "note": ""
+       },
+       {
+        "event": "brand_drug_fill",
+        "service_key": "drug:preferred_brand",
+        "allowed": 300.0,
+        "member_pays": {
+         "low": 0.0,
+         "high": 0.0
+        },
+        "note": ""
+       },
+       {
+        "event": "brand_drug_fill",
+        "service_key": "drug:preferred_brand",
+        "allowed": 300.0,
+        "member_pays": {
+         "low": 0.0,
+         "high": 0.0
+        },
+        "note": ""
+       },
+       {
+        "event": "brand_drug_fill",
+        "service_key": "drug:preferred_brand",
+        "allowed": 300.0,
+        "member_pays": {
+         "low": 0.0,
+         "high": 0.0
+        },
+        "note": ""
+       }
+      ],
+      "assumptions": [
+       "HSA-eligible plan: by federal rule the deductible applies to everything except preventive care, so it is applied wherever the SBC row doesn't say otherwise."
+      ]
+     },
+     "B": {
+      "annual_premium": 3480.0,
+      "contribution": 0.0,
+      "out_of_pocket": {
+       "low": 10600.0,
+       "high": 10600.0
+      },
+      "total": {
+       "low": 14080.0,
+       "high": 14080.0
+      },
+      "deductible_met": true,
+      "oop_limit_met": true,
+      "trace": [
+       {
+        "event": "preventive_visit",
+        "service_key": "preventive_care",
+        "allowed": 250.0,
+        "member_pays": {
+         "low": 0.0,
+         "high": 0.0
+        },
+        "note": ""
+       },
+       {
+        "event": "primary_care_visit",
+        "service_key": "primary_care_visit",
+        "allowed": 150.0,
+        "member_pays": {
+         "low": 0.0,
+         "high": 0.0
+        },
+        "note": ""
+       },
+       {
+        "event": "primary_care_visit",
+        "service_key": "primary_care_visit",
+        "allowed": 150.0,
+        "member_pays": {
+         "low": 0.0,
+         "high": 0.0
+        },
+        "note": ""
+       },
+       {
+        "event": "primary_care_visit",
+        "service_key": "primary_care_visit",
+        "allowed": 150.0,
+        "member_pays": {
+         "low": 0.0,
+         "high": 0.0
+        },
+        "note": ""
+       },
+       {
+        "event": "primary_care_visit",
+        "service_key": "primary_care_visit",
+        "allowed": 150.0,
+        "member_pays": {
+         "low": 150.0,
+         "high": 150.0
+        },
+        "note": ""
+       },
+       {
+        "event": "specialist_visit",
+        "service_key": "specialist_visit",
+        "allowed": 250.0,
+        "member_pays": {
+         "low": 250.0,
+         "high": 250.0
+        },
+        "note": ""
+       },
+       {
+        "event": "specialist_visit",
+        "service_key": "specialist_visit",
+        "allowed": 250.0,
+        "member_pays": {
+         "low": 250.0,
+         "high": 250.0
+        },
+        "note": ""
+       },
+       {
+        "event": "specialist_visit",
+        "service_key": "specialist_visit",
+        "allowed": 250.0,
+        "member_pays": {
+         "low": 250.0,
+         "high": 250.0
+        },
+        "note": ""
+       },
+       {
+        "event": "specialist_visit",
+        "service_key": "specialist_visit",
+        "allowed": 250.0,
+        "member_pays": {
+         "low": 250.0,
+         "high": 250.0
+        },
+        "note": ""
+       },
+       {
+        "event": "specialist_visit",
+        "service_key": "specialist_visit",
+        "allowed": 250.0,
+        "member_pays": {
+         "low": 250.0,
+         "high": 250.0
+        },
+        "note": ""
+       },
+       {
+        "event": "specialist_visit",
+        "service_key": "specialist_visit",
+        "allowed": 250.0,
+        "member_pays": {
+         "low": 250.0,
+         "high": 250.0
+        },
+        "note": ""
+       },
+       {
+        "event": "specialist_visit",
+        "service_key": "specialist_visit",
+        "allowed": 250.0,
+        "member_pays": {
+         "low": 250.0,
+         "high": 250.0
+        },
+        "note": ""
+       },
+       {
+        "event": "specialist_visit",
+        "service_key": "specialist_visit",
+        "allowed": 250.0,
+        "member_pays": {
+         "low": 250.0,
+         "high": 250.0
+        },
+        "note": ""
+       },
+       {
+        "event": "lab_work",
+        "service_key": "diagnostic_test",
+        "allowed": 120.0,
+        "member_pays": {
+         "low": 120.0,
+         "high": 120.0
+        },
+        "note": ""
+       },
+       {
+        "event": "lab_work",
+        "service_key": "diagnostic_test",
+        "allowed": 120.0,
+        "member_pays": {
+         "low": 120.0,
+         "high": 120.0
+        },
+        "note": ""
+       },
+       {
+        "event": "lab_work",
+        "service_key": "diagnostic_test",
+        "allowed": 120.0,
+        "member_pays": {
+         "low": 120.0,
+         "high": 120.0
+        },
+        "note": ""
+       },
+       {
+        "event": "lab_work",
+        "service_key": "diagnostic_test",
+        "allowed": 120.0,
+        "member_pays": {
+         "low": 120.0,
+         "high": 120.0
+        },
+        "note": ""
+       },
+       {
+        "event": "mri",
+        "service_key": "imaging",
+        "allowed": 1000.0,
+        "member_pays": {
+         "low": 1000.0,
+         "high": 1000.0
+        },
+        "note": ""
+       },
+       {
+        "event": "mri",
+        "service_key": "imaging",
+        "allowed": 1000.0,
+        "member_pays": {
+         "low": 1000.0,
+         "high": 1000.0
+        },
+        "note": ""
+       },
+       {
+        "event": "er_visit",
+        "service_key": "emergency_room",
+        "allowed": 2200.0,
+        "member_pays": {
+         "low": 2200.0,
+         "high": 2200.0
+        },
+        "note": ""
+       },
+       {
+        "event": "hospital_stay",
+        "service_key": "hospital_facility_fee",
+        "allowed": 12000.0,
+        "member_pays": {
+         "low": 3770.0,
+         "high": 3770.0
+        },
+        "note": ""
+       },
+       {
+        "event": "hospital_stay",
+        "service_key": "hospital_surgeon_fee",
+        "allowed": 3000.0,
+        "member_pays": {
+         "low": 0.0,
+         "high": 0.0
+        },
+        "note": ""
+       },
+       {
+        "event": "brand_drug_fill",
+        "service_key": "drug:preferred_brand",
+        "allowed": 300.0,
+        "member_pays": {
+         "low": 0.0,
+         "high": 0.0
+        },
+        "note": ""
+       },
+       {
+        "event": "brand_drug_fill",
+        "service_key": "drug:preferred_brand",
+        "allowed": 300.0,
+        "member_pays": {
+         "low": 0.0,
+         "high": 0.0
+        },
+        "note": ""
+       },
+       {
+        "event": "brand_drug_fill",
+        "service_key": "drug:preferred_brand",
+        "allowed": 300.0,
+        "member_pays": {
+         "low": 0.0,
+         "high": 0.0
+        },
+        "note": ""
+       },
+       {
+        "event": "brand_drug_fill",
+        "service_key": "drug:preferred_brand",
+        "allowed": 300.0,
+        "member_pays": {
+         "low": 0.0,
+         "high": 0.0
+        },
+        "note": ""
+       },
+       {
+        "event": "brand_drug_fill",
+        "service_key": "drug:preferred_brand",
+        "allowed": 300.0,
+        "member_pays": {
+         "low": 0.0,
+         "high": 0.0
+        },
+        "note": ""
+       },
+       {
+        "event": "brand_drug_fill",
+        "service_key": "drug:preferred_brand",
+        "allowed": 300.0,
+        "member_pays": {
+         "low": 0.0,
+         "high": 0.0
+        },
+        "note": ""
+       },
+       {
+        "event": "brand_drug_fill",
+        "service_key": "drug:preferred_brand",
+        "allowed": 300.0,
+        "member_pays": {
+         "low": 0.0,
+         "high": 0.0
+        },
+        "note": ""
+       },
+       {
+        "event": "brand_drug_fill",
+        "service_key": "drug:preferred_brand",
+        "allowed": 300.0,
+        "member_pays": {
+         "low": 0.0,
+         "high": 0.0
+        },
+        "note": ""
+       },
+       {
+        "event": "brand_drug_fill",
+        "service_key": "drug:preferred_brand",
+        "allowed": 300.0,
+        "member_pays": {
+         "low": 0.0,
+         "high": 0.0
+        },
+        "note": ""
+       },
+       {
+        "event": "brand_drug_fill",
+        "service_key": "drug:preferred_brand",
+        "allowed": 300.0,
+        "member_pays": {
+         "low": 0.0,
+         "high": 0.0
+        },
+        "note": ""
+       },
+       {
+        "event": "brand_drug_fill",
+        "service_key": "drug:preferred_brand",
+        "allowed": 300.0,
+        "member_pays": {
+         "low": 0.0,
+         "high": 0.0
+        },
+        "note": ""
+       },
+       {
+        "event": "brand_drug_fill",
+        "service_key": "drug:preferred_brand",
+        "allowed": 300.0,
+        "member_pays": {
+         "low": 0.0,
+         "high": 0.0
+        },
+        "note": ""
+       }
+      ],
+      "assumptions": [
+       "Catastrophic plan: by federal rule the deductible applies to everything except preventive care and the first 3 primary care visits, so it is applied wherever the SBC row doesn't say otherwise."
+      ]
+     }
+    },
+    "cheapest": [
+     "A"
+    ],
+    "delta_vs_base": {
+     "B": {
+      "low": 1540.0,
+      "high": 1540.0
+     }
+    },
+    "ranges_overlap": false
+   }
+  ],
+  "ranked": [
+   {
+    "diff_id": "svc.specialist_visit",
+    "label": "Specialist visit",
+    "impact_usd": 780.0,
+    "severity": "high"
+   },
+   {
+    "diff_id": "svc.primary_care_visit",
+    "label": "Primary care visit",
+    "impact_usd": 345.0,
+    "severity": "medium"
+   },
+   {
+    "diff_id": "svc.hospital_facility_fee",
+    "label": "Hospital stay facility fee",
+    "impact_usd": 262.5,
+    "severity": "medium"
+   },
+   {
+    "diff_id": "svc.child_dental_checkup",
+    "label": "Children's dental check-up",
+    "impact_usd": 120.0,
+    "severity": "high"
+   },
+   {
+    "diff_id": "svc.urgent_care",
+    "label": "Urgent care",
+    "impact_usd": 80.0,
+    "severity": "low"
+   },
+   {
+    "diff_id": "drug.generic",
+    "label": "Generic drugs",
+    "impact_usd": 65.0,
+    "severity": "low"
+   }
+  ],
+  "reference_prices": {
+   "primary_care_visit": 150.0,
+   "specialist_visit": 250.0,
+   "preventive_care": 250.0,
+   "diagnostic_test": 120.0,
+   "imaging": 1000.0,
+   "outpatient_facility_fee": 3500.0,
+   "outpatient_surgeon_fee": 1500.0,
+   "emergency_room": 2200.0,
+   "emergency_transportation": 1200.0,
+   "urgent_care": 200.0,
+   "hospital_facility_fee": 12000.0,
+   "hospital_surgeon_fee": 3000.0,
+   "mental_health_outpatient": 150.0,
+   "mental_health_inpatient": 9000.0,
+   "pregnancy_office_visits": 200.0,
+   "childbirth_professional": 3000.0,
+   "childbirth_facility": 9000.0,
+   "home_health_care": 180.0,
+   "rehabilitation": 150.0,
+   "habilitation": 150.0,
+   "skilled_nursing": 650.0,
+   "durable_medical_equipment": 500.0,
+   "hospice": 220.0,
+   "child_eye_exam": 100.0,
+   "child_glasses": 150.0,
+   "child_dental_checkup": 120.0,
+   "drug:generic": 30.0,
+   "drug:preferred_brand": 300.0,
+   "drug:non_preferred_brand": 500.0,
+   "drug:specialty": 4000.0
+  },
+  "coverage_examples": {
+   "A": {
+    "having_a_baby": {
+     "deductible": 8700.0,
+     "copayment": 0.0,
+     "coinsurance": 0.0,
+     "limit": 50.0,
+     "total": 8750.0
+    },
+    "managing_diabetes": {
+     "deductible": 4500.0,
+     "copayment": 600.0,
+     "coinsurance": 0.0,
+     "limit": 20.0,
+     "total": 5120.0
+    },
+    "simple_fracture": {
+     "deductible": 2300.0,
+     "copayment": 400.0,
+     "coinsurance": 0.0,
+     "limit": 0.0,
+     "total": 2700.0
+    }
+   },
+   "B": {
+    "having_a_baby": {
+     "deductible": 10600.0,
+     "copayment": 0.0,
+     "coinsurance": 0.0,
+     "limit": 60.0,
+     "total": 10660.0
+    },
+    "managing_diabetes": {
+     "deductible": 5200.0,
+     "copayment": 100.0,
+     "coinsurance": 0.0,
+     "limit": 20.0,
+     "total": 5320.0
+    },
+    "simple_fracture": {
+     "deductible": 2800.0,
+     "copayment": 0.0,
+     "coinsurance": 0.0,
+     "limit": 0.0,
+     "total": 2800.0
+    }
+   }
+  },
+  "warnings": [],
+  "assumptions": [
+   "Plan A (Moda Select Texas Bronze 8700 ($0 Virtual Urgent Care through CirrusMD)): HSA-eligible plan: by federal rule the deductible applies to everything except preventive care, so it is applied wherever the SBC row doesn't say otherwise.",
+   "Plan B (Anthem Catastrophic Pathway Essentials X (+ Incentives)): Catastrophic plan: by federal rule the deductible applies to everything except preventive care and the first 3 primary care visits, so it is applied wherever the SBC row doesn't say otherwise.",
+   "Estimates use reference prices for each service; real prices vary by provider and region.",
+   "Costs are for in-network care unless out-of-network was selected.",
+   "Balance billing, separate drug deductibles, visit limits and HSA tax savings aren't included.",
+   "Where the SBC doesn't say whether the deductible applies, costs are shown as a range."
+  ],
+  "result_hash": "df69d961e5bf0891"
+ },
+ "explanation_status": "ready",
+ "explanation": {
+  "content": {
+   "headline": "Compared with Moda Select Texas Bronze 8700 ($0 Virtual Urgent Care through CirrusMD), the plans differ most in specialist visit, primary care visit.",
+   "key_points": [
+    "Moda Select Texas Bronze 8700 ($0 Virtual Urgent Care through CirrusMD): premiums $3,840 a year, deductible $8,700, out-of-pocket limit $8,700.",
+    "Anthem Catastrophic Pathway Essentials X (+ Incentives): premiums $3,480 a year, deductible $10,600, out-of-pocket limit $10,600."
+   ],
+   "scenarios": [
+    {
+     "scenario": "Low use",
+     "text": "Estimated yearly total: Moda Select Texas Bronze 8700 ($0 Virtual Urgent Care through CirrusMD) $4,110; Anthem Catastrophic Pathway Essentials X (+ Incentives) $3,600. Lowest estimated total: Anthem Catastrophic Pathway Essentials X (+ Incentives)."
+    },
+    {
+     "scenario": "Moderate use",
+     "text": "Estimated yearly total: Moda Select Texas Bronze 8700 ($0 Virtual Urgent Care through CirrusMD) $6,235; Anthem Catastrophic Pathway Essentials X (+ Incentives) $6,280. Lowest estimated total: Moda Select Texas Bronze 8700 ($0 Virtual Urgent Care through CirrusMD)."
+    },
+    {
+     "scenario": "High use",
+     "text": "Estimated yearly total: Moda Select Texas Bronze 8700 ($0 Virtual Urgent Care through CirrusMD) $12,540; Anthem Catastrophic Pathway Essentials X (+ Incentives) $14,080. Lowest estimated total: Moda Select Texas Bronze 8700 ($0 Virtual Urgent Care through CirrusMD)."
+    }
+   ],
+   "watch_out": [
+    "Not covered by every plan: Children's dental check-up."
+   ],
+   "assumptions": [
+    "Plan A (Moda Select Texas Bronze 8700 ($0 Virtual Urgent Care through CirrusMD)): HSA-eligible plan: by federal rule the deductible applies to everything except preventive care, so it is applied wherever the SBC row doesn't say otherwise.",
+    "Plan B (Anthem Catastrophic Pathway Essentials X (+ Incentives)): Catastrophic plan: by federal rule the deductible applies to everything except preventive care and the first 3 primary care visits, so it is applied wherever the SBC row doesn't say otherwise.",
+    "Estimates use reference prices for each service; real prices vary by provider and region.",
+    "Costs are for in-network care unless out-of-network was selected."
+   ],
+   "disclaimer": "These are estimates from the plans' Summary of Benefits and Coverage documents and reference prices, not a quote or advice. Check the plan documents and your providers before you decide."
+  },
+  "source": "template",
+  "grounding": {
+   "ok": true,
+   "numbers_checked": 29,
+   "violations": [],
+   "policy_violations": [],
+   "claim_violations": []
+  },
+  "model": null,
+  "prompt_version": "explanation.v2"
+ }
+}

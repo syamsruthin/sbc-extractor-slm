@@ -103,3 +103,19 @@ export function useRegenerateExplanation(id: string) {
     onError: (e) => toast.error(e instanceof ApiError ? e.message : "Couldn't regenerate"),
   });
 }
+
+export function useComparisons() {
+  return useQuery({ queryKey: ["comparisons"], queryFn: api.listComparisons });
+}
+
+export function useDeleteComparison() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (id: string | "all") => (id === "all" ? api.deleteAllComparisons() : api.deleteComparison(id)),
+    onSuccess: (_, id) => {
+      qc.invalidateQueries({ queryKey: ["comparisons"] });
+      toast.success(id === "all" ? "All saved comparisons deleted" : "Comparison deleted");
+    },
+    onError: (e) => toast.error(e instanceof ApiError ? e.message : "Couldn't delete"),
+  });
+}

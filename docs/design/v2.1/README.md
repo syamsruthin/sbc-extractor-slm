@@ -1,7 +1,8 @@
 # Plan v2.1: trustworthy results, personal inputs, natural-language usage
 
-**Status:** approved for implementation (2026-10-29). Decisions D1–D9 are recorded in
-[01-scope.md §5](01-scope.md#5-decisions); M5 is deferred. Nothing here is implemented yet.
+**Status:** M0–M4 implemented (2026-10-29), see the [backlog and progress log](08-backlog.md). Open: human
+labeling of the explanation sentences (B-03) and review of the intake eval set (B-25), after which "Describe
+your year" can be enabled by default. M5 is deferred (D7).
 
 **Source of truth:** the discovery and feasibility analysis of 2026-10-29
 ([summary and baseline](00-discovery-baseline.md)). Every work item here traces to a finding (F#) or an

@@ -183,6 +183,10 @@ class ComparisonRequest(BaseModel):
 class Verdict(str, Enum):
     better = "better"; worse = "worse"; same = "same"; not_comparable = "not_comparable"
 
+class OverallVerdict(str, Enum):     # engine 1.3.0: before and after the deductible combined
+    better = "better"; worse = "worse"; same = "same"
+    depends_on_deductible = "depends_on_deductible"; not_comparable = "not_comparable"
+
 class Money(BaseModel):              # a value that may be a range
     low: float
     high: float
@@ -207,7 +211,9 @@ class Headline(BaseModel):
 
 class CellView(BaseModel):
     display: str                     # "$50 copay, deductible doesn't apply"
-    est_cost_per_use: float | None
+    est_cost_per_use: float | None   # one use once the deductible is met
+    est_cost_before_deductible: Money | None = None   # one use before it is met (engine 1.3.0)
+    deductible_status: str | None    # applies | does_not_apply | … | not_stated | none
     covered: bool | None
     deductible_applies: bool | None
 
@@ -217,8 +223,10 @@ class ServiceDiff(BaseModel):
     label: str                       # "Specialist visit"
     network: str
     cells: dict[str, CellView]       # plan_key → view
-    verdicts: dict[str, Verdict]     # plan_key (non-base) → vs base
+    verdicts: dict[str, Verdict]     # plan_key (non-base) → vs base, after the deductible
     delta_per_use: dict[str, float | None]   # plan − base
+    verdicts_before_deductible: dict[str, Verdict] = {}      # engine 1.3.0
+    overall_verdicts: dict[str, OverallVerdict] = {}         # engine 1.3.0; empty on older results
     comparison_kind: Literal["exact", "estimated"]
     flags: list[str] = []            # coverage_gap, deductible_difference, …
     reference_price: float | None
@@ -228,6 +236,8 @@ class DrugTierDiff(BaseModel):
     category: str
     cells: dict[str, CellView | None]
     verdicts: dict[str, Verdict]
+    verdicts_before_deductible: dict[str, Verdict] = {}
+    overall_verdicts: dict[str, OverallVerdict] = {}
 
 class LineItem(BaseModel):           # one event in the simulation trace
     event: str

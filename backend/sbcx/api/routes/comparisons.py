@@ -41,11 +41,25 @@ def list_comparisons():
     return svc.recent()
 
 
+@router.delete(
+    "/comparisons", status_code=status.HTTP_204_NO_CONTENT, summary="Delete every saved comparison"
+)
+def delete_comparisons():
+    svc.delete_all()
+
+
 @router.get(
     "/comparisons/{cid}", response_model=ComparisonResponse, summary="A comparison with its explanation"
 )
 def get_comparison(cid: str):
     return svc.get(cid)
+
+
+@router.delete(
+    "/comparisons/{cid}", status_code=status.HTTP_204_NO_CONTENT, summary="Delete a saved comparison"
+)
+def delete_comparison(cid: str):
+    svc.delete(cid)
 
 
 @router.post(

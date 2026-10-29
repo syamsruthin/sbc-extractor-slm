@@ -189,6 +189,18 @@ def cmd_openapi(_: argparse.Namespace) -> None:
     print(json.dumps(create_app().openapi(), indent=2))
 
 
+def cmd_purge_comparisons(args: argparse.Namespace) -> None:
+    from sbcx.config import get_settings
+    from sbcx.infra.db import init_db
+    from sbcx.services.comparison import purge_older_than
+
+    days = args.days or get_settings().comparison_retention_days
+    if not days:
+        sys.exit("give --days or set SBCX_COMPARISON_RETENTION_DAYS")
+    init_db()
+    print(f"deleted {purge_older_than(days)} comparisons older than {days} days")
+
+
 def main(argv: list[str] | None = None) -> None:
     p = argparse.ArgumentParser(prog="sbcx")
     sub = p.add_subparsers(dest="cmd", required=True)
@@ -222,6 +234,10 @@ def main(argv: list[str] | None = None) -> None:
     a.add_argument("--file", help="local rate-puf.zip or csv")
     a.add_argument("--url", default=RATE_PUF_URL)
     a.set_defaults(fn=cmd_load_premiums)
+
+    a = sub.add_parser("purge-comparisons", help="delete saved comparisons older than N days")
+    a.add_argument("--days", type=int, help="default: SBCX_COMPARISON_RETENTION_DAYS")
+    a.set_defaults(fn=cmd_purge_comparisons)
 
     a = sub.add_parser("openapi", help="print the OpenAPI spec")
     a.set_defaults(fn=cmd_openapi)

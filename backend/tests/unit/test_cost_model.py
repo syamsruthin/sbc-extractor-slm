@@ -166,6 +166,25 @@ def test_family_embedded_vs_aggregate():
     assert (unk.out_of_pocket.low, unk.out_of_pocket.high) == (2200, 3000)
 
 
+def test_events_split_across_members_meet_separate_deductibles():
+    """v2.1 T2.5: the builder now sends a member per custom event. With an embedded family deductible, 3 MRIs for
+    one person stop at that person's $2,000; split across two people, each pays toward their own deductible."""
+    prices = ReferencePrices("t", "t", {k: 1000.0 for k in SVC}, PRICES.drugs)
+    p = plan(2000, 8000, {}, cs(pct=20, ded=True), cs(10), ded_fam=4000, oop_fam=16000)
+    one = Scenario(id="o", label="o", events=[Event(event="mri", count=3, member=0)])
+    two = Scenario(
+        id="t",
+        label="t",
+        events=[Event(event="mri", count=2, member=0), Event(event="mri", count=1, member=1)],
+    )
+    a = simulate(p, PlanInputs(), one, CFG, prices, CoverageTier.family)
+    b = simulate(p, PlanInputs(), two, CFG, prices, CoverageTier.family)
+    assert a.out_of_pocket.low == 2000 + 0.2 * 1000
+    assert (
+        b.out_of_pocket.low == 2000 + 1000
+    )  # member 0 meets $2,000; member 1's MRI all goes to their deductible
+
+
 cells = st.builds(
     lambda kind, c, p, d: cs(
         *{"copay": (c, None), "pct": (None, p), "both": (c, p), "nc": (None, None)}[kind],

@@ -1,6 +1,6 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { render } from "@testing-library/react";
-import type { ReactElement } from "react";
+import { StrictMode, type ReactElement } from "react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { vi } from "vitest";
 
@@ -24,9 +24,15 @@ export function mockFetch(routes: Record<string, unknown>) {
   return { fn, calls };
 }
 
-export function renderAt(ui: ReactElement, { path = "/", route = "/" }: { path?: string; route?: string } = {}) {
+export function renderAt(
+  ui: ReactElement,
+  { path = "/", route = "/", cache = {} }: { path?: string; route?: string; cache?: Record<string, unknown> } = {},
+) {
   const qc = new QueryClient({ defaultOptions: { queries: { retry: false } } });
+  // data already in the query cache, as after navigating from another page (key: JSON of the query key)
+  for (const [key, data] of Object.entries(cache)) qc.setQueryData(JSON.parse(key), data);
   return render(
+    <StrictMode>
     <QueryClientProvider client={qc}>
       <SelectionProvider>
         <MemoryRouter initialEntries={[route]}>
@@ -36,6 +42,7 @@ export function renderAt(ui: ReactElement, { path = "/", route = "/" }: { path?:
           </Routes>
         </MemoryRouter>
       </SelectionProvider>
-    </QueryClientProvider>,
+    </QueryClientProvider>
+    </StrictMode>,
   );
 }

@@ -52,8 +52,8 @@ before(cs, key, allowed, plan) = Money(low, high) where for bound in (low, high)
 
 - `visit=1` keeps the catastrophic first-visits rule: the first primary care visit is before the deductible.
 - A deductible smaller than `allowed` is handled by `member_pays` (pays `ded` then cost-sharing on the rest).
-- Not-covered cells return `None` (as `est_per_use` does), so they stay "not comparable"; the coverage
-  gap flag already covers them.
+- Not-covered cells cost the full price before and after the deductible, as `est_per_use` already treats
+  them (changed during implementation; `None` made coverage-gap rows "not comparable").
 - The existing `est_cost_per_use` is unchanged and remains "once the deductible is met".
 
 ### 2.2 Combined verdict
@@ -106,7 +106,7 @@ the fact sheet) so it sees every service.
 |---|---|---|
 | C1 full-cost generalization | `full (cost\|price)` or `nothing (is )?covered` or `no coverage` followed within 60 chars by `deductible` | the plan covers any non-preventive service or drug before the deductible, and the sentence has no exception marker (`except`, `other than`, `apart from`, `besides`, `aside from`) |
 | C2 deductible exemption | a service alias (§2.5) and one of `deductible (doesn't\|does not) apply`, `before (the\|its\|meeting the) deductible`, `without (meeting\|paying) the deductible`, `skips? the deductible`, `no deductible` | that plan's cell status for the service is not in the exempt set |
-| C3 deductible required | a service alias and `after (the )?deductible` or `deductible applies` | the cell status is `does_not_apply` or `before_per_sbc` |
+| C3 deductible required | a service alias and `after (the )?deductible` or `deductible applies`, or "doesn't cover X before the deductible" | the cell status is `does_not_apply`, `before_per_sbc` or `not_stated` (the last added after the live check) |
 | C4 coverage | a service alias and `(does not\|doesn't\|won't) cover` or `not covered` | the cell's `covered` is not `False` |
 | C5 coverage (positive) | a service alias and `covers` without negation | the cell's `covered` is `False` |
 

@@ -516,6 +516,50 @@
         }
       }
     },
+    "/api/v1/catalog/rating-areas": {
+      "get": {
+        "tags": [
+          "catalog"
+        ],
+        "summary": "Rating areas with premiums in a state",
+        "operationId": "get_rating_areas_api_v1_catalog_rating_areas_get",
+        "parameters": [
+          {
+            "name": "state",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 2,
+              "maxLength": 2,
+              "title": "State"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RatingAreas"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/catalog/plans/{plan_id}": {
       "get": {
         "tags": [
@@ -627,6 +671,71 @@
         }
       }
     },
+    "/api/v1/catalog/plans/{plan_id}/premium-quote": {
+      "get": {
+        "tags": [
+          "catalog"
+        ],
+        "summary": "Monthly premium for a household (ages) in one rating area",
+        "operationId": "get_premium_quote_api_v1_catalog_plans__plan_id__premium_quote_get",
+        "parameters": [
+          {
+            "name": "plan_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Plan Id"
+            }
+          },
+          {
+            "name": "rating_area",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 32,
+              "title": "Rating Area"
+            }
+          },
+          {
+            "name": "ages",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "maxLength": 60,
+              "description": "Comma-separated ages, 1-10 members, 0-120",
+              "title": "Ages"
+            },
+            "description": "Comma-separated ages, 1-10 members, 0-120"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HouseholdQuote"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/comparisons": {
       "get": {
         "tags": [
@@ -689,6 +798,18 @@
             }
           }
         }
+      },
+      "delete": {
+        "tags": [
+          "comparisons"
+        ],
+        "summary": "Delete every saved comparison",
+        "operationId": "delete_comparisons_api_v1_comparisons_delete",
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          }
+        }
       }
     },
     "/api/v1/comparisons/{cid}": {
@@ -719,6 +840,39 @@
                 }
               }
             }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "comparisons"
+        ],
+        "summary": "Delete a saved comparison",
+        "operationId": "delete_comparison_api_v1_comparisons__cid__delete",
+        "parameters": [
+          {
+            "name": "cid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Cid"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
           },
           "422": {
             "description": "Validation Error",
@@ -834,6 +988,47 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/UsageStats"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/usage/interpret": {
+      "post": {
+        "tags": [
+          "usage"
+        ],
+        "summary": "Turn a description of a year of care into usage events (not stored)",
+        "operationId": "interpret_usage_api_v1_usage_interpret_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InterpretUsageRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InterpretUsageResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
                 }
               }
             }
@@ -1266,6 +1461,16 @@
             ],
             "title": "Est Cost Per Use"
           },
+          "est_cost_before_deductible": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Money"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "note": {
             "anyOf": [
               {
@@ -1302,6 +1507,14 @@
             },
             "type": "array",
             "title": "Plan Names"
+          },
+          "scenario_labels": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Scenario Labels",
+            "default": []
           }
         },
         "type": "object",
@@ -1311,6 +1524,29 @@
           "plan_names"
         ],
         "title": "ComparisonListItem"
+      },
+      "ComparisonProfile": {
+        "properties": {
+          "ages": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "maxItems": 10,
+            "title": "Ages"
+          },
+          "rating_areas": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Rating Areas",
+            "default": {}
+          }
+        },
+        "type": "object",
+        "title": "ComparisonProfile",
+        "description": "The details premiums were looked up with, kept so the builder can be restored and the result can say where\npremiums came from. The engine doesn't use it."
       },
       "ComparisonRequest": {
         "properties": {
@@ -1384,6 +1620,16 @@
             "type": "boolean",
             "title": "Explain",
             "default": true
+          },
+          "profile": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ComparisonProfile"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "type": "object",
@@ -2075,6 +2321,22 @@
               }
             ],
             "title": "Reference Price"
+          },
+          "verdicts_before_deductible": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/Verdict"
+            },
+            "type": "object",
+            "title": "Verdicts Before Deductible",
+            "default": {}
+          },
+          "overall_verdicts": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/OverallVerdict"
+            },
+            "type": "object",
+            "title": "Overall Verdicts",
+            "default": {}
           }
         },
         "type": "object",
@@ -2486,6 +2748,11 @@
             "type": "boolean",
             "title": "Llm Configured"
           },
+          "intake_available": {
+            "type": "boolean",
+            "title": "Intake Available",
+            "default": false
+          },
           "db": {
             "type": "boolean",
             "title": "Db"
@@ -2502,6 +2769,188 @@
           "db"
         ],
         "title": "Health"
+      },
+      "HouseholdMember": {
+        "properties": {
+          "age": {
+            "type": "integer",
+            "title": "Age"
+          },
+          "band": {
+            "type": "string",
+            "title": "Band"
+          },
+          "monthly_premium": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Monthly Premium"
+          },
+          "counted": {
+            "type": "boolean",
+            "title": "Counted"
+          }
+        },
+        "type": "object",
+        "required": [
+          "age",
+          "band",
+          "monthly_premium",
+          "counted"
+        ],
+        "title": "HouseholdMember"
+      },
+      "HouseholdQuote": {
+        "properties": {
+          "plan_id": {
+            "type": "string",
+            "title": "Plan Id"
+          },
+          "rating_area": {
+            "type": "string",
+            "title": "Rating Area"
+          },
+          "members": {
+            "items": {
+              "$ref": "#/components/schemas/HouseholdMember"
+            },
+            "type": "array",
+            "title": "Members"
+          },
+          "monthly_total": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Monthly Total"
+          },
+          "missing_ages": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "title": "Missing Ages"
+          }
+        },
+        "type": "object",
+        "required": [
+          "plan_id",
+          "rating_area",
+          "members",
+          "monthly_total",
+          "missing_ages"
+        ],
+        "title": "HouseholdQuote"
+      },
+      "InterpretUsageRequest": {
+        "properties": {
+          "text": {
+            "type": "string",
+            "maxLength": 1000,
+            "minLength": 1,
+            "title": "Text"
+          },
+          "coverage_tier": {
+            "type": "string",
+            "enum": [
+              "individual",
+              "family"
+            ],
+            "title": "Coverage Tier",
+            "default": "individual"
+          },
+          "members": {
+            "items": {
+              "type": "string",
+              "maxLength": 40
+            },
+            "type": "array",
+            "maxItems": 10,
+            "title": "Members"
+          }
+        },
+        "type": "object",
+        "required": [
+          "text"
+        ],
+        "title": "InterpretUsageRequest"
+      },
+      "InterpretUsageResponse": {
+        "properties": {
+          "events": {
+            "items": {
+              "$ref": "#/components/schemas/InterpretedEvent"
+            },
+            "type": "array",
+            "title": "Events"
+          },
+          "unmodeled": {
+            "items": {
+              "$ref": "#/components/schemas/UnmodeledItem"
+            },
+            "type": "array",
+            "title": "Unmodeled"
+          },
+          "model": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Model"
+          }
+        },
+        "type": "object",
+        "required": [
+          "events",
+          "unmodeled"
+        ],
+        "title": "InterpretUsageResponse"
+      },
+      "InterpretedEvent": {
+        "properties": {
+          "event": {
+            "type": "string",
+            "title": "Event"
+          },
+          "count": {
+            "type": "integer",
+            "title": "Count"
+          },
+          "member": {
+            "type": "integer",
+            "title": "Member"
+          },
+          "quote": {
+            "type": "string",
+            "title": "Quote"
+          },
+          "basis": {
+            "type": "string",
+            "title": "Basis"
+          }
+        },
+        "type": "object",
+        "required": [
+          "event",
+          "count",
+          "member",
+          "quote",
+          "basis"
+        ],
+        "title": "InterpretedEvent"
       },
       "LineItem": {
         "properties": {
@@ -2592,6 +3041,18 @@
           "out_of_network"
         ],
         "title": "NetworkAmounts"
+      },
+      "OverallVerdict": {
+        "type": "string",
+        "enum": [
+          "better",
+          "worse",
+          "same",
+          "depends_on_deductible",
+          "not_comparable"
+        ],
+        "title": "OverallVerdict",
+        "description": "Per-use verdict that accounts for the deductible: before and after it is met (v2.1 D1)."
       },
       "PlanInputs": {
         "properties": {
@@ -2804,6 +3265,45 @@
           "severity"
         ],
         "title": "RankedDiff"
+      },
+      "RatingArea": {
+        "properties": {
+          "rating_area": {
+            "type": "string",
+            "title": "Rating Area"
+          },
+          "plans_priced": {
+            "type": "integer",
+            "title": "Plans Priced"
+          }
+        },
+        "type": "object",
+        "required": [
+          "rating_area",
+          "plans_priced"
+        ],
+        "title": "RatingArea"
+      },
+      "RatingAreas": {
+        "properties": {
+          "state": {
+            "type": "string",
+            "title": "State"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/RatingArea"
+            },
+            "type": "array",
+            "title": "Items"
+          }
+        },
+        "type": "object",
+        "required": [
+          "state",
+          "items"
+        ],
+        "title": "RatingAreas"
       },
       "ReferencePrices": {
         "properties": {
@@ -3247,6 +3747,22 @@
             "type": "object",
             "title": "Delta Per Use"
           },
+          "verdicts_before_deductible": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/Verdict"
+            },
+            "type": "object",
+            "title": "Verdicts Before Deductible",
+            "default": {}
+          },
+          "overall_verdicts": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/OverallVerdict"
+            },
+            "type": "object",
+            "title": "Overall Verdicts",
+            "default": {}
+          },
           "comparison_kind": {
             "type": "string",
             "enum": [
@@ -3411,6 +3927,24 @@
           "default"
         ],
         "title": "Source"
+      },
+      "UnmodeledItem": {
+        "properties": {
+          "quote": {
+            "type": "string",
+            "title": "Quote"
+          },
+          "reason": {
+            "type": "string",
+            "title": "Reason"
+          }
+        },
+        "type": "object",
+        "required": [
+          "quote",
+          "reason"
+        ],
+        "title": "UnmodeledItem"
       },
       "UsageStats": {
         "properties": {

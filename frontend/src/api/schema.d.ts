@@ -159,6 +159,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/catalog/rating-areas": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Rating areas with premiums in a state */
+        get: operations["get_rating_areas_api_v1_catalog_rating_areas_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/catalog/plans/{plan_id}": {
         parameters: {
             query?: never;
@@ -193,6 +210,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/catalog/plans/{plan_id}/premium-quote": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Monthly premium for a household (ages) in one rating area */
+        get: operations["get_premium_quote_api_v1_catalog_plans__plan_id__premium_quote_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/comparisons": {
         parameters: {
             query?: never;
@@ -205,7 +239,8 @@ export interface paths {
         put?: never;
         /** Compare 2-5 ready plans */
         post: operations["create_comparison_api_v1_comparisons_post"];
-        delete?: never;
+        /** Delete every saved comparison */
+        delete: operations["delete_comparisons_api_v1_comparisons_delete"];
         options?: never;
         head?: never;
         patch?: never;
@@ -222,7 +257,8 @@ export interface paths {
         get: operations["get_comparison_api_v1_comparisons__cid__get"];
         put?: never;
         post?: never;
-        delete?: never;
+        /** Delete a saved comparison */
+        delete: operations["delete_comparison_api_v1_comparisons__cid__delete"];
         options?: never;
         head?: never;
         patch?: never;
@@ -290,6 +326,23 @@ export interface paths {
         get: operations["usage_api_v1_meta_usage_get"];
         put?: never;
         post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/usage/interpret": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Turn a description of a year of care into usage events (not stored) */
+        post: operations["interpret_usage_api_v1_usage_interpret_post"];
         delete?: never;
         options?: never;
         head?: never;
@@ -446,6 +499,7 @@ export interface components {
             deductible_status?: string | null;
             /** Est Cost Per Use */
             est_cost_per_use?: number | null;
+            est_cost_before_deductible?: components["schemas"]["Money"] | null;
             /** Note */
             note?: string | null;
         };
@@ -460,6 +514,27 @@ export interface components {
             created_at: string;
             /** Plan Names */
             plan_names: string[];
+            /**
+             * Scenario Labels
+             * @default []
+             */
+            scenario_labels: string[];
+        };
+        /**
+         * ComparisonProfile
+         * @description The details premiums were looked up with, kept so the builder can be restored and the result can say where
+         *     premiums came from. The engine doesn't use it.
+         */
+        ComparisonProfile: {
+            /** Ages */
+            ages?: number[];
+            /**
+             * Rating Areas
+             * @default {}
+             */
+            rating_areas: {
+                [key: string]: string;
+            };
         };
         /** ComparisonRequest */
         ComparisonRequest: {
@@ -500,6 +575,7 @@ export interface components {
              * @default true
              */
             explain: boolean;
+            profile?: components["schemas"]["ComparisonProfile"] | null;
         };
         /** ComparisonResponse */
         ComparisonResponse: {
@@ -734,6 +810,20 @@ export interface components {
             };
             /** Reference Price */
             reference_price: number | null;
+            /**
+             * Verdicts Before Deductible
+             * @default {}
+             */
+            verdicts_before_deductible: {
+                [key: string]: components["schemas"]["Verdict"];
+            };
+            /**
+             * Overall Verdicts
+             * @default {}
+             */
+            overall_verdicts: {
+                [key: string]: components["schemas"]["OverallVerdict"];
+            };
         };
         /** Event */
         Event: {
@@ -892,8 +982,72 @@ export interface components {
             llm_mode: string;
             /** Llm Configured */
             llm_configured: boolean;
+            /**
+             * Intake Available
+             * @default false
+             */
+            intake_available: boolean;
             /** Db */
             db: boolean;
+        };
+        /** HouseholdMember */
+        HouseholdMember: {
+            /** Age */
+            age: number;
+            /** Band */
+            band: string;
+            /** Monthly Premium */
+            monthly_premium: number | null;
+            /** Counted */
+            counted: boolean;
+        };
+        /** HouseholdQuote */
+        HouseholdQuote: {
+            /** Plan Id */
+            plan_id: string;
+            /** Rating Area */
+            rating_area: string;
+            /** Members */
+            members: components["schemas"]["HouseholdMember"][];
+            /** Monthly Total */
+            monthly_total: number | null;
+            /** Missing Ages */
+            missing_ages: number[];
+        };
+        /** InterpretUsageRequest */
+        InterpretUsageRequest: {
+            /** Text */
+            text: string;
+            /**
+             * Coverage Tier
+             * @default individual
+             * @enum {string}
+             */
+            coverage_tier: "individual" | "family";
+            /** Members */
+            members?: string[];
+        };
+        /** InterpretUsageResponse */
+        InterpretUsageResponse: {
+            /** Events */
+            events: components["schemas"]["InterpretedEvent"][];
+            /** Unmodeled */
+            unmodeled: components["schemas"]["UnmodeledItem"][];
+            /** Model */
+            model?: string | null;
+        };
+        /** InterpretedEvent */
+        InterpretedEvent: {
+            /** Event */
+            event: string;
+            /** Count */
+            count: number;
+            /** Member */
+            member: number;
+            /** Quote */
+            quote: string;
+            /** Basis */
+            basis: string;
         };
         /** LineItem */
         LineItem: {
@@ -931,6 +1085,12 @@ export interface components {
             /** @description null if not applicable or unlimited */
             out_of_network: components["schemas"]["Amounts"] | null;
         };
+        /**
+         * OverallVerdict
+         * @description Per-use verdict that accounts for the deductible: before and after it is met (v2.1 D1).
+         * @enum {string}
+         */
+        OverallVerdict: "better" | "worse" | "same" | "depends_on_deductible" | "not_comparable";
         /** PlanInputs */
         PlanInputs: {
             /** Monthly Premium */
@@ -997,6 +1157,20 @@ export interface components {
              * @enum {string}
              */
             severity: "high" | "medium" | "low";
+        };
+        /** RatingArea */
+        RatingArea: {
+            /** Rating Area */
+            rating_area: string;
+            /** Plans Priced */
+            plans_priced: number;
+        };
+        /** RatingAreas */
+        RatingAreas: {
+            /** State */
+            state: string;
+            /** Items */
+            items: components["schemas"]["RatingArea"][];
         };
         /** ReferencePrices */
         ReferencePrices: {
@@ -1157,6 +1331,20 @@ export interface components {
                 [key: string]: number | null;
             };
             /**
+             * Verdicts Before Deductible
+             * @default {}
+             */
+            verdicts_before_deductible: {
+                [key: string]: components["schemas"]["Verdict"];
+            };
+            /**
+             * Overall Verdicts
+             * @default {}
+             */
+            overall_verdicts: {
+                [key: string]: components["schemas"]["OverallVerdict"];
+            };
+            /**
              * Comparison Kind
              * @enum {string}
              */
@@ -1203,6 +1391,13 @@ export interface components {
          * @enum {string}
          */
         Source: "parser" | "parser+llm" | "llm_fallback" | "default";
+        /** UnmodeledItem */
+        UnmodeledItem: {
+            /** Quote */
+            quote: string;
+            /** Reason */
+            reason: string;
+        };
         /** UsageStats */
         UsageStats: {
             /** Llm */
@@ -1588,6 +1783,37 @@ export interface operations {
             };
         };
     };
+    get_rating_areas_api_v1_catalog_rating_areas_get: {
+        parameters: {
+            query: {
+                state: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["RatingAreas"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
     get_plan_api_v1_catalog_plans__plan_id__get: {
         parameters: {
             query?: never;
@@ -1640,6 +1866,41 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["PremiumQuotes"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_premium_quote_api_v1_catalog_plans__plan_id__premium_quote_get: {
+        parameters: {
+            query: {
+                rating_area: string;
+                /** @description Comma-separated ages, 1-10 members, 0-120 */
+                ages: string;
+            };
+            header?: never;
+            path: {
+                plan_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HouseholdQuote"];
                 };
             };
             /** @description Validation Error */
@@ -1706,6 +1967,24 @@ export interface operations {
             };
         };
     };
+    delete_comparisons_api_v1_comparisons_delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     get_comparison_api_v1_comparisons__cid__get: {
         parameters: {
             query?: never;
@@ -1725,6 +2004,35 @@ export interface operations {
                 content: {
                     "application/json": components["schemas"]["ComparisonResponse"];
                 };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    delete_comparison_api_v1_comparisons__cid__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                cid: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
             };
             /** @description Validation Error */
             422: {
@@ -1824,6 +2132,39 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["UsageStats"];
+                };
+            };
+        };
+    };
+    interpret_usage_api_v1_usage_interpret_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["InterpretUsageRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["InterpretUsageResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
                 };
             };
         };

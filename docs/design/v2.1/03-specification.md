@@ -9,7 +9,7 @@ may slip to the backlog with a note. Each requirement names the tasks that imple
 
 | ID | Requirement | Tasks |
 |---|---|---|
-| R-ACC-1 | For every service and drug-tier cell, the comparison result MUST include `est_cost_before_deductible` as a `{low, high}` range, computed as in [02 §2.1](02-solution-design.md#21-before-deductible-cost-per-use). Not-covered cells MUST have `null`. | T1.1 |
+| R-ACC-1 | For every service and drug-tier cell, the comparison result MUST include `est_cost_before_deductible` as a `{low, high}` range, computed as in [02 §2.1](02-solution-design.md#21-before-deductible-cost-per-use). Not-covered cells get the full reference price (as `est_cost_per_use` does), so coverage gaps keep their verdict; unknown cells are `null`. *(Changed during implementation: `null` for not-covered cells turned their existing "lower cost" verdict into "not comparable".)* | T1.1 |
 | R-ACC-2 | For every non-base plan, each service and drug diff MUST include `verdicts_before_deductible` and `overall_verdicts`, computed as in [02 §2.2](02-solution-design.md#22-combined-verdict). | T1.1 |
 | R-ACC-3 | The side-by-side table MUST show, per cell, the before-deductible and after-deductible cost per use, and a badge from `overall_verdicts`. `depends_on_deductible` MUST render as an amber "depends on deductible" badge with a tooltip naming both figures. | T1.3 |
 | R-ACC-4 | Comparisons stored before engine 1.3.0 (no new fields) MUST render exactly as today. | T1.3, T1.4 |

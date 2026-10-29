@@ -16,6 +16,7 @@ type Ctx = {
   toggle: (p: SelectedPlan) => boolean;
   remove: (documentId: string) => void;
   clear: () => void;
+  replace: (items: SelectedPlan[]) => void;
 };
 
 const SelectionContext = createContext<Ctx | null>(null);
@@ -55,7 +56,8 @@ export function SelectionProvider({ children }: { children: ReactNode }) {
   );
   const remove = useCallback((id: string) => setItems((xs) => xs.filter((i) => i.documentId !== id)), []);
   const clear = useCallback(() => setItems([]), []);
-  const value = useMemo(() => ({ items, has, toggle, remove, clear }), [items, has, toggle, remove, clear]);
+  const replace = useCallback((xs: SelectedPlan[]) => setItems(xs.slice(0, MAX_PLANS)), []);
+  const value = useMemo(() => ({ items, has, toggle, remove, clear, replace }), [items, has, toggle, remove, clear, replace]);
   return <SelectionContext.Provider value={value}>{children}</SelectionContext.Provider>;
 }
 

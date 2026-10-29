@@ -3,6 +3,8 @@ explanation is generated in the background."""
 
 from __future__ import annotations
 
+from datetime import UTC, datetime, timedelta
+
 from sbcx.api.schemas import ComparisonListItem, ComparisonResponse
 from sbcx.config import get_settings
 from sbcx.domain.compare.config import load_prices, load_scenarios
@@ -100,9 +102,28 @@ def recent() -> list[ComparisonListItem]:
                 id=r.id,
                 created_at=r.created_at,
                 plan_names=[p.get("plan_name") or "Plan" for p in r.result.get("plans", [])],
+                scenario_labels=[s["scenario"]["label"] for s in r.result.get("scenarios", [])],
             )
             for r in ComparisonRepo(s).recent()
         ]
+
+
+def delete(cid: str) -> None:
+    with session_scope() as s:
+        if not ComparisonRepo(s).delete(cid):
+            raise not_found("Comparison", cid)
+
+
+def delete_all() -> int:
+    with session_scope() as s:
+        return ComparisonRepo(s).delete_all()
+
+
+def purge_older_than(days: int) -> int:
+    """Delete comparisons older than `days` (retention, SBCX_COMPARISON_RETENTION_DAYS)."""
+    cutoff = datetime.now(UTC) - timedelta(days=days)
+    with session_scope() as s:
+        return ComparisonRepo(s).delete_older_than(cutoff)
 
 
 def set_explanation(cid: str, status: str, record: ExplanationRecord | None = None) -> None:

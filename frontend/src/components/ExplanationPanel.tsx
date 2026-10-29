@@ -26,7 +26,7 @@ export function ExplanationPanel({ data }: { data: ComparisonResponse }) {
           {e?.grounding.ok && (
             <Badge
               tone="green"
-              title={`All ${e.grounding.numbers_checked} amounts and percentages match the calculation, and every "lowest/highest" claim matches its ranking. Other wording isn't machine-checked.`}
+              title={`Checked against the calculation: ${e.grounding.numbers_checked} amounts and percentages, "lowest/highest" claims, and statements about deductibles and coverage. Other wording isn't machine-checked.`}
             >
               <ShieldCheck className="h-3 w-3" /> Numbers checked
             </Badge>
